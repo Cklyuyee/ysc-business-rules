@@ -32,7 +32,7 @@ async function exportToDocx() {
     ShadingType, PageNumber, PageBreak,
   } = await import('docx');
 
-  const BRAND = '1E3A5F', ACCENT = '2E75B6', BRAND_LIGHT = 'D6E4F0';
+  const BRAND = '1E3A5F', ACCENT = '2E75B6';
   const GRAY_LINE = 'CCCCCC', WHITE = 'FFFFFF', TEXT_DARK = '1A1A2E';
   const PAGE_W = 11906, MARGIN = 1440, CW = PAGE_W - MARGIN * 2;
 
