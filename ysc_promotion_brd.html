@@ -1,0 +1,711 @@
+﻿<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>YSC Promotion BRD — ระบบจัดการโปรโมชั่น (Promotion Engine) v2.0</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FFFFFF;
+  --bg-soft:#FAFAFA;
+  --ink:#0A0A0A;
+  --ink-2:#2B2B2B;
+  --ink-3:#525252;
+  --ink-4:#8A8A8A;
+  --line:#EDEDED;
+  --line-2:#E5E5E5;
+  --teal:#14E4C7;
+  --blue:#3B82F6;
+  --purple:#8B5CF6;
+  --pink:#EC4899;
+  --gradient:linear-gradient(90deg,#14E4C7 0%,#3B82F6 30%,#8B5CF6 55%,#EC4899 80%,#FB7185 100%);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#FAFAFA;font-family:'Plus Jakarta Sans','Sarabun',Tahoma,sans-serif;color:#0A0A0A;padding:0 0 80px;line-height:1.65}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:6px;font-family:'Plus Jakarta Sans','Sarabun',sans-serif;font-size:12.5px;font-weight:600;cursor:pointer;border:none;background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.2)}
+.btn:hover{background:rgba(255,255,255,.2)}
+#doc{max-width:920px;margin:36px auto;background:#fff;padding:64px 72px;box-shadow:0 6px 28px rgba(0,0,0,.12);border-radius:6px}
+.cover{background:#0A0A0A;color:#fff;margin:-64px -72px 36px;padding:64px 72px 48px;border-radius:6px 6px 0 0}
+.cover .tag{display:inline-block;background:linear-gradient(90deg,#14E4C7,#3B82F6);font-size:11px;font-weight:700;letter-spacing:.1em;padding:5px 14px;border-radius:4px;margin-bottom:24px}
+.cover h1{font-size:32px;font-weight:700;line-height:1.25;margin-bottom:8px;color:#fff;border:none;padding:0}
+.cover .sub{font-size:16px;color:rgba(255,255,255,0.65);font-weight:300;margin-bottom:32px}
+.cover .info-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid rgba(255,255,255,.15);border-radius:8px;overflow:hidden}
+.cover .info-cell{padding:14px 20px;border-bottom:1px solid rgba(255,255,255,.1);border-right:1px solid rgba(255,255,255,.1)}
+.cover .info-cell:nth-child(2n){border-right:none}
+.cover .info-cell:nth-last-child(-n+2){border-bottom:none}
+.cover .info-label{font-size:10px;color:rgba(255,255,255,0.65);font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
+.cover .info-value{font-size:13px;color:#fff;font-weight:600}
+h1{font-size:24px;color:#0A0A0A;margin:42px 0 14px;font-weight:700;padding-bottom:8px;border-bottom:3px solid transparent;border-image:linear-gradient(90deg,#14E4C7,#3B82F6,#8B5CF6,#EC4899) 1}
+h2{font-size:18px;color:#0A0A0A;margin:30px 0 12px;font-weight:700}
+h3{font-size:15px;color:#3B82F6;margin:22px 0 10px;font-weight:700}
+p{margin-bottom:12px;font-size:13.5px}
+ul,ol{margin:8px 0 14px 22px;font-size:13.5px}
+li{margin-bottom:5px;line-height:1.7}
+table{width:100%;border-collapse:collapse;margin:14px 0 22px;font-size:12.5px}
+thead th{background:#0A0A0A;color:#fff;padding:10px 12px;text-align:left;font-weight:600;border:1px solid #0A0A0A}
+tbody td{padding:9px 12px;border:1px solid #D1D5DB;vertical-align:top;line-height:1.6}
+tbody tr:nth-child(even) td{background:#F9FAFB}
+td strong{color:#0A0A0A}
+.callout{border-left:4px solid #3B82F6;background:#EFF6FF;padding:14px 18px;margin:14px 0;border-radius:0 6px 6px 0}
+.callout strong{color:#0A0A0A}
+.callout-amber{border-left-color:#F59E0B;background:#FFFBEB}
+.callout-amber strong{color:#92400E}
+.callout-green{border-left-color:#10B981;background:#ECFDF5}
+.callout-green strong{color:#065F46}
+.toc{background:#F8FAFC;border:1px solid #E5E7EB;border-radius:8px;padding:20px 28px;margin:20px 0}
+.toc ol{list-style:none;margin:0;padding:0;counter-reset:toc;font-size:13px}
+.toc ol > li{counter-increment:toc;padding:4px 0;border-bottom:1px dashed #E5E7EB}
+.toc ol > li::before{content:counter(toc) ". ";font-weight:700;color:#0A0A0A;margin-right:6px}
+.toc ol ol{margin:4px 0 4px 24px;font-size:12px;color:#6B7280;counter-reset:sub}
+.toc ol ol li{counter-increment:sub;padding:1px 0;border:none}
+.toc ol ol li::before{content:counter(toc) "." counter(sub) " ";color:#6B7280;font-weight:600;margin-right:4px}
+.screen-ref{display:inline-block;background:#FAFAFA;border:1px solid #D1D5DB;color:#374151;font-size:11.5px;padding:1px 8px;border-radius:4px;font-weight:600}
+.br-ref{display:inline-block;background:#FFFBEB;border:1px solid #FDE68A;color:#92400E;font-size:11px;padding:1px 7px;border-radius:4px;font-weight:600;font-family:'Sarabun',monospace}
+.use-case{border:1px solid #E5E7EB;border-radius:10px;margin:18px 0;background:#fff;overflow:hidden}
+.uc-header{background:#0A0A0A;color:#fff;padding:12px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.uc-header .uc-num{font-size:13px;font-weight:700;letter-spacing:.04em}
+.uc-header .uc-title{font-size:14px;font-weight:600;flex:1}
+.uc-body{padding:16px 22px}
+.uc-section{margin:12px 0}
+.uc-section-label{font-size:11.5px;font-weight:700;color:#0A0A0A;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+.uc-flow{counter-reset:flow;list-style:none;margin-left:0}
+.uc-flow > li{counter-increment:flow;position:relative;padding:5px 0 5px 32px;font-size:13px}
+.uc-flow > li::before{content:counter(flow);position:absolute;left:0;top:5px;width:22px;height:22px;background:linear-gradient(90deg,#3B82F6,#8B5CF6);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700}
+.uc-alt{background:#FFFBEB;border-left:3px solid #F59E0B;padding:8px 14px;margin:6px 0;border-radius:0 6px 6px 0;font-size:12.5px}
+.uc-exc{background:#FEF2F2;border-left:3px solid #E11D48;padding:8px 14px;margin:6px 0;border-radius:0 6px 6px 0;font-size:12.5px}
+.uc-ac{background:#ECFDF5;border:1px solid #A7F3D0;border-radius:6px;padding:10px 14px;margin:4px 0;font-size:12.5px}
+.uc-ac strong{color:#065F46}
+.tag-confirmed{display:inline-block;background:#DCFCE7;color:#166534;font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:10px}
+.tag-pending{display:inline-block;background:#FEF3C7;color:#92400E;font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:10px}
+@media print{body{background:#fff}#doc{max-width:none;margin:0;box-shadow:none;padding:24px 40px}.cover{margin:-24px -40px 24px;padding:50px 40px 40px}h1{page-break-before:always}h1:first-of-type{page-break-before:auto}table,.use-case{page-break-inside:avoid}}
+
+/* -- Upload Widget -- */
+.screen-figure{position:relative;cursor:pointer;transition:transform .15s,box-shadow .15s;margin:14px 0 18px;border:1px solid #E5E7EB;border-radius:10px;overflow:hidden;background:#FAFAFA}
+.screen-figure:hover{box-shadow:0 6px 18px rgba(59,130,246,0.25)}
+.screen-figure img{display:block;width:100%;height:auto}
+.screen-caption{padding:10px 16px;background:#0A0A0A;color:#fff;font-size:12px;font-weight:600;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.screen-caption .ref{font-size:10.5px;color:rgba(255,255,255,0.65);font-weight:500;font-family:'Sarabun',monospace}
+.screen-figure .upload-overlay{position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(10,10,10,0.92);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;transition:opacity .2s;z-index:5;pointer-events:none;text-align:center;padding:24px}
+.screen-figure:hover .upload-overlay{opacity:1}
+.screen-figure.no-image{background:#F8FAFC;border:2px dashed #3B82F6;min-height:200px;display:flex;align-items:center;justify-content:center}
+.screen-figure.no-image .upload-overlay{position:relative;opacity:1;background:transparent;color:#0A0A0A;border:none}
+.screen-figure.no-image img{display:none}
+.screen-figure.no-image .screen-caption{display:none}
+.upload-icon{font-size:42px;font-weight:800;color:#3B82F6;border:3px solid currentColor;width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:12px;line-height:1}
+.screen-figure:hover .upload-icon{color:#fff;border-color:#fff}
+.screen-figure.no-image .upload-icon{color:#3B82F6;border-color:#3B82F6}
+.upload-text{font-size:14px;font-weight:700;margin-bottom:4px}
+.upload-filename{font-size:11.5px;font-family:'Sarabun',monospace;background:rgba(255,255,255,.18);padding:4px 10px;border-radius:4px;margin-top:6px}
+.screen-figure.no-image .upload-filename{background:#EFF6FF;color:#0A0A0A;border:1px solid #BFDBFE}
+.uploaded-badge{position:absolute;top:8px;right:8px;background:#10B981;color:#fff;font-size:10.5px;font-weight:700;padding:3px 9px;border-radius:10px;z-index:6;display:none}
+.screen-figure.uploaded .uploaded-badge{display:block}
+#upload-toolbar{position:fixed;bottom:24px;right:24px;background:#0A0A0A;color:#fff;padding:14px 18px;border-radius:14px;box-shadow:0 8px 28px rgba(0,0,0,0.25);z-index:1000;font-family:'Plus Jakarta Sans','Sarabun',sans-serif;display:flex;flex-direction:column;gap:10px;min-width:240px}
+#upload-toolbar .ut-header{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:rgba(255,255,255,0.65);font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+#upload-toolbar .ut-stats{font-size:13px;font-weight:600}
+#upload-toolbar .ut-stats b{color:#FDE68A;font-size:16px}
+#upload-toolbar button{background:#3B82F6;color:#fff;border:none;padding:10px 14px;border-radius:8px;cursor:pointer;font-weight:700;font-size:12.5px;font-family:'Plus Jakarta Sans','Sarabun',sans-serif}
+#upload-toolbar button:hover{background:#1D4ED8}
+#upload-toolbar button.danger{background:transparent;color:#FCA5A5;border:1px solid #EF4444;padding:6px 10px;font-size:11px}
+#upload-toolbar button.danger:hover{background:rgba(239,68,68,.15)}
+#upload-toolbar.collapsed{padding:10px 14px;min-width:auto}
+#upload-toolbar.collapsed .ut-body{display:none}
+#upload-toolbar .toggle{cursor:pointer;font-size:14px;background:transparent;padding:0;border:none;color:rgba(255,255,255,0.65)}
+@media print{#upload-toolbar{display:none}.screen-figure .upload-overlay,.uploaded-badge{display:none !important}}
+</style>
+</head>
+<body>
+
+<nav style="position:sticky;top:0;z-index:200;background:rgba(255,255,255,.9);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid #EDEDED;display:flex;align-items:center;justify-content:space-between;padding:10px 28px;">
+  <div style="display:flex;align-items:center;gap:16px;">
+    <a href="index.html"><img src="assets/adeptio_logo.png" alt="Adeptio" style="height:26px;display:block"></a>
+    <span style="width:1px;height:20px;background:#EDEDED;display:inline-block"></span>
+    <a href="index.html" style="font-size:13px;font-weight:600;color:#525252;text-decoration:none;">สารบัญ</a>
+    <span style="font-size:13px;color:#8A8A8A;">|</span>
+    <span class="toolbar-title" style="font-size:13px;font-weight:600;color:#2B2B2B;">YSC Promotion BRD — ระบบจัดการโปรโมชั่น v2.0</span>
+  </div>
+  <button onclick="window.print()" style="display:inline-flex;align-items:center;gap:6px;padding:8px 18px;border-radius:999px;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;border:1.5px solid #EDEDED;background:#fff;color:#0A0A0A;">พิมพ์ / PDF</button>
+</nav>
+
+<div id="doc">
+
+<div class="cover">
+  <div class="tag">เอกสารโมดูล · BACKOFFICE · PROMOTION</div>
+  <h1>ระบบจัดการโปรโมชั่น<br>(Promotion Engine)</h1>
+  <div class="sub">เอกสารข้อกำหนดเชิงธุรกิจ โมดูลย่อยที่ 5 ของระบบหลังบ้าน</div>
+  <div class="info-grid">
+    <div class="info-cell"><div class="info-label">รหัสโมดูล</div><div class="info-value">PROMO (Promotion)</div></div>
+    <div class="info-cell"><div class="info-label">เวอร์ชัน / วันที่</div><div class="info-value">v2.0 พฤษภาคม 2569</div></div>
+    <div class="info-cell"><div class="info-label">เจ้าของโครงการ</div><div class="info-value">บริษัท ยงเจริญศูนย์เครื่องเขียน จำกัด</div></div>
+    <div class="info-cell"><div class="info-label">ผู้พัฒนาระบบ</div><div class="info-value">บริษัท อะเดพทิโอ จำกัด</div></div>
+    <div class="info-cell"><div class="info-label">เชื่อมต่อกับ</div><div class="info-value">OMS, PRD, CRM, ConX</div></div>
+    <div class="info-cell"><div class="info-label">อ้างอิงเอกสารแม่บท</div><div class="info-value">ysc_business_rules.html v2.2</div></div>
+  </div>
+</div>
+
+<div class="callout callout-green">
+  <strong>วัตถุประสงค์ของเอกสาร</strong>
+  <p style="margin-top:6px;margin-bottom:0;font-size:13px">เอกสารฉบับนี้ระบุข้อกำหนดของ<strong>ระบบจัดการโปรโมชั่น (Promotion Engine)</strong> ครอบคลุมการสร้างแคมเปญส่วนลด คูปอง ของแถม โปรโมชั่นตามระดับสมาชิก การคำนวณส่วนลดอัตโนมัติในขั้นตอนชำระเงิน และรายงานประสิทธิภาพแคมเปญ กฎอ้างอิงจาก <strong>ysc_business_rules.html v2.2 หมวด 11 (PR-01 ถึง PR-07)</strong></p>
+</div>
+
+<h2 style="margin-top:32px">สารบัญ</h2>
+<div class="toc">
+  <ol>
+    <li>ข้อมูลเอกสารและการอนุมัติ</li>
+    <li>วัตถุประสงค์เชิงธุรกิจ</li>
+    <li>ขอบเขตของงาน (In / Out of Scope)</li>
+    <li>ผู้มีส่วนได้ส่วนเสียและบทบาทผู้ใช้งาน</li>
+    <li>สถานะปัจจุบัน (As-Is)</li>
+    <li>กระบวนการในอนาคต (To-Be)</li>
+    <li>ข้อกำหนดเชิงหน้าที่ — กรณีการใช้งาน (Use Cases)
+      <ol>
+        <li>UC-PROMO-001 สร้างแคมเปญส่วนลด</li>
+        <li>UC-PROMO-002 สร้างคูปอง</li>
+        <li>UC-PROMO-003 สร้างโปรโมชั่นของแถม (Buy X Get Y)</li>
+        <li>UC-PROMO-004 สร้างโปรโมชั่นเฉพาะระดับสมาชิก</li>
+        <li>UC-PROMO-005 ลูกค้าใช้คูปองในขั้นตอนชำระเงิน</li>
+        <li>UC-PROMO-006 ระบบคำนวณส่วนลดอัตโนมัติ</li>
+        <li>UC-PROMO-007 ยกเลิก / หยุดแคมเปญชั่วคราว</li>
+        <li>UC-PROMO-008 ดูรายงานประสิทธิภาพแคมเปญ</li>
+      </ol>
+    </li>
+    <li>การออกแบบประสบการณ์ผู้ใช้ (Screen Inventory)</li>
+    <li>กฎเกณฑ์เชิงธุรกิจ — อ้างอิงเอกสารแม่บท</li>
+    <li>การเชื่อมต่อระบบภายนอก (Integration)</li>
+    <li>การออกแบบข้อมูลและข้อมูลหลัก (Data &amp; Master)</li>
+    <li>ความปลอดภัยและสิทธิ์การเข้าถึง (Security &amp; RBAC)</li>
+    <li>ข้อกำหนดเชิงคุณภาพ (NFR)</li>
+    <li>รายงานและแดชบอร์ดที่เกี่ยวข้อง</li>
+    <li>ข้อกำหนดการโอนย้ายข้อมูล (Migration)</li>
+    <li>สมมติฐานและข้อจำกัด</li>
+    <li>เกณฑ์การยอมรับผลงาน (Acceptance Criteria)</li>
+    <li>ประเด็นเปิดและความเสี่ยง</li>
+  </ol>
+</div>
+
+<h2 style="margin-top:36px">สรุปกรณีการใช้งาน (Use Case Catalog)</h2>
+<p style="font-size:13px;color:#475569">ตารางสรุปกรณีการใช้งานทั้ง 8 รายการของระบบจัดการโปรโมชั่น ครอบคลุมการสร้างแคมเปญ คูปอง ของแถม การคำนวณส่วนลดอัตโนมัติ และรายงาน รายละเอียดเต็มอยู่ในหัวข้อที่ 7</p>
+<table>
+  <thead>
+    <tr>
+      <th style="width:46px">#</th>
+      <th style="width:130px">รหัส</th>
+      <th>ชื่อกรณีการใช้งาน</th>
+      <th style="width:160px">ผู้ใช้งานหลัก</th>
+      <th style="width:160px">กฎที่เกี่ยวข้อง</th>
+      <th style="width:90px">สถานะ</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>1</td><td><strong>UC-PROMO-001</strong></td><td>สร้างแคมเปญส่วนลด</td><td>Promo Admin + หัวหน้าฝ่ายการตลาด</td><td><span class="br-ref">PR-01</span></td><td><span class="tag-confirmed">ยืนยัน</span></td></tr>
+    <tr><td>2</td><td><strong>UC-PROMO-002</strong></td><td>สร้างคูปอง</td><td>Promo Admin</td><td><span class="br-ref">PR-05</span></td><td><span class="tag-confirmed">ยืนยัน</span></td></tr>
+    <tr><td>3</td><td><strong>UC-PROMO-003</strong></td><td>สร้างโปรโมชั่นของแถม (Buy X Get Y)</td><td>Promo Admin</td><td><span class="br-ref">PR-03</span></td><td><span class="tag-confirmed">ยืนยัน</span></td></tr>
+    <tr><td>4</td><td><strong>UC-PROMO-004</strong></td><td>สร้างโปรโมชั่นเฉพาะระดับสมาชิก</td><td>Promo Admin</td><td><span class="br-ref">หมวด 10</span></td><td><span class="tag-confirmed">ยืนยัน</span></td></tr>
+    <tr><td>5</td><td><strong>UC-PROMO-005</strong></td><td>ลูกค้าใช้คูปองในขั้นตอนชำระเงิน</td><td>ลูกค้า / พนักงาน CC / POS</td><td><span class="br-ref">PR-05</span></td><td><span class="tag-pending">รอยืนยัน</span></td></tr>
+    <tr><td>6</td><td><strong>UC-PROMO-006</strong></td><td>ระบบคำนวณส่วนลดอัตโนมัติ</td><td>ระบบ</td><td><span class="br-ref">PR-01</span> <span class="br-ref">PR-07</span></td><td><span class="tag-confirmed">ยืนยัน</span></td></tr>
+    <tr><td>7</td><td><strong>UC-PROMO-007</strong></td><td>ยกเลิก / หยุดแคมเปญชั่วคราว</td><td>Promo Admin + หัวหน้าฝ่ายการตลาด</td><td>—</td><td><span class="tag-confirmed">ยืนยัน</span></td></tr>
+    <tr><td>8</td><td><strong>UC-PROMO-008</strong></td><td>ดูรายงานประสิทธิภาพแคมเปญ</td><td>ฝ่ายการตลาด</td><td>—</td><td><span class="tag-confirmed">ยืนยัน</span></td></tr>
+  </tbody>
+</table>
+
+<h1>1. ข้อมูลเอกสารและการอนุมัติ</h1>
+<h2>1.1 ประวัติการแก้ไข</h2>
+<table>
+  <thead><tr><th style="width:80px">เวอร์ชัน</th><th style="width:110px">วันที่</th><th>รายละเอียดการเปลี่ยนแปลง</th><th style="width:90px">สถานะ</th></tr></thead>
+  <tbody>
+    <tr><td>1.0</td><td>มี.ค. 2569</td><td>ฉบับร่างแรก</td><td><span class="tag-pending">เก่า</span></td></tr>
+    <tr><td>2.0</td><td>16 พ.ค. 2569</td><td>เขียนใหม่ทั้งฉบับ อ้างอิง Business Rules v2.2 หมวด 11 ตัดศัพท์ Tech ออก เพิ่ม UC ครบ 8 รายการ ปรับให้ชัดเจนว่า Pre-Order ไม่ลดราคา</td><td><span class="tag-confirmed">ปัจจุบัน</span></td></tr>
+  </tbody>
+</table>
+
+<h2>1.2 ผู้อนุมัติเอกสาร</h2>
+<table>
+  <thead><tr><th style="width:240px">บทบาท</th><th>ชื่อ-นามสกุล</th><th style="width:140px">วันที่อนุมัติ</th><th style="width:140px">ลายเซ็น</th></tr></thead>
+  <tbody>
+    <tr><td><strong>หัวหน้าฝ่ายการตลาด (YSC)</strong></td><td>____________________</td><td>____________</td><td>____________</td></tr>
+    <tr><td><strong>เจ้าของผลิตภัณฑ์ (YSC)</strong></td><td>____________________</td><td>____________</td><td>____________</td></tr>
+    <tr><td><strong>ผู้จัดการโครงการ (Adeptio)</strong></td><td>____________________</td><td>____________</td><td>____________</td></tr>
+  </tbody>
+</table>
+
+<h1>2. วัตถุประสงค์เชิงธุรกิจ</h1>
+<p>ระบบโปรโมชั่นเป็นเครื่องมือของฝ่ายการตลาดในการ<strong>กระตุ้นยอดขาย</strong>และ<strong>รักษาลูกค้า</strong> ครอบคลุมส่วนลดต่อสินค้า / ตะกร้ารวม / ของแถม / คูปอง / โปรโมชั่นตามระดับสมาชิก โดยคำนวณอัตโนมัติในขั้นตอนชำระเงินทุกช่องทาง</p>
+
+<table>
+  <thead><tr><th style="width:80px">รหัส</th><th>เป้าหมายธุรกิจ</th><th style="width:180px">ตัวชี้วัด</th></tr></thead>
+  <tbody>
+    <tr><td><strong>BG-PROMO-1</strong></td><td>ฝ่ายการตลาดสร้างแคมเปญได้เองโดยไม่ต้องพึ่ง IT</td><td>เวลาในการสร้างแคมเปญใหม่ ≤ 15 นาที</td></tr>
+    <tr><td><strong>BG-PROMO-2</strong></td><td>ระบบคำนวณส่วนลดอัตโนมัติทุกช่องทาง (เว็บ / CC / POS)</td><td>ความตรงกันของการคำนวณ 100%</td></tr>
+    <tr><td><strong>BG-PROMO-3</strong></td><td>รองรับโปรโมชั่นหลายแบบในเวลาเดียวกัน</td><td>รันพร้อมกันได้ ≥ 50 แคมเปญ</td></tr>
+    <tr><td><strong>BG-PROMO-4</strong></td><td>วัดผลและรายงานประสิทธิภาพแต่ละแคมเปญ</td><td>มีรายงานครบทุกแคมเปญที่จบ</td></tr>
+  </tbody>
+</table>
+
+<h1>3. ขอบเขตของงาน (In / Out of Scope)</h1>
+<h2>3.1 อยู่ในขอบเขต (In Scope)</h2>
+<ul>
+  <li>การสร้างแคมเปญส่วนลด: %, ค่าคงที่, ส่วนลดตามจำนวน (Tier)</li>
+  <li>การสร้างคูปอง: รหัส, จำนวนครั้งใช้, วันหมดอายุ, ลูกค้าที่กำหนด</li>
+  <li>การสร้างโปรโมชั่นของแถม (Buy X Get Y)</li>
+  <li>การสร้างโปรโมชั่นตามระดับสมาชิก (Prospect ถึง Coronet)</li>
+  <li>การคำนวณส่วนลดอัตโนมัติในขั้นตอนชำระเงิน</li>
+  <li>การแสดงป้าย "Promotion" หน้าเว็บไซต์ (เชื่อม PRD-11)</li>
+  <li>การยกเลิกหรือหยุดแคมเปญชั่วคราว</li>
+  <li>รายงานประสิทธิภาพแคมเปญ</li>
+</ul>
+
+<h2>3.2 ไม่อยู่ในขอบเขต (Out of Scope)</h2>
+<ul>
+  <li>Pre-Order ไม่รองรับโปรโมชั่นใดๆ (ต้องชำระ 100%)</li>
+  <li>การจัดการแคมเปญในระดับเครือข่ายร้าน ดูเอกสาร CMS BRD</li>
+  <li>การกำหนดราคาขั้นพื้นฐานของสินค้า ดูเอกสาร PRD BRD</li>
+</ul>
+
+<h1>4. ผู้มีส่วนได้ส่วนเสียและบทบาทผู้ใช้งาน</h1>
+<table>
+  <thead><tr><th style="width:200px">บทบาท</th><th>หน้าที่</th><th style="width:140px">สิทธิ์</th></tr></thead>
+  <tbody>
+    <tr><td><strong>ผู้ดูแลโปรโมชั่น (Promo Admin)</strong></td><td>สร้าง / แก้ไข / ยกเลิกแคมเปญ</td><td>เต็มสิทธิ์</td></tr>
+    <tr><td><strong>หัวหน้าฝ่ายการตลาด</strong></td><td>อนุมัติแคมเปญใหม่ก่อนเปิดใช้</td><td>อนุมัติ</td></tr>
+    <tr><td><strong>ฝ่ายการเงิน</strong></td><td>ตรวจสอบผลกระทบทางการเงินของแคมเปญ</td><td>ดู + ตรวจ</td></tr>
+    <tr><td><strong>ลูกค้า</strong></td><td>ใช้คูปองและรับโปรโมชั่นในขั้นตอนชำระเงิน</td><td>ใช้</td></tr>
+    <tr><td><strong>พนักงาน CC / POS</strong></td><td>แจ้งโปรโมชั่นและช่วยใช้คูปองให้ลูกค้า</td><td>ใช้ (แทนลูกค้า)</td></tr>
+    <tr><td><strong>ระบบ ConX ERP</strong></td><td>รับยอดส่วนลดสำหรับการคำนวณบัญชี</td><td>API</td></tr>
+  </tbody>
+</table>
+
+<h1>5. สถานะปัจจุบัน (As-Is)</h1>
+<ul>
+  <li><strong>แคมเปญใช้กระดาษและ Excel</strong> ฝ่ายการตลาดเขียนกฎและส่งให้ IT แปลงเป็นโค้ด</li>
+  <li><strong>คูปองพิมพ์เป็นกระดาษ</strong> ลูกค้าเอามาให้แคชเชียร์</li>
+  <li><strong>ไม่มีการคำนวณอัตโนมัติ</strong> แคชเชียร์ต้องคำนวณส่วนลดเอง</li>
+  <li><strong>ไม่มีรายงานประสิทธิภาพ</strong> ฝ่ายการตลาดเดาผลโดยดูยอดขายช่วงแคมเปญ</li>
+</ul>
+
+<h1>6. กระบวนการในอนาคต (To-Be)</h1>
+<ul>
+  <li><strong>Promotion Engine ที่ตั้งค่าได้</strong> ฝ่ายการตลาดสร้างเองได้</li>
+  <li><strong>คูปองเป็นรหัสดิจิทัล</strong> ส่งทางอีเมล / LINE</li>
+  <li><strong>คำนวณส่วนลดอัตโนมัติ</strong> เห็นทันทีในตะกร้า</li>
+  <li><strong>รายงานประสิทธิภาพ</strong> ยอดขาย / จำนวนลูกค้า / Cost of Discount</li>
+</ul>
+
+<h1>7. ข้อกำหนดเชิงหน้าที่ — กรณีการใช้งาน (Use Cases)</h1>
+
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-PROMO-001</span><span class="uc-title">สร้างแคมเปญส่วนลด</span></div>
+  <div class="uc-body">
+      <div class="screen-figure">
+        <img src="ysc_screens/promo_uc001.png" alt="UC-PROMO-001">
+        <div class="screen-caption"><span>หน้าจอสำหรับ UC-PROMO-001</span><span class="ref">promo_uc001.png</span></div>
+      </div>
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>ผู้ดูแลโปรโมชั่นเข้า <span class="screen-ref">หน้าจอแคมเปญและโปรโมชั่น</span></li>
+        <li>กด "สร้างแคมเปญใหม่"</li>
+        <li>เลือกประเภท: ส่วนลด %, ส่วนลดคงที่, ส่วนลดตามจำนวน (Tier)</li>
+        <li>ระบุสินค้าที่ใช้: ทั้งร้าน / ประเภท / รายการสินค้า</li>
+        <li>ระบุเงื่อนไข: ยอดรวมขั้นต่ำ, จำนวนชิ้น</li>
+        <li>กำหนดช่วงเวลา (วันที่เริ่ม - สิ้นสุด)</li>
+        <li>กำหนดช่องทางที่ใช้ได้ (เว็บ / CC / POS)</li>
+        <li>บันทึก ส่งให้หัวหน้าฝ่ายการตลาดอนุมัติ</li>
+        <li>หลังอนุมัติ ระบบเปิดใช้แคมเปญตามวันที่กำหนด</li>
+      </ol>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-PROMO-001-01:</strong> แคมเปญที่ยังไม่อนุมัติไม่ทำงาน</div>
+      <div class="uc-ac"><strong>AC-PROMO-001-02:</strong> ส่วนลด % คำนวณก่อนภาษีมูลค่าเพิ่ม</div>
+      <div class="uc-ac"><strong>AC-PROMO-001-03:</strong> Pre-Order ไม่ได้รับส่วนลดจากแคมเปญใดๆ</div>
+    </div>
+  </div>
+</div>
+
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-PROMO-002</span><span class="uc-title">สร้างคูปอง</span></div>
+  <div class="uc-body">
+      <div class="screen-figure">
+        <img src="ysc_screens/promo_uc002.png" alt="UC-PROMO-002">
+        <div class="screen-caption"><span>หน้าจอสำหรับ UC-PROMO-002</span><span class="ref">promo_uc002.png</span></div>
+      </div>
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>ผู้ดูแลกด "สร้างคูปอง" ที่หน้าจอแคมเปญ</li>
+        <li>กำหนดรหัสคูปอง (รหัสเดียว / หลายรหัส / สุ่ม)</li>
+        <li>ระบุประเภทส่วนลด ค่าส่วนลด เงื่อนไข</li>
+        <li>กำหนดจำนวนครั้งใช้ได้ทั้งหมด และต่อลูกค้า 1 ราย</li>
+        <li>กำหนดวันหมดอายุ</li>
+        <li>เลือกลูกค้าที่ใช้ได้ (ทุกคน / กลุ่มสมาชิก / รายตัว)</li>
+        <li>บันทึก ระบบสร้างรหัสและสามารถส่งให้ลูกค้าผ่านอีเมล / LINE</li>
+      </ol>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-PROMO-002-01:</strong> คูปองหมดอายุไม่ทำงาน</div>
+      <div class="uc-ac"><strong>AC-PROMO-002-02:</strong> ลูกค้า 1 ราย ใช้คูปองได้ตามจำนวนที่กำหนดเท่านั้น</div>
+    </div>
+  </div>
+</div>
+
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-PROMO-003</span><span class="uc-title">สร้างโปรโมชั่นของแถม (Buy X Get Y)</span></div>
+  <div class="uc-body">
+      <div class="screen-figure">
+        <img src="ysc_screens/promo_uc003.png" alt="UC-PROMO-003">
+        <div class="screen-caption"><span>หน้าจอสำหรับ UC-PROMO-003</span><span class="ref">promo_uc003.png</span></div>
+      </div>
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>ผู้ดูแลกด "Buy X Get Y"</li>
+        <li>เลือกสินค้าที่ซื้อ (X) และจำนวน</li>
+        <li>เลือกสินค้าที่จะแถม (Y) และจำนวน</li>
+        <li>ระบุประเภทสินค้าแถม (ฟรี / ลดราคา)</li>
+        <li>กำหนดเงื่อนไขและช่วงเวลา</li>
+        <li>บันทึก ส่งอนุมัติ</li>
+      </ol>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-PROMO-003-01:</strong> ระบบเพิ่มสินค้าแถมลงตะกร้าอัตโนมัติ</div>
+      <div class="uc-ac"><strong>AC-PROMO-003-02:</strong> สินค้าแถมตัดสต็อกจากคลังที่กำหนด</div>
+    </div>
+  </div>
+</div>
+
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-PROMO-004</span><span class="uc-title">สร้างโปรโมชั่นเฉพาะระดับสมาชิก</span></div>
+  <div class="uc-body">
+      <div class="screen-figure">
+        <img src="ysc_screens/promo_uc004.png" alt="UC-PROMO-004">
+        <div class="screen-caption"><span>หน้าจอสำหรับ UC-PROMO-004</span><span class="ref">promo_uc004.png</span></div>
+      </div>
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>ผู้ดูแลกด "สร้างแคมเปญใหม่"</li>
+        <li>ในส่วน "ลูกค้าที่ใช้ได้" เลือก "ระดับสมาชิก"</li>
+        <li>เลือกระดับ: Silver / Gold / Platinum / Diamond / Coronet</li>
+        <li>กำหนดส่วนลดหรือสิทธิ์พิเศษ</li>
+        <li>บันทึก ส่งอนุมัติ</li>
+      </ol>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-PROMO-004-01:</strong> เฉพาะลูกค้าระดับที่กำหนดเท่านั้นได้รับ</div>
+      <div class="uc-ac"><strong>AC-PROMO-004-02:</strong> ระบบตรวจระดับสมาชิกในขั้นตอนชำระเงิน</div>
+    </div>
+  </div>
+</div>
+
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-PROMO-005</span><span class="uc-title">ลูกค้าใช้คูปองในขั้นตอนชำระเงิน</span></div>
+  <div class="uc-body">
+      <div class="screen-figure">
+        <img src="ysc_screens/promo_uc005.png" alt="UC-PROMO-005">
+        <div class="screen-caption"><span>หน้าจอสำหรับ UC-PROMO-005</span><span class="ref">promo_uc005.png</span></div>
+      </div>
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>ลูกค้าเปิดตะกร้าและไปขั้นตอนชำระเงิน</li>
+        <li>ลูกค้ากรอกรหัสคูปองในช่อง "ใช้คูปอง"</li>
+        <li>ระบบตรวจสอบ: รหัสมี / ยังไม่หมดอายุ / ลูกค้าใช้ได้ / เงื่อนไขผ่าน</li>
+        <li>กรณีผ่าน: ระบบคำนวณส่วนลดและแสดงในตะกร้า</li>
+        <li>กรณีไม่ผ่าน: ระบบแสดงข้อความระบุเหตุผล</li>
+      </ol>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-PROMO-005-01:</strong> ใช้คูปองได้ครั้งละ 1 ใบต่อคำสั่งซื้อ (เริ่มต้น) <span class="tag-pending">รอยืนยัน</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-PROMO-006</span><span class="uc-title">ระบบคำนวณส่วนลดอัตโนมัติ</span></div>
+  <div class="uc-body">
+      <div class="screen-figure">
+        <img src="ysc_screens/promo_uc006.png" alt="UC-PROMO-006">
+        <div class="screen-caption"><span>หน้าจอสำหรับ UC-PROMO-006</span><span class="ref">promo_uc006.png</span></div>
+      </div>
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>เมื่อลูกค้าเพิ่มสินค้าลงตะกร้า ระบบตรวจสอบแคมเปญที่ใช้ได้</li>
+        <li>ระบบเลือกแคมเปญที่ให้ส่วนลดสูงสุด (กรณีหลายแคมเปญทับซ้อน)</li>
+        <li>ระบบแสดงส่วนลดในตะกร้าและไม่ให้ใช้แคมเปญที่ใช้ไม่ได้</li>
+        <li>เมื่อลูกค้ายืนยันคำสั่งซื้อ ระบบบันทึกแคมเปญที่ใช้</li>
+      </ol>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-PROMO-006-01:</strong> ระบบเลือกส่วนลดที่ดีที่สุดให้ลูกค้าโดยอัตโนมัติ</div>
+      <div class="uc-ac"><strong>AC-PROMO-006-02:</strong> ผลการคำนวณตรงกันระหว่างเว็บ / CC / POS</div>
+    </div>
+  </div>
+</div>
+
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-PROMO-007</span><span class="uc-title">ยกเลิก / หยุดแคมเปญชั่วคราว</span></div>
+  <div class="uc-body">
+      <div class="screen-figure">
+        <img src="ysc_screens/promo_uc007.png" alt="UC-PROMO-007">
+        <div class="screen-caption"><span>หน้าจอสำหรับ UC-PROMO-007</span><span class="ref">promo_uc007.png</span></div>
+      </div>
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>ผู้ดูแลเปิดแคมเปญและกด "หยุดชั่วคราว" หรือ "ยกเลิกถาวร"</li>
+        <li>กรอกเหตุผล</li>
+        <li>หัวหน้าฝ่ายการตลาดอนุมัติ</li>
+        <li>ระบบหยุดใช้แคมเปญ - ไม่กระทบคำสั่งซื้อที่อยู่ในกระบวนการ</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-PROMO-008</span><span class="uc-title">ดูรายงานประสิทธิภาพแคมเปญ</span></div>
+  <div class="uc-body">
+      <div class="screen-figure">
+        <img src="ysc_screens/promo_uc008.png" alt="UC-PROMO-008">
+        <div class="screen-caption"><span>หน้าจอสำหรับ UC-PROMO-008</span><span class="ref">promo_uc008.png</span></div>
+      </div>
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>ฝ่ายการตลาดเปิด <span class="screen-ref">หน้าจอรายงานแคมเปญ</span></li>
+        <li>เลือกแคมเปญและช่วงเวลา</li>
+        <li>ระบบแสดง: จำนวนคำสั่งซื้อ, ยอดขาย, ส่วนลดทั้งหมด, จำนวนลูกค้าที่ใช้, Top สินค้า</li>
+        <li>ผู้ใช้สามารถดาวน์โหลดเป็น Excel / PDF</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<h1>8. การออกแบบประสบการณ์ผู้ใช้ (Screen Inventory)</h1>
+<table>
+  <thead><tr><th style="width:140px">รหัสหน้าจอ</th><th>ชื่อหน้าจอ</th><th>หน้าที่หลัก</th></tr></thead>
+  <tbody>
+    <tr><td><strong>SCR-PROMO-001</strong></td><td>หน้าจอแคมเปญและโปรโมชั่น</td><td>ดูแคมเปญทั้งหมด สร้างใหม่ จัดการ</td></tr>
+    <tr><td><strong>SCR-PROMO-002</strong></td><td>หน้าจอสร้างแคมเปญ</td><td>กรอกรายละเอียดแคมเปญ</td></tr>
+    <tr><td><strong>SCR-PROMO-003</strong></td><td>หน้าจอจัดการคูปอง</td><td>สร้างและส่งคูปองให้ลูกค้า</td></tr>
+    <tr><td><strong>SCR-PROMO-004</strong></td><td>หน้าจออนุมัติแคมเปญ</td><td>หัวหน้าฝ่ายการตลาดอนุมัติ</td></tr>
+    <tr><td><strong>SCR-PROMO-005</strong></td><td>หน้าจอรายงานแคมเปญ</td><td>ดูประสิทธิภาพและดาวน์โหลด</td></tr>
+  </tbody>
+</table>
+
+<h1>9. กฎเกณฑ์เชิงธุรกิจ — อ้างอิงเอกสารแม่บท</h1>
+<table>
+  <thead><tr><th style="width:130px">รหัส</th><th>กฎเกณฑ์</th></tr></thead>
+  <tbody>
+    <tr><td><span class="br-ref">PR-01 ถึง PR-07</span></td><td>ระบบจัดการโปรโมชั่น</td></tr>
+    <tr><td><span class="br-ref">หมวด 10</span></td><td>ระดับสมาชิกและคะแนนสะสม (อ้างอิงสำหรับโปรโมชั่นตามระดับ)</td></tr>
+    <tr><td><span class="br-ref">PRD-11</span></td><td>ป้าย "Promotion" หน้าเว็บไซต์</td></tr>
+  </tbody>
+</table>
+
+<h1>10. การเชื่อมต่อระบบภายนอก (Integration)</h1>
+<table>
+  <thead><tr><th style="width:140px">ระบบ</th><th>ข้อมูล</th><th style="width:120px">ทิศทาง</th></tr></thead>
+  <tbody>
+    <tr><td><strong>OMS</strong></td><td>การคำนวณส่วนลดในขั้นตอนชำระเงิน</td><td>OMS → Promotion</td></tr>
+    <tr><td><strong>PRD</strong></td><td>รายการสินค้าและประเภทเพื่อกำหนดแคมเปญ</td><td>PRD → Promotion</td></tr>
+    <tr><td><strong>CRM</strong></td><td>ระดับสมาชิกของลูกค้า</td><td>CRM → Promotion</td></tr>
+    <tr><td><strong>ConX ERP</strong></td><td>ยอดส่วนลดสำหรับการคำนวณบัญชี</td><td>Promotion → ConX</td></tr>
+    <tr><td><strong>ระบบส่งอีเมล / LINE</strong></td><td>ส่งรหัสคูปองให้ลูกค้า</td><td>Promotion → ลูกค้า</td></tr>
+  </tbody>
+</table>
+
+<h1>11. การออกแบบข้อมูลและข้อมูลหลัก (Data &amp; Master)</h1>
+<table>
+  <thead><tr><th style="width:160px">หน่วยข้อมูล</th><th>คำอธิบาย</th><th style="width:160px">คีย์หลัก</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Campaign</strong></td><td>แคมเปญส่วนลด 1 แคมเปญ</td><td>Campaign ID</td></tr>
+    <tr><td><strong>Coupon</strong></td><td>คูปอง 1 รหัส (อยู่ใต้แคมเปญ)</td><td>Coupon Code</td></tr>
+    <tr><td><strong>Promotion Rule</strong></td><td>กฎและเงื่อนไขของแคมเปญ</td><td>Rule ID</td></tr>
+    <tr><td><strong>Campaign Usage</strong></td><td>ประวัติการใช้แคมเปญ / คูปอง</td><td>Usage ID</td></tr>
+    <tr><td><strong>Free Gift</strong></td><td>สินค้าแถมที่ผูกกับแคมเปญ</td><td>Campaign + SKU</td></tr>
+  </tbody>
+</table>
+
+<h1>12. ความปลอดภัยและสิทธิ์การเข้าถึง (Security &amp; RBAC)</h1>
+<table>
+  <thead><tr><th style="width:200px">บทบาท</th><th>สร้าง</th><th>อนุมัติ</th><th>ใช้คูปอง</th></tr></thead>
+  <tbody>
+    <tr><td>Promo Admin</td><td>ทำได้</td><td>-</td><td>-</td></tr>
+    <tr><td>หัวหน้าฝ่ายการตลาด</td><td>ทำได้</td><td>ทำได้</td><td>-</td></tr>
+    <tr><td>ลูกค้า</td><td>-</td><td>-</td><td>ของตนเอง</td></tr>
+    <tr><td>พนักงาน CC / POS</td><td>-</td><td>-</td><td>แทนลูกค้า</td></tr>
+  </tbody>
+</table>
+
+<h1>13. ข้อกำหนดเชิงคุณภาพ (NFR)</h1>
+<table>
+  <thead><tr><th style="width:200px">หัวข้อ</th><th>เกณฑ์</th></tr></thead>
+  <tbody>
+    <tr><td><strong>เวลาตอบสนอง</strong></td><td>คำนวณส่วนลดในตะกร้า ≤ 1 วินาที</td></tr>
+    <tr><td><strong>การรองรับ</strong></td><td>รันได้ ≥ 50 แคมเปญพร้อมกัน</td></tr>
+    <tr><td><strong>ความถูกต้อง</strong></td><td>ผลคำนวณตรงกัน 100% ระหว่างทุกช่องทาง</td></tr>
+  </tbody>
+</table>
+
+<h1>14. รายงานและแดชบอร์ดที่เกี่ยวข้อง</h1>
+<ul>
+  <li><strong>รายงานยอดขายจากแคมเปญ</strong> ตามแคมเปญ / ช่องทาง / สินค้า</li>
+  <li><strong>รายงานการใช้คูปอง</strong> ใช้กี่ครั้ง โดยใคร</li>
+  <li><strong>รายงาน Cost of Discount</strong> ส่วนลดรวมเทียบกับยอดขาย</li>
+  <li><strong>แดชบอร์ดสำหรับฝ่ายการตลาด</strong> แคมเปญที่กำลังจะหมดอายุ / ใกล้เริ่ม</li>
+</ul>
+
+<h1>15. ข้อกำหนดการโอนย้ายข้อมูล (Migration)</h1>
+<ul>
+  <li>แคมเปญใหม่เริ่มในระบบใหม่ ไม่โอนแคมเปญเก่า</li>
+  <li>คูปองค้างจากระบบเก่าให้ลูกค้าใช้ผ่านการป้อนรหัสด้วยมือ จนกว่าหมดอายุ</li>
+</ul>
+
+<h1>16. สมมติฐานและข้อจำกัด</h1>
+<ul>
+  <li>การคำนวณส่วนลดในระบบใหม่จะเป็นแหล่งอ้างอิงเดียว</li>
+  <li>ConX รับยอดส่วนลดและบันทึกในบัญชี</li>
+  <li>Pre-Order ไม่รองรับโปรโมชั่นใดๆ</li>
+</ul>
+
+<h1>17. เกณฑ์การยอมรับผลงาน (Acceptance Criteria)</h1>
+<table>
+  <thead><tr><th style="width:100px">รหัส</th><th>เกณฑ์</th><th style="width:120px">UC อ้างอิง</th></tr></thead>
+  <tbody>
+    <tr><td><strong>AC-PROMO-G-01</strong></td><td>สร้างแคมเปญและคูปองได้ครบทุกประเภท</td><td>UC-PROMO-001 ถึง 004</td></tr>
+    <tr><td><strong>AC-PROMO-G-02</strong></td><td>คำนวณส่วนลดอัตโนมัติทุกช่องทาง</td><td>UC-PROMO-006</td></tr>
+    <tr><td><strong>AC-PROMO-G-03</strong></td><td>รายงานครบทุกแคมเปญ</td><td>UC-PROMO-008</td></tr>
+    <tr><td><strong>AC-PROMO-G-04</strong></td><td>Pre-Order ไม่ลดราคา</td><td>UC-PROMO-001</td></tr>
+  </tbody>
+</table>
+
+<h1>18. ประเด็นเปิดและความเสี่ยง</h1>
+<table>
+  <thead><tr><th style="width:100px">รหัส</th><th>ประเด็น / ความเสี่ยง</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Q-PROMO-001</strong></td><td>ใช้คูปองได้กี่ใบต่อคำสั่งซื้อ <span class="tag-pending">รอยืนยัน</span></td></tr>
+    <tr><td><strong>Q-PROMO-002</strong></td><td>กรณีคูปองและส่วนลดสมาชิกซ้อนกัน รวมได้หรือไม่</td></tr>
+    <tr><td><strong>R-PROMO-001</strong></td><td>ความเสี่ยง: ผู้ใช้คูปองหลายครั้งโดยใช้บัญชีต่างๆ</td></tr>
+  </tbody>
+</table>
+
+</div>
+
+<!-- Upload Toolbar -->
+<div id="upload-toolbar">
+  <div class="ut-header">
+    <span>การจัดการรูปภาพ</span>
+    <button class="toggle" id="ut-toggle">--</button>
+  </div>
+  <div class="ut-body">
+    <div class="ut-stats">อัพโหลดแล้ว <b id="ut-count">0</b> / <span id="ut-total">0</span> รูป</div>
+    <div style="font-size:11.5px;color:rgba(255,255,255,0.65);line-height:1.5">คลิกที่กรอบรูปใดก็ได้เพื่ออัพโหลด Screenshot จากเครื่อง ระบบจะดาวน์โหลดไฟล์ให้อัตโนมัติเพื่อนำไปวางใน <code style="background:rgba(255,255,255,.15);padding:2px 6px;border-radius:3px">docs/ysc_screens/</code></div>
+    <button id="ut-export">ดาวน์โหลดรูปทั้งหมดอีกครั้ง</button>
+    <button id="ut-clear" class="danger">ล้างรูปที่อัพโหลดในเครื่อง</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  const STORAGE_PREFIX = 'ysc_screen_';
+  const figs = document.querySelectorAll('.screen-figure');
+  let totalSlots = 0;
+  let uploadedSlots = 0;
+  figs.forEach(fig => {
+    const img = fig.querySelector('img');
+    if (!img) return;
+    const src = img.getAttribute('src') || '';
+    const filename = src.split('/').pop();
+    const slotName = filename.replace(/\.(png|jpe?g|webp|gif)$/i, '');
+    if (!slotName) return;
+    fig.dataset.slot = slotName;
+    totalSlots++;
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'image/png,image/jpeg,image/webp';
+    input.style.display = 'none';
+    fig.appendChild(input);
+    const overlay = document.createElement('div');
+    overlay.className = 'upload-overlay';
+    overlay.innerHTML = '<div class="upload-icon">+</div><div class="upload-text">คลิกเพื่ออัพโหลด Screenshot</div><div class="upload-filename">' + slotName + '.png</div>';
+    fig.insertBefore(overlay, fig.firstChild);
+    const badge = document.createElement('div');
+    badge.className = 'uploaded-badge';
+    badge.textContent = 'อัพโหลดแล้ว';
+    fig.appendChild(badge);
+    const saved = localStorage.getItem(STORAGE_PREFIX + slotName);
+    if (saved) {
+      img.src = saved;
+      fig.classList.add('uploaded');
+      uploadedSlots++;
+    }
+    img.addEventListener('error', () => {
+      if (!fig.classList.contains('uploaded')) fig.classList.add('no-image');
+    });
+    if (img.complete && img.naturalWidth === 0 && !fig.classList.contains('uploaded')) {
+      fig.classList.add('no-image');
+    }
+    fig.addEventListener('click', (e) => {
+      if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
+      input.click();
+    });
+    input.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (ev) => {
+        const dataUrl = ev.target.result;
+        img.src = dataUrl;
+        img.style.display = 'block';
+        try { localStorage.setItem(STORAGE_PREFIX + slotName, dataUrl); }
+        catch (err) { alert('ไม่สามารถบันทึกใน Browser ได้ (อาจเกิน Quota) แต่จะดาวน์โหลดไฟล์ให้'); }
+        if (!fig.classList.contains('uploaded')) {
+          fig.classList.add('uploaded');
+          fig.classList.remove('no-image');
+          uploadedSlots++;
+          updateCount();
+        }
+        const ext = file.type === 'image/jpeg' ? 'jpg' : file.type === 'image/webp' ? 'webp' : 'png';
+        const a = document.createElement('a');
+        a.href = dataUrl;
+        a.download = slotName + '.' + ext;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      };
+      reader.readAsDataURL(file);
+    });
+  });
+  function updateCount() {
+    document.getElementById('ut-count').textContent = uploadedSlots;
+    document.getElementById('ut-total').textContent = totalSlots;
+  }
+  updateCount();
+  document.getElementById('ut-export').addEventListener('click', () => {
+    let n = 0;
+    document.querySelectorAll('.screen-figure[data-slot]').forEach(fig => {
+      const name = fig.dataset.slot;
+      const saved = localStorage.getItem(STORAGE_PREFIX + name);
+      if (saved) {
+        const a = document.createElement('a');
+        a.href = saved;
+        a.download = name + '.png';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        n++;
+      }
+    });
+    if (n === 0) alert('ยังไม่มีรูปที่อัพโหลด');
+  });
+  document.getElementById('ut-clear').addEventListener('click', () => {
+    if (!confirm('ลบรูปทั้งหมดที่อัพโหลดในเครื่องนี้?')) return;
+    document.querySelectorAll('.screen-figure[data-slot]').forEach(fig => {
+      localStorage.removeItem(STORAGE_PREFIX + fig.dataset.slot);
+    });
+    location.reload();
+  });
+  document.getElementById('ut-toggle').addEventListener('click', (e) => {
+    e.stopPropagation();
+    const tb = document.getElementById('upload-toolbar');
+    tb.classList.toggle('collapsed');
+    e.target.textContent = tb.classList.contains('collapsed') ? '+' : '--';
+  });
+})();
+</script>
+
+</body>
+</html>
