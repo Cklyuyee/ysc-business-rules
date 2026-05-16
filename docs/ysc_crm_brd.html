@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="th">
 <head>
 <meta charset="UTF-8">
@@ -76,6 +76,39 @@ td strong{color:#1E3A5F}
   h1:first-of-type{page-break-before:auto}
   table,.use-case{page-break-inside:avoid}
 }
+
+/* -- Upload Widget -- */
+.screen-figure{position:relative;cursor:pointer;transition:transform .15s,box-shadow .15s;margin:14px 0 18px;border:1px solid #E5E7EB;border-radius:10px;overflow:hidden;background:#FAFAFA}
+.screen-figure:hover{box-shadow:0 6px 18px rgba(37,99,235,.25)}
+.screen-figure img{display:block;width:100%;height:auto}
+.screen-caption{padding:10px 16px;background:#1E3A5F;color:#fff;font-size:12px;font-weight:600;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.screen-caption .ref{font-size:10.5px;color:#93C5FD;font-weight:500;font-family:'Sarabun',monospace}
+.screen-figure .upload-overlay{position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(30,58,95,.92);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;transition:opacity .2s;z-index:5;pointer-events:none;text-align:center;padding:24px}
+.screen-figure:hover .upload-overlay{opacity:1}
+.screen-figure.no-image{background:#F8FAFC;border:2px dashed #93C5FD;min-height:200px;display:flex;align-items:center;justify-content:center}
+.screen-figure.no-image .upload-overlay{position:relative;opacity:1;background:transparent;color:#1E3A5F;border:none}
+.screen-figure.no-image img{display:none}
+.screen-figure.no-image .screen-caption{display:none}
+.upload-icon{font-size:42px;font-weight:800;color:#2563EB;border:3px solid currentColor;width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:12px;line-height:1}
+.screen-figure:hover .upload-icon{color:#fff;border-color:#fff}
+.screen-figure.no-image .upload-icon{color:#2563EB;border-color:#2563EB}
+.upload-text{font-size:14px;font-weight:700;margin-bottom:4px}
+.upload-filename{font-size:11.5px;font-family:'Sarabun',monospace;background:rgba(255,255,255,.18);padding:4px 10px;border-radius:4px;margin-top:6px}
+.screen-figure.no-image .upload-filename{background:#EFF6FF;color:#1E3A5F;border:1px solid #BFDBFE}
+.uploaded-badge{position:absolute;top:8px;right:8px;background:#10B981;color:#fff;font-size:10.5px;font-weight:700;padding:3px 9px;border-radius:10px;z-index:6;display:none}
+.screen-figure.uploaded .uploaded-badge{display:block}
+#upload-toolbar{position:fixed;bottom:24px;right:24px;background:#1E3A5F;color:#fff;padding:14px 18px;border-radius:14px;box-shadow:0 8px 28px rgba(30,58,95,.4);z-index:1000;font-family:'Sarabun',sans-serif;display:flex;flex-direction:column;gap:10px;min-width:240px}
+#upload-toolbar .ut-header{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:#93C5FD;font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+#upload-toolbar .ut-stats{font-size:13px;font-weight:600}
+#upload-toolbar .ut-stats b{color:#FDE68A;font-size:16px}
+#upload-toolbar button{background:#2563EB;color:#fff;border:none;padding:10px 14px;border-radius:8px;cursor:pointer;font-weight:700;font-size:12.5px;font-family:'Sarabun',sans-serif}
+#upload-toolbar button:hover{background:#1D4ED8}
+#upload-toolbar button.danger{background:transparent;color:#FCA5A5;border:1px solid #EF4444;padding:6px 10px;font-size:11px}
+#upload-toolbar button.danger:hover{background:rgba(239,68,68,.15)}
+#upload-toolbar.collapsed{padding:10px 14px;min-width:auto}
+#upload-toolbar.collapsed .ut-body{display:none}
+#upload-toolbar .toggle{cursor:pointer;font-size:14px;background:transparent;padding:0;border:none;color:#93C5FD}
+@media print{#upload-toolbar{display:none}.screen-figure .upload-overlay,.uploaded-badge{display:none !important}}
 </style>
 </head>
 <body>
@@ -268,6 +301,10 @@ td strong{color:#1E3A5F}
 <div class="use-case">
   <div class="uc-header"><span class="uc-num">UC-CRM-001</span><span class="uc-title">ลูกค้าสมัครสมาชิกใหม่ผ่านเว็บไซต์</span></div>
   <div class="uc-body">
+      <div class="screen-figure">
+        <img src="ysc_screens/crm_uc001.png" alt="UC-CRM-001">
+        <div class="screen-caption"><span>à¸«à¸™à¹‰à¸²à¸ˆà¸­à¸ªà¸³à¸«à¸£à¸±à¸š UC-CRM-001</span><span class="ref">crm_uc001.png</span></div>
+      </div>
     <div class="uc-section"><div class="uc-section-label">จุดประสงค์</div><p style="margin:0">ลูกค้าใหม่สมัครสมาชิกผ่านเว็บไซต์เพื่อให้สามารถสั่งซื้อสินค้าได้ (Guest Checkout ไม่รองรับ ตาม <span class="br-ref">AUTH-01</span>)</p></div>
     <div class="uc-section"><div class="uc-section-label">เงื่อนไขก่อนเริ่มต้น</div><p style="margin:0">ลูกค้ามีอีเมลและเบอร์โทรศัพท์ใช้งานได้</p></div>
     <div class="uc-section"><div class="uc-section-label">เหตุการณ์เริ่มต้น</div><p style="margin:0">ลูกค้ากดปุ่ม "สมัครสมาชิก" ที่ <span class="screen-ref">หน้าจอเข้าสู่ระบบ</span></p></div>
@@ -313,6 +350,10 @@ td strong{color:#1E3A5F}
 <div class="use-case">
   <div class="uc-header"><span class="uc-num">UC-CRM-002</span><span class="uc-title">พนักงาน CC สร้างลูกค้าใหม่</span></div>
   <div class="uc-body">
+      <div class="screen-figure">
+        <img src="ysc_screens/crm_uc002.png" alt="UC-CRM-002">
+        <div class="screen-caption"><span>à¸«à¸™à¹‰à¸²à¸ˆà¸­à¸ªà¸³à¸«à¸£à¸±à¸š UC-CRM-002</span><span class="ref">crm_uc002.png</span></div>
+      </div>
     <div class="uc-section"><div class="uc-section-label">จุดประสงค์</div><p style="margin:0">พนักงาน CC สร้างบัญชีลูกค้าใหม่แทนลูกค้า เมื่อลูกค้าโทรเข้ามาสั่งซื้อแต่ยังไม่มีบัญชี</p></div>
     <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
       <ol class="uc-flow">
@@ -334,6 +375,10 @@ td strong{color:#1E3A5F}
 <div class="use-case">
   <div class="uc-header"><span class="uc-num">UC-CRM-003</span><span class="uc-title">ลูกค้าเข้าสู่ระบบ</span></div>
   <div class="uc-body">
+      <div class="screen-figure">
+        <img src="ysc_screens/crm_uc003.png" alt="UC-CRM-003">
+        <div class="screen-caption"><span>à¸«à¸™à¹‰à¸²à¸ˆà¸­à¸ªà¸³à¸«à¸£à¸±à¸š UC-CRM-003</span><span class="ref">crm_uc003.png</span></div>
+      </div>
     <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
       <ol class="uc-flow">
         <li>ลูกค้าเปิด <span class="screen-ref">หน้าจอเข้าสู่ระบบ</span></li>
@@ -354,6 +399,10 @@ td strong{color:#1E3A5F}
 <div class="use-case">
   <div class="uc-header"><span class="uc-num">UC-CRM-004</span><span class="uc-title">ค้นหาและดูข้อมูลลูกค้าครบถ้วน</span></div>
   <div class="uc-body">
+      <div class="screen-figure">
+        <img src="ysc_screens/crm_uc004.png" alt="UC-CRM-004">
+        <div class="screen-caption"><span>à¸«à¸™à¹‰à¸²à¸ˆà¸­à¸ªà¸³à¸«à¸£à¸±à¸š UC-CRM-004</span><span class="ref">crm_uc004.png</span></div>
+      </div>
     <div class="uc-section"><div class="uc-section-label">จุดประสงค์</div><p style="margin:0">พนักงาน CC ค้นหาลูกค้าและดูข้อมูลทั้งหมดในหน้าเดียวเพื่อให้บริการอย่างรวดเร็ว</p></div>
     <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
       <ol class="uc-flow">
@@ -374,6 +423,10 @@ td strong{color:#1E3A5F}
 <div class="use-case">
   <div class="uc-header"><span class="uc-num">UC-CRM-005</span><span class="uc-title">แก้ไขข้อมูลลูกค้า</span></div>
   <div class="uc-body">
+      <div class="screen-figure">
+        <img src="ysc_screens/crm_uc005.png" alt="UC-CRM-005">
+        <div class="screen-caption"><span>à¸«à¸™à¹‰à¸²à¸ˆà¸­à¸ªà¸³à¸«à¸£à¸±à¸š UC-CRM-005</span><span class="ref">crm_uc005.png</span></div>
+      </div>
     <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
       <ol class="uc-flow">
         <li>ผู้ใช้เปิด <span class="screen-ref">หน้าจอข้อมูลลูกค้าครบถ้วน</span> กด "แก้ไข"</li>
@@ -393,6 +446,10 @@ td strong{color:#1E3A5F}
 <div class="use-case">
   <div class="uc-header"><span class="uc-num">UC-CRM-006</span><span class="uc-title">ลูกค้านิติบุคคลขอวงเงินเครดิต</span></div>
   <div class="uc-body">
+      <div class="screen-figure">
+        <img src="ysc_screens/crm_uc006.png" alt="UC-CRM-006">
+        <div class="screen-caption"><span>à¸«à¸™à¹‰à¸²à¸ˆà¸­à¸ªà¸³à¸«à¸£à¸±à¸š UC-CRM-006</span><span class="ref">crm_uc006.png</span></div>
+      </div>
     <div class="uc-section"><div class="uc-section-label">จุดประสงค์</div><p style="margin:0">ลูกค้านิติบุคคลขอวงเงินเครดิตเพื่อสั่งซื้อแบบเครดิตเทอม</p></div>
     <div class="uc-section"><div class="uc-section-label">เงื่อนไขก่อนเริ่มต้น</div><p style="margin:0">ลูกค้าเป็นนิติบุคคลและผ่านการตรวจสอบเอกสารแล้ว</p></div>
     <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
@@ -417,6 +474,10 @@ td strong{color:#1E3A5F}
 <div class="use-case">
   <div class="uc-header"><span class="uc-num">UC-CRM-007</span><span class="uc-title">ปรับวงเงินเครดิตของลูกค้านิติบุคคล</span></div>
   <div class="uc-body">
+      <div class="screen-figure">
+        <img src="ysc_screens/crm_uc007.png" alt="UC-CRM-007">
+        <div class="screen-caption"><span>à¸«à¸™à¹‰à¸²à¸ˆà¸­à¸ªà¸³à¸«à¸£à¸±à¸š UC-CRM-007</span><span class="ref">crm_uc007.png</span></div>
+      </div>
     <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
       <ol class="uc-flow">
         <li>ฝ่ายการเงินเปิด <span class="screen-ref">หน้าจอจัดการวงเงินเครดิต</span></li>
@@ -436,6 +497,10 @@ td strong{color:#1E3A5F}
 <div class="use-case">
   <div class="uc-header"><span class="uc-num">UC-CRM-008</span><span class="uc-title">เลื่อน / ลดระดับสมาชิก</span></div>
   <div class="uc-body">
+      <div class="screen-figure">
+        <img src="ysc_screens/crm_uc008.png" alt="UC-CRM-008">
+        <div class="screen-caption"><span>à¸«à¸™à¹‰à¸²à¸ˆà¸­à¸ªà¸³à¸«à¸£à¸±à¸š UC-CRM-008</span><span class="ref">crm_uc008.png</span></div>
+      </div>
     <div class="uc-section"><div class="uc-section-label">จุดประสงค์</div><p style="margin:0">ระบบเลื่อนหรือลดระดับสมาชิกของลูกค้าตามยอดซื้อสะสมในช่วงเวลาที่กำหนด</p></div>
     <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
       <ol class="uc-flow">
@@ -455,6 +520,10 @@ td strong{color:#1E3A5F}
 <div class="use-case">
   <div class="uc-header"><span class="uc-num">UC-CRM-009</span><span class="uc-title">จัดการระดับราคา (P1-P5)</span></div>
   <div class="uc-body">
+      <div class="screen-figure">
+        <img src="ysc_screens/crm_uc009.png" alt="UC-CRM-009">
+        <div class="screen-caption"><span>à¸«à¸™à¹‰à¸²à¸ˆà¸­à¸ªà¸³à¸«à¸£à¸±à¸š UC-CRM-009</span><span class="ref">crm_uc009.png</span></div>
+      </div>
     <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
       <ol class="uc-flow">
         <li>ผู้ดูแลข้อมูลลูกค้าเปิด <span class="screen-ref">หน้าจอข้อมูลลูกค้าครบถ้วน</span></li>
@@ -473,6 +542,10 @@ td strong{color:#1E3A5F}
 <div class="use-case">
   <div class="uc-header"><span class="uc-num">UC-CRM-010</span><span class="uc-title">ดูประวัติการสั่งซื้อและคะแนนสะสม</span></div>
   <div class="uc-body">
+      <div class="screen-figure">
+        <img src="ysc_screens/crm_uc010.png" alt="UC-CRM-010">
+        <div class="screen-caption"><span>à¸«à¸™à¹‰à¸²à¸ˆà¸­à¸ªà¸³à¸«à¸£à¸±à¸š UC-CRM-010</span><span class="ref">crm_uc010.png</span></div>
+      </div>
     <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
       <ol class="uc-flow">
         <li>ลูกค้าเข้าสู่บัญชี เลือก "ประวัติคำสั่งซื้อ" หรือ "คะแนนของฉัน"</li>
@@ -491,6 +564,10 @@ td strong{color:#1E3A5F}
 <div class="use-case">
   <div class="uc-header"><span class="uc-num">UC-CRM-011</span><span class="uc-title">พนักงาน CC ดูสินค้ายอดนิยมที่ลูกค้าซื้อประจำ</span></div>
   <div class="uc-body">
+      <div class="screen-figure">
+        <img src="ysc_screens/crm_uc011.png" alt="UC-CRM-011">
+        <div class="screen-caption"><span>à¸«à¸™à¹‰à¸²à¸ˆà¸­à¸ªà¸³à¸«à¸£à¸±à¸š UC-CRM-011</span><span class="ref">crm_uc011.png</span></div>
+      </div>
     <div class="uc-section"><div class="uc-section-label">จุดประสงค์</div><p style="margin:0">พนักงาน CC เห็นสินค้ายอดนิยม 10 อันดับที่ลูกค้าซื้อประจำ เพื่อให้บริการได้รวดเร็ว</p></div>
     <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
       <ol class="uc-flow">
@@ -637,5 +714,129 @@ td strong{color:#1E3A5F}
 </table>
 
 </div>
+
+<!-- Upload Toolbar -->
+<div id="upload-toolbar">
+  <div class="ut-header">
+    <span>à¸à¸²à¸£à¸ˆà¸±à¸”à¸à¸²à¸£à¸£à¸¹à¸›à¸ à¸²à¸ž</span>
+    <button class="toggle" id="ut-toggle">--</button>
+  </div>
+  <div class="ut-body">
+    <div class="ut-stats">à¸­à¸±à¸žà¹‚à¸«à¸¥à¸”à¹à¸¥à¹‰à¸§ <b id="ut-count">0</b> / <span id="ut-total">0</span> à¸£à¸¹à¸›</div>
+    <div style="font-size:11.5px;color:#BFDBFE;line-height:1.5">à¸„à¸¥à¸´à¸à¸—à¸µà¹ˆà¸à¸£à¸­à¸šà¸£à¸¹à¸›à¹ƒà¸”à¸à¹‡à¹„à¸”à¹‰à¹€à¸žà¸·à¹ˆà¸­à¸­à¸±à¸žà¹‚à¸«à¸¥à¸” Screenshot à¸ˆà¸²à¸à¹€à¸„à¸£à¸·à¹ˆà¸­à¸‡ à¸£à¸°à¸šà¸šà¸ˆà¸°à¸”à¸²à¸§à¸™à¹Œà¹‚à¸«à¸¥à¸”à¹„à¸Ÿà¸¥à¹Œà¹ƒà¸«à¹‰à¸­à¸±à¸•à¹‚à¸™à¸¡à¸±à¸•à¸´à¹€à¸žà¸·à¹ˆà¸­à¸™à¸³à¹„à¸›à¸§à¸²à¸‡à¹ƒà¸™ <code style="background:rgba(255,255,255,.15);padding:2px 6px;border-radius:3px">docs/ysc_screens/</code></div>
+    <button id="ut-export">à¸”à¸²à¸§à¸™à¹Œà¹‚à¸«à¸¥à¸”à¸£à¸¹à¸›à¸—à¸±à¹‰à¸‡à¸«à¸¡à¸”à¸­à¸µà¸à¸„à¸£à¸±à¹‰à¸‡</button>
+    <button id="ut-clear" class="danger">à¸¥à¹‰à¸²à¸‡à¸£à¸¹à¸›à¸—à¸µà¹ˆà¸­à¸±à¸žà¹‚à¸«à¸¥à¸”à¹ƒà¸™à¹€à¸„à¸£à¸·à¹ˆà¸­à¸‡</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  const STORAGE_PREFIX = 'ysc_screen_';
+  const figs = document.querySelectorAll('.screen-figure');
+  let totalSlots = 0;
+  let uploadedSlots = 0;
+  figs.forEach(fig => {
+    const img = fig.querySelector('img');
+    if (!img) return;
+    const src = img.getAttribute('src') || '';
+    const filename = src.split('/').pop();
+    const slotName = filename.replace(/\.(png|jpe?g|webp|gif)$/i, '');
+    if (!slotName) return;
+    fig.dataset.slot = slotName;
+    totalSlots++;
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'image/png,image/jpeg,image/webp';
+    input.style.display = 'none';
+    fig.appendChild(input);
+    const overlay = document.createElement('div');
+    overlay.className = 'upload-overlay';
+    overlay.innerHTML = '<div class="upload-icon">+</div><div class="upload-text">à¸„à¸¥à¸´à¸à¹€à¸žà¸·à¹ˆà¸­à¸­à¸±à¸žà¹‚à¸«à¸¥à¸” Screenshot</div><div class="upload-filename">' + slotName + '.png</div>';
+    fig.insertBefore(overlay, fig.firstChild);
+    const badge = document.createElement('div');
+    badge.className = 'uploaded-badge';
+    badge.textContent = 'à¸­à¸±à¸žà¹‚à¸«à¸¥à¸”à¹à¸¥à¹‰à¸§';
+    fig.appendChild(badge);
+    const saved = localStorage.getItem(STORAGE_PREFIX + slotName);
+    if (saved) {
+      img.src = saved;
+      fig.classList.add('uploaded');
+      uploadedSlots++;
+    }
+    img.addEventListener('error', () => {
+      if (!fig.classList.contains('uploaded')) fig.classList.add('no-image');
+    });
+    if (img.complete && img.naturalWidth === 0 && !fig.classList.contains('uploaded')) {
+      fig.classList.add('no-image');
+    }
+    fig.addEventListener('click', (e) => {
+      if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
+      input.click();
+    });
+    input.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (ev) => {
+        const dataUrl = ev.target.result;
+        img.src = dataUrl;
+        img.style.display = 'block';
+        try { localStorage.setItem(STORAGE_PREFIX + slotName, dataUrl); }
+        catch (err) { alert('à¹„à¸¡à¹ˆà¸ªà¸²à¸¡à¸²à¸£à¸–à¸šà¸±à¸™à¸—à¸¶à¸à¹ƒà¸™ Browser à¹„à¸”à¹‰ (à¸­à¸²à¸ˆà¹€à¸à¸´à¸™ Quota) à¹à¸•à¹ˆà¸ˆà¸°à¸”à¸²à¸§à¸™à¹Œà¹‚à¸«à¸¥à¸”à¹„à¸Ÿà¸¥à¹Œà¹ƒà¸«à¹‰'); }
+        if (!fig.classList.contains('uploaded')) {
+          fig.classList.add('uploaded');
+          fig.classList.remove('no-image');
+          uploadedSlots++;
+          updateCount();
+        }
+        const ext = file.type === 'image/jpeg' ? 'jpg' : file.type === 'image/webp' ? 'webp' : 'png';
+        const a = document.createElement('a');
+        a.href = dataUrl;
+        a.download = slotName + '.' + ext;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      };
+      reader.readAsDataURL(file);
+    });
+  });
+  function updateCount() {
+    document.getElementById('ut-count').textContent = uploadedSlots;
+    document.getElementById('ut-total').textContent = totalSlots;
+  }
+  updateCount();
+  document.getElementById('ut-export').addEventListener('click', () => {
+    let n = 0;
+    document.querySelectorAll('.screen-figure[data-slot]').forEach(fig => {
+      const name = fig.dataset.slot;
+      const saved = localStorage.getItem(STORAGE_PREFIX + name);
+      if (saved) {
+        const a = document.createElement('a');
+        a.href = saved;
+        a.download = name + '.png';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        n++;
+      }
+    });
+    if (n === 0) alert('à¸¢à¸±à¸‡à¹„à¸¡à¹ˆà¸¡à¸µà¸£à¸¹à¸›à¸—à¸µà¹ˆà¸­à¸±à¸žà¹‚à¸«à¸¥à¸”');
+  });
+  document.getElementById('ut-clear').addEventListener('click', () => {
+    if (!confirm('à¸¥à¸šà¸£à¸¹à¸›à¸—à¸±à¹‰à¸‡à¸«à¸¡à¸”à¸—à¸µà¹ˆà¸­à¸±à¸žà¹‚à¸«à¸¥à¸”à¹ƒà¸™à¹€à¸„à¸£à¸·à¹ˆà¸­à¸‡à¸™à¸µà¹‰?')) return;
+    document.querySelectorAll('.screen-figure[data-slot]').forEach(fig => {
+      localStorage.removeItem(STORAGE_PREFIX + fig.dataset.slot);
+    });
+    location.reload();
+  });
+  document.getElementById('ut-toggle').addEventListener('click', (e) => {
+    e.stopPropagation();
+    const tb = document.getElementById('upload-toolbar');
+    tb.classList.toggle('collapsed');
+    e.target.textContent = tb.classList.contains('collapsed') ? '+' : '--';
+  });
+})();
+</script>
+
 </body>
 </html>
