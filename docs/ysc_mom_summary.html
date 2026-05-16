@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>YSC — สรุปบันทึกการประชุม (Minutes of Meeting Summary)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#F3F4F6;font-family:'Sarabun',Tahoma,sans-serif;color:#1E293B;padding:0 0 80px;line-height:1.65}
+.toolbar{position:sticky;top:0;z-index:200;background:#1E3A5F;display:flex;align-items:center;justify-content:space-between;padding:9px 22px;box-shadow:0 2px 12px rgba(0,0,0,.25)}
+.toolbar-title{color:#93C5FD;font-size:13px;font-weight:600}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:6px;font-size:12.5px;font-weight:600;cursor:pointer;border:none;background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.2);font-family:'Sarabun',sans-serif}
+.btn:hover{background:rgba(255,255,255,.2)}
+#doc{max-width:920px;margin:36px auto;background:#fff;padding:64px 72px;box-shadow:0 6px 28px rgba(0,0,0,.12);border-radius:6px}
+.cover{background:#1E3A5F;color:#fff;margin:-64px -72px 36px;padding:80px 72px 60px;border-radius:6px 6px 0 0}
+.cover .tag{display:inline-block;background:#10B981;font-size:11px;font-weight:700;letter-spacing:.1em;padding:5px 14px;border-radius:4px;margin-bottom:28px}
+.cover h1{font-size:38px;font-weight:700;line-height:1.2;margin-bottom:8px;color:#fff;border:none;padding:0}
+.cover .sub{font-size:17px;color:#93C5FD;font-weight:300;margin-bottom:48px}
+.cover .info-grid{display:grid;grid-template-columns:1fr 1fr;border:1px solid rgba(255,255,255,.15);border-radius:8px;overflow:hidden}
+.cover .info-cell{padding:16px 22px;border-bottom:1px solid rgba(255,255,255,.1);border-right:1px solid rgba(255,255,255,.1)}
+.cover .info-cell:nth-child(2n){border-right:none}.cover .info-cell:nth-last-child(-n+2){border-bottom:none}
+.cover .info-label{font-size:10px;color:#93C5FD;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
+.cover .info-value{font-size:13px;color:#fff;font-weight:600}
+h1{font-size:24px;color:#1E3A5F;margin:48px 0 16px;font-weight:700;padding-bottom:10px;border-bottom:3px solid #1E3A5F}
+h1 .num{background:#1E3A5F;color:#fff;display:inline-block;min-width:36px;text-align:center;padding:2px 10px;border-radius:6px;margin-right:10px;font-size:16px}
+h2{font-size:18px;color:#1E3A5F;margin:30px 0 12px;font-weight:700}
+h3{font-size:15px;color:#2563EB;margin:22px 0 10px;font-weight:700}
+h4{font-size:13.5px;color:#374151;margin:14px 0 8px;font-weight:700}
+p{margin-bottom:12px;font-size:13.5px}
+ul,ol{margin:8px 0 14px 22px;font-size:13px}
+li{margin-bottom:4px;line-height:1.6}
+table{width:100%;border-collapse:collapse;margin:14px 0 22px;font-size:12.5px}
+thead th{background:#1E3A5F;color:#fff;padding:10px 12px;text-align:left;font-weight:600;border:1px solid #1E3A5F}
+tbody td{padding:9px 12px;border:1px solid #D1D5DB;vertical-align:top;line-height:1.6}
+tbody tr:nth-child(even) td{background:#F9FAFB}
+td strong{color:#1E3A5F}
+.mom-card{border:2px solid #E5E7EB;border-radius:8px;padding:18px 22px;margin:16px 0;background:#fff}
+.mom-card .date{display:inline-block;background:#1E3A5F;color:#fff;font-weight:700;padding:3px 10px;border-radius:4px;font-size:12px;margin-bottom:8px}
+.mom-card h3{margin-top:6px;font-size:15px;color:#1E3A5F;background:none;padding:0;border:none}
+.mom-card .topics{font-size:12.5px;color:#475569;font-style:italic;margin-top:6px}
+.callout{border-left:4px solid #2563EB;background:#EFF6FF;padding:14px 18px;margin:14px 0;border-radius:0 6px 6px 0}
+.callout strong{color:#1E3A5F}
+.callout-amber{border-left-color:#F59E0B;background:#FFFBEB}.callout-amber strong{color:#92400E}
+.callout-green{border-left-color:#10B981;background:#ECFDF5}.callout-green strong{color:#065F46}
+.new-tag{display:inline-block;background:#10B981;color:#fff;font-size:10px;font-weight:700;padding:2px 7px;border-radius:3px;margin-left:6px}
+.pending-tag{display:inline-block;background:#FEF3C7;color:#92400E;font-weight:700;padding:1px 7px;border-radius:3px;font-size:10.5px;border:1px solid #FCD34D}
+.rule-id{display:inline-block;background:#1E3A5F;color:#fff;font-weight:700;padding:2px 8px;border-radius:4px;font-size:11.5px;font-family:Consolas,monospace}
+.toc{background:#F8FAFC;border:1px solid #E5E7EB;border-radius:8px;padding:20px 28px;margin:20px 0}
+.toc ol{list-style:none;margin:0;padding:0;counter-reset:toc;font-size:13px}
+.toc ol > li{counter-increment:toc;padding:5px 0;border-bottom:1px dashed #E5E7EB;display:flex;gap:10px;align-items:center}
+.toc ol > li::before{content:counter(toc)".";font-weight:700;color:#1E3A5F;min-width:30px}
+.toc .date{margin-left:auto;font-size:11.5px;color:#6B7280;font-weight:600}
+@media print{body{background:#fff}.toolbar{display:none}#doc{max-width:none;margin:0;box-shadow:none;padding:24px 40px}.cover{margin:-24px -40px 24px;padding:50px 40px 40px}h1{page-break-before:always}h1:first-of-type{page-break-before:auto}table{page-break-inside:avoid}}
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <div style="display:flex;align-items:center;gap:14px">
+    <a href="index.html" style="color:#93C5FD;text-decoration:none;font-size:13px;font-weight:600;padding:4px 10px;border-radius:5px">สารบัญ</a>
+    <span style="color:rgba(255,255,255,.25)">|</span>
+    <span class="toolbar-title">YSC — สรุปบันทึกการประชุม (Minutes of Meeting Summary)</span>
+  </div>
+  <div style="display:flex;gap:10px">
+    <button class="btn" onclick="window.print()">พิมพ์</button>
+  </div>
+</div>
+
+<div id="doc">
+
+<div class="cover">
+  <div class="tag">MEETING MINUTES SUMMARY · 9 MEETINGS · 4 MONTHS</div>
+  <h1>สรุปบันทึก<br>การประชุมโครงการ</h1>
+  <div class="sub">ภาพรวมของบันทึกการประชุมระหว่างยงเจริญฯ กับ Adeptio</div>
+  <div class="info-grid">
+    <div class="info-cell"><div class="info-label">ช่วงเวลา</div><div class="info-value">มกราคม 2569 — เมษายน 2569</div></div>
+    <div class="info-cell"><div class="info-label">จำนวนการประชุม</div><div class="info-value">9 ครั้ง (อ่านสรุปแล้ว 7 ครั้ง)</div></div>
+    <div class="info-cell"><div class="info-label">ผู้เข้าร่วม</div><div class="info-value">ยงเจริญฯ + Adeptio + Interblend</div></div>
+    <div class="info-cell"><div class="info-label">วัตถุประสงค์</div><div class="info-value">เก็บ Requirement และวางสถาปัตยกรรมระบบ</div></div>
+  </div>
+</div>
+
+<div class="callout callout-green">
+  <strong>เกี่ยวกับเอกสารฉบับนี้</strong>
+  <p style="margin-top:6px;margin-bottom:0;font-size:13px">เอกสารฉบับนี้สรุปประเด็นสำคัญจากบันทึกการประชุม (Minutes of Meeting — MoM) ตั้งแต่การประชุม Kickoff (8 ม.ค.) จนถึงการประชุมล่าสุด (27 เม.ย.) — เพื่อใช้เป็นแหล่งอ้างอิงรวดเร็วในการทบทวนการตัดสินใจและประเด็นที่ถูกหารือไปแล้ว ตลอดจนระบุประเด็นที่ <strong>ยังไม่ได้บันทึกใน Decision Register อย่างเป็นทางการ</strong></p>
+</div>
+
+<h2 style="margin-top:32px">สารบัญ</h2>
+<div class="toc">
+  <ol>
+    <li>ภาพรวมและไทม์ไลน์การประชุม <span class="date">9 ครั้ง</span></li>
+    <li>MoM 8 ม.ค. 2569 — การประชุมเริ่มต้นโครงการ (Kickoff) <span class="date">CMS / E-Commerce</span></li>
+    <li>MoM 14 ม.ค. 2569 — End-to-End Process <span class="date">D-001 ถึง D-005</span></li>
+    <li>MoM 16 ม.ค. 2569 — CC Process &amp; Agent Portal <span class="date">D-006 ถึง D-009</span></li>
+    <li>MoM 13 ก.พ. 2569 — LINE / E2E / Pre-order / Points <span class="date">นอก Register</span></li>
+    <li>MoM 27 ก.พ. 2569 — Architecture &amp; Website Design <span class="date">D-021 ถึง D-025</span></li>
+    <li>MoM 5 มี.ค. 2569 — Website UX &amp; Cart/Checkout <span class="date">D-026 ถึง D-031</span></li>
+    <li>MoM 27 เม.ย. 2569 — POS / Pick-Pack / New Discussion <span class="date">นอก Register</span></li>
+    <li>ประเด็นสำคัญข้ามการประชุม (Cross-cutting Themes)</li>
+    <li>ประเด็นที่ยังไม่บันทึกใน Decision Register</li>
+    <li>Pain Points หลักที่ระบุไว้</li>
+  </ol>
+</div>
+
+<!-- 1. Overview Timeline -->
+<h1><span class="num">1</span> ภาพรวมและไทม์ไลน์การประชุม</h1>
+
+<table>
+  <thead><tr><th style="width:100px">วันที่</th><th>หัวข้อหลัก</th><th style="width:200px">Decision Records</th></tr></thead>
+  <tbody>
+    <tr><td><strong>8 ม.ค. 2569</strong></td><td>Kickoff — Frontend / Backend / CMS scope + CONX integration</td><td>ก่อน Register</td></tr>
+    <tr><td><strong>14 ม.ค. 2569</strong></td><td>End-to-End Process (Product → Order → Stock → Payment)</td><td>D-001 ถึง D-005</td></tr>
+    <tr><td><strong>16 ม.ค. 2569</strong></td><td>CC Process &amp; Order Flow (Sales Order Process)</td><td>D-006 ถึง D-009</td></tr>
+    <tr><td><strong>27 ม.ค. 2569</strong></td><td>Onsite Requirement (15 MB — ยังไม่ได้อ่านเนื้อหา)</td><td>D-010 ถึง D-015</td></tr>
+    <tr><td><strong>29 ม.ค. 2569</strong></td><td>Onsite Requirement ต่อเนื่อง (16 MB — ยังไม่ได้อ่านเนื้อหา)</td><td>D-016 ถึง D-020</td></tr>
+    <tr><td><strong>13 ก.พ. 2569</strong></td><td>LINE Prototype, Walk-in, CS/PC, Transfer, Pre-order, Points</td><td><span class="pending-tag">นอก Register</span></td></tr>
+    <tr><td><strong>27 ก.พ. 2569</strong></td><td>High-Level Architecture &amp; Website Design Review</td><td>D-021 ถึง D-025</td></tr>
+    <tr><td><strong>5 มี.ค. 2569</strong></td><td>Homepage, Product Detail, Cart, Checkout, Quotation, Templates</td><td>D-026 ถึง D-031</td></tr>
+    <tr><td><strong>27 เม.ย. 2569</strong></td><td>POS, Pick-Pack, Logistics, Employee, New Discussion</td><td><span class="pending-tag">นอก Register</span></td></tr>
+  </tbody>
+</table>
+
+<!-- 2. MoM 8 Jan -->
+<h1><span class="num">2</span> MoM 8 มกราคม 2569 — การประชุมเริ่มต้นโครงการ</h1>
+
+<div class="mom-card">
+  <span class="date">8 ม.ค. 2569 — Kickoff Meeting</span>
+  <h3>ผู้เข้าร่วม: Interblend (UI/UX) + Adeptio (Backend) + ทีมยงเจริญ</h3>
+  <div class="topics">วัตถุประสงค์: กำหนด Scope ของเว็บไซต์ (Frontend / Backend / CMS) และ Flow การเชื่อมต่อ CONX</div>
+</div>
+
+<h3>ข้อมูลสำคัญที่บันทึก</h3>
+<ul>
+  <li><strong>หน้าแรก (Homepage):</strong> 3 Banners ปรับเปลี่ยนได้ — Section "Best Deals of the Week" + หมวดสินค้าใหม่ + หมวดโปรโมชั่น</li>
+  <li><strong>ไอคอนสินค้า 2 ประเภท:</strong> Promotion + Green Product</li>
+  <li><strong>Pre-order 2 สถานะ:</strong> สั่งซื้อได้ และ ยังไม่สามารถสั่งซื้อได้ (ต้อง Verify)</li>
+  <li><strong>หน้ารายละเอียดสินค้า:</strong> ตัวเลือกสูงสุด 3 ค่า (สี/ไซส์/Attribute) + Barcode 13 หลัก</li>
+  <li><strong>Threshold ขอใบเสนอราคา:</strong> ยอด ≥ 5,000 ชิ้น หรือ 50,000 บาท → แสดงปุ่ม "ขอใบเสนอราคา"</li>
+  <li><strong>การสมัครสมาชิก B2C:</strong> อีเมล / เบอร์โทร + OTP ทุกครั้ง + รองรับ Social Login (LINE / Gmail)</li>
+  <li><strong>การสมัครสมาชิก B2B:</strong> จดทะเบียน / ไม่จดทะเบียน + บังคับเบอร์โทร + OTP ทุกครั้ง</li>
+  <li><strong>CMS Structure:</strong> Content (Pages, Articles/SEO, Media, FAQ), Report, Customer (Customer, Suppliers), Solution B2B (Business Type, Product Mapping)</li>
+  <li><strong>B2B Lead:</strong> เก็บ Lead ไม่ส่ง CONX</li>
+  <li><strong>2 Warehouses ใน CONX:</strong> WH สำหรับ Online + Agent / WH สำหรับช่องทางหน้าร้าน</li>
+</ul>
+
+<!-- 3. MoM 14 Jan -->
+<h1><span class="num">3</span> MoM 14 มกราคม 2569 — End-to-End Process</h1>
+
+<div class="mom-card">
+  <span class="date">14 ม.ค. 2569 — Decision Records D-001 ถึง D-005</span>
+  <h3>ผู้เข้าร่วม: พี่โอ๊ะ (จัดซื้อ), พี่รัตน์ (WH Mgr), พี่เฟิร์ส (รอง WH Mgr), พี่กุ้ง (CC), พี่พร (บัญชี), Adeptio</h3>
+  <div class="topics">วัตถุประสงค์: สรุปภาพรวม E2E Process — Product → Order → Stock → Payment → Accounting</div>
+</div>
+
+<h3>ประเด็นสำคัญ</h3>
+<ul>
+  <li><strong>ประเภทสินค้า 14 ประเภท:</strong> Normal, Pre-order, Free, Quotation, New, Active/Inactive, Promotion, CC only, POS only, ฝากขาย, จ้างผลิต, E-Commerce, สินค้าทดแทน, สินค้าใกล้เคียง</li>
+  <li><strong>Pre-order Logic:</strong> ไม่มี Stock / มีราคา Pre# / ไม่มีราคา (ติดต่อ CC) / เงื่อนไขมัดจำ 50%, 100% หรือไม่ต้องมัดจำ / ลูกค้าเครดิตอาจไม่ต้องมัดจำ</li>
+  <li><strong>Barcode &amp; SKU:</strong> 1 สินค้า = 1 SKU (หลาย Barcode ได้) + Barcode ผูกตามหน่วยขาย + เก็บ Barcode เก่า + Log การเปลี่ยนแปลง</li>
+  <li><strong>Warehouse Operation:</strong> สีสถานะ — ขาว (ครบ), เหลือง (ขาด), ฟ้า (ยังไม่จัด), แดง (ไม่ตรง)</li>
+  <li><strong>Stock Movement:</strong> รับเข้า / โอน / Pick-Pack / Stock ตัดเมื่อ Invoice / On-hand &amp; Available Update Real-time</li>
+  <li><strong>Order Status Flow:</strong>
+    <ul>
+      <li>Cash: Create → Confirm → Pick/Pack → Invoice → Paid → Delivery → Close</li>
+      <li>Credit: Create → Confirm → Pick/Pack → Invoice → Credit → Delivery → Paid → Close</li>
+    </ul>
+  </li>
+  <li><strong>VAT/Invoice Logic 6 รูปแบบ:</strong> Y/N/M/A combinations กับ V/I → Tax Invoice variations</li>
+  <li><strong>Payment Types:</strong> เงินสด, เครดิต, กทม., ตจว.</li>
+  <li><strong>CC Functions:</strong> Print ใบสั่งซื้อ (สีเขียว = ด่วน 1-2 ชม.)</li>
+</ul>
+
+<h3>คำถามจากพี่หมวย</h3>
+<ul>
+  <li>คลัง 4 = Web + Agent (ยืนยัน)</li>
+  <li>Payment Type ครบทุกประเภทหรือยัง?</li>
+  <li>Pre-order มัดจำทุกกรณี?</li>
+  <li>Flow ที่ถูกต้อง: SO &gt; pick &gt; pack &gt; ใบส่งสินค้า &gt; ชำระ &gt; ใบกำกับ &gt; ใบเสร็จ &gt; ส่งสินค้า &gt; ปิด</li>
+</ul>
+
+<!-- 4. MoM 16 Jan -->
+<h1><span class="num">4</span> MoM 16 มกราคม 2569 — CC Process &amp; Agent Portal</h1>
+
+<div class="mom-card">
+  <span class="date">16 ม.ค. 2569 — Decision Records D-006 ถึง D-009</span>
+  <h3>หัวข้อ: CC Process &amp; Order Flow (Sales Order Process)</h3>
+  <div class="topics">ทบทวนกระบวนการ Call Center ตั้งแต่ลูกค้าติดต่อจนถึงการสร้างคำสั่งซื้อ</div>
+</div>
+
+<h3>การออกแบบ CC Process</h3>
+<ul>
+  <li><strong>ช่องทางที่ลูกค้าติดต่อ:</strong> โทรศัพท์ / LINE / อีเมล / โทรสาร</li>
+  <li><strong>เมื่อมีการติดต่อ ระบบต้อง:</strong> เปิด Ticket → ดึงข้อมูลลูกค้า → แสดงประวัติการซื้อ → แสดงสถานะลูกค้า (Credit, ค้างชำระ, Tier)</li>
+</ul>
+
+<h3>Customer Profile (CRM Information)</h3>
+<ul>
+  <li>รหัสลูกค้า / ชื่อร้าน (TH/EN) / ที่อยู่จัดส่ง / ที่อยู่ออกใบกำกับ / ชื่อผู้ติดต่อ + เบอร์โทร / ประเภทธุรกิจ / Customer Tier</li>
+  <li>ประเภทการชำระเงิน (เงินสด / เครดิต — จำนวนวัน + วงเงิน)</li>
+  <li>Credit Limit + วงเงินคงเหลือ Real-time</li>
+  <li><strong>ระบบแจ้งเตือนทันที</strong> หากวงเงินเครดิตไม่เพียงพอ</li>
+</ul>
+
+<h3>Order History &amp; Frequent Items</h3>
+<ul>
+  <li>แสดงยอดซื้อเฉลี่ยย้อนหลัง: 1 / 3 / 6 / 12 เดือน</li>
+  <li>Order ล่าสุด = Submit แล้ว (ไม่รวม Cancelled)</li>
+  <li><strong>Top 10 Items ใน 6 เดือน</strong> — SKU + Barcode + จำนวนเฉลี่ย/ครั้ง + จำนวนครั้งที่ซื้อ</li>
+  <li>ใช้เพื่อ: เสนอโปรโมชั่นที่เหมาะสม + แจ้งเตือนสินค้าที่ใกล้หมด</li>
+</ul>
+
+<h3>Shelf Template (Wishlist) <span class="new-tag">NEW</span></h3>
+<ul>
+  <li><strong>วิธีสร้าง Order 3 แบบ:</strong> คีย์ใหม่ / ดึงจาก Order History / ใช้ Template</li>
+  <li><strong>Template ที่ลูกค้าสร้าง:</strong> จำกัด 3 Template ต่อ Account</li>
+  <li><strong>Template ที่ทีม Agent/Marketing สร้าง 4 ประเภท:</strong>
+    <ul>
+      <li>สำหรับทุกคน (mass)</li>
+      <li>สำหรับ tier ต่างๆ</li>
+      <li>สำหรับ category ตามประเภทธุรกิจ</li>
+      <li>สำหรับรายบุคคล (ตามรหัสสินค้า / กลุ่มลูกค้า)</li>
+    </ul>
+  </li>
+  <li>มี Active / Inactive + Start / End Date</li>
+  <li>Auto Inactive เมื่อหมดอายุ</li>
+  <li>Mass Template แสดงให้ลูกค้าใหม่ที่ยังไม่ login ได้</li>
+</ul>
+
+<h3>Agent Portal Menus</h3>
+<ul>
+  <li><strong>Sales Order:</strong> Save Draft ได้ + <strong>ห้ามเปิด SO ถ้า Stock Online ติดลบ</strong></li>
+  <li><strong>Customer Information:</strong> ตรวจสอบข้อมูลลูกค้า</li>
+  <li><strong>Product Information:</strong> ค้นหาด้วย รหัส / Barcode / ชื่อสินค้า (มี Suggest Keyword) + แสดง Location, Stock Online/Offline, ราคา Last Order 6 เดือน</li>
+  <li><strong>Promotion:</strong> แสดงโปรโมชั่น</li>
+  <li><strong>Ticketing:</strong> Track การทำงานของ Agent</li>
+</ul>
+
+<h3>Credit &amp; Permission</h3>
+<ul>
+  <li>Agent เห็น Credit Limit ตั้งแต่ต้น</li>
+  <li>เกินวงเงิน → Checkout ไม่ได้ (Save Draft ได้)</li>
+  <li><strong>Role พิเศษ:</strong> แก้ Discount เพิ่มได้ + ปลด Credit Limit (เพิ่มชั่วคราว/ครั้ง)</li>
+</ul>
+
+<h3>Pain Points ที่ระบุ</h3>
+<ul>
+  <li>ลูกค้าสั่งซ้ำเขียนกระดาษถ่ายรูปมาให้ → Template/Basket</li>
+  <li>ลูกค้าไม่สั่งซื้อ 1-2 เดือน → ต้องมีรายงาน</li>
+  <li>Search ไม่เจอ → Recommend Keyword</li>
+  <li>ไม่เห็นประวัติแก้ไข SO → เก็บ Log</li>
+  <li>ไม่เห็นสถานะเครดิต → แจ้งเตือนลูกค้าเสี่ยง</li>
+</ul>
+
+<!-- 5. MoM 13 Feb -->
+<h1><span class="num">5</span> MoM 13 กุมภาพันธ์ 2569 — LINE / Walk-in / Pre-order / Points</h1>
+
+<div class="mom-card">
+  <span class="date">13 ก.พ. 2569 — นอก Decision Register</span>
+  <h3>หัวข้อ: LINE prototype, E2E Process Flow (Walk-in, CS/PC), Transfer request, Pre-order, Customer information</h3>
+</div>
+
+<h3>LINE Prototype</h3>
+<ul>
+  <li>2 หน้าจอ — กรณียังไม่ผูกเบอร์สมาชิก + กรณีผูกเบอร์สมาชิกแล้ว</li>
+  <li>พี่หมวยอนุมัติให้ดำเนินการต่อ</li>
+</ul>
+
+<h3>Walk-in Purchase Flow (POS)</h3>
+<ul>
+  <li><strong>Pick / Pack รวมใน Step เดียว — คนเดียวทำทั้งหมด</strong></li>
+  <li>ก่อน Print ใบเตรียม → เพิ่มหน้าจอ Key Packaging (เลือกกล่อง / ถุง)</li>
+  <li>ไม่มี Process Packing แยกแล้ว</li>
+  <li>สติ๊กเกอร์ใบเตรียม ไม่ต้องมีใบปะหน้า</li>
+  <li>Use case: ลูกค้าสั่งล่วงหน้า + มาเลือกซื้อเพิ่ม → ชำระทีเดียว + นำของกลับไปทั้งหมด</li>
+</ul>
+
+<h3>CS / PC Flow</h3>
+<ul>
+  <li>ปริ้นใบปะหน้า: สติ๊กเกอร์ + ใบเตรียมสินค้า + ถุงแดง 1 ห่อใหญ่ 1 พาเลต</li>
+  <li>แสดง Barcode SO + QR Code → สแกนแล้วบอกได้ว่ามีสินค้ากี่ชิ้น</li>
+  <li>"จ่ายเงินแล้ว" → เพิ่มเป็น <strong>"จ่ายเงินแล้ว/ตัดวงเงิน"</strong></li>
+  <li><strong>CS กับ PC ต่างกัน:</strong> PC ต้องเช็ค Shelf ของตนเองผ่าน Excel File</li>
+  <li><strong>PC เช็ค Shelf ทุก 2 ชั่วโมง</strong></li>
+  <li>หน้าบ้าน PC ต้องระบุความเร่งด่วน Flag ได้</li>
+</ul>
+
+<h3>Transfer Request</h3>
+<ul>
+  <li>กรณีลูกค้าซื้อคนละ Flow + อยากรวมบิลเพื่อได้ Campaign</li>
+  <li><strong>PC ตัดสินใจ</strong>ว่าจะรวมที่ไหน</li>
+  <li>หน้าร้านสินค้าไม่พอ → Transfer Stock จากคลังหลังบ้านมาหน้าบ้าน</li>
+  <li>Submit จากหน้าร้านไปคลังหลังบ้าน → Noti → ตัด Stock คลังหลังบ้าน → เพิ่ม Stock หน้าบ้าน</li>
+</ul>
+
+<h3>Pre-order <span class="new-tag">NEW DETAILS</span></h3>
+<ul>
+  <li><strong>ลูกค้าทำได้โดย CS, CC และ Web</strong> (CS ก็ทำได้)</li>
+  <li>Pre-order ผูกกับคลังพิเศษ — กรณี: (1) สินค้าพิเศษ Pre-order เท่านั้น (2) สินค้าปกติของไม่พอ</li>
+  <li><strong>ชำระ 100% ทุกช่องทาง</strong></li>
+  <li>ช่องทางชำระ: CS/CC → Cashier / Web → Online</li>
+  <li>วิธีชำระ: เงินสด / Bank Transfer / Credit Line</li>
+  <li>2 แบบ: (1) มีราคาจากระบบ (2) ไม่มีราคา → ติดต่อเจ้าหน้าที่</li>
+  <li><strong>Pre-order ไม่ร่วม Campaign แต่ได้ Point ตาม SO</strong></li>
+  <li><strong>Quotation ไม่เช็ค Stock + ไม่คำนวน Campaign</strong></li>
+</ul>
+
+<h3>Points (CRM) <span class="new-tag">สำคัญ</span></h3>
+<ul>
+  <li><strong>จ่าย Point ทุกสิ้นเดือน</strong> (ไม่ใช่ทันทีที่ออก Invoice)</li>
+  <li>ระหว่างเดือน — ลูกค้ายังไม่เห็น Point</li>
+  <li>คำนวน Point รายเดือน โดยเอาใบสั่งซื้อมาหักลบจากการลดหนี้ (ลดหนี้จาก API CONX)</li>
+  <li>แสดงข้อความบนหน้าจอ ว่าจะคำนวน Point วันที่เท่าไหร่</li>
+  <li><strong>แสดงประวัติ Point รายเดือน ย้อนหลัง 12 เดือน</strong></li>
+  <li><strong>คะแนนใช้ได้ทั้งสองปี + แสดง Point ใกล้หมด</strong></li>
+</ul>
+
+<!-- 6. MoM 27 Feb -->
+<h1><span class="num">6</span> MoM 27 กุมภาพันธ์ 2569 — Architecture &amp; Website Design</h1>
+
+<div class="mom-card">
+  <span class="date">27 ก.พ. 2569 — Decision Records D-021 ถึง D-025</span>
+  <h3>หัวข้อ: Overall project status, E2E customer journey, High Level Architecture, YSC website</h3>
+</div>
+
+<h3>High Level Architecture</h3>
+<ul>
+  <li><strong>Cloud Platform:</strong> Google Cloud Platform (GCP) + Cloud Run (ไม่ใช้ VM)</li>
+  <li><strong>Front-end 6 Instances:</strong> UI-Web, UI-Backoffice, UI-POS, UI-CRM, UI-Pickpack, Observability</li>
+  <li><strong>Back-end 5 Instances:</strong> CoreAPI, BO BFF, CRM BFF, Pick&amp;Pack BFF, POS BFF</li>
+  <li><strong>Databases:</strong> Cloud SQL (Relational) + MongoDB (NoSQL) + Redis (Cache)</li>
+  <li><strong>External Integration:</strong> ConX (ERP), LINE OA, IPBX (Phone)</li>
+  <li><strong>Marketplace (Future):</strong> Shopee, TikTok</li>
+  <li><strong>Reporting:</strong> Data Studio (Looker Studio) + Data Warehouse (Future)</li>
+  <li><strong>Primary &amp; Standby (Replica):</strong> สำหรับ Recovery</li>
+</ul>
+
+<h3>Website Design — หน้า Home</h3>
+<ul>
+  <li><strong>Promotion Banner:</strong> 4 การ์ด — ตัวอักษรใหญ่ขึ้น</li>
+  <li><strong>Product Card:</strong> ชื่อสินค้า + SKU ID + Barcode</li>
+  <li><strong>Member Pricing:</strong> แสดงราคาตาม Tier (P2, P4, P5) อัตโนมัติเมื่อ Login</li>
+  <li><strong>Variants:</strong> ขายแบบห่อ / แบบม้วน — รหัสบาร์โค้ดและราคาต่างกัน</li>
+  <li><strong>UI สำหรับผู้สูงอายุ:</strong> ตัวอักษรใหญ่ขึ้น โทนสีซอฟต์ลง</li>
+  <li><strong>Icon 2 ประเภท:</strong>
+    <ul>
+      <li><strong>Property Icons:</strong> Green Product, Oversize, Fragile — ตั้งที่ Master Data</li>
+      <li><strong>Promotion Icons:</strong> ตามแคมเปญ ในช่วงเวลาที่กำหนด</li>
+    </ul>
+  </li>
+  <li><strong>Priority:</strong> Promotion Icon &gt; Property Icon — แสดงสูงสุด 2 ไอคอน/การ์ด</li>
+</ul>
+
+<h3>Website Design — หน้ารายละเอียดสินค้า</h3>
+<ul>
+  <li>ราคารวม VAT แล้ว</li>
+  <li>SKU + Barcode</li>
+  <li>5 ช่อง Multimedia — ช่องสุดท้ายเป็น Video ถ้ามี</li>
+  <li><strong>Product Remark per SKU:</strong> ลูกค้าระบุความต้องการพิเศษ (สี / "ช่วยแพ็คแยก") — ตั้งเป็น Required Field ได้</li>
+  <li><strong>Available Stock:</strong> แสดงจำนวนสินค้า ให้ลูกค้าตัดสินใจ</li>
+  <li><strong>"ซื้อเลย" (Buy Now)</strong> เด่นกว่า "ขอใบเสนอราคา"</li>
+  <li>ปุ่ม "ให้เจ้าหน้าที่ติดต่อกลับ" สำหรับสินค้าไม่มีสต็อก / ปริมาณมาก</li>
+</ul>
+
+<h3>หน้าตะกร้า — Remarks</h3>
+<ul>
+  <li><strong>Item Remark:</strong> หมายเหตุระดับสินค้า (เช่น "ช่วยแพ็คแยกออกต่างหาก")</li>
+  <li><strong>Order/Delivery Remark:</strong> หมายเหตุระดับคำสั่งซื้อ ("ช่วยใส่ถุงเล็กๆ มาให้ด้วย")</li>
+  <li>วัตถุประสงค์: ลดการติดต่อกลับ — ลูกค้าระบุไว้ล่วงหน้า</li>
+  <li><strong>Upsell:</strong> "ถ้าซื้อครบ 10,000 บาท จะได้ราคาพิเศษ"</li>
+</ul>
+
+<h3>หน้าชำระเงิน</h3>
+<ul>
+  <li><strong>Self-Pickup Time Slot:</strong> 09:00-11:00, 13:00-15:00, 15:00-17:00 — บวก 12 ชั่วโมงทำการล่วงหน้า</li>
+  <li><strong>Carrier Selection:</strong> 200+ แห่ง — ตามรหัสอำเภอ/จังหวัด — Pin ที่อยู่อัตโนมัติ</li>
+  <li><strong>Express Shipping:</strong> มีค่าธรรมเนียมพิเศษ</li>
+  <li><strong>Payment Logic:</strong> Credit Limit แสดงเฉพาะสมาชิกที่มีสิทธิ์ + วงเงินเหลือ</li>
+  <li><strong>Coupon Stacking:</strong> ใช้หลายใบพร้อมกันได้</li>
+  <li><strong>e-Tax Invoice:</strong> ส่งทาง Email — ระบุแยกจากโปรไฟล์ได้</li>
+  <li><strong>Quotation:</strong> PDF + ล็อคราคา 7 วัน</li>
+  <li><strong>Pre-order:</strong> ออกใบกำกับ/ใบเสร็จทันทีเมื่อชำระ (มัดจำหรือเต็ม)</li>
+  <li><strong>Partial Delivery:</strong> ออกเอกสารแยกตามรอบการส่ง</li>
+</ul>
+
+<!-- 7. MoM 5 Mar -->
+<h1><span class="num">7</span> MoM 5 มีนาคม 2569 — Website UX &amp; Cart/Checkout</h1>
+
+<div class="mom-card">
+  <span class="date">5 มี.ค. 2569 — Decision Records D-026 ถึง D-031</span>
+  <h3>หัวข้อ: Homepage refinements, Product list/detail, Cart, Shipping, Payment, Quotation, Templates, Backend Operations</h3>
+</div>
+
+<h3>หน้าแรก / รายการสินค้า</h3>
+<ul>
+  <li><strong>Promotion Section:</strong> 4 การ์ด — ตัวอักษร "Hot Deal" / "ส่วนลด %" อ่านได้จากระยะ 1 เมตร</li>
+  <li><strong>สีแดง</strong>สำหรับข้อความโปรโมชั่น</li>
+  <li>แบนเนอร์เปลี่ยนตามหมวดหมู่สินค้า — กรณีไม่มีโปรโมชั่น → แบนเนอร์ประชาสัมพันธ์ทั่วไป</li>
+  <li>Sub-menu &gt; 6 อัน → ใช้ลูกศรกดเลื่อน</li>
+</ul>
+
+<h3>หน้ารายละเอียดสินค้า — Product Attributes</h3>
+<ul>
+  <li>ใช้ตัวหนังสือระบุคุณสมบัติ — ไม่ใช่จุดสี</li>
+  <li><strong>3 ระดับ:</strong> สี (Color) / ขนาดหัว (Tip Size) / วัสดุ (Material)</li>
+  <li>1 SKU = 1 รูปภาพ → ออกแบบใหม่รองรับการเลือกซ้อน</li>
+  <li>Reference: Ralph Lauren design pattern</li>
+</ul>
+
+<h3>Fragile Packaging Fee <span class="new-tag">NEW</span></h3>
+<ul>
+  <li>FYI ใต้ราคา: "หากเลือกวิธีจัดส่งถึงที่ จะมีค่าบรรจุภัณฑ์เพิ่ม XX บาท"</li>
+  <li>5-10 บาท ต่อชิ้น (ตั้งใน Master Data)</li>
+  <li><strong>คำนวณเฉพาะเมื่อเลือก "จัดส่งผ่านขนส่งเอกชน"</strong></li>
+  <li>กรณี "รับเอง" → ไม่คิดค่าบรรจุภัณฑ์</li>
+</ul>
+
+<h3>หน้าตะกร้าสินค้า</h3>
+<ul>
+  <li><strong>ตัดปุ่ม "พิมพ์ใบเสนอราคา"</strong>ออกจากตะกร้า</li>
+  <li>แสดงจำนวนสต็อกใต้ปุ่ม +/-</li>
+  <li>Fragile FYI ต่อรายการ</li>
+  <li>ย้ายเมนู "เลือกวิธีจัดส่ง" ไว้ด้านบนสุดของหน้าสรุป</li>
+  <li>ใช้ "ลูกค้าชำระค่าจัดส่งสินค้าที่ปลายทาง" แทน "0 บาท"</li>
+</ul>
+
+<h3>หน้าวิธีการจัดส่ง</h3>
+<ul>
+  <li>Self-Pickup: เลือกวันและเวลา + 12 ชม. ทำการ ล่วงหน้า</li>
+  <li>Delivery: "เลือกที่อยู่จัดส่ง"</li>
+  <li>หน้ายืนยันสุดท้าย: สลับระหว่าง "จัดส่ง" / "รับเอง" ผ่าน Checkbox</li>
+  <li>Wording: "ดำเนินการต่อ" → <strong>"ยืนยันการชำระเงิน"</strong></li>
+</ul>
+
+<h3>หน้าชำระเงิน</h3>
+<ul>
+  <li>3 ประเภท: โอนเงิน / บัตรเครดิต / วงเงินเครดิต</li>
+  <li>ลูกค้า NMA (Non-Member) เห็นแค่โอนเงิน</li>
+  <li>แสดงวงเงิน + วงเงินคงเหลือ</li>
+  <li>ก่อนชำระ — มีหน้าสรุปคำสั่งซื้อ (Summary)</li>
+  <li>โอนเงิน → แนบสลิป</li>
+  <li><strong>24 ชั่วโมงทำการ</strong> — ยกเลิกออเดอร์อัตโนมัติ + คืนสต็อก</li>
+  <li>คำสั่งซื้อที่ยกเลิก → ลูกค้ากด "สั่งซื้อซ้ำ" (Revive) ได้</li>
+</ul>
+
+<h3>หน้าสำเร็จ / ใบกำกับภาษี</h3>
+<ul>
+  <li>เพิ่มตัวเลือกขอใบกำกับภาษีแบบเต็มรูปแบบ</li>
+  <li><strong>เลือกที่อยู่ออกใบกำกับภาษี 1 และ 2</strong></li>
+</ul>
+
+<h3>Repeat Order Logic</h3>
+<ul>
+  <li>Merge กับ Cart ปัจจุบัน</li>
+  <li>รหัสซ้ำ → <strong>Replace จำนวน</strong> (ไม่บวก)</li>
+  <li>Re-check Stock + Price + Promotion Real-time</li>
+  <li>สต็อกไม่พอ → ไม่อนุญาตให้ชำระจนกว่าจะปรับ</li>
+</ul>
+
+<h3>Cart Templates</h3>
+<ul>
+  <li><strong>Personal Template:</strong> ลูกค้าสร้างเอง สูงสุด 3 templates</li>
+  <li><strong>Marketing Template:</strong> ทีม Marketing สร้างตาม Customer Segment</li>
+  <li>Template ระบุเฉพาะ SKU (ไม่ระบุจำนวน)</li>
+  <li>Upsell: "ซื้อครบ 10 ชิ้นเพื่อรับของแถมฟรี"</li>
+  <li>2 คอลัมน์ (Marketing + Personal) + วันที่อัปเดตล่าสุด + แท็ก "New"</li>
+</ul>
+
+<h3>Backend / Operations</h3>
+<ul>
+  <li>Split Picking List ตาม Floor (1, 2, 3, 4)</li>
+  <li>Max 99 รายการ/ใบ → เกินแยกเป็นใบใหม่</li>
+  <li>Sort by Aisle (Head Shelf) — เส้นทางสั้นที่สุด</li>
+  <li>SO 24 ชั่วโมง — ยกเลิก + คืนสต็อก</li>
+  <li>กังวลปริมาณงานในวันหยุดยาว (ตรุษจีน / สงกรานต์)</li>
+  <li>CC ต้องมีหน้าจอ Inquiry — ตรวจ SO ค้างชำระ / สลิปติดปัญหา</li>
+</ul>
+
+<!-- 8. MoM 27 Apr -->
+<h1><span class="num">8</span> MoM 27 เมษายน 2569 — POS / Pick-Pack / New Discussion</h1>
+
+<div class="mom-card">
+  <span class="date">27 เม.ย. 2569 — <span class="pending-tag">นอก Decision Register</span></span>
+  <h3>หัวข้อ: POS, Pick/Pack, Logistics, Employee Management, New Discussion items</h3>
+  <div class="topics">การประชุมล่าสุด — มีหลายประเด็นที่ยังไม่ได้บันทึกใน Decision Register</div>
+</div>
+
+<h3>POS Operations</h3>
+<ul>
+  <li><strong>2 หน้าจอ:</strong> พนักงาน + ลูกค้า</li>
+  <li>การสมัครสมาชิกที่ POS — รวมลูกค้าประเภทธุรกิจ (B2B)</li>
+  <li>ปุ่มฟังก์ชัน — ตัด F2 ยกเลิกรายการ</li>
+  <li><strong>ตรวจสอบสต็อก:</strong> ตัดสต็อกออก เพิ่มปุ่ม "เช็คสต็อก" แทน</li>
+  <li><strong>การลบรายการ:</strong> ต้องให้ Supervisor Approve</li>
+  <li>เรียงสินค้า — สแกนล่าสุดอยู่ล่างสุด</li>
+  <li>ค้นหาสินค้า — เพิ่มลงตะกร้าได้เลย</li>
+  <li>โปรโมชั่นแสดงในสรุปบิล + ระหว่างรายการ</li>
+  <li>ของแถม — พนักงาน POS หยิบมาสแกนเอง</li>
+</ul>
+
+<h3>Pick / Pack</h3>
+<ul>
+  <li><strong>Picking:</strong> เรียงตามเวลานัดรับ — ด่วนขึ้นก่อน</li>
+  <li>ระบบ List งาน + พนักงานกดรับงานเอง</li>
+  <li>หน้าจอแสดงสถานะของงานและพนักงาน</li>
+  <li><strong>สินค้าไม่ครบ → แจ้ง Supervisor</strong> ดำเนินการต่อ</li>
+  <li><strong>Packing:</strong> ไม่รับรถเข็น แต่ตรวจสอบรถเข็นแต่ละ SO</li>
+  <li>สแกนรถเข็นทั้งหมดก่อนเริ่ม + สแกนสินค้าก่อนลงบรรจุ</li>
+  <li>เพิ่ม UI ระบุประเภทบรรจุภัณฑ์และจำนวน</li>
+  <li>ปุ่มพิมพ์เอกสารใบเตรียม + สติ๊กเกอร์</li>
+  <li><strong>Pack เสร็จ → ส่งข้อมูลออเดอร์ไป ConX</strong></li>
+</ul>
+
+<h3>Logistics</h3>
+<ul>
+  <li>แยกประเภทจัดส่ง: "รับเองหน้าร้าน" (B1) / "จัดส่งผ่านขนส่ง" (LG)</li>
+  <li><strong>ฟิลเตอร์ตามสาย</strong> (ไม่แยกตามจังหวัด)</li>
+  <li><strong>จัดส่งได้ก็ต่อเมื่อ ConX ยืนยันการรับชำระเงิน</strong></li>
+  <li>สถานะ: รอจัดส่ง / กำลังส่ง</li>
+</ul>
+
+<h3>การบริหารพนักงาน</h3>
+<ul>
+  <li>ปุ่มพักงาน (Break) บน Handheld — สำหรับเข้าห้องน้ำ</li>
+  <li>หน้าจอจัดการหน้าที่ของพนักงานประจำวัน</li>
+</ul>
+
+<h3>New Discussion <span class="pending-tag">PENDING</span></h3>
+<ul>
+  <li><strong>การแจ้งเตือนเมื่อราคาสินค้าเปลี่ยน:</strong> แสดง * เมื่อราคาเพิ่มขึ้น — เทียบ 13 เดือน — แสดงที่ Web / CC / POS</li>
+  <li><strong>รองรับสาขาและบริษัทลูก (สาขาสำเพ็ง):</strong> หลายบริษัท + แยกฐานข้อมูล</li>
+  <li><strong>ระบบข่าวสารและกิจกรรม</strong></li>
+  <li><strong>Roadmap:</strong> Stock Management, PR/PO, Sync AP/GL</li>
+</ul>
+
+<!-- 9. Cross-cutting themes -->
+<h1><span class="num">9</span> ประเด็นสำคัญข้ามการประชุม (Cross-cutting Themes)</h1>
+
+<h3>1. โครงสร้างคลังสินค้า 5 ประเภท</h3>
+<table>
+  <thead><tr><th style="width:200px">คลัง</th><th>ใช้สำหรับ</th></tr></thead>
+  <tbody>
+    <tr><td>คลังออนไลน์ (ชั้น 2, 3, 4)</td><td>Web + Agent — Picker หยิบ</td></tr>
+    <tr><td>คลังหน้าร้าน (ชั้น 1, ชั้นลอย)</td><td>POS, Walk-in — แคชเชียร์หยิบเอง</td></tr>
+    <tr><td>คลังพักรอ (Staging)</td><td>หลัง Pack เสร็จ รอ Cashier</td></tr>
+    <tr><td>คลังพิเศษ (Pre-order)</td><td>Pre-order — สต็อกติดลบได้</td></tr>
+    <tr><td>คลังของรางวัล (Reward)</td><td>การแลกคะแนน — ไม่ใช่ของแถม</td></tr>
+  </tbody>
+</table>
+
+<h3>2. ช่องทางการขาย 3 ช่องทาง + Sub-channels</h3>
+<ul>
+  <li><strong>Web:</strong> ลูกค้า B2C/B2B สั่งเอง — บัตร / โอน / เครดิต</li>
+  <li><strong>Agent (CC, CS, Sales):</strong> Staff สั่งแทนลูกค้า</li>
+  <li><strong>POS:</strong> หน้าร้าน — ชำระหน้าร้าน</li>
+  <li>Shopee และ Social — CC นำเข้าระบบเอง (รอเฟส 2)</li>
+</ul>
+
+<h3>3. ระดับสมาชิก (Member Tier) 7 ระดับ</h3>
+<ul>
+  <li>Prospect / Member / Silver / Gold / Platinum / Diamond / Coronet</li>
+  <li>Prospect → Member: ยอดในคำสั่งซื้อใบเดียว ≥ 10,000 (Web) หรือ 4,000 (POS)</li>
+  <li>Silver ขึ้นไป: ยอดสะสมปีปฏิทิน 100K / 300K / 1M / 3M</li>
+</ul>
+
+<h3>4. Price Tier (P1-P5)</h3>
+<ul>
+  <li>Ecom Default = P5 / CC, POS Default = P4 (ปรับได้)</li>
+  <li>Ecom Order ≥ 10K → P2 ทันที</li>
+  <li>POS Order ≥ 4K → P2 ทันที</li>
+</ul>
+
+<h3>5. Points Logic</h3>
+<ul>
+  <li>1 Point = 1,500 บาท (PT-01)</li>
+  <li>Prospect ไม่ได้รับ Point</li>
+  <li><strong>จ่ายทุกสิ้นเดือน</strong> (ไม่ใช่ทันทีหลัง Invoice)</li>
+  <li>คำนวณรายเดือน หลังหักลดหนี้จาก ConX</li>
+  <li>แสดงประวัติย้อนหลัง 12 เดือน</li>
+  <li>หมดอายุ 31 ธันวาคมทุกปี</li>
+</ul>
+
+<h3>6. Pre-order</h3>
+<ul>
+  <li>ช่องทาง: CS / CC / Web</li>
+  <li>ชำระ 100% ทุกช่องทาง</li>
+  <li>ไม่ร่วม Campaign — ได้ Point ตาม SO</li>
+  <li>คลังพิเศษ — สต็อกติดลบได้</li>
+</ul>
+
+<!-- 10. Items not in Decision Register -->
+<h1><span class="num">10</span> ประเด็นที่ยังไม่บันทึกใน Decision Register</h1>
+
+<div class="callout callout-amber">
+  <strong>หมายเหตุ:</strong> รายการต่อไปนี้ปรากฏใน MoM แต่ยังไม่ได้บันทึกอย่างเป็นทางการใน decisions-register.md (ซึ่งจบที่ D-045 วันที่ 2 เม.ย. 2569)
+</div>
+
+<table>
+  <thead><tr><th style="width:130px">ที่มา</th><th>ประเด็น</th><th style="width:140px">ลักษณะ</th></tr></thead>
+  <tbody>
+    <tr><td><strong>13 ก.พ. 2569</strong></td><td>Pre-order ชำระ 100% (ไม่ใช่ 50%/100% แบบที่ระบุก่อนหน้า)</td><td>Resolve P-01</td></tr>
+    <tr><td><strong>13 ก.พ. 2569</strong></td><td>Point จ่ายทุกสิ้นเดือน (ไม่ใช่ทันทีหลัง Invoice)</td><td>เปลี่ยน PT-04</td></tr>
+    <tr><td><strong>13 ก.พ. 2569</strong></td><td>PC เช็ค Shelf ทุก 2 ชั่วโมง</td><td>Operations Detail</td></tr>
+    <tr><td><strong>13 ก.พ. 2569</strong></td><td>CS ทำ Pre-order ได้ (เพิ่มจาก CC + Web)</td><td>Expand Pre-order Actor</td></tr>
+    <tr><td><strong>27 ก.พ. 2569</strong></td><td>Walk-in: Pick/Pack รวมใน Step เดียว คนเดียวทำ</td><td>POS Specific</td></tr>
+    <tr><td><strong>5 มี.ค. 2569</strong></td><td>Fragile Packaging Fee 5-10 บาท/ชิ้น — เฉพาะจัดส่ง</td><td>Pricing</td></tr>
+    <tr><td><strong>5 มี.ค. 2569</strong></td><td>Cart Templates (Personal + Marketing) — Marketing 4 ประเภท</td><td>CRM Feature</td></tr>
+    <tr><td><strong>27 เม.ย. 2569</strong></td><td>POS 2 หน้าจอ (พนักงาน + ลูกค้า)</td><td>POS UX</td></tr>
+    <tr><td><strong>27 เม.ย. 2569</strong></td><td>POS: ลบรายการต้อง Supervisor Approve</td><td>POS Permission</td></tr>
+    <tr><td><strong>27 เม.ย. 2569</strong></td><td>Picker: เรียงงานตามเวลานัดรับ — ด่วนขึ้นก่อน</td><td>Pick Priority</td></tr>
+    <tr><td><strong>27 เม.ย. 2569</strong></td><td>Logistic: ห้ามจัดส่งก่อน ConX ยืนยันชำระ</td><td>Integration Rule</td></tr>
+    <tr><td><strong>27 เม.ย. 2569</strong></td><td>การแจ้งเตือนเมื่อราคาเปลี่ยน (* — ย้อน 13 เดือน)</td><td>New Feature</td></tr>
+    <tr><td><strong>27 เม.ย. 2569</strong></td><td>รองรับสาขาและบริษัทลูก (สำเพ็ง)</td><td>New Scope</td></tr>
+    <tr><td><strong>27 เม.ย. 2569</strong></td><td>ระบบข่าวสารและกิจกรรม</td><td>CMS Feature</td></tr>
+    <tr><td><strong>27 เม.ย. 2569</strong></td><td>Roadmap: Stock, PR/PO, AP/GL</td><td>Future Scope</td></tr>
+  </tbody>
+</table>
+
+<!-- 11. Pain Points -->
+<h1><span class="num">11</span> Pain Points หลักที่ระบุไว้</h1>
+
+<h3>จาก MoM 16 มกราคม 2569 (CC Operations)</h3>
+<table>
+  <thead><tr><th>Pain Point</th><th>วิธีแก้</th></tr></thead>
+  <tbody>
+    <tr><td>ลูกค้าสั่งซ้ำเขียนกระดาษ + ถ่ายรูปมาให้</td><td>Template / Basket System</td></tr>
+    <tr><td>ลูกค้าไม่สั่งซื้อภายใน 1-2 เดือน</td><td>รายงานลูกค้าที่หาย</td></tr>
+    <tr><td>Search สินค้าไม่เจอ</td><td>Recommend Keyword</td></tr>
+    <tr><td>ไม่เห็นประวัติแก้ไข SO</td><td>เก็บ Log เพิ่มเติม</td></tr>
+    <tr><td>ไม่เห็นสถานะเครดิตลูกค้า → เปิด Order ให้ลูกค้าค้างหนี้</td><td>แจ้งเตือนลูกค้าเสี่ยง (Blacklist)</td></tr>
+  </tbody>
+</table>
+
+<h3>จาก MoM 5 มีนาคม 2569 (Operations)</h3>
+<ul>
+  <li><strong>ปริมาณงานในวันหยุดยาว</strong> (ตรุษจีน / สงกรานต์) — กังวลรายการค้างชำระจำนวนมาก</li>
+  <li>CC ต้องมีหน้าจอ Inquiry — ตรวจ SO ค้างชำระ / สลิปติดปัญหา → โทรติดตามทันท่วงที</li>
+</ul>
+
+<h3>จาก MoM 27 เมษายน 2569</h3>
+<ul>
+  <li>Supervisor ไม่เห็นพนักงานที่พักห้องน้ำ → ปุ่ม Break</li>
+  <li>ลูกค้าไม่ทราบว่าราคาขึ้น → ระบบแจ้งเตือน *</li>
+  <li>สาขาสำเพ็งไม่ได้รวมในระบบ → รองรับหลายบริษัท</li>
+</ul>
+
+<!-- Footer -->
+<div class="callout" style="margin-top:40px">
+  <strong>เอกสารที่เกี่ยวข้อง</strong>
+  <ul style="margin-top:6px;margin-bottom:0;font-size:13px">
+    <li><code>ysc_business_rules.html</code> — เอกสารแม่บทกฎเกณฑ์เชิงธุรกิจ (อัปเดตจาก MoM แล้ว)</li>
+    <li><code>ysc_master_brd.html</code> — เอกสาร Master BRD</li>
+    <li><code>ysc_oms_brd_v1.html</code>, <code>ysc_crm_brd_v1.html</code> — Module BRDs</li>
+    <li><code>YSC/docs/business-rules.md</code> + <code>YSC/team-knowledge-main/knowledge/decisions-register.md</code> — Source ใน YSC project</li>
+  </ul>
+</div>
+
+<div class="callout callout-amber">
+  <strong>MoM ที่ยังไม่ได้สรุป</strong>
+  <p style="margin-top:6px;margin-bottom:0;font-size:13px">
+    <code>YSC-MOM-27-01-2026.pdf</code> (15 MB) และ <code>YSC-MOM-29-01-2026.pdf</code> (16 MB) — ขนาดใหญ่เกินกว่าที่จะอ่านได้ในรอบเดียว — ควรครอบคลุม Decision Records D-010 ถึง D-020 (ตามวันที่ตรงกับการประชุม Onsite) — เนื้อหาส่วนใหญ่น่าจะเป็น Mockups และ Visual Designs
+  </p>
+</div>
+
+</div>
+
+</body>
+</html>

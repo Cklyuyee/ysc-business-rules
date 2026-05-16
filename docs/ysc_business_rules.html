@@ -1,0 +1,1472 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>YSC — กฎเกณฑ์เชิงธุรกิจและเงื่อนไขของระบบ (เอกสารแม่บท)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#F3F4F6;font-family:'Sarabun',Tahoma,sans-serif;color:#1E293B;padding:0 0 80px;line-height:1.65}
+.toolbar{position:sticky;top:0;z-index:200;background:#1E3A5F;display:flex;align-items:center;justify-content:space-between;padding:9px 22px;box-shadow:0 2px 12px rgba(0,0,0,.25)}
+.toolbar-title{color:#93C5FD;font-size:13px;font-weight:600}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:6px;font-size:12.5px;font-weight:600;cursor:pointer;border:none;background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.2);font-family:'Sarabun',sans-serif}
+.btn:hover{background:rgba(255,255,255,.2)}
+#doc{max-width:920px;margin:36px auto;background:#fff;padding:64px 72px;box-shadow:0 6px 28px rgba(0,0,0,.12);border-radius:6px}
+.cover{background:#1E3A5F;color:#fff;margin:-64px -72px 36px;padding:80px 72px 60px;border-radius:6px 6px 0 0}
+.cover .tag{display:inline-block;background:#10B981;font-size:11px;font-weight:700;letter-spacing:.1em;padding:5px 14px;border-radius:4px;margin-bottom:28px}
+.cover h1{font-size:34px;font-weight:700;line-height:1.25;margin-bottom:8px;color:#fff;border:none;padding:0}
+.cover .sub{font-size:17px;color:#93C5FD;font-weight:300;margin-bottom:48px}
+.cover .info-grid{display:grid;grid-template-columns:1fr 1fr;border:1px solid rgba(255,255,255,.15);border-radius:8px;overflow:hidden}
+.cover .info-cell{padding:16px 22px;border-bottom:1px solid rgba(255,255,255,.1);border-right:1px solid rgba(255,255,255,.1)}
+.cover .info-cell:nth-child(2n){border-right:none}.cover .info-cell:nth-last-child(-n+2){border-bottom:none}
+.cover .info-label{font-size:10px;color:#93C5FD;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
+.cover .info-value{font-size:13px;color:#fff;font-weight:600}
+h1{font-size:26px;color:#1E3A5F;margin:48px 0 16px;font-weight:700;padding-bottom:10px;border-bottom:3px solid #1E3A5F}
+h1 .num{background:#1E3A5F;color:#fff;display:inline-block;min-width:36px;text-align:center;padding:2px 10px;border-radius:6px;margin-right:10px;font-size:18px}
+h2{font-size:19px;color:#1E3A5F;margin:32px 0 12px;font-weight:700}
+h3{font-size:15px;color:#2563EB;margin:22px 0 10px;font-weight:700}
+h4{font-size:13.5px;color:#374151;margin:16px 0 8px;font-weight:700}
+p{margin-bottom:12px;font-size:13.5px}
+ul,ol{margin:8px 0 14px 22px;font-size:13.5px}
+li{margin-bottom:5px;line-height:1.7}
+table{width:100%;border-collapse:collapse;margin:14px 0 22px;font-size:12.5px}
+thead th{background:#1E3A5F;color:#fff;padding:10px 12px;text-align:left;font-weight:600;border:1px solid #1E3A5F}
+tbody td{padding:9px 12px;border:1px solid #D1D5DB;vertical-align:top;line-height:1.6}
+tbody tr:nth-child(even) td{background:#F9FAFB}
+td strong{color:#1E3A5F}
+.rule-id{display:inline-block;background:#1E3A5F;color:#fff;font-weight:700;padding:2px 8px;border-radius:4px;font-size:11.5px;font-family:Consolas,monospace;white-space:nowrap}
+.dec-ref{display:inline-block;background:#F1F5F9;color:#475569;font-weight:600;padding:1px 6px;border-radius:3px;font-size:11px;font-family:Consolas,monospace;border:1px solid #CBD5E1}
+.pending-tag{display:inline-block;background:#FEF3C7;color:#92400E;font-weight:700;padding:1px 7px;border-radius:3px;font-size:10.5px;border:1px solid #FCD34D}
+.confirmed-tag{display:inline-block;background:#D1FAE5;color:#065F46;font-weight:700;padding:1px 7px;border-radius:3px;font-size:10.5px;border:1px solid #6EE7B7}
+.callout{border-left:4px solid #2563EB;background:#EFF6FF;padding:14px 18px;margin:14px 0;border-radius:0 6px 6px 0}
+.callout strong{color:#1E3A5F}
+.callout-amber{border-left-color:#F59E0B;background:#FFFBEB}.callout-amber strong{color:#92400E}
+.callout-green{border-left-color:#10B981;background:#ECFDF5}.callout-green strong{color:#065F46}
+.toc{background:#F8FAFC;border:1px solid #E5E7EB;border-radius:8px;padding:24px 32px;margin:20px 0}
+.toc ol{list-style:none;margin:0;padding:0;counter-reset:toc;font-size:13px}
+.toc ol > li{counter-increment:toc;padding:6px 0;border-bottom:1px dashed #E5E7EB;display:flex;gap:10px;align-items:center}
+.toc ol > li::before{content:counter(toc)".";font-weight:700;color:#1E3A5F;min-width:30px}
+.toc .count{margin-left:auto;font-size:11.5px;color:#6B7280;font-weight:600}
+@media print{body{background:#fff}.toolbar{display:none}#doc{max-width:none;margin:0;box-shadow:none;padding:24px 40px}.cover{margin:-24px -40px 24px;padding:50px 40px 40px}h1{page-break-before:always}h1:first-of-type{page-break-before:auto}table{page-break-inside:avoid}}
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <div style="display:flex;align-items:center;gap:14px">
+    <a href="index.html" style="color:#93C5FD;text-decoration:none;font-size:13px;font-weight:600;padding:4px 10px;border-radius:5px">สารบัญ</a>
+    <span style="color:rgba(255,255,255,.25)">|</span>
+    <span class="toolbar-title">YSC — กฎเกณฑ์เชิงธุรกิจและเงื่อนไขของระบบ</span>
+  </div>
+  <div style="display:flex;gap:10px">
+    <button class="btn" onclick="window.print()">พิมพ์</button>
+  </div>
+</div>
+
+<div id="doc">
+
+<div class="cover">
+  <div class="tag">เอกสารแม่บท · 22 หมวด · สกัดจากเอกสารต้นทาง</div>
+  <h1>กฎเกณฑ์เชิงธุรกิจ<br>และเงื่อนไขของระบบ</h1>
+  <div class="sub">เอกสารแม่บทรวมกฎทางธุรกิจของยงเจริญฯ ทุกโมดูล (Business Rules &amp; System Conditions)</div>
+  <div class="info-grid">
+    <div class="info-cell"><div class="info-label">ประเภทเอกสาร</div><div class="info-value">เอกสารแม่บท — อ้างอิงโดย Module BRD ทุกโมดูล</div></div>
+    <div class="info-cell"><div class="info-label">เวอร์ชัน / วันที่</div><div class="info-value">v2.2 — พฤษภาคม 2569 (Formal Thai)</div></div>
+    <div class="info-cell"><div class="info-label">เจ้าของโครงการ</div><div class="info-value">บริษัท ยงเจริญศูนย์เครื่องเขียน จำกัด</div></div>
+    <div class="info-cell"><div class="info-label">ผู้พัฒนาระบบ</div><div class="info-value">บริษัท อะเดพทิโอ จำกัด</div></div>
+    <div class="info-cell"><div class="info-label">แหล่งข้อมูลต้นทาง</div><div class="info-value">บันทึกการประชุมและเอกสารข้อกำหนดที่ผ่านการยืนยันจากผู้มีส่วนได้ส่วนเสีย</div></div>
+    <div class="info-cell"><div class="info-label">โครงสร้าง</div><div class="info-value">22 หมวด + บันทึกการตัดสินใจ 45 รายการ + รายการที่รอยืนยัน 15 รายการ</div></div>
+  </div>
+</div>
+
+<div class="callout callout-green">
+  <strong>จุดมุ่งหมายของเอกสาร</strong>
+  <p style="margin-top:6px;margin-bottom:0;font-size:13px">เอกสารฉบับนี้รวบรวม<strong>กฎทางธุรกิจและเงื่อนไขของระบบ</strong>ของยงเจริญศูนย์เครื่องเขียน จำกัด จากทุกโมดูลไว้ในที่เดียว เพื่อให้ทุก Module BRD อ้างอิงไปยังกฎที่นี่ แทนการเขียนเนื้อหากฎซ้ำในแต่ละเอกสาร — เมื่อมีการปรับปรุงกฎเกณฑ์ใด ปรับที่เอกสารนี้เพียงที่เดียว ทุกโมดูลที่อ้างอิงจะได้รับผลพร้อมกัน</p>
+</div>
+
+<div class="callout callout-amber">
+  <strong>การใช้งานเอกสาร</strong>
+  <ul style="margin:6px 0 0 18px;font-size:13px">
+    <li>กฎที่มีป้าย <span class="confirmed-tag">ยืนยันแล้ว</span> ได้รับการรับรองจากผู้มีส่วนได้ส่วนเสียแล้ว ใช้อ้างอิงเป็นทางการได้</li>
+    <li>กฎที่มีป้าย <span class="pending-tag">รอยืนยัน</span> ห้ามอ้างอิงและห้ามนำไปพัฒนาระบบ จนกว่าจะได้รับการยืนยัน (ดูส่วนที่ 18)</li>
+    <li>รหัส <span class="dec-ref">D-XXX</span> อ้างอิงไปยังบันทึกการตัดสินใจ (Decision Records) ดูส่วนที่ 19 ของเอกสาร</li>
+  </ul>
+</div>
+
+<h2 style="margin-top:32px">สารบัญ</h2>
+<div class="toc">
+  <ol>
+    <li>การสมัครสมาชิกและการเข้าสู่ระบบ <span class="count">AUTH-01 ถึง AUTH-04</span></li>
+    <li>ประเภทของคำสั่งซื้อ <span class="count">3 ประเภท</span></li>
+    <li>สต็อกและคลังสินค้า <span class="count">S-01 ถึง S-08</span></li>
+    <li>ขั้นตอนการชำระเงิน <span class="count">P-01 ถึง P-08</span></li>
+    <li>วงเงินเครดิตสำหรับลูกค้านิติบุคคล <span class="count">C-01 ถึง C-11</span></li>
+    <li>กระบวนการกรณีลูกค้าใช้เงินเกินวงเงิน <span class="count">3 ช่องทาง</span></li>
+    <li>ใบเสนอราคา <span class="count">Q-01 ถึง Q-04</span></li>
+    <li>การสั่งซื้อซ้ำ <span class="count">RO-01 ถึง RO-03</span></li>
+    <li>การรับสินค้าด้วยตนเอง <span class="count">SP-01 ถึง SP-03</span></li>
+    <li>ระดับสมาชิก ระดับราคา และคะแนนสะสม <span class="count">7 ระดับ + PT-01 ถึง PT-08</span></li>
+    <li>ระบบจัดการโปรโมชั่น <span class="count">PR-01 ถึง PR-07</span></li>
+    <li>ใบกำกับและภาษีมูลค่าเพิ่ม <span class="count">INV-01 ถึง INV-04</span></li>
+    <li>วงจรชีวิตของคำสั่งซื้อ <span class="count">SO-01 ถึง SO-06</span></li>
+    <li>การหยิบและบรรจุสินค้า <span class="count">WH-01 ถึง WH-07</span></li>
+    <li>การเชื่อมต่อกับระบบ ConX ERP <span class="count">INT-01 ถึง INT-10</span></li>
+    <li>ช่องทางการขาย <span class="count">CH-01 ถึง CH-05</span></li>
+    <li>การให้บริการลูกค้าโดย Contact Center (CC) <span class="count">CC-01 ถึง CC-05</span></li>
+    <li>ข้อมูลหลักของสินค้า (Product Master) <span class="count">PRD-01 ถึง PRD-11</span></li>
+    <li>การยกเลิก คืนสินค้า ใบลดหนี้และใบเพิ่มหนี้ <span class="count">RTN-01 ถึง RTN-10</span></li>
+    <li>การจัดส่งและบริษัทขนส่ง <span class="count">SHP-01 ถึง SHP-11</span></li>
+    <li>ธนาคารและระบบแจ้งเตือน <span class="count">BNK-01 ถึง BNK-03 + NTF-01 ถึง NTF-06</span></li>
+    <li>รายการที่รอการยืนยันและงานที่ยังไม่ได้พัฒนา <span class="count">P-01 ถึง P-15</span></li>
+    <li>บันทึกการตัดสินใจ <span class="count">D-001 ถึง D-045</span></li>
+  </ol>
+</div>
+
+<!-- ─── 1. AUTH ─── -->
+<h1><span class="num">1</span> การสมัครสมาชิกและการเข้าสู่ระบบ</h1>
+
+<table>
+  <thead><tr><th style="width:110px">รหัส</th><th>กฎเกณฑ์</th><th style="width:140px">ระบบที่เกี่ยวข้อง</th><th style="width:110px">สถานะ</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><span class="rule-id">AUTH-01</span></td>
+      <td>ลูกค้าต้องสมัครสมาชิกก่อนสั่งซื้อสินค้า — <strong>ระบบไม่รองรับการสั่งซื้อแบบไม่ระบุตัวตน (Guest Checkout)</strong></td>
+      <td>เว็บไซต์</td>
+      <td><span class="confirmed-tag">ยืนยันแล้ว</span></td>
+    </tr>
+    <tr>
+      <td><span class="rule-id">AUTH-02</span></td>
+      <td>การสมัครผ่านเว็บไซต์ — ระบบส่งรหัสยืนยันตัวตน (OTP) ไปยัง<strong>อีเมล</strong>ที่ลูกค้ากรอก โดยลูกค้าต้องยืนยันรหัสก่อนจึงจะกรอกข้อมูลสมัครต่อได้ — หลังสมัครสำเร็จบัญชีพร้อมใช้งานทันที (ไม่ต้องรออีเมลยืนยันซ้ำ เนื่องจากผ่านการยืนยันอีเมลตั้งแต่ขั้นตอน OTP แล้ว)</td>
+      <td>เว็บไซต์</td>
+      <td><span class="confirmed-tag">ยืนยันแล้ว</span></td>
+    </tr>
+    <tr>
+      <td><span class="rule-id">AUTH-03</span></td>
+      <td>การเปลี่ยนเบอร์โทรศัพท์ — ทำได้เองบนเว็บไซต์หรือผ่านพนักงาน CC ทั้งสองช่องทางต้องยืนยันรหัส OTP ที่เบอร์โทรใหม่ <span class="dec-ref">D-033</span></td>
+      <td>เว็บไซต์, พนักงาน CC</td>
+      <td><span class="confirmed-tag">ยืนยันแล้ว</span></td>
+    </tr>
+    <tr>
+      <td><span class="rule-id">AUTH-04</span></td>
+      <td>ระบบใช้รหัสยืนยันตัวตน (OTP) สำหรับธุรกรรมสำคัญ ได้แก่ การเปลี่ยนเบอร์โทรศัพท์ และการแลกใช้คะแนนสะสม</td>
+      <td>เว็บไซต์</td>
+      <td><span class="confirmed-tag">ยืนยันแล้ว</span></td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ─── 2. Order Types ─── -->
+<h1><span class="num">2</span> ประเภทของคำสั่งซื้อ</h1>
+
+<table>
+  <thead><tr><th>ประเภท</th><th style="width:90px">ตรวจสต็อก</th><th style="width:130px">คำนวณโปรโมชั่น</th><th>คลังที่ใช้</th><th>ตะกร้าสินค้า</th><th style="width:110px">รูปแบบรหัส</th><th style="width:100px">ระบบ</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><strong>คำสั่งซื้อทั่วไป (Normal Order)</strong></td>
+      <td>ใช่</td>
+      <td>ใช่</td>
+      <td>คลังออนไลน์ (ชั้น 2, 3)</td>
+      <td>ตะกร้าปกติ</td>
+      <td>OD (เว็บไซต์), SO (พนักงาน CC)</td>
+      <td>เว็บไซต์, พนักงาน CC, POS</td>
+    </tr>
+    <tr>
+      <td><strong>การสั่งซื้อสินค้าล่วงหน้า (Pre-Order)</strong></td>
+      <td>ไม่</td>
+      <td>ใช่</td>
+      <td>คลังพิเศษ (อนุญาตให้สต็อกติดลบได้)</td>
+      <td>ตะกร้าการสั่งซื้อสินค้าล่วงหน้า (แยกต่างหาก)</td>
+      <td>OD / SO</td>
+      <td>เว็บไซต์, พนักงาน CC</td>
+    </tr>
+    <tr>
+      <td><strong>ใบเสนอราคา (Quotation)</strong></td>
+      <td>ไม่</td>
+      <td>ไม่ (ล็อกราคาคงที่)</td>
+      <td>— (ยังไม่จองสต็อก)</td>
+      <td>ตะกร้าใบเสนอราคา (แยกต่างหาก)</td>
+      <td>—</td>
+      <td>เว็บไซต์, พนักงาน CC</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4>กฎเพิ่มเติม</h4>
+<ul>
+  <li>ตะกร้าการสั่งซื้อสินค้าล่วงหน้าและตะกร้าใบเสนอราคา <strong>แยกออกจากตะกร้าสินค้าปกติอย่างเด็ดขาด</strong> <span class="dec-ref">D-023</span></li>
+  <li>ใบเสนอราคาต้องแสดงหมายเหตุให้ลูกค้าทราบว่า "ไม่มีโปรโมชั่นหรือส่วนลดจากแคมเปญใดๆ ในใบเสนอราคา" <span class="rule-id">BR-39</span></li>
+  <li>การสั่งซื้อสินค้าล่วงหน้า — ปุ่มบนหน้าเว็บไซต์เปลี่ยนเป็น <strong>"ติดต่อ / สั่งซื้อล่วงหน้า"</strong> แทน "เพิ่มเข้าตะกร้า"</li>
+</ul>
+
+<!-- ─── 3. Stock & Warehouse ─── -->
+<h1><span class="num">3</span> สต็อกและคลังสินค้า</h1>
+
+<h2>3.1 โครงสร้างคลังสินค้า</h2>
+<table>
+  <thead><tr><th style="width:240px">ประเภทคลัง</th><th>ตำแหน่ง / ช่องที่ใช้</th><th>ใช้กับ</th></tr></thead>
+  <tbody>
+    <tr><td><strong>คลังออนไลน์ (Warehouse Online)</strong></td><td>ชั้น 2, 3, 4</td><td>เว็บไซต์, พนักงาน CC, Agent</td></tr>
+    <tr><td><strong>คลังหน้าร้าน (Warehouse Offline)</strong></td><td>ชั้น 1 และชั้นลอย (สินค้าหน้าร้าน)</td><td>POS, ลูกค้าหน้าร้าน</td></tr>
+    <tr><td><strong>คลังพักรอ (Staging)</strong></td><td>—</td><td>หลังบรรจุสินค้าเสร็จ รอแคชเชียร์ออกใบกำกับ</td></tr>
+    <tr><td><strong>คลังพิเศษ (Pre-Order)</strong></td><td>—</td><td>การสั่งซื้อสินค้าล่วงหน้าเท่านั้น (อนุญาตให้สต็อกติดลบ)</td></tr>
+    <tr><td><strong>คลังของรางวัล (Reward Warehouse)</strong></td><td>—</td><td>ของรางวัลสำหรับการแลกคะแนน (Redeem) เท่านั้น — ไม่ใช่ของแถม</td></tr>
+  </tbody>
+</table>
+
+<div class="callout callout-amber">
+  <strong>กฎสำคัญ:</strong> คลังออนไลน์และคลังหน้าร้าน<strong>ต้องแยกรหัสในระบบ ConX อย่างเด็ดขาด</strong> <span class="dec-ref">D-016</span>
+</div>
+
+<h2>3.2 กฎการจัดการสต็อก</h2>
+<table>
+  <thead><tr><th style="width:100px">รหัส</th><th>กฎเกณฑ์</th><th style="width:160px">จุดที่เกิด</th><th style="width:90px">อ้างอิง</th></tr></thead>
+  <tbody>
+    <tr><td><span class="rule-id">S-01</span></td><td>สต็อกพร้อมขาย (Available) = สต็อกที่มีอยู่จริง (On-hand) − สต็อกที่จองไว้ (Reserved)</td><td>คำนวณอัตโนมัติ</td><td>—</td></tr>
+    <tr><td><span class="rule-id">S-02</span></td><td>ระบบจองสต็อก (Reserve) ทันทีเมื่อลูกค้าเข้าสู่ขั้นตอนการชำระเงิน หรือเมื่อสร้างคำสั่งซื้อ</td><td>ตอนยืนยันคำสั่งซื้อ</td><td><span class="dec-ref">D-004</span></td></tr>
+    <tr><td><span class="rule-id">S-03</span></td><td>ระบบตัดสต็อก (Deduct) จริงเมื่อแคชเชียร์ยืนยันการชำระเงินและออกใบกำกับภาษี</td><td>ตอนออกใบกำกับ</td><td><span class="dec-ref">D-011</span></td></tr>
+    <tr><td><span class="rule-id">S-04</span></td><td>สต็อกออนไลน์แยกจากสต็อกหน้าร้าน — ห้ามนำมารวมหรือทดแทนกัน</td><td>ทุกเวลา</td><td><span class="dec-ref">D-016</span></td></tr>
+    <tr><td><span class="rule-id">S-05</span></td><td>ระบบไม่ลบสินค้าออกจากตะกร้าโดยอัตโนมัติเมื่อสต็อกหมด — ระบบแสดงการแจ้งเตือนให้ลูกค้าตัดสินใจ</td><td>ขั้นตอนการชำระเงิน</td><td>—</td></tr>
+    <tr><td><span class="rule-id">S-06</span></td><td>คลังพิเศษสำหรับการสั่งซื้อสินค้าล่วงหน้า อนุญาตให้สต็อกในระบบ ConX <strong>ติดลบได้</strong></td><td>การสั่งซื้อสินค้าล่วงหน้า</td><td><span class="dec-ref">D-024</span></td></tr>
+    <tr><td><span class="rule-id">S-07</span></td><td>ระบบหักสต็อกของแถม ณ จุดที่สร้างคำสั่งซื้อ — ของแถมใช้สต็อกเดียวกับสินค้าปกติ (ไม่ใช่คลังของรางวัล) หากของแถมหมด ระบบต้องระงับการสั่งซื้อหรือแจ้งเตือนทันที</td><td>สร้างคำสั่งซื้อ</td><td><span class="dec-ref">D-019</span></td></tr>
+    <tr><td><span class="rule-id">S-08</span></td><td>การซิงค์ข้อมูลสต็อก (Stock Sync) ใช้รูปแบบผสม — สินค้าหมุนเร็ว (Fast-moving) ซิงค์<strong>แบบทันที (Real-time)</strong> ส่วนสินค้าทั่วไปซิงค์<strong>แบบเป็นชุด (Batch)</strong> ทุก 15-30 นาที</td><td>ทุกเวลา</td><td><span class="dec-ref">D-020</span></td></tr>
+  </tbody>
+</table>
+
+<!-- ─── 4. Checkout & Payment ─── -->
+<h1><span class="num">4</span> ขั้นตอนการชำระเงิน</h1>
+
+<h2>4.1 วิธีการชำระเงิน</h2>
+<table>
+  <thead><tr><th style="width:230px">วิธี</th><th>รายละเอียด</th><th style="width:140px">ช่องทาง</th></tr></thead>
+  <tbody>
+    <tr><td><strong>บัตรเครดิต</strong></td><td>ชำระผ่านระบบรับชำระเงินภายนอก (Payment Gateway) — มีค่าธรรมเนียมการรับชำระ 3%</td><td>เว็บไซต์, พนักงาน CC</td></tr>
+    <tr><td><strong>การโอนเงินผ่านธนาคาร</strong></td><td>ลูกค้าแนบหลักฐานการชำระเงิน (สลิป) — พนักงานตรวจสอบด้วยตา 100% ทุกใบ ไม่มีการอ่านอัตโนมัติ</td><td>เว็บไซต์, พนักงาน CC</td></tr>
+    <tr><td><strong>วงเงินเครดิต</strong></td><td>เฉพาะลูกค้านิติบุคคลที่ได้รับการอนุมัติวงเงินเครดิตแล้ว</td><td>เว็บไซต์, พนักงาน CC, POS</td></tr>
+    <tr><td><strong>คูปอง</strong></td><td>ลูกค้าเลือกจากรายการคูปองในหน้าชำระเงิน (ไม่ต้องกรอกรหัสคูปอง) หากมูลค่าคูปองเกินราคาสินค้า ระบบจะไม่ทอนเงินคืน</td><td>เว็บ</td></tr>
+    <tr><td><strong>ชำระหน้าร้าน</strong></td><td>เงินสด / บัตร / คิวอาร์โค้ด ที่จุดขาย</td><td>POS</td></tr>
+  </tbody>
+</table>
+
+<h2>4.2 กฎสำคัญ</h2>
+<table>
+  <thead><tr><th style="width:100px">รหัส</th><th>กฎเกณฑ์</th><th style="width:90px">อ้างอิง</th></tr></thead>
+  <tbody>
+    <tr><td><span class="rule-id">P-01</span></td><td>ระบบ<strong>ไม่รองรับการเก็บเงินปลายทาง</strong> (Cash on Delivery — COD) ในทุกช่องทาง</td><td><span class="dec-ref">D-012</span></td></tr>
+    <tr><td><span class="rule-id">P-02</span></td><td>ค่าจัดส่งแสดงให้ลูกค้าทราบเป็น <strong>"ค่าจัดส่งชำระปลายทาง"</strong> — ไม่แสดงตัวเลขประมาณการล่วงหน้า</td><td><span class="dec-ref">D-028</span></td></tr>
+    <tr><td><span class="rule-id">P-03</span></td><td>ค่าธรรมเนียมการรับชำระผ่านระบบ Payment Gateway เท่ากับ <strong>3%</strong> สำหรับบัตรเครดิต</td><td>—</td></tr>
+    <tr><td><span class="rule-id">P-04</span></td><td>ลูกค้าวงเงินเครดิตที่สั่งซื้อผ่านพนักงาน Contact Center (CC) — บังคับให้ตัดวงเงินเครดิตเท่านั้นในทุกกรณี <strong>รวมถึงการสั่งซื้อสินค้าล่วงหน้า</strong> ไม่อนุญาตให้เปลี่ยนเป็นเงินสด การโอน หรือคิวอาร์โค้ด (เพื่อป้องกันความสับสนในกระบวนการ) — กรณีวงเงินไม่เพียงพอ ให้ใช้กระบวนการอนุมัติเกินวงเงิน <span class="dec-ref">D-043</span> หรือให้ลูกค้าชำระบิลค้างก่อน</td><td><span class="dec-ref">D-044</span></td></tr>
+    <tr><td><span class="rule-id">P-05</span></td><td>ลูกค้านิติบุคคลที่สั่งซื้อผ่าน<strong>เว็บไซต์หรือ POS</strong> สามารถเลือกวิธีการชำระเงินได้เอง (ไม่บังคับใช้วงเงินเครดิต)</td><td><span class="dec-ref">D-044</span></td></tr>
+    <tr><td><span class="rule-id">P-06</span></td><td>กรณีคูปองมีมูลค่าเกินราคาสินค้า — ระบบตัดส่วนเกินออก <strong>ไม่ทอนเงินคืน</strong></td><td>—</td></tr>
+    <tr><td><span class="rule-id">P-07</span></td><td><strong>เงื่อนไขการเริ่มกระบวนการหยิบและบรรจุสินค้า (Pick &amp; Pack):</strong> คำสั่งซื้อเข้าสู่ขั้นตอนการหยิบสินค้าได้ทันทีหลังการยืนยัน หากเข้าเงื่อนไขข้อใดข้อหนึ่งดังนี้ (1) ชำระเงินที่หน้าร้านแล้ว หรือ (2) ลูกค้าเครดิตที่มีวงเงินเพียงพอ (วงเงินถูกตัดแล้วตาม <span class="rule-id">C-01</span> ถือว่าชำระแล้ว) — กรณีการโอนเงินหรือบัตรเครดิต ต้องรอการยืนยันการชำระเงินสำเร็จก่อน</td><td><span class="dec-ref">D-010</span></td></tr>
+    <tr><td><span class="rule-id">P-08</span></td><td>ทุกคำสั่งซื้อต้องผ่านขั้นตอน<strong>แคชเชียร์</strong>เสมอ — ไม่มีการออกใบกำกับอัตโนมัติข้ามแคชเชียร์</td><td>—</td></tr>
+  </tbody>
+</table>
+
+<!-- ─── 5. Credit B2B ─── -->
+<h1><span class="num">5</span> วงเงินเครดิตสำหรับลูกค้านิติบุคคล</h1>
+
+<table>
+  <thead><tr><th style="width:100px">รหัส</th><th>กฎเกณฑ์</th><th style="width:90px">อ้างอิง</th></tr></thead>
+  <tbody>
+    <tr><td><span class="rule-id">C-01</span></td><td>ระบบตัดวงเงินเครดิตตั้งแต่<strong>ขั้นตอนสร้างคำสั่งซื้อ</strong> (ไม่รอจนถึงขั้นชำระเงิน)</td><td><span class="dec-ref">D-002</span></td></tr>
+    <tr><td><span class="rule-id">C-02</span></td><td>วงเงินที่ลูกค้านิติบุคคลใช้ได้ทั้งหมด = <strong>วงเงินเครดิตที่ได้รับอนุมัติ + มูลค่าหนังสือค้ำประกัน (Bank Guarantee — BG) ทุกฉบับที่ยังไม่หมดอายุ</strong></td><td><span class="dec-ref">D-041</span></td></tr>
+    <tr><td><span class="rule-id">C-03</span></td><td><strong>วงเงินกลุ่ม (Group Credit Limit)</strong> เป็นกระเป๋ากลางร่วมกัน — ใครสั่งซื้อก่อนได้ใช้ก่อน (เข้าก่อนใช้ก่อน — FIFO) <strong>ไม่มีการแบ่งสัดส่วนรายบุคคล</strong></td><td><span class="dec-ref">D-041</span></td></tr>
+    <tr><td><span class="rule-id">C-04</span></td><td>เมื่อเช็คผ่านการเรียกเก็บ (Cleared) → ระบบคืนวงเงินให้ลูกค้า (ทำเพียงครั้งเดียว) — ไม่คืนวงเงินตอนรับเช็ค</td><td><span class="dec-ref">D-042</span></td></tr>
+    <tr><td><span class="rule-id">C-05</span></td><td>กรณีเช็คเด้ง (Bounced) → ระบบ<strong>ไม่คืนวงเงิน</strong>จนกว่าเช็คจะผ่านการเรียกเก็บ</td><td><span class="dec-ref">D-042</span></td></tr>
+    <tr><td><span class="rule-id">C-06</span></td><td>กรณีลูกค้าเปลี่ยนจากวงเงินเครดิตเป็นเงินสดหรือการโอนที่ POS → ระบบคืนวงเงินทันที</td><td>—</td></tr>
+    <tr><td><span class="rule-id">C-07</span></td><td>การยกเลิกการสั่งซื้อสินค้าล่วงหน้า → ระบบคืนวงเงินเครดิตที่จองไว้กลับให้ลูกค้าทันที</td><td>—</td></tr>
+    <tr><td><span class="rule-id">C-08</span></td><td>หนังสือค้ำประกันที่หมดอายุในวันใด ยังใช้งานได้ถึงเวลา <strong>23:59 น. ของวันนั้น</strong> ไม่ใช่หมดอายุตั้งแต่เช้า</td><td><span class="dec-ref">D-045</span></td></tr>
+    <tr><td><span class="rule-id">C-09</span></td><td>ระบบแจ้งเตือนทั้งลูกค้าและผู้ดูแลระบบล่วงหน้า <strong>7 วัน</strong> ก่อนหนังสือค้ำประกันหมดอายุ ผ่านหน้าจอภาพรวมและการแจ้งเตือน</td><td>—</td></tr>
+    <tr><td><span class="rule-id">C-10</span></td><td>เมื่อหนังสือค้ำประกันหมดอายุครบเวลา 23:59 น. ระบบ<strong>ตัดมูลค่าหนังสือค้ำประกันนั้นออกจากวงเงินโดยอัตโนมัติ</strong></td><td>—</td></tr>
+    <tr><td><span class="rule-id">C-11</span></td><td>การเพิ่มหรือลดวงเงินถาวรต้องดำเนินการโดย<strong>ผู้ดูแลระบบเท่านั้น</strong> — ลูกค้าทำเองไม่ได้ และระบบเก็บประวัติทุกครั้งที่มีการเปลี่ยนแปลง</td><td>—</td></tr>
+  </tbody>
+</table>
+
+<!-- ─── 6. Over-limit ─── -->
+<h1><span class="num">6</span> กระบวนการกรณีลูกค้าใช้เงินเกินวงเงิน (Over-limit)</h1>
+
+<div class="callout callout-amber">
+  <strong>กฎสำคัญที่สุด — ต้องดำเนินการให้ถูกต้องตามช่องทาง</strong>
+</div>
+
+<table>
+  <thead><tr><th style="width:120px">ช่องทาง</th><th>กรณีปกติ</th><th>กรณีเกินวงเงิน</th><th style="width:200px">การสร้างคำสั่งซื้อ</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><strong>เว็บไซต์</strong></td>
+      <td>ใช้วงเงินเครดิตได้ตามปกติ</td>
+      <td><strong>ระงับก่อนการยืนยันคำสั่งซื้อ</strong> — ลูกค้าไม่สามารถดำเนินการต่อได้</td>
+      <td><strong>ไม่สร้างคำสั่งซื้อ</strong></td>
+    </tr>
+    <tr>
+      <td><strong>พนักงาน CC</strong></td>
+      <td>ต้องตัดวงเงินเครดิตเท่านั้น (ตาม <span class="rule-id">P-04</span>)</td>
+      <td>พนักงาน CC ขออนุมัติวงเงินชั่วคราวต่อคำสั่งซื้อได้ <span class="dec-ref">D-043</span></td>
+      <td>สร้างคำสั่งซื้อแล้วรอการอนุมัติ</td>
+    </tr>
+    <tr>
+      <td><strong>POS หน้าร้าน</strong></td>
+      <td>ใช้วงเงินเครดิตได้ตามปกติ</td>
+      <td>รายละเอียดอยู่ในเอกสารทดสอบ POS</td>
+      <td>อยู่ในเอกสารทดสอบ POS</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4>กฎเสริมสำหรับช่องทางเว็บไซต์ (กรณี Over-limit)</h4>
+<ul>
+  <li>หน้าเว็บไซต์ต้องแสดงข้อความแจ้งข้อผิดพลาดทันที <strong>ก่อนการยืนยันคำสั่งซื้อ</strong></li>
+  <li>ลูกค้าที่ต้องการสั่งซื้อต่อ ต้องติดต่อพนักงาน CC เพื่อ<strong>สร้างคำสั่งซื้อใหม่</strong>ผ่านช่องทางพนักงาน CC</li>
+  <li><strong>ระบบไม่รองรับการดำเนินการต่อเนื่องจากเซสชั่นบนเว็บไซต์</strong> — พนักงาน CC ต้องสร้างคำสั่งซื้อใหม่ทั้งหมด</li>
+</ul>
+
+<!-- ─── 7. Quotation ─── -->
+<h1><span class="num">7</span> ใบเสนอราคา (Quotation)</h1>
+
+<table>
+  <thead><tr><th style="width:100px">รหัส</th><th>กฎเกณฑ์</th><th style="width:90px">อ้างอิง</th></tr></thead>
+  <tbody>
+    <tr><td><span class="rule-id">Q-01</span></td><td>ใบเสนอราคามีอายุ <strong>7 วันทำการ</strong> (จันทร์ถึงเสาร์ ไม่นับวันหยุดนักขัตฤกษ์)</td><td><span class="dec-ref">D-029</span></td></tr>
+    <tr><td><span class="rule-id">Q-02</span></td><td>ใบเสนอราคาที่หมดอายุแล้ว <strong>ไม่สามารถแปลงเป็นคำสั่งซื้อได้</strong> — ลูกค้าต้องขอใบเสนอราคาใหม่</td><td>—</td></tr>
+    <tr><td><span class="rule-id">Q-03</span></td><td>การแปลงใบเสนอราคาเป็นคำสั่งซื้อกรณีสต็อกไม่เพียงพอ: <strong>รายการที่มีสต็อก → สร้างเป็นคำสั่งซื้อปกติ, รายการที่ขาด → สร้างเป็นการสั่งซื้อสินค้าล่วงหน้า</strong> (โดยคงราคาสุทธิจากใบเสนอราคาเดิม)</td><td><span class="dec-ref">D-034</span></td></tr>
+    <tr><td><span class="rule-id">Q-04</span></td><td>ใบเสนอราคาต้องแสดงหมายเหตุ <strong>"ไม่มีโปรโมชั่นหรือส่วนลดจากแคมเปญใดๆ"</strong> ให้ลูกค้าทราบ</td><td><span class="rule-id">BR-39</span></td></tr>
+  </tbody>
+</table>
+
+<!-- ─── 8. Re-order ─── -->
+<h1><span class="num">8</span> การสั่งซื้อซ้ำ (Re-order)</h1>
+
+<table>
+  <thead><tr><th style="width:100px">รหัส</th><th>กฎเกณฑ์</th><th style="width:90px">อ้างอิง</th></tr></thead>
+  <tbody>
+    <tr><td><span class="rule-id">RO-01</span></td><td>การสั่งซื้อซ้ำ → ระบบ<strong>รวมรายการกับตะกร้าสินค้าปัจจุบัน</strong></td><td><span class="dec-ref">D-030</span></td></tr>
+    <tr><td><span class="rule-id">RO-02</span></td><td>กรณีรหัสสินค้าซ้ำในตะกร้า → ระบบ<strong>แทนที่จำนวน</strong> (ไม่บวกเพิ่ม)</td><td><span class="dec-ref">D-030</span></td></tr>
+    <tr><td><span class="rule-id">RO-03</span></td><td>ราคาสินค้าใช้<strong>ราคาปัจจุบัน ณ วันที่สั่งซื้อ</strong> ไม่ใช่ราคาจากคำสั่งซื้อเดิม</td><td>—</td></tr>
+  </tbody>
+</table>
+
+<!-- ─── 9. Self-Pickup ─── -->
+<h1><span class="num">9</span> การรับสินค้าด้วยตนเอง (Self-Pickup)</h1>
+
+<table>
+  <thead><tr><th style="width:100px">รหัส</th><th>กฎเกณฑ์</th><th style="width:90px">อ้างอิง</th></tr></thead>
+  <tbody>
+    <tr><td><span class="rule-id">SP-01</span></td><td>ระบบบังคับให้ลูกค้าเลือกช่วงเวลามารับสินค้า <strong>ล่วงหน้าอย่างน้อย 12 ชั่วโมงทำการ</strong></td><td><span class="dec-ref">D-008</span></td></tr>
+    <tr><td><span class="rule-id">SP-02</span></td><td>กรณีรับสินค้าด้วยตนเอง <strong>ไม่คิดค่าบรรจุภัณฑ์กันกระแทก</strong> (Fragile Fee)</td><td>—</td></tr>
+    <tr><td><span class="rule-id">SP-03</span></td><td>กรณีลูกค้าไม่มารับสินค้าภายใน 3-5 วัน → คำสั่งซื้อ<strong>คงสถานะเดิม</strong> ไม่ยกเลิกอัตโนมัติและไม่คืนสต็อก</td><td><span class="rule-id">BR-40</span></td></tr>
+  </tbody>
+</table>
+
+<!-- ─── 10. Loyalty / Points / Tier ─── -->
+<h1><span class="num">10</span> ระดับสมาชิก ระดับราคา และคะแนนสะสม</h1>
+
+<h2>10.1 ระดับสมาชิก (Member Tier — 7 ระดับ)</h2>
+<table>
+  <thead><tr><th style="width:140px">ระดับ</th><th>เงื่อนไข</th><th>หมายเหตุ</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Prospect</strong></td><td>สมัครสมาชิกแล้ว แต่ยังไม่เคยสั่งซื้อถึงเกณฑ์ระดับ Member</td><td>ซื้อสินค้าได้ แต่<strong>ไม่ได้รับคะแนนสะสม</strong> <span class="rule-id">PT-04a</span></td></tr>
+    <tr><td><strong>Member</strong></td><td>สั่งซื้อใน<strong>คำสั่งซื้อใบเดียว</strong>มีมูลค่า ≥ 10,000 บาท (ผ่านเว็บไซต์) หรือ ≥ 4,000 บาท (ผ่าน POS)</td><td>เลื่อนระดับจาก Prospect</td></tr>
+    <tr><td><strong>Silver</strong></td><td>ยอดซื้อสะสมในปีปฏิทิน 100,000.01 – 300,000.00 บาท</td><td>—</td></tr>
+    <tr><td><strong>Gold</strong></td><td>ยอดซื้อสะสมในปีปฏิทิน 300,000.01 – 1,000,000.00 บาท</td><td>—</td></tr>
+    <tr><td><strong>Platinum</strong></td><td>ยอดซื้อสะสมในปีปฏิทิน 1,000,000.01 – 3,000,000.00 บาท</td><td>—</td></tr>
+    <tr><td><strong>Diamond</strong></td><td>ยอดซื้อสะสมในปีปฏิทิน &gt; 3,000,000.00 บาท</td><td>—</td></tr>
+    <tr><td><strong>Coronet</strong></td><td>ผู้ดูแลระบบกำหนดด้วยตนเอง (Manual)</td><td>ระดับสูงสุดของระบบ</td></tr>
+  </tbody>
+</table>
+
+<h4>กฎเกี่ยวกับการเลื่อนระดับ</h4>
+<ul>
+  <li><strong>การเลื่อนจาก Prospect ไปเป็น Member:</strong> พิจารณายอดใน<strong>คำสั่งซื้อใบเดียว</strong> ไม่ใช่ยอดสะสม</li>
+  <li><strong>การเลื่อนจาก Member ไปเป็น Silver ขึ้นไป:</strong> คำนวณจากยอดซื้อสะสมในปีปฏิทิน (1 มกราคม 00:00 น. ถึง 31 ธันวาคม 23:59 น.)</li>
+  <li>ระบบนับยอดเฉพาะเมื่อ<strong>ออกใบกำกับภาษีสำเร็จเท่านั้น</strong> (ไม่นับคำสั่งซื้อที่ถูกยกเลิก) <span class="dec-ref">D-006</span></li>
+  <li>จังหวะการเลื่อนหรือลดระดับสมาชิก → <span class="pending-tag">รอยืนยัน P-03</span></li>
+</ul>
+
+<h2>10.2 ระดับราคา (Price Tier)</h2>
+<table>
+  <thead><tr><th style="width:120px">รหัส</th><th>กฎเกณฑ์</th></tr></thead>
+  <tbody>
+    <tr><td><span class="rule-id">PRT-01</span></td><td>ผู้ดูแลระบบกำหนดระดับราคาเริ่มต้น (Default Price Tier) ได้ในระบบหลังบ้าน — แยกตามช่องทางที่ลูกค้าสมัคร (เว็บไซต์ / LINE / POS)</td></tr>
+    <tr><td><span class="rule-id">PRT-02</span></td><td>สมัครผ่าน<strong>เว็บไซต์ → เริ่มต้นที่ระดับ P5</strong> / สมัครผ่าน<strong>พนักงาน CC หรือ POS → เริ่มต้นที่ระดับ P4</strong> (ค่าเริ่มต้น สามารถปรับได้)</td></tr>
+    <tr><td><span class="rule-id">PRT-03</span></td><td>คำสั่งซื้อผ่านเว็บไซต์มูลค่า <strong>≥ 10,000 บาท</strong> → ระบบปรับระดับราคาเป็น P2 ทันที</td></tr>
+    <tr><td><span class="rule-id">PRT-04</span></td><td>คำสั่งซื้อผ่าน POS มูลค่า <strong>≥ 4,000 บาท</strong> → ระบบปรับระดับราคาเป็น P2 ทันที</td></tr>
+    <tr><td><span class="rule-id">PRT-05</span></td><td>คำสั่งซื้อที่มีมูลค่าต่ำกว่าเกณฑ์ → ระบบ<strong>คงระดับราคาเดิม</strong> ไม่ลดระดับ</td></tr>
+    <tr><td><span class="rule-id">PRT-06</span></td><td>คำนวณยอดคำสั่งซื้อจาก<strong>สินค้าราคาปกติเท่านั้น</strong> ไม่นับสินค้าโปรโมชั่น</td></tr>
+    <tr><td><span class="rule-id">PRT-07</span></td><td>คำนวณยอด<strong>ก่อนหักส่วนลด</strong></td></tr>
+    <tr><td><span class="rule-id">PRT-08</span></td><td>ระดับราคา P1 ถึง P5 กำหนด<strong>รายลูกค้า</strong> ไม่อ้างอิงตามหมวดหมู่สินค้า</td></tr>
+  </tbody>
+</table>
+
+<h2>10.3 คะแนนสะสม (Points)</h2>
+<table>
+  <thead><tr><th style="width:100px">รหัส</th><th>กฎเกณฑ์</th><th style="width:90px">อ้างอิง</th></tr></thead>
+  <tbody>
+    <tr><td><span class="rule-id">PT-01</span></td><td>ทุก <strong>1,500 บาท สะสมได้ 1 คะแนน</strong></td><td><span class="dec-ref">D-040</span></td></tr>
+    <tr><td><span class="rule-id">PT-02</span></td><td>คำนวณคะแนนจากยอดจริง — สะสม<strong>เป็นทศนิยมภายในระบบ</strong> (ยอดค้างคำนวณข้ามคำสั่งซื้อ ไม่ปัดเศษทิ้ง)</td><td><span class="dec-ref">D-040</span></td></tr>
+    <tr><td><span class="rule-id">PT-03</span></td><td>แสดงคะแนนต่อลูกค้าเป็น<strong>จำนวนเต็มเท่านั้น</strong></td><td>—</td></tr>
+    <tr><td><span class="rule-id">PT-04</span></td><td>ระบบจ่ายคะแนนให้ลูกค้า<strong>หลังออกใบกำกับภาษีสำเร็จเท่านั้น</strong></td><td><span class="dec-ref">D-040</span></td></tr>
+    <tr><td><span class="rule-id">PT-04a</span></td><td>ลูกค้าระดับ <strong>Prospect ไม่ได้รับคะแนน</strong> — เริ่มสะสมคะแนนเมื่อเลื่อนระดับเป็น Member ขึ้นไป</td><td>—</td></tr>
+    <tr><td><span class="rule-id">PT-05</span></td><td>คะแนนสะสมหมดอายุในวันที่ <strong>31 ธันวาคมของทุกปี</strong></td><td>—</td></tr>
+    <tr><td><span class="rule-id">PT-06</span></td><td>การแลกใช้คะแนนต้องผ่านการ<strong>ยืนยันรหัสตัวตน (OTP)</strong> ก่อนเสมอ</td><td>—</td></tr>
+    <tr><td><span class="rule-id">PT-07</span></td><td>แคมเปญวันคะแนนคูณสอง (Double Day) → ระบบให้คะแนน ×2 เฉพาะช่วงเวลาที่แคมเปญกำหนดไว้เท่านั้น</td><td>—</td></tr>
+    <tr><td><span class="rule-id">PT-08</span></td><td>ของขวัญวันเกิด (Birthday Gift): ลูกค้าแลกรับได้<strong>ภายในเดือนเกิดเท่านั้น</strong></td><td>—</td></tr>
+  </tbody>
+</table>
+
+<!-- ─── 11. Promotion ─── -->
+<h1><span class="num">11</span> ระบบจัดการโปรโมชั่น (Promotion Engine)</h1>
+
+<table>
+  <thead><tr><th style="width:100px">รหัส</th><th>กฎเกณฑ์</th><th style="width:90px">อ้างอิง</th></tr></thead>
+  <tbody>
+    <tr><td><span class="rule-id">PR-01</span></td><td>ส่วนลดต้องมาจาก<strong>ระบบจัดการโปรโมชั่นเท่านั้น</strong> — ห้ามตั้งราคาลดในข้อมูลแม่บทของสินค้าโดยตรง</td><td><span class="dec-ref">D-032</span></td></tr>
+    <tr><td><span class="rule-id">PR-02</span></td><td>ตั้งค่าส่วนลดในระบบเป็น <strong>"บาท" เสมอ</strong> — หน้าเว็บไซต์แสดงเป็น "เปอร์เซ็นต์" (ปัดเศษลง)</td><td><span class="dec-ref">D-032</span></td></tr>
+    <tr><td><span class="rule-id">PR-03</span></td><td>ของแถมต้อง<strong>ตรวจสอบสต็อกตั้งแต่ตอนสร้างคำสั่งซื้อ</strong> — หากของแถมหมดต้องระงับหรือแจ้งเตือนทันที</td><td><span class="dec-ref">D-019</span></td></tr>
+    <tr><td><span class="rule-id">PR-04</span></td><td>ใบเสนอราคา<strong>ไม่คำนวณโปรโมชั่นใดๆ</strong></td><td><span class="rule-id">BR-39</span></td></tr>
+    <tr><td><span class="rule-id">PR-05</span></td><td>คูปอง: ลูกค้าเลือกจากรายการในหน้าชำระเงิน (ไม่ต้องกรอกรหัส) — มูลค่าคูปองเกินราคาสินค้า ระบบไม่ทอนเงินคืน</td><td><span class="rule-id">BR-20</span></td></tr>
+    <tr><td><span class="rule-id">PR-06</span></td><td>ลูกค้าใช้คูปอง<strong>หลายใบพร้อมกันได้</strong>ในคำสั่งซื้อใบเดียว (Stacking)</td><td>—</td></tr>
+    <tr><td><span class="rule-id">PR-07</span></td><td>ภาษีมูลค่าเพิ่มคำนวณ<strong>ท้ายสุด</strong> จากยอดสุทธิหลังหักส่วนลดและคูปองทั้งหมดแล้ว (ตามมาตรฐานกรมสรรพากร)</td><td>—</td></tr>
+  </tbody>
+</table>
+
+<!-- ─── 12. Invoice & VAT ─── -->
+<h1><span class="num">12</span> ใบกำกับและภาษีมูลค่าเพิ่ม (Invoice &amp; VAT)</h1>
+
+<table>
+  <thead><tr><th style="width:100px">รหัส</th><th>กฎเกณฑ์</th><th style="width:110px">สถานะ</th></tr></thead>
+  <tbody>
+    <tr><td><span class="rule-id">INV-01</span></td><td>ระบบออกใบกำกับ 2 ใบโดยอัตโนมัติ ได้แก่ <strong>ใบกำกับมีภาษี (EV) และใบกำกับไม่มีภาษี (EN)</strong> — เงื่อนไขการแยกรอการยืนยัน <span class="dec-ref">D-003</span></td><td><span class="pending-tag">รอยืนยัน P-06</span></td></tr>
+    <tr><td><span class="rule-id">INV-02</span></td><td>แคชเชียร์เป็น<strong>ด่านสุดท้าย</strong>ก่อนการออกใบกำกับและปล่อยสินค้า</td><td><span class="pending-tag">รอยืนยัน P-07</span></td></tr>
+    <tr><td><span class="rule-id">INV-03</span></td><td>ทุกคำสั่งซื้อต้องผ่านขั้นตอนแคชเชียร์เสมอ — <strong>ไม่มีการออกใบกำกับอัตโนมัติข้ามแคชเชียร์</strong></td><td><span class="confirmed-tag">ยืนยันแล้ว</span></td></tr>
+    <tr><td><span class="rule-id">INV-04</span></td><td>ประเภทใบกำกับสำหรับลูกค้า (Y, N, M, A) — เงื่อนไขการคิดราคารอการยืนยัน</td><td><span class="pending-tag">รอยืนยัน P-05</span></td></tr>
+  </tbody>
+</table>
+
+<!-- ─── 13. SO Lifecycle ─── -->
+<h1><span class="num">13</span> วงจรชีวิตของคำสั่งซื้อ (SO Lifecycle)</h1>
+
+<h2>13.1 วงจรชีวิตของคำสั่งซื้อตามช่องทางการขาย</h2>
+
+<div class="callout">
+  <strong>หลักการ:</strong> วงจรชีวิตของคำสั่งซื้อแตกต่างกันตามช่องทางการขาย — แต่ละช่องทางมีกระบวนการที่เหมาะกับลักษณะของผู้สั่งและวิธีการชำระเงิน
+</div>
+
+<table>
+  <thead><tr><th style="width:160px">ช่องทาง</th><th>ลักษณะเด่น</th><th style="width:200px">วิธีการชำระเงิน</th></tr></thead>
+  <tbody>
+    <tr><td><strong>เว็บไซต์ (Web)</strong></td><td>ลูกค้า B2C / B2B สั่งซื้อด้วยตนเองผ่านเว็บไซต์</td><td>บัตรเครดิต / โอนเงิน / วงเงินเครดิต (B2B)</td></tr>
+    <tr><td><strong>พนักงาน CC</strong></td><td>พนักงาน Contact Center สั่งซื้อแทนลูกค้า — รับคำสั่งทาง LINE / โทรศัพท์ / อีเมล / โทรสาร</td><td>วงเงินเครดิตเท่านั้น (P-04)</td></tr>
+    <tr><td><strong>POS หน้าร้าน</strong></td><td>ลูกค้ามาซื้อที่ร้าน — แคชเชียร์ขายและส่งของให้ทันที</td><td>เงินสด / บัตร / QR / วงเงินเครดิต (B2B)</td></tr>
+  </tbody>
+</table>
+
+<h3>13.1.1 ช่องทางเว็บไซต์ (Web Channel)</h3>
+<p style="font-size:13px;color:#475569;margin-bottom:8px">ลูกค้าสั่งซื้อด้วยตนเองผ่านเว็บไซต์ เลือกวิธีชำระเงินได้ 3 รูปแบบ — แต่ละรูปแบบมีเงื่อนไขเข้าสู่ขั้นตอนหยิบสินค้าต่างกัน</p>
+
+<div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;padding:24px;margin:14px 0;overflow-x:auto">
+<svg viewBox="0 0 1000 680" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;font-family:'Sarabun',sans-serif">
+  <defs>
+    <marker id="ar-navy" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#1E3A5F"/></marker>
+    <marker id="ar-grn" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#10B981"/></marker>
+    <marker id="ar-blu" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#2563EB"/></marker>
+    <marker id="ar-amb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#F59E0B"/></marker>
+    <marker id="ar-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#E11D48"/></marker>
+  </defs>
+
+  <!-- ─── Phase 1 Header ─── -->
+  <rect x="0" y="0" width="1000" height="32" fill="#1E3A5F" rx="4"/>
+  <text x="500" y="21" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">ระยะที่ 1 — สร้างคำสั่งซื้อและเลือกวิธีชำระเงิน</text>
+
+  <!-- ─── Initial states ─── -->
+  <rect x="30" y="170" width="110" height="70" rx="8" fill="#F1F5F9" stroke="#94A3B8" stroke-width="2"/>
+  <text x="85" y="200" text-anchor="middle" font-size="14" font-weight="700" fill="#475569">ฉบับร่าง</text>
+  <text x="85" y="220" text-anchor="middle" font-size="10" fill="#64748B">Draft</text>
+
+  <line x1="145" y1="205" x2="190" y2="205" stroke="#1E3A5F" stroke-width="2.5" marker-end="url(#ar-navy)"/>
+
+  <rect x="195" y="170" width="130" height="70" rx="8" fill="#DBEAFE" stroke="#2563EB" stroke-width="2"/>
+  <text x="260" y="200" text-anchor="middle" font-size="14" font-weight="700" fill="#1E3A5F">ยืนยันแล้ว</text>
+  <text x="260" y="220" text-anchor="middle" font-size="10" fill="#1E40AF">Confirmed</text>
+
+  <!-- Decision label -->
+  <text x="475" y="75" text-anchor="middle" font-size="12" font-weight="600" fill="#374151" font-style="italic">— เลือกวิธีชำระเงิน —</text>
+
+  <!-- Branch 1 (TOP) — Pay at store -->
+  <polyline points="325,190 360,190 360,115 390,115" stroke="#10B981" stroke-width="2.5" fill="none" marker-end="url(#ar-grn)"/>
+  <rect x="390" y="85" width="240" height="60" rx="8" fill="#ECFDF5" stroke="#10B981" stroke-width="2"/>
+  <text x="510" y="108" text-anchor="middle" font-size="13" font-weight="700" fill="#065F46">ชำระหน้าร้าน (CH-03)</text>
+  <text x="510" y="128" text-anchor="middle" font-size="10" fill="#047857">→ พร้อมเข้าขั้นตอนถัดไปทันที</text>
+
+  <!-- Branch 2 (MIDDLE) — Credit - straight -->
+  <line x1="325" y1="205" x2="390" y2="205" stroke="#2563EB" stroke-width="2.5" marker-end="url(#ar-blu)"/>
+  <rect x="390" y="175" width="240" height="60" rx="8" fill="#EFF6FF" stroke="#2563EB" stroke-width="2"/>
+  <text x="510" y="198" text-anchor="middle" font-size="13" font-weight="700" fill="#1E40AF">เครดิต + วงเงินพอ</text>
+  <text x="510" y="218" text-anchor="middle" font-size="10" fill="#1E3A5F">C-01: ตัดวงเงินแล้ว = ถือว่าชำระ</text>
+
+  <!-- Branch 3 (BOTTOM) — Bank transfer / CC -->
+  <polyline points="325,220 360,220 360,295 390,295" stroke="#F59E0B" stroke-width="2.5" fill="none" marker-end="url(#ar-amb)"/>
+  <rect x="390" y="265" width="240" height="60" rx="8" fill="#FFFBEB" stroke="#F59E0B" stroke-width="2"/>
+  <text x="510" y="288" text-anchor="middle" font-size="13" font-weight="700" fill="#92400E">โอน / บัตรเครดิต</text>
+  <text x="510" y="308" text-anchor="middle" font-size="10" fill="#78350F">→ รอยืนยันการชำระเงิน</text>
+
+  <!-- ─── Converge → Ready for Pick (different entry points to avoid overlap) ─── -->
+  <!-- Branch 1 (top) → enters พร้อมหยิบ from TOP edge -->
+  <polyline points="630,115 800,115 800,170" stroke="#10B981" stroke-width="2.5" fill="none" marker-end="url(#ar-grn)"/>
+
+  <!-- Branch 2 (middle) → enters พร้อมหยิบ from LEFT edge (straight) -->
+  <line x1="630" y1="205" x2="715" y2="205" stroke="#2563EB" stroke-width="2.5" marker-end="url(#ar-blu)"/>
+
+  <!-- Branch 3 (bottom) → enters พร้อมหยิบ from BOTTOM edge -->
+  <polyline points="630,295 800,295 800,240" stroke="#F59E0B" stroke-width="2.5" fill="none" marker-end="url(#ar-amb)"/>
+
+  <!-- Ready for Pick box -->
+  <rect x="720" y="170" width="170" height="70" rx="8" fill="#10B981" stroke="#10B981" stroke-width="2"/>
+  <text x="805" y="200" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">พร้อมหยิบสินค้า</text>
+  <text x="805" y="220" text-anchor="middle" font-size="10" fill="#D1FAE5">Ready for Pick / Pack</text>
+
+  <!-- ─── Connecting arrow Phase 1 → Phase 2 ─── -->
+  <!-- From พร้อมหยิบ bottom-center down to หยิบ/บรรจุ top-center via L-shape -->
+  <polyline points="805,240 805,395 110,395 110,440" stroke="#1E3A5F" stroke-width="2.5" stroke-dasharray="6,3" fill="none" marker-end="url(#ar-navy)"/>
+
+  <!-- ─── Phase 2 Header ─── -->
+  <rect x="0" y="355" width="1000" height="32" fill="#1E3A5F" rx="4"/>
+  <text x="500" y="376" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">ระยะที่ 2 — กระบวนการคลังสินค้าและจัดส่ง</text>
+
+  <!-- ─── Main Flow Boxes (5 boxes evenly spaced) ─── -->
+  <!-- Box 1: หยิบ/บรรจุ -->
+  <rect x="30" y="440" width="160" height="70" rx="8" fill="#1E3A5F" stroke="#1E3A5F" stroke-width="2"/>
+  <text x="110" y="470" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">หยิบ / บรรจุ</text>
+  <text x="110" y="490" text-anchor="middle" font-size="10" fill="#93C5FD">Pick / Pack</text>
+
+  <line x1="195" y1="475" x2="225" y2="475" stroke="#1E3A5F" stroke-width="2.5" marker-end="url(#ar-navy)"/>
+
+  <!-- Box 2: ผ่านแคชเชียร์ -->
+  <rect x="230" y="440" width="160" height="70" rx="8" fill="#1E3A5F" stroke="#1E3A5F" stroke-width="2"/>
+  <text x="310" y="470" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">ผ่านแคชเชียร์</text>
+  <text x="310" y="490" text-anchor="middle" font-size="10" fill="#93C5FD">Cashier Gate</text>
+
+  <line x1="395" y1="475" x2="425" y2="475" stroke="#1E3A5F" stroke-width="2.5" marker-end="url(#ar-navy)"/>
+
+  <!-- Box 3: ออกใบกำกับ -->
+  <rect x="430" y="440" width="160" height="70" rx="8" fill="#1E3A5F" stroke="#1E3A5F" stroke-width="2"/>
+  <text x="510" y="470" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">ออกใบกำกับ</text>
+  <text x="510" y="490" text-anchor="middle" font-size="10" fill="#93C5FD">Tax Invoice</text>
+
+  <line x1="595" y1="475" x2="625" y2="475" stroke="#1E3A5F" stroke-width="2.5" marker-end="url(#ar-navy)"/>
+
+  <!-- Box 4: จัดส่ง -->
+  <rect x="630" y="440" width="160" height="70" rx="8" fill="#1E3A5F" stroke="#1E3A5F" stroke-width="2"/>
+  <text x="710" y="470" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">จัดส่ง</text>
+  <text x="710" y="490" text-anchor="middle" font-size="10" fill="#93C5FD">Shipped</text>
+
+  <line x1="795" y1="475" x2="825" y2="475" stroke="#10B981" stroke-width="2.5" marker-end="url(#ar-grn)"/>
+
+  <!-- Box 5: ส่งถึงลูกค้า (END) -->
+  <rect x="830" y="440" width="160" height="70" rx="8" fill="#10B981" stroke="#10B981" stroke-width="2"/>
+  <text x="910" y="470" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">ส่งถึงลูกค้า</text>
+  <text x="910" y="490" text-anchor="middle" font-size="10" fill="#D1FAE5">Delivered</text>
+
+  <!-- ─── Cancel state ─── -->
+  <text x="500" y="565" text-anchor="middle" font-size="12" font-style="italic" fill="#6B7280">สามารถยกเลิกได้ในขั้นตอนใดก็ได้ก่อนจัดส่ง</text>
+  <polyline points="310,510 310,600 420,600" stroke="#E11D48" stroke-width="2" stroke-dasharray="5,4" fill="none" marker-end="url(#ar-red)"/>
+  <rect x="425" y="580" width="180" height="55" rx="8" fill="#FFF1F2" stroke="#E11D48" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="515" y="603" text-anchor="middle" font-size="14" font-weight="700" fill="#9F1239">ยกเลิก (Cancelled)</text>
+  <text x="515" y="622" text-anchor="middle" font-size="10" fill="#BE123C">SO-01: Auto-cancel 24 ชม. / Manual</text>
+</svg>
+</div>
+
+<table style="margin-top:14px;font-size:12px">
+  <thead><tr><th style="width:50px">สี</th><th style="width:200px">เส้นทาง</th><th>คำอธิบาย</th></tr></thead>
+  <tbody>
+    <tr><td><span style="display:inline-block;width:18px;height:18px;background:#10B981;border-radius:3px;vertical-align:middle"></span></td><td><strong>ชำระหน้าร้าน</strong></td><td>ลูกค้าชำระเงินที่ POS แล้ว — ระบบให้เข้าขั้นตอนการหยิบสินค้าได้ทันที</td></tr>
+    <tr><td><span style="display:inline-block;width:18px;height:18px;background:#2563EB;border-radius:3px;vertical-align:middle"></span></td><td><strong>เครดิต (นิติบุคคล)</strong></td><td>ลูกค้านิติบุคคลที่มีวงเงินเพียงพอ — วงเงินถูกตัดไปแล้วตาม C-01 ถือว่าชำระเงินแล้ว</td></tr>
+    <tr><td><span style="display:inline-block;width:18px;height:18px;background:#F59E0B;border-radius:3px;vertical-align:middle"></span></td><td><strong>โอนเงิน / บัตรเครดิต</strong></td><td>ลูกค้าโอนเงินหรือชำระบัตรเครดิต — ต้องรอการยืนยันจากธนาคาร / ระบบ Payment Gateway ก่อน</td></tr>
+  </tbody>
+</table>
+
+<!-- ════════ 13.1.2 CC Channel ════════ -->
+<h3>13.1.2 ช่องทางพนักงาน CC (Contact Center)</h3>
+<p style="font-size:13px;color:#475569;margin-bottom:8px">พนักงาน Contact Center รับคำสั่งซื้อจากลูกค้านิติบุคคลทาง LINE / โทรศัพท์ / อีเมล / โทรสาร แล้วสร้างคำสั่งซื้อในระบบหลังบ้าน — <strong>บังคับใช้วงเงินเครดิตเท่านั้น (กฎ P-04)</strong></p>
+
+<div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;padding:24px;margin:14px 0;overflow-x:auto">
+<svg viewBox="0 0 1000 600" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;font-family:'Sarabun',sans-serif">
+  <defs>
+    <marker id="ar2-navy" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#1E3A5F"/></marker>
+    <marker id="ar2-blu" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#2563EB"/></marker>
+    <marker id="ar2-amb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#F59E0B"/></marker>
+    <marker id="ar2-grn" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#10B981"/></marker>
+  </defs>
+
+  <!-- Phase 1 Header -->
+  <rect x="0" y="0" width="1000" height="32" fill="#1E3A5F" rx="4"/>
+  <text x="500" y="21" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">ระยะที่ 1 — รับคำสั่งซื้อจากลูกค้า (ผ่านช่องทาง CC)</text>
+
+  <!-- Step 1: Customer contacts via channels -->
+  <rect x="30" y="80" width="180" height="80" rx="8" fill="#FEF3C7" stroke="#D97706" stroke-width="2"/>
+  <text x="120" y="105" text-anchor="middle" font-size="13" font-weight="700" fill="#78350F">ลูกค้าติดต่อ</text>
+  <text x="120" y="125" text-anchor="middle" font-size="10" fill="#92400E">โทรศัพท์ / LINE</text>
+  <text x="120" y="142" text-anchor="middle" font-size="10" fill="#92400E">อีเมล / โทรสาร</text>
+
+  <line x1="215" y1="120" x2="255" y2="120" stroke="#1E3A5F" stroke-width="2.5" marker-end="url(#ar2-navy)"/>
+
+  <!-- Step 2: CC creates cart -->
+  <rect x="260" y="80" width="170" height="80" rx="8" fill="#DBEAFE" stroke="#2563EB" stroke-width="2"/>
+  <text x="345" y="105" text-anchor="middle" font-size="13" font-weight="700" fill="#1E3A5F">พนักงาน CC</text>
+  <text x="345" y="125" text-anchor="middle" font-size="11" fill="#1E40AF">สร้างตะกร้าในระบบ</text>
+  <text x="345" y="143" text-anchor="middle" font-size="10" fill="#475569">(หลังบ้าน Backoffice)</text>
+
+  <line x1="435" y1="120" x2="475" y2="120" stroke="#1E3A5F" stroke-width="2.5" marker-end="url(#ar2-navy)"/>
+
+  <!-- Step 3: Confirm order -->
+  <rect x="480" y="80" width="160" height="80" rx="8" fill="#DBEAFE" stroke="#2563EB" stroke-width="2"/>
+  <text x="560" y="105" text-anchor="middle" font-size="13" font-weight="700" fill="#1E3A5F">ยืนยันคำสั่งซื้อ</text>
+  <text x="560" y="125" text-anchor="middle" font-size="11" fill="#1E40AF">Confirm Order</text>
+  <text x="560" y="143" text-anchor="middle" font-size="10" fill="#92400E">(รอยืนยัน P-09)</text>
+
+  <line x1="645" y1="120" x2="685" y2="120" stroke="#1E3A5F" stroke-width="2.5" marker-end="url(#ar2-navy)"/>
+
+  <!-- Step 4: Check credit (decision) -->
+  <polygon points="690,120 780,80 870,120 780,160" fill="#FFFBEB" stroke="#F59E0B" stroke-width="2"/>
+  <text x="780" y="115" text-anchor="middle" font-size="12" font-weight="700" fill="#92400E">ตรวจสอบ</text>
+  <text x="780" y="132" text-anchor="middle" font-size="11" fill="#78350F">วงเงินเครดิต?</text>
+
+  <!-- Branches from decision -->
+  <!-- LEFT: Credit sufficient → cut credit (C-01) -->
+  <polyline points="780,160 780,220 350,220 350,255" stroke="#10B981" stroke-width="2.5" fill="none" marker-end="url(#ar2-grn)"/>
+  <text x="565" y="212" text-anchor="middle" font-size="11" font-weight="700" fill="#065F46">วงเงินเพียงพอ</text>
+
+  <rect x="240" y="255" width="220" height="60" rx="8" fill="#ECFDF5" stroke="#10B981" stroke-width="2"/>
+  <text x="350" y="278" text-anchor="middle" font-size="12" font-weight="700" fill="#065F46">ตัดวงเงินเครดิต (C-01)</text>
+  <text x="350" y="298" text-anchor="middle" font-size="10" fill="#047857">= ถือว่าชำระเงินแล้ว</text>
+
+  <!-- RIGHT: Credit insufficient → Approval (D-043) -->
+  <polyline points="870,120 920,120 920,255" stroke="#E11D48" stroke-width="2.5" fill="none"/>
+  <polyline points="920,255 800,255" stroke="#E11D48" stroke-width="2.5" fill="none" marker-end="url(#ar2-amb)"/>
+  <text x="900" y="200" text-anchor="middle" font-size="11" font-weight="700" fill="#9F1239">เกินวงเงิน</text>
+
+  <rect x="580" y="255" width="220" height="60" rx="8" fill="#FFF1F2" stroke="#E11D48" stroke-width="2"/>
+  <text x="690" y="275" text-anchor="middle" font-size="12" font-weight="700" fill="#9F1239">ขออนุมัติเกินวงเงิน</text>
+  <text x="690" y="292" text-anchor="middle" font-size="10" fill="#BE123C">D-043: รายใบเฉพาะ ไม่ถาวร</text>
+  <text x="690" y="308" text-anchor="middle" font-size="10" fill="#BE123C">CC-02: รอ Manager Approve</text>
+
+  <!-- Approved/Cut → Confirmed -->
+  <polyline points="350,315 350,355 480,355 480,400" stroke="#10B981" stroke-width="2.5" fill="none" marker-end="url(#ar2-grn)"/>
+  <polyline points="690,315 690,355 580,355 580,400" stroke="#10B981" stroke-width="2.5" fill="none" marker-end="url(#ar2-grn)"/>
+
+  <!-- Confirmed -->
+  <rect x="430" y="400" width="200" height="65" rx="8" fill="#10B981" stroke="#10B981" stroke-width="2"/>
+  <text x="530" y="425" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">ยืนยันแล้ว</text>
+  <text x="530" y="445" text-anchor="middle" font-size="11" fill="#D1FAE5">พร้อมเข้าระยะคลังสินค้า</text>
+  <text x="530" y="460" text-anchor="middle" font-size="9" fill="#D1FAE5">(ดูระยะที่ 2 ใน 13.1.1)</text>
+
+  <!-- Note -->
+  <rect x="50" y="500" width="900" height="70" rx="6" fill="#FFFBEB" stroke="#F59E0B" stroke-width="1.5"/>
+  <text x="500" y="525" text-anchor="middle" font-size="12" font-weight="700" fill="#92400E">ข้อแตกต่างจากช่องทางเว็บไซต์</text>
+  <text x="500" y="545" text-anchor="middle" font-size="11" fill="#78350F">• ห้ามเปลี่ยนวิธีชำระเงิน — บังคับใช้วงเงินเครดิตเท่านั้น (กฎ P-04)</text>
+  <text x="500" y="562" text-anchor="middle" font-size="11" fill="#78350F">• กรณีเกินวงเงิน CC ขออนุมัติชั่วคราวต่อใบสั่งซื้อได้ (กฎ CC-02, D-043) — ไม่เพิ่มวงเงินถาวร</text>
+</svg>
+</div>
+
+<p style="font-size:12.5px;color:#475569;font-style:italic;margin-top:6px"><strong>หลังจาก "ยืนยันแล้ว"</strong> → คำสั่งซื้อเข้าสู่<strong>ระยะที่ 2 (กระบวนการคลังสินค้า)</strong> ซึ่งเหมือนกับช่องทางเว็บไซต์ทุกประการ (ดูได้ในหัวข้อ 13.1.1)</p>
+
+<!-- ════════ 13.1.3 POS Channel ════════ -->
+<h3>13.1.3 ช่องทาง POS หน้าร้าน (Point of Sale)</h3>
+<p style="font-size:13px;color:#475569;margin-bottom:8px">ลูกค้ามาที่หน้าร้าน — แคชเชียร์สแกนสินค้าและเก็บเงินทันที — <strong>ไม่มีขั้นตอนการจัดส่งและรอชำระ</strong> เนื่องจากลูกค้ารับสินค้าและชำระเงินที่จุดขายโดยตรง</p>
+
+<div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;padding:24px;margin:14px 0;overflow-x:auto">
+<svg viewBox="0 0 1000 480" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;font-family:'Sarabun',sans-serif">
+  <defs>
+    <marker id="ar3-navy" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#1E3A5F"/></marker>
+    <marker id="ar3-grn" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#10B981"/></marker>
+  </defs>
+
+  <!-- Header -->
+  <rect x="0" y="0" width="1000" height="32" fill="#1E3A5F" rx="4"/>
+  <text x="500" y="21" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">ช่องทาง POS — กระบวนการเดียวที่หน้าร้าน</text>
+
+  <!-- Step 1: Customer at counter -->
+  <rect x="30" y="80" width="160" height="75" rx="8" fill="#F1F5F9" stroke="#94A3B8" stroke-width="2"/>
+  <text x="110" y="108" text-anchor="middle" font-size="13" font-weight="700" fill="#475569">ลูกค้ามาที่ร้าน</text>
+  <text x="110" y="128" text-anchor="middle" font-size="10" fill="#64748B">นำสินค้ามาที่</text>
+  <text x="110" y="143" text-anchor="middle" font-size="10" fill="#64748B">จุดขายแคชเชียร์</text>
+
+  <line x1="195" y1="117" x2="235" y2="117" stroke="#1E3A5F" stroke-width="2.5" marker-end="url(#ar3-navy)"/>
+
+  <!-- Step 2: Scan -->
+  <rect x="240" y="80" width="160" height="75" rx="8" fill="#DBEAFE" stroke="#2563EB" stroke-width="2"/>
+  <text x="320" y="108" text-anchor="middle" font-size="13" font-weight="700" fill="#1E3A5F">แคชเชียร์สแกน</text>
+  <text x="320" y="128" text-anchor="middle" font-size="10" fill="#1E40AF">บาร์โค้ดทุกชิ้น</text>
+  <text x="320" y="143" text-anchor="middle" font-size="10" fill="#475569">รวมยอดสุทธิ</text>
+
+  <line x1="405" y1="117" x2="445" y2="117" stroke="#1E3A5F" stroke-width="2.5" marker-end="url(#ar3-navy)"/>
+
+  <!-- Step 3: Payment selection -->
+  <rect x="450" y="80" width="180" height="75" rx="8" fill="#FEF3C7" stroke="#F59E0B" stroke-width="2"/>
+  <text x="540" y="108" text-anchor="middle" font-size="13" font-weight="700" fill="#92400E">เลือกวิธีชำระ</text>
+  <text x="540" y="128" text-anchor="middle" font-size="10" fill="#78350F">ลูกค้าเลือกได้</text>
+  <text x="540" y="143" text-anchor="middle" font-size="10" fill="#78350F">หลายวิธี</text>
+
+  <!-- 4 Payment options -->
+  <polyline points="540,160 540,200 130,200 130,220" stroke="#F59E0B" stroke-width="2" fill="none" marker-end="url(#ar3-navy)"/>
+  <polyline points="540,160 540,200 290,200 290,220" stroke="#F59E0B" stroke-width="2" fill="none" marker-end="url(#ar3-navy)"/>
+  <polyline points="540,160 540,200 450,200 450,220" stroke="#F59E0B" stroke-width="2" fill="none" marker-end="url(#ar3-navy)"/>
+  <polyline points="540,160 540,200 610,200 610,220" stroke="#F59E0B" stroke-width="2" fill="none" marker-end="url(#ar3-navy)"/>
+
+  <rect x="60" y="220" width="140" height="60" rx="8" fill="#fff" stroke="#1E3A5F" stroke-width="1.5"/>
+  <text x="130" y="242" text-anchor="middle" font-size="12" font-weight="700" fill="#1E3A5F">เงินสด</text>
+  <text x="130" y="262" text-anchor="middle" font-size="10" fill="#475569">Cash</text>
+
+  <rect x="220" y="220" width="140" height="60" rx="8" fill="#fff" stroke="#1E3A5F" stroke-width="1.5"/>
+  <text x="290" y="242" text-anchor="middle" font-size="12" font-weight="700" fill="#1E3A5F">บัตรเครดิต</text>
+  <text x="290" y="262" text-anchor="middle" font-size="10" fill="#475569">Credit / Debit Card</text>
+
+  <rect x="380" y="220" width="140" height="60" rx="8" fill="#fff" stroke="#1E3A5F" stroke-width="1.5"/>
+  <text x="450" y="242" text-anchor="middle" font-size="12" font-weight="700" fill="#1E3A5F">QR PromptPay</text>
+  <text x="450" y="262" text-anchor="middle" font-size="10" fill="#475569">QR Code</text>
+
+  <rect x="540" y="220" width="140" height="60" rx="8" fill="#fff" stroke="#1E3A5F" stroke-width="1.5"/>
+  <text x="610" y="242" text-anchor="middle" font-size="12" font-weight="700" fill="#1E3A5F">วงเงินเครดิต</text>
+  <text x="610" y="262" text-anchor="middle" font-size="10" fill="#475569">เฉพาะลูกค้า B2B</text>
+
+  <!-- Converge to Payment Success -->
+  <polyline points="130,280 130,310 530,310 530,330" stroke="#1E3A5F" stroke-width="2" fill="none"/>
+  <polyline points="290,280 290,310" stroke="#1E3A5F" stroke-width="2" fill="none"/>
+  <polyline points="450,280 450,310" stroke="#1E3A5F" stroke-width="2" fill="none"/>
+  <polyline points="610,280 610,310 530,310" stroke="#1E3A5F" stroke-width="2" fill="none"/>
+  <line x1="530" y1="310" x2="530" y2="335" stroke="#1E3A5F" stroke-width="2.5" marker-end="url(#ar3-navy)"/>
+
+  <rect x="440" y="335" width="180" height="60" rx="8" fill="#DBEAFE" stroke="#2563EB" stroke-width="2"/>
+  <text x="530" y="358" text-anchor="middle" font-size="13" font-weight="700" fill="#1E3A5F">ชำระเงินสำเร็จ</text>
+  <text x="530" y="378" text-anchor="middle" font-size="10" fill="#1E40AF">Payment Confirmed</text>
+
+  <line x1="625" y1="365" x2="665" y2="365" stroke="#1E3A5F" stroke-width="2.5" marker-end="url(#ar3-navy)"/>
+
+  <!-- Step 5: Invoice -->
+  <rect x="670" y="335" width="160" height="60" rx="8" fill="#1E3A5F" stroke="#1E3A5F" stroke-width="2"/>
+  <text x="750" y="358" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">ออกใบกำกับภาษี</text>
+  <text x="750" y="378" text-anchor="middle" font-size="10" fill="#93C5FD">Tax Invoice / Receipt</text>
+
+  <!-- Step 6: Customer takes goods - END -->
+  <line x1="750" y1="395" x2="750" y2="425" stroke="#10B981" stroke-width="2.5" marker-end="url(#ar3-grn)"/>
+  <rect x="610" y="430" width="280" height="40" rx="8" fill="#10B981" stroke="#10B981" stroke-width="2"/>
+  <text x="750" y="455" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">ลูกค้ารับสินค้าที่ร้าน — เสร็จสิ้น</text>
+</svg>
+</div>
+
+<p style="font-size:12.5px;color:#475569;font-style:italic;margin-top:6px"><strong>ข้อแตกต่างสำคัญ:</strong> ช่องทาง POS <strong>ไม่มีขั้นตอน "หยิบ / บรรจุ" และ "จัดส่ง"</strong> เพราะลูกค้ารับสินค้าที่หน้าร้านทันที — สต็อกถูกตัดที่จุดขายเลย (ตามกฎ S-03, D-011)</p>
+
+<h4>เงื่อนไขการเริ่มกระบวนการหยิบและบรรจุสินค้า (อ้างอิง <span class="rule-id">P-07</span>)</h4>
+<ul>
+  <li><strong>ชำระเงินที่หน้าร้าน</strong> → พร้อมเข้าขั้นตอนการหยิบสินค้าทันทีหลังการยืนยันคำสั่งซื้อ</li>
+  <li><strong>ลูกค้าเครดิต (นิติบุคคล) ที่มีวงเงินเพียงพอ</strong> → พร้อมเข้าขั้นตอนการหยิบสินค้าทันทีหลังการยืนยัน (วงเงินถูกตัดไว้ ณ จุดสร้างคำสั่งซื้อตาม <span class="rule-id">C-01</span>)</li>
+  <li><strong>การโอนเงินหรือบัตรเครดิต</strong> → ต้องรอการยืนยันการชำระเงินสำเร็จก่อนเข้าขั้นตอนการหยิบสินค้า</li>
+</ul>
+
+<h2>13.2 กฎคำสั่งซื้อ</h2>
+<table>
+  <thead><tr><th style="width:100px">รหัส</th><th>กฎเกณฑ์</th><th style="width:130px">สถานะ / อ้างอิง</th></tr></thead>
+  <tbody>
+    <tr><td><span class="rule-id">SO-01</span></td><td>คำสั่งซื้อที่รอชำระเงิน<strong>เกิน 24 ชั่วโมง → ระบบยกเลิกอัตโนมัติ</strong></td><td><span class="confirmed-tag">ยืนยันแล้ว</span></td></tr>
+    <tr><td><span class="rule-id">SO-02</span></td><td>คำสั่งซื้อที่<strong>เข้าขั้นตอนการหยิบสินค้าแล้ว — ห้ามแก้ไข</strong> ต้องยกเลิกแล้วสร้างฉบับใหม่อ้างอิงเดิม</td><td><span class="dec-ref">D-009</span></td></tr>
+    <tr><td><span class="rule-id">SO-03</span></td><td>การยกเลิกและสร้างฉบับใหม่ ต้อง<strong>เก็บบันทึกการอ้างอิง</strong>ว่ามาจากคำสั่งซื้อใด (เพื่อการตรวจสอบย้อนหลัง)</td><td><span class="dec-ref">D-009</span></td></tr>
+    <tr><td><span class="rule-id">SO-04</span></td><td>รูปแบบรหัส OD (เว็บไซต์) และ SO (พนักงาน CC) เป็นรูปแบบของระบบ ConX — Adeptio มีรูปแบบรหัสของตัวเองแยกต่างหาก</td><td><span class="pending-tag">รอยืนยัน P-08</span></td></tr>
+    <tr><td><span class="rule-id">SO-05</span></td><td>ทุกคำสั่งซื้อต้องระบุ<strong>ช่องทางการขาย</strong> เพื่อการจัดทำรายงานแยกตามช่องทาง</td><td><span class="dec-ref">D-039</span></td></tr>
+    <tr><td><span class="rule-id">SO-06</span></td><td><strong>การจัดส่งแบบทยอย (Partial Delivery) ของการสั่งซื้อสินค้าล่วงหน้า:</strong> ระบบทยอยสร้างคำสั่งซื้อใหม่ตามสินค้าที่เข้ามา — การสั่งซื้อสินค้าล่วงหน้า 1 รายการ อาจประกอบด้วยคำสั่งซื้อหลายฉบับ</td><td><span class="dec-ref">D-025</span></td></tr>
+  </tbody>
+</table>
+
+<!-- ─── 14. Pick / Pack ─── -->
+<h1><span class="num">14</span> การหยิบและบรรจุสินค้า (Pick / Pack)</h1>
+
+<p style="font-size:13px;color:#475569">กระบวนการคลังสินค้าทำผ่าน <strong>เครื่องอ่านบาร์โค้ดมือถือ (Handheld App)</strong> บน Android — แบ่งบทบาทพนักงาน 4 ประเภท แต่ละบทบาทมีหน้าจอและขั้นตอนเฉพาะ — ทำงานคู่ขนานกันได้</p>
+
+<div class="callout callout-amber">
+  <strong>ข้อกำหนดสำคัญ — ขอบเขตของกระบวนการ Pick / Pack</strong>
+  <ul style="margin:6px 0 0 18px;font-size:12.5px">
+    <li><strong>กระบวนการ Pick / Pack ใช้กับ "คลังออนไลน์" เท่านั้น</strong> (ชั้น 2 / 3 / 4) — สำหรับคำสั่งซื้อจากช่องทางเว็บไซต์และพนักงาน CC</li>
+    <li><strong>การขายหน้าร้าน (POS) ไม่ผ่านกระบวนการ Pick</strong> — แคชเชียร์หยิบสินค้าจาก<strong>คลังหน้าร้าน (ชั้น 1 / ชั้นลอย)</strong> ให้ลูกค้าโดยตรงที่จุดขาย (อ้างอิงกฎ S-04: สต็อกออนไลน์แยกจากสต็อกหน้าร้าน)</li>
+    <li><strong>พนักงาน PC (Point Counter) ดูแลสต็อกหน้าร้าน</strong> — ไม่ใช่ Picker ทำหน้าที่ย้ายสต็อกระหว่างคลัง ไม่ใช่หยิบให้คำสั่งซื้อ</li>
+  </ul>
+</div>
+
+<h2>14.1 บทบาทพนักงานคลังสินค้าและเครื่องมือ</h2>
+<table>
+  <thead><tr><th style="width:140px">บทบาท</th><th style="width:140px">ตำแหน่งงาน</th><th style="width:140px">คลังที่ใช้</th><th>หน้าที่หลัก</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><strong>Picker</strong><br><span style="font-size:11px;color:#6B7280">พนักงานหยิบสินค้า</span></td>
+      <td>ประจำชั้นในคลังออนไลน์ (ชั้น 2 / 3 / 4)</td>
+      <td><strong>คลังออนไลน์เท่านั้น</strong></td>
+      <td>รับงานหยิบสินค้า — สแกนรถเข็น — สแกนสินค้าจากชั้นวางตามรายการ — ส่งรถเข็นไปจุดแพ็ค</td>
+    </tr>
+    <tr>
+      <td><strong>Packer</strong><br><span style="font-size:11px;color:#6B7280">พนักงานบรรจุสินค้า</span></td>
+      <td>จุดแพ็ค (Packing Station)</td>
+      <td>คลังออนไลน์ → คลังพักรอ</td>
+      <td>รับรถเข็นจาก Picker — เลือกบรรจุภัณฑ์ — สแกนสินค้าเข้ากล่อง — พิมพ์ฉลาก — ย้ายไปคลังพัก</td>
+    </tr>
+    <tr>
+      <td><strong>Logistic</strong><br><span style="font-size:11px;color:#6B7280">พนักงานจัดส่ง</span></td>
+      <td>จุดส่งของ (B1 / LG)</td>
+      <td>คลังพักรอ → ขาออก</td>
+      <td>ตรวจของออกจากคลัง — สแกนใบเสร็จ + สติ๊กเกอร์กล่อง — กรอก Tracking — ปล่อยของออก</td>
+    </tr>
+    <tr>
+      <td><strong>PC (Point Counter)</strong><br><span style="font-size:11px;color:#6B7280">พนักงานหน้าร้าน</span></td>
+      <td>ชั้น 1 / ชั้นลอย (โซน A / B / C)</td>
+      <td><strong>คลังหน้าร้าน</strong></td>
+      <td>ดูแลสต็อกหน้าร้านสำหรับ POS — ขอย้ายสต็อกจากคลังออนไลน์มาเติม — รับสต็อกที่ย้ายมา (<strong>ไม่หยิบให้คำสั่งซื้อ Web/CC</strong>)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>14.2 ขั้นตอนการหยิบสินค้า (Picker Flow)</h2>
+<p style="font-size:12.5px;color:#6B7280;font-style:italic">ใช้กับคำสั่งซื้อจากช่องทาง<strong>เว็บไซต์และพนักงาน CC</strong> เท่านั้น — หยิบจาก<strong>คลังออนไลน์ (ชั้น 2 / 3 / 4)</strong></p>
+<table>
+  <thead><tr><th style="width:80px">ลำดับ</th><th style="width:180px">หน้าจอ</th><th>การทำงาน</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td><strong>หน้าหลัก</strong> (รอหยิบ / งานค้าง)</td><td>พนักงาน Picker เห็นรายการงาน 2 แท็บ — งานที่รอหยิบ และงานที่ค้างไว้ (เฉพาะของชั้นที่ตนรับผิดชอบ) — <strong>เรียงลำดับตามเวลาที่ลูกค้านัดรับสินค้า</strong> หากเวลาเดียวกัน งานด่วนขึ้นก่อน</td></tr>
+    <tr><td>2</td><td><strong>รับงาน</strong></td><td>เลือกใบงาน — กดรับงาน ระบบกันคนอื่นรับซ้ำ</td></tr>
+    <tr><td>3</td><td><strong>สแกนรถเข็น</strong></td><td>สแกนบาร์โค้ดรถเข็นที่ใช้ — ระบบผูกรถเข็นกับคำสั่งซื้อ (สามารถเพิ่มรถเข็นได้ระหว่างการหยิบ)</td></tr>
+    <tr><td>4</td><td><strong>หยิบสินค้าจากชั้น</strong></td><td>สแกนบาร์โค้ดสินค้าตามรายการ — ระบบนับจำนวนทีละชิ้น — แสดงตำแหน่งบนชั้นวาง</td></tr>
+    <tr><td>5</td><td><strong>กรอกจำนวน</strong></td><td>กรอกจำนวนสินค้าที่หยิบได้ (กรณีหยิบเป็นแพ็ค)</td></tr>
+    <tr><td>6a</td><td><strong>หยิบครบ</strong></td><td>เมื่อสแกนครบจำนวน — สถานะ "หยิบครบ" → ไปรายการถัดไป</td></tr>
+    <tr><td>6b</td><td><strong>รายงานของขาด</strong> (Short Pick)</td><td>กรณีหยิบไม่ได้ — เลือกเหตุผล: สต็อกไม่พอ / สินค้าเสียหาย / หาของไม่เจอ / บาร์โค้ดไม่ตรง / ถูกจองไว้ / อื่นๆ — ระบบ<strong>แจ้ง Supervisor</strong>เพื่อพิจารณาดำเนินการต่อ</td></tr>
+    <tr><td>7</td><td><strong>เสร็จงาน</strong></td><td>ปิดงานหยิบ — ย้ายรถเข็นไปจุดแพ็ค</td></tr>
+  </tbody>
+</table>
+
+<h2>14.3 ขั้นตอนการบรรจุสินค้า (Packer Flow)</h2>
+<table>
+  <thead><tr><th style="width:80px">ลำดับ</th><th style="width:180px">หน้าจอ</th><th>การทำงาน</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td><strong>หน้าหลัก</strong> (3 แท็บ)</td><td>พร้อมแพ็ค (รถเข็นมาถึงแล้ว) / รอรถเข็น (Picker ยังไม่จบ) / งานค้าง (รับไว้แล้ว)</td></tr>
+    <tr><td>2</td><td><strong>รับงาน</strong></td><td>เลือกใบงานในแท็บ "พร้อมแพ็ค" — กดรับงาน</td></tr>
+    <tr><td>3</td><td><strong>ตรวจสอบรถเข็น</strong></td><td>สแกนรถเข็นทั้งหมดของใบคำสั่งซื้อก่อนเริ่ม — ระบบตรวจสอบว่าครบทุกใบ (ไม่ใช่การ "รับรถเข็น" แบบเดิม)</td></tr>
+    <tr><td>4</td><td><strong>เลือกบรรจุภัณฑ์</strong></td><td>เลือกประเภทกล่อง / เทป (Packaging) และวัสดุกันกระแทก (Cushioning — บับเบิ้ลแร็ป / โฟม) — <strong>ระบุประเภทบรรจุภัณฑ์และจำนวนที่ใช้ในใบนี้</strong></td></tr>
+    <tr><td>5</td><td><strong>สแกนสินค้าก่อนลงกล่อง</strong></td><td>สแกนสินค้าทีละชิ้นก่อนลงบรรจุ — กรอกจำนวน (สแกนก่อนเพื่อกันข้อผิดพลาด)</td></tr>
+    <tr><td>6</td><td><strong>พิมพ์เอกสาร</strong></td><td>กดปุ่มพิมพ์ <strong>ใบเตรียมสินค้า (Preparation Slip)</strong> และ <strong>ฉลากปะหน้ากล่อง (Shipping Sticker)</strong></td></tr>
+    <tr><td>7</td><td><strong>เสร็จงาน</strong></td><td>ปล่อยรถเข็นกลับเข้าระบบ — ย้ายงานไปคลังพักรอรับชำระ (Staging) — <strong>ระบบส่งข้อมูลคำสั่งซื้อไปยัง ConX ทันทีที่ Pack สำเร็จ</strong></td></tr>
+  </tbody>
+</table>
+
+<h2>14.4 ขั้นตอนการจัดส่ง (Logistic Flow)</h2>
+<p style="font-size:12.5px;color:#6B7280">พนักงาน Logistic ประจำจุดส่งของ 2 จุด: <strong>B1 (จุดรับสินค้าด้วยตนเอง — Self-pickup)</strong> และ <strong>LG (จุดจัดส่งโดยขนส่ง)</strong></p>
+
+<div class="callout callout-amber">
+  <strong>เงื่อนไขสำคัญก่อนการจัดส่ง:</strong> ระบบ<strong>จะอนุญาตให้จัดส่งสินค้าได้ก็ต่อเมื่อมีการยืนยันการรับชำระเงินที่ระบบ ConX แล้วเท่านั้น</strong> — กรณียังไม่ยืนยันการชำระ ปุ่ม "ปล่อยของออก" จะถูกระงับ
+</div>
+
+<table>
+  <thead><tr><th style="width:80px">เมนู</th><th style="width:180px">หน้าจอ</th><th>การทำงาน</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td><strong>สแกนของออก</strong> (Quick Scan)</td><td>
+      <ol style="margin:0 0 0 18px;font-size:12px">
+        <li>สแกนใบเสร็จ (รหัสคำสั่งซื้อ)</li>
+        <li>ระบบตรวจสอบสถานะการชำระเงินจาก ConX อัตโนมัติ — หากยังไม่ยืนยันชำระ ระบบจะแจ้งเตือน</li>
+        <li>สแกนสติ๊กเกอร์แต่ละกล่อง</li>
+        <li>กรอก Tracking number (กรณีส่งขนส่ง)</li>
+        <li>ปล่อยของออก — ระบบเปลี่ยนสถานะเป็น "กำลังจัดส่ง"</li>
+      </ol>
+    </td></tr>
+    <tr><td>2</td><td><strong>ดู List งานรอจัดส่ง</strong></td><td>เห็นรายการคำสั่งซื้อที่รอจัดส่งจากจุดของตน — <strong>มีตัวกรองตามสายขนส่ง (สาย A / B / C / ทั่วประเทศ)</strong> ไม่แยกตามจังหวัด — สถานะ: รอจัดส่ง / กำลังส่ง</td></tr>
+  </tbody>
+</table>
+
+<h2>14.5 ขั้นตอนการจัดการสต็อกหน้าร้าน (PC Flow)</h2>
+<table>
+  <thead><tr><th style="width:80px">ลำดับ</th><th style="width:180px">หน้าจอ</th><th>การทำงาน</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td><strong>หน้าหลัก</strong></td><td>เห็นสต็อกในโซนที่รับผิดชอบ (A / B / C ของชั้น 1)</td></tr>
+    <tr><td>2</td><td><strong>ขอย้ายสต็อก</strong></td><td>ระบุสินค้าที่ต้องการ — เลือกคลังต้นทาง — ส่งคำขอ (Transfer Request)</td></tr>
+    <tr><td>3</td><td><strong>รับสต็อก</strong></td><td>เมื่อสต็อกถูกย้ายมาถึง — สแกนรับและบันทึกเข้าโซน</td></tr>
+  </tbody>
+</table>
+
+<h2>14.6 กฎเกณฑ์เชิงระบบ (Business Rules)</h2>
+<table>
+  <thead><tr><th style="width:100px">รหัส</th><th>กฎเกณฑ์</th><th style="width:130px">สถานะ / อ้างอิง</th></tr></thead>
+  <tbody>
+    <tr><td><span class="rule-id">WH-01</span></td><td>งานหยิบสินค้า 1 ใบ บรรจุได้สูงสุด <strong>99 รายการ</strong></td><td><span class="pending-tag">รอยืนยัน P-10</span> <span class="dec-ref">D-031</span></td></tr>
+    <tr><td><span class="rule-id">WH-02</span></td><td>การแบ่งงานหยิบสินค้าตาม<strong>ชั้นภายในคลังออนไลน์</strong> (ชั้น 2 / 3 / 4) — Picker ประจำแต่ละชั้นทำงานคู่ขนานกันได้ ไม่ต้องเดินข้ามชั้น</td><td><span class="dec-ref">D-031</span></td></tr>
+    <tr><td><span class="rule-id">WH-03</span></td><td>เครื่องอ่านบาร์โค้ดมือถือ <strong>สแกนบาร์โค้ดทุกขั้นตอน</strong> — ห้ามพนักงานป้อนตัวเลขด้วยตนเอง</td><td><span class="dec-ref">D-017</span></td></tr>
+    <tr><td><span class="rule-id">WH-04</span></td><td>สแกนผิดรายการหรือเกินจำนวน → <strong>หน้าจอแสดงสีแดงและส่งเสียงเตือน</strong></td><td>—</td></tr>
+    <tr><td><span class="rule-id">WH-05</span></td><td>ใบเตรียมสินค้า<strong>ห้ามแสดงราคาสินค้า</strong></td><td><span class="dec-ref">D-035</span></td></tr>
+    <tr><td><span class="rule-id">WH-06</span></td><td>ฉลากปะหน้ากล่องพิมพ์ได้ทันทีหลังบรรจุสินค้าเสร็จ</td><td>—</td></tr>
+    <tr><td><span class="rule-id">WH-07</span></td><td>การสั่งซื้อสินค้าล่วงหน้ารองรับการหยิบและบรรจุแบบทยอย — ระบบทยอยสร้างคำสั่งซื้อตามสินค้าที่เข้ามา (กฎกำหนดที่ระดับคำสั่งซื้อ ไม่ใช่ระดับคลัง)</td><td><span class="dec-ref">D-025</span></td></tr>
+    <tr><td><span class="rule-id">WH-08</span></td><td><strong>Cart Pool</strong> — รถเข็นเป็นทรัพยากรกลาง Picker ใดก็หยิบใช้ได้ — สแกนเพื่อ assign ให้คำสั่งซื้อ + ปล่อยคืนหลัง Pack เสร็จ</td><td>—</td></tr>
+    <tr><td><span class="rule-id">WH-09</span></td><td><strong>เหตุผลการรายงานของขาด (Short Pick)</strong> — มี 6 ประเภทมาตรฐาน: สต็อกไม่พอ / สินค้าเสียหาย / หาของไม่เจอ / บาร์โค้ดไม่ตรง / ถูกจองไว้ / อื่นๆ (ระบุรายละเอียด)</td><td>—</td></tr>
+    <tr><td><span class="rule-id">WH-10</span></td><td><strong>การกันรับงานซ้อน</strong> — เมื่อพนักงานคนใดรับงาน ระบบจะซ่อนงานนั้นจาก Picker / Packer คนอื่น</td><td>—</td></tr>
+    <tr><td><span class="rule-id">WH-11</span></td><td><strong>การกำหนดตำแหน่งของ Logistic</strong> — Logistic 1 คนประจำ 1 จุดส่งของ (B1 หรือ LG) ตามที่ Admin กำหนด (assignedDispatchLocationId)</td><td>—</td></tr>
+    <tr><td><span class="rule-id">WH-12</span></td><td><strong>การโอนย้ายสต็อกระหว่างคลัง</strong> — พนักงาน PC เป็นผู้ขอย้าย (Transfer Request) — มีระบบติดตามสถานะ (Pending → In-transit → Received)</td><td>—</td></tr>
+    <tr><td><span class="rule-id">WH-13</span></td><td><strong>ขอบเขตของกระบวนการ Pick / Pack:</strong>
+      <ul style="margin:4px 0 0 16px">
+        <li>ใช้กับคำสั่งซื้อจาก <strong>เว็บไซต์</strong> และ <strong>พนักงาน CC</strong> เท่านั้น — หยิบจาก<strong>คลังออนไลน์ (ชั้น 2/3/4)</strong></li>
+        <li><strong>ไม่ใช้กับ POS หน้าร้าน</strong> — แคชเชียร์หยิบสินค้าจาก<strong>คลังหน้าร้าน (ชั้น 1 / ชั้นลอย)</strong> ส่งให้ลูกค้าโดยตรงที่จุดขาย</li>
+        <li>พนักงาน PC ทำหน้าที่<strong>โอนสต็อกระหว่างคลัง</strong> ไม่ใช่หยิบเพื่อจัดส่ง</li>
+      </ul>
+    </td><td><span class="dec-ref">S-04</span> <span class="dec-ref">D-016</span></td></tr>
+    <tr><td><span class="rule-id">WH-14</span></td><td><strong>การจัดลำดับงาน Picker</strong> — เรียงตามเวลาที่ลูกค้านัดรับสินค้า — กรณีเวลาเดียวกัน งานด่วนขึ้นก่อน</td><td>MoM 27 เม.ย. 2569</td></tr>
+    <tr><td><span class="rule-id">WH-15</span></td><td><strong>การแจ้ง Supervisor กรณีสินค้าไม่ครบ</strong> — เมื่อ Picker รายงานของขาด (Short Pick) ระบบแจ้ง Supervisor ทันที — Supervisor พิจารณาว่าจะดำเนินการต่อหรือยกเลิกรายการ</td><td>MoM 27 เม.ย. 2569</td></tr>
+    <tr><td><span class="rule-id">WH-16</span></td><td><strong>การตรวจสอบรถเข็นก่อนเริ่มแพ็ค</strong> — Packer ต้องสแกนรถเข็นทุกใบของคำสั่งซื้อก่อนเริ่มบรรจุ (เพื่อยืนยันความครบถ้วน) — ไม่ใช่การ "รับโอนรถเข็น" แบบเดิม</td><td>MoM 27 เม.ย. 2569</td></tr>
+    <tr><td><span class="rule-id">WH-17</span></td><td><strong>การส่งข้อมูลคำสั่งซื้อไป ConX หลังบรรจุเสร็จ</strong> — เมื่อสถานะคำสั่งซื้อเป็น "บรรจุเสร็จ" ระบบส่งข้อมูลคำสั่งซื้อไปยัง ConX ทันที</td><td>MoM 27 เม.ย. 2569</td></tr>
+    <tr><td><span class="rule-id">WH-18</span></td><td><strong>การจัดส่งต้องรอการยืนยันการชำระเงินจาก ConX</strong> — Logistic จะไม่สามารถปล่อยของออกได้จนกว่า ConX จะยืนยันการรับชำระเงิน — ระบบระงับปุ่ม "ปล่อยของออก" หากยังไม่ยืนยัน</td><td>MoM 27 เม.ย. 2569</td></tr>
+    <tr><td><span class="rule-id">WH-19</span></td><td><strong>การกรองรายการสำหรับ Logistic</strong> — ใช้ตัวกรอง<strong>ตามสายขนส่ง (สาย A / B / C / ทั่วประเทศ)</strong> เท่านั้น — ไม่แยกตามจังหวัด</td><td>MoM 27 เม.ย. 2569</td></tr>
+    <tr><td><span class="rule-id">WH-20</span></td><td><strong>ปุ่มพักงาน (Break)</strong> ในหน้าจอ Handheld สำหรับพนักงานออกจากตำแหน่งชั่วคราว (เช่น เข้าห้องน้ำ) — Supervisor เห็นสถานะพนักงานที่พร้อมทำงาน</td><td>MoM 27 เม.ย. 2569</td></tr>
+  </tbody>
+</table>
+
+<h2>14.7 การบริหารจัดการพนักงานคลังประจำวัน</h2>
+<ul>
+  <li><strong>หน้าจอจัดการหน้าที่ของพนักงานประจำวัน</strong> — Supervisor มอบหมายงาน Picker / Packer / Logistic / PC ก่อนเริ่มกะทำงาน</li>
+  <li><strong>ปุ่มพักงาน (Break)</strong> บน Handheld — พนักงานกดเมื่อต้องออกจากตำแหน่งชั่วคราว (เข้าห้องน้ำ พักทานข้าว ฯลฯ) เพื่อให้ Supervisor เห็นสถานะที่แท้จริง</li>
+  <li><strong>การแจ้งเตือน Supervisor</strong> — กรณีสินค้าหยิบไม่ครบ / รถเข็นหาย / ปัญหาในกระบวนการ ระบบแจ้ง Supervisor ทันที</li>
+</ul>
+
+<!-- ─── 15. ConX Integration ─── -->
+<h1><span class="num">15</span> การเชื่อมต่อกับระบบ ConX ERP</h1>
+
+<table>
+  <thead><tr><th style="width:100px">รหัส</th><th>กฎเกณฑ์</th><th style="width:130px">สถานะ / อ้างอิง</th></tr></thead>
+  <tbody>
+    <tr><td><span class="rule-id">INT-01</span></td><td>การเชื่อมต่อใช้ทั้ง<strong>การแจ้งกลับอัตโนมัติ (Webhook) และจุดเชื่อมต่อระบบ (REST API)</strong> ผสมกัน — รายละเอียดข้อกำหนดแต่ละกระบวนการรอการยืนยัน</td><td><span class="pending-tag">รอยืนยัน</span> <span class="dec-ref">D-036</span></td></tr>
+    <tr><td><span class="rule-id">INT-02</span></td><td>จุดเชื่อมต่อสำหรับกู้คืนข้อมูลใช้<strong>ระบบยืนยันสิทธิ์การเข้าถึง (OAuth) และรหัสยืนยันสิทธิ์ (Access Token)</strong> — ใช้สำหรับดึงข้อมูลกรณีไม่ได้รับการแจ้งกลับ</td><td><span class="dec-ref">D-036</span></td></tr>
+    <tr><td><span class="rule-id">INT-03</span></td><td>การเชื่อมต่อสองฝั่งต้องมี<strong>รายการที่อยู่อินเทอร์เน็ตที่อนุญาต (IP Allowlist)</strong></td><td>—</td></tr>
+    <tr><td><span class="rule-id">INT-04</span></td><td><strong>การตรวจสอบความสอดคล้องของสต็อกประจำวัน</strong> (สิ้นวัน) ระหว่างระบบ ConX และระบบของแพลตฟอร์ม</td><td>—</td></tr>
+    <tr><td><span class="rule-id">INT-05</span></td><td>ข้อมูลแม่บทของสินค้า — <strong>เจ้าของคือ ConX</strong> ส่งข้อมูลมาที่แพลตฟอร์ม</td><td><span class="dec-ref">D-037</span></td></tr>
+    <tr><td><span class="rule-id">INT-06</span></td><td>ข้อมูลแม่บทของลูกค้า — <strong>เจ้าของคือแพลตฟอร์มของ Adeptio</strong> ส่งข้อมูลไปยัง ConX</td><td>—</td></tr>
+    <tr><td><span class="rule-id">INT-07</span></td><td>ระบบ ConX แจ้งกลับอัตโนมัติมายังแพลตฟอร์มเมื่อมีการสร้าง<strong>หมวดหมู่หรือแบรนด์ใหม่</strong></td><td><span class="dec-ref">D-037</span></td></tr>
+    <tr><td><span class="rule-id">INT-08</span></td><td>ทุกคำสั่งซื้อที่สร้างในแพลตฟอร์ม → Adeptio <strong>ส่งข้อมูลไปยัง ConX</strong> ผ่านจุดเชื่อมต่อระบบ</td><td>—</td></tr>
+    <tr><td><span class="rule-id">INT-09</span></td><td>ระบบ ConX แจ้งกลับอัตโนมัติ<strong>สถานะของเช็ค (ผ่านการเรียกเก็บ / เด้ง)</strong> มายังแพลตฟอร์ม</td><td><span class="dec-ref">D-042</span></td></tr>
+    <tr><td><span class="rule-id">INT-10</span></td><td>กรณีเกิดข้อผิดพลาด ระบบต้อง<strong>เก็บรายการข้อผิดพลาด</strong>และส่งการแจ้งเตือนสีแดงไปยังผู้ดูแลระบบ</td><td>—</td></tr>
+  </tbody>
+</table>
+
+<!-- ─── 16. Channel ─── -->
+<h1><span class="num">16</span> ช่องทางการขาย</h1>
+
+<table>
+  <thead><tr><th style="width:100px">รหัส</th><th>กฎเกณฑ์</th><th style="width:90px">อ้างอิง</th></tr></thead>
+  <tbody>
+    <tr><td><span class="rule-id">CH-01</span></td><td><strong>เว็บไซต์:</strong> ลูกค้าทั้งประเภทบุคคลและนิติบุคคลสั่งซื้อด้วยตนเอง — ชำระได้ด้วยบัตร, การโอนเงิน, วงเงินเครดิต</td><td><span class="dec-ref">D-039</span></td></tr>
+    <tr><td><span class="rule-id">CH-02</span></td><td><strong>พนักงาน (Agent — CC, CS, Sales):</strong> พนักงานสั่งซื้อแทนลูกค้า — ชำระได้ด้วยบัตร, การโอนเงิน, วงเงินเครดิต</td><td><span class="dec-ref">D-039</span></td></tr>
+    <tr><td><span class="rule-id">CH-03</span></td><td><strong>POS หน้าร้าน:</strong> พนักงานหน้าร้านสั่งซื้อ — ชำระที่หน้าร้าน (บันทึกเป็น "ชำระหน้าร้าน" ในระบบ)</td><td>—</td></tr>
+    <tr><td><span class="rule-id">CH-04</span></td><td>คูปอง<strong>ไม่ใช่วิธีการชำระเงิน</strong> — ใช้ในขั้นตอนการคำนวณราคา พร้อมกับโปรโมชั่น ก่อนถึงขั้นชำระเงิน</td><td>—</td></tr>
+    <tr><td><span class="rule-id">CH-05</span></td><td>ช่องทาง Shopee และโซเชียลมีเดียยังไม่เป็นช่องทางย่อยอย่างเป็นทางการ — พนักงาน CC นำคำสั่งซื้อเข้าระบบด้วยตนเอง</td><td>—</td></tr>
+  </tbody>
+</table>
+
+<h2>16.2 รายละเอียดการดำเนินงาน POS หน้าร้าน</h2>
+<p style="font-size:13px;color:#475569">รายละเอียดการทำงานของระบบขายหน้าร้าน (Point of Sale) ที่ผ่านการพิจารณาในการประชุมวันที่ 27 เมษายน 2569</p>
+
+<table>
+  <thead><tr><th style="width:100px">รหัส</th><th>กฎเกณฑ์</th><th style="width:130px">อ้างอิง</th></tr></thead>
+  <tbody>
+    <tr><td><span class="rule-id">POS-01</span></td><td><strong>ระบบแสดงผล 2 หน้าจอ</strong> — หน้าจอพนักงานสำหรับการขาย และหน้าจอลูกค้าสำหรับดูรายการและยอดเงิน</td><td>MoM 27 เม.ย. 2569</td></tr>
+    <tr><td><span class="rule-id">POS-02</span></td><td><strong>การสมัครสมาชิกที่หน้าร้าน</strong> — รองรับการสมัครทั้งลูกค้ารายย่อยและลูกค้าประเภทธุรกิจ (B2B) — พนักงาน POS เป็นผู้กรอกข้อมูลให้ลูกค้า</td><td>MoM 27 เม.ย. 2569</td></tr>
+    <tr><td><span class="rule-id">POS-03</span></td><td><strong>การเพิ่มและลบรายการสินค้า</strong> — เพิ่มได้โดยพนักงาน POS แต่<strong>การลบรายการต้องผ่านการอนุมัติจาก Supervisor</strong> เท่านั้น</td><td>MoM 27 เม.ย. 2569</td></tr>
+    <tr><td><span class="rule-id">POS-04</span></td><td><strong>การแสดงรายการสินค้าในตะกร้า</strong> — เรียงตามลำดับการสแกน โดยรายการที่สแกนล่าสุดอยู่ล่างสุด เพื่อให้พนักงานเห็นรายการล่าสุดได้สะดวก</td><td>MoM 27 เม.ย. 2569</td></tr>
+    <tr><td><span class="rule-id">POS-05</span></td><td><strong>การค้นหาสินค้า</strong> — สามารถค้นหาสินค้าและเพิ่มลงตะกร้าได้ทันที (โดยไม่ต้องสแกนบาร์โค้ด)</td><td>MoM 27 เม.ย. 2569</td></tr>
+    <tr><td><span class="rule-id">POS-06</span></td><td><strong>การตรวจสอบสต็อก ณ จุดขาย</strong> — มีปุ่ม "เช็คสต็อก" ให้พนักงานตรวจสอบสต็อกได้ — ระบบไม่ตัดสต็อกอัตโนมัติเพื่อตรวจสอบ</td><td>MoM 27 เม.ย. 2569</td></tr>
+    <tr><td><span class="rule-id">POS-07</span></td><td><strong>การแสดงโปรโมชั่น</strong> — แสดงในหน้าสรุปบิลและระหว่างรายการสินค้าในตะกร้า</td><td>MoM 27 เม.ย. 2569</td></tr>
+    <tr><td><span class="rule-id">POS-08</span></td><td><strong>การจัดการของแถม</strong> — พนักงาน POS ไปหยิบของแถมจากชั้นและสแกนเข้ารายการสินค้าเอง — ระบบไม่ปล่อยของแถมอัตโนมัติ</td><td>MoM 27 เม.ย. 2569</td></tr>
+  </tbody>
+</table>
+
+<!-- ─── 17. CC ─── -->
+<h1><span class="num">17</span> การให้บริการลูกค้าโดย Contact Center (CC)</h1>
+
+<div class="callout">
+  <strong>คำนิยาม</strong>
+  <ul style="margin:6px 0 0 18px;font-size:13px">
+    <li><strong>Contact Center (CC)</strong> — ทีมพนักงานที่รับติดต่อกับลูกค้าผ่านช่องทางต่าง ๆ (โทรศัพท์ / LINE / อีเมล / โทรสาร) — ในเอกสารเรียกว่า "พนักงาน CC"</li>
+    <li><strong>Customer Connect</strong> — <strong>ระบบ</strong>ศูนย์รวมช่องทางการติดต่อ (Omnichannel Platform) ที่พนักงาน CC ใช้ในการให้บริการลูกค้า ครอบคลุมโทรศัพท์ / LINE / อีเมล ฯลฯ — ไม่ใช่ตัวพนักงาน</li>
+  </ul>
+</div>
+
+<table>
+  <thead><tr><th style="width:100px">รหัส</th><th>กฎเกณฑ์</th><th style="width:130px">สถานะ / อ้างอิง</th></tr></thead>
+  <tbody>
+    <tr><td><span class="rule-id">CC-01</span></td><td>พนักงาน CC ชำระเงินได้ด้วยบัตร, การโอนเงิน, วงเงินเครดิต — เหมือนกับช่องทางเว็บไซต์</td><td><span class="dec-ref">D-044</span></td></tr>
+    <tr><td><span class="rule-id">CC-02</span></td><td>พนักงาน CC สามารถ<strong>ขออนุมัติวงเงินชั่วคราวต่อคำสั่งซื้อ</strong>ได้ (กรณีลูกค้าใช้เงินเกินวงเงิน) — แต่ละตำแหน่งอนุมัติได้วงเงินต่างกัน</td><td><span class="pending-tag">รอยืนยัน P-02</span> <span class="dec-ref">D-043</span></td></tr>
+    <tr><td><span class="rule-id">CC-03</span></td><td>พนักงาน CC รับคำสั่งซื้อผ่าน <strong>LINE, โทรศัพท์, อีเมล / โทรสาร</strong> → สร้างตะกร้าในระบบ — ขั้นตอนการยืนยันคำสั่งซื้อรอการยืนยัน</td><td><span class="pending-tag">รอยืนยัน P-09</span></td></tr>
+    <tr><td><span class="rule-id">CC-04</span></td><td>รหัส SO และ OD เป็นรหัสอ้างอิงในระบบ ConX — Adeptio มีรหัสของตัวเองแยก</td><td><span class="pending-tag">รอยืนยัน P-08</span></td></tr>
+    <tr><td><span class="rule-id">CC-05</span></td><td>พนักงาน CC สามารถดู<strong>รายการสินค้ายอดนิยม 10 อันดับที่ลูกค้าซื้อประจำ</strong> (ใช้ค่ากลาง — Median ย้อนหลัง 6 เดือน) <span class="dec-ref">D-007</span></td><td><span class="confirmed-tag">ยืนยันแล้ว</span></td></tr>
+  </tbody>
+</table>
+
+<!-- ─── 18. Product Master ─── -->
+<h1><span class="num">18</span> ข้อมูลหลักของสินค้า (Product Master)</h1>
+
+<p>กฎเกณฑ์การจัดการ<strong>ข้อมูลหลักของสินค้า</strong> ทั้ง 14 ประเภท การกำหนดรหัสสินค้า (SKU) และบาร์โค้ด (Barcode) การบันทึกประวัติการแก้ไข (Activity Log) สีสถานะของคลังสินค้า และวันที่มีผลของราคา</p>
+
+<table>
+  <thead><tr><th style="width:100px">รหัส</th><th>กฎเกณฑ์</th><th style="width:140px">ระบบที่เกี่ยวข้อง</th><th style="width:110px">สถานะ / อ้างอิง</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><span class="rule-id">PRD-01</span></td>
+      <td><strong>ประเภทของสินค้า — 14 ประเภท</strong> ที่ระบบรองรับ ได้แก่ สินค้าทั่วไป, สินค้าโปรโมชั่น, สินค้าใหม่, สินค้าที่ขายดี, สินค้าจัดชุด (Bundle), สินค้าทดแทน (Substitute), สินค้าที่คล้ายกัน (Similar), สินค้าสั่งซื้อล่วงหน้า (Pre-Order), สินค้ารับด้วยตนเอง (Self-Pickup), สินค้าของแถม, สินค้าใช้คะแนนแลก (Reward), สินค้าฝากขาย (Consignment), สินค้าตัวอย่าง (Sample) และสินค้าตามสั่ง (Custom Order)</td>
+      <td>ระบบหลังบ้าน</td>
+      <td><span class="confirmed-tag">ยืนยันแล้ว</span></td>
+    </tr>
+    <tr>
+      <td><span class="rule-id">PRD-02</span></td>
+      <td><strong>1 รหัสสินค้า (SKU) = 1 หน่วยขาย</strong> — ระบบไม่รองรับการขายสินค้าเดียวกันในหลายหน่วย (เช่น ขายเป็นชิ้น / โหล / กล่อง พร้อมกัน) — หากต้องการขายในหน่วยที่ต่างกัน ต้องสร้าง SKU แยกใหม่</td>
+      <td>ระบบหลังบ้าน, ConX ERP</td>
+      <td><span class="confirmed-tag">ยืนยันแล้ว</span> <span class="dec-ref">D-001</span></td>
+    </tr>
+    <tr>
+      <td><span class="rule-id">PRD-03</span></td>
+      <td><strong>บาร์โค้ด (Barcode) ต่อ SKU</strong> — 1 SKU สามารถมีหลายบาร์โค้ดได้ (รองรับกรณีสินค้าจากผู้ผลิตหลายล็อต) — ระบบบันทึกประวัติการเพิ่ม / แก้ไข / ลบ บาร์โค้ดทุกครั้งใน Activity Log</td>
+      <td>ระบบหลังบ้าน, แอปคลัง</td>
+      <td><span class="confirmed-tag">ยืนยันแล้ว</span></td>
+    </tr>
+    <tr>
+      <td><span class="rule-id">PRD-04</span></td>
+      <td><strong>Activity Log ทุกการแก้ไขข้อมูลสินค้า</strong> — บันทึกผู้แก้ไข, วันเวลา, ฟิลด์ที่แก้, ค่าเดิม → ค่าใหม่ — แสดงในหน้ารายละเอียดสินค้าฝั่งหลังบ้าน</td>
+      <td>ระบบหลังบ้าน</td>
+      <td><span class="confirmed-tag">ยืนยันแล้ว</span></td>
+    </tr>
+    <tr>
+      <td><span class="rule-id">PRD-05</span></td>
+      <td><strong>สีสถานะของสินค้าในคลัง — 4 สี</strong>:
+        <ul style="margin:6px 0 0 18px;padding:0">
+          <li><strong>ขาว</strong> — สินค้าปกติ พร้อมขาย</li>
+          <li><strong>เหลือง</strong> — สินค้าใกล้ครบสต็อกขั้นต่ำ (Reorder Point)</li>
+          <li><strong>ฟ้า</strong> — สินค้าเกินสต็อกสูงสุด (Overstock)</li>
+          <li><strong>แดง</strong> — สินค้าหมดสต็อก / ระงับการขาย</li>
+        </ul>
+      </td>
+      <td>ระบบหลังบ้าน, แอปคลัง</td>
+      <td><span class="confirmed-tag">ยืนยันแล้ว</span></td>
+    </tr>
+    <tr>
+      <td><span class="rule-id">PRD-06</span></td>
+      <td><strong>วันที่มีผลของราคา (Effective Date)</strong> — ราคาสินค้าสามารถกำหนดล่วงหน้าได้ — ระบบใช้ราคาที่มี Effective Date ใกล้ที่สุดและไม่เกินวันปัจจุบัน</td>
+      <td>ระบบหลังบ้าน, เว็บไซต์, POS</td>
+      <td><span class="confirmed-tag">ยืนยันแล้ว</span></td>
+    </tr>
+    <tr>
+      <td><span class="rule-id">PRD-07</span></td>
+      <td><strong>สถานะสินค้า</strong> — Active (เปิดขาย) / Inactive (ปิดชั่วคราว) / Discontinued (เลิกขายถาวร) — สินค้าที่เป็น Inactive / Discontinued ห้ามแสดงในเว็บไซต์และ POS แต่ยังคงค้นหาในระบบหลังบ้านได้</td>
+      <td>ระบบหลังบ้าน, เว็บไซต์, POS</td>
+      <td><span class="confirmed-tag">ยืนยันแล้ว</span></td>
+    </tr>
+    <tr>
+      <td><span class="rule-id">PRD-08</span></td>
+      <td><strong>สินค้าทดแทน (Substitute Product)</strong> — กำหนดสินค้าทดแทนเมื่อสินค้าหลักหมดสต็อก — แสดงในหน้ารายละเอียดสินค้าฝั่งเว็บไซต์ และในหน้าจอ CC</td>
+      <td>เว็บไซต์, พนักงาน CC</td>
+      <td><span class="confirmed-tag">ยืนยันแล้ว</span></td>
+    </tr>
+    <tr>
+      <td><span class="rule-id">PRD-09</span></td>
+      <td><strong>สินค้าที่คล้ายกัน (Similar Product)</strong> — ระบบแนะนำสินค้าที่คล้ายกันโดยอิงประเภทสินค้า / ยี่ห้อ / ราคา — แสดงในหน้ารายละเอียดสินค้าฝั่งเว็บไซต์</td>
+      <td>เว็บไซต์</td>
+      <td><span class="confirmed-tag">ยืนยันแล้ว</span></td>
+    </tr>
+    <tr>
+      <td><span class="rule-id">PRD-10</span></td>
+      <td><strong>ตัวแปรของสินค้า (Variation)</strong> — สี / ขนาด / วัสดุ — ระบุด้วยตัวอักษรในชื่อสินค้า (ไม่ใช่ Swatch สี) เพื่อให้ระบบ ConX จับข้อมูลได้ตรง</td>
+      <td>ระบบหลังบ้าน, เว็บไซต์</td>
+      <td><span class="confirmed-tag">ยืนยันแล้ว</span> <span class="dec-ref">D-026</span></td>
+    </tr>
+    <tr>
+      <td><span class="rule-id">PRD-11</span></td>
+      <td><strong>ป้ายสถานะหน้าเว็บไซต์</strong> (เช่น "ใหม่ — New", "โปรโมชั่น — Promotion") — ระบบหน้าบ้านกำหนดอัตโนมัติตามระยะเวลา (เช่น สินค้าที่ขึ้นใหม่ภายใน 30 วันแสดงป้าย "New")</td>
+      <td>เว็บไซต์</td>
+      <td><span class="confirmed-tag">ยืนยันแล้ว</span> <span class="dec-ref">D-005</span></td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ─── 19. Cancellation / Refund / CN-DN ─── -->
+<h1><span class="num">19</span> การยกเลิก คืนสินค้า ใบลดหนี้และใบเพิ่มหนี้</h1>
+
+<p>กฎเกณฑ์การยกเลิกคำสั่งซื้อ การคืนสินค้า การคืนเงิน รวมถึงการออก<strong>ใบลดหนี้ (Credit Note — CN)</strong> และ<strong>ใบเพิ่มหนี้ (Debit Note — DN)</strong></p>
+
+<table>
+  <thead><tr><th style="width:100px">รหัส</th><th>กฎเกณฑ์</th><th style="width:140px">ระบบที่เกี่ยวข้อง</th><th style="width:110px">สถานะ</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><span class="rule-id">RTN-01</span></td>
+      <td><strong>ยกเลิกอัตโนมัติ 24 ชั่วโมง</strong> — คำสั่งซื้อที่ลูกค้ายังไม่ชำระเงินภายใน 24 ชั่วโมง — ระบบยกเลิกอัตโนมัติ พร้อมคืนสต็อกที่จองไว้</td>
+      <td>เว็บไซต์, ระบบหลังบ้าน</td>
+      <td><span class="confirmed-tag">ยืนยันแล้ว</span></td>
+    </tr>
+    <tr>
+      <td><span class="rule-id">RTN-02</span></td>
+      <td><strong>ลูกค้ายกเลิกคำสั่งซื้อด้วยตนเอง</strong> — ทำได้เฉพาะคำสั่งซื้อที่ยังไม่ได้ชำระเงินเท่านั้น — หากชำระเงินแล้วต้องติดต่อพนักงาน CC</td>
+      <td>เว็บไซต์</td>
+      <td><span class="confirmed-tag">ยืนยันแล้ว</span></td>
+    </tr>
+    <tr>
+      <td><span class="rule-id">RTN-03</span></td>
+      <td><strong>พนักงาน CC ยกเลิกคำสั่งซื้อ</strong> — ต้องระบุเหตุผลและขออนุมัติจากหัวหน้างาน (กรณีคำสั่งซื้อมีการชำระเงินแล้ว)</td>
+      <td>พนักงาน CC, ระบบหลังบ้าน</td>
+      <td><span class="confirmed-tag">ยืนยันแล้ว</span></td>
+    </tr>
+    <tr>
+      <td><span class="rule-id">RTN-04</span></td>
+      <td><strong>ระยะเวลาการคืนสินค้า</strong> — ลูกค้าบุคคลธรรมดา 7 วัน / ลูกค้านิติบุคคล 14 วัน นับจากวันที่ได้รับสินค้า — เกินกำหนดถือว่ายอมรับสินค้า</td>
+      <td>เว็บไซต์, พนักงาน CC</td>
+      <td><span class="confirmed-tag">ยืนยันแล้ว</span></td>
+    </tr>
+    <tr>
+      <td><span class="rule-id">RTN-05</span></td>
+      <td><strong>ค่าธรรมเนียมการคืนสินค้า (Restocking Fee) 10%</strong> — เฉพาะกรณีลูกค้าคืนสินค้าที่ไม่ใช่ความผิดของบริษัท (เปลี่ยนใจ, สั่งผิดรุ่น) — ไม่คิดค่าธรรมเนียมหากสินค้าชำรุดหรือส่งผิด</td>
+      <td>ระบบหลังบ้าน</td>
+      <td><span class="confirmed-tag">ยืนยันแล้ว</span></td>
+    </tr>
+    <tr>
+      <td><span class="rule-id">RTN-06</span></td>
+      <td><strong>วิธีการคืนเงิน</strong> — คืนเงินผ่านช่องทางเดิมที่ลูกค้าชำระมา (บัตรเครดิตคืนเข้าบัตรเดิม, โอนคืนเข้าบัญชีเดิม) — กรณีชำระด้วยวงเงินเครดิตจะ<strong>คืนเข้าวงเงินเดิม</strong> (ไม่ออกเป็นเงินสด)</td>
+      <td>ระบบหลังบ้าน, ConX ERP</td>
+      <td><span class="confirmed-tag">ยืนยันแล้ว</span></td>
+    </tr>
+    <tr>
+      <td><span class="rule-id">RTN-07</span></td>
+      <td><strong>ใบลดหนี้ (Credit Note — CN)</strong> — ออกในกรณีที่ลูกค้าคืนสินค้าหลังจากออกใบกำกับภาษีแล้ว — จำนวนเงินใน CN ต้องเท่ากับจำนวนเงินสินค้าที่คืน + ภาษีมูลค่าเพิ่ม</td>
+      <td>ระบบหลังบ้าน, ConX ERP</td>
+      <td><span class="confirmed-tag">ยืนยันแล้ว</span></td>
+    </tr>
+    <tr>
+      <td><span class="rule-id">RTN-08</span></td>
+      <td><strong>ใบเพิ่มหนี้ (Debit Note — DN)</strong> — ออกในกรณีที่ต้องเพิ่มค่าสินค้า / ค่าจัดส่ง / ค่าธรรมเนียม หลังจากออกใบกำกับภาษีแล้ว</td>
+      <td>ระบบหลังบ้าน, ConX ERP</td>
+      <td><span class="confirmed-tag">ยืนยันแล้ว</span></td>
+    </tr>
+    <tr>
+      <td><span class="rule-id">RTN-09</span></td>
+      <td><strong>การคืนสต็อก</strong> — เมื่อยกเลิกคำสั่งซื้อหรือคืนสินค้า — ระบบคืนสต็อกอัตโนมัติไปยังคลังเดิมที่ตัดออก (ออนไลน์ / หน้าร้าน / พักรอ)</td>
+      <td>ระบบหลังบ้าน, แอปคลัง</td>
+      <td><span class="confirmed-tag">ยืนยันแล้ว</span></td>
+    </tr>
+    <tr>
+      <td><span class="rule-id">RTN-10</span></td>
+      <td><strong>การกู้คืนคำสั่งซื้อที่ถูกยกเลิก (Revive)</strong> — พนักงาน CC สามารถกู้คืนคำสั่งซื้อที่ยกเลิกได้ ภายใน 7 วันนับจากวันที่ยกเลิก — โดยระบบจะตรวจสอบสต็อกใหม่ว่ายังเพียงพอหรือไม่</td>
+      <td>พนักงาน CC, ระบบหลังบ้าน</td>
+      <td><span class="confirmed-tag">ยืนยันแล้ว</span></td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ─── 20. Shipping & Carrier ─── -->
+<h1><span class="num">20</span> การจัดส่งและบริษัทขนส่ง</h1>
+
+<p>กฎเกณฑ์การจัดส่งสินค้า การกำหนดบริษัทขนส่ง (Carrier) ทั้งภายในและภายนอก รวมถึง<strong>สาย A / B / C / ทั่วประเทศ</strong> ที่บริษัทใช้ส่งของเอง</p>
+
+<table>
+  <thead><tr><th style="width:100px">รหัส</th><th>กฎเกณฑ์</th><th style="width:140px">ระบบที่เกี่ยวข้อง</th><th style="width:110px">สถานะ</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><span class="rule-id">SHP-01</span></td>
+      <td><strong>วิธีการรับสินค้า 2 รูปแบบ</strong> — รับเอง (Self-Pickup) ที่หน้าร้าน หรือ จัดส่ง (Delivery) ตามที่อยู่ที่ลูกค้าระบุ</td>
+      <td>เว็บไซต์, พนักงาน CC</td>
+      <td><span class="confirmed-tag">ยืนยันแล้ว</span></td>
+    </tr>
+    <tr>
+      <td><span class="rule-id">SHP-02</span></td>
+      <td><strong>บริษัทขนส่งภายใน — สาย A / B / C / ทั่วประเทศ</strong> — ระบบกำหนดสายโดยอัตโนมัติตามรหัสไปรษณีย์ / เขตที่จัดส่ง — สาย A และ B ให้บริการในเขตกรุงเทพและปริมณฑล</td>
+      <td>ระบบหลังบ้าน</td>
+      <td><span class="confirmed-tag">ยืนยันแล้ว</span></td>
+    </tr>
+    <tr>
+      <td><span class="rule-id">SHP-03</span></td>
+      <td><strong>บริษัทขนส่งภายนอก</strong> — กำหนดให้บริษัทละ 1 เขต (อิงจากรหัสไปรษณีย์) — ระบบรองรับ Carrier กว่า 200 รายตามพื้นที่</td>
+      <td>ระบบหลังบ้าน</td>
+      <td><span class="confirmed-tag">ยืนยันแล้ว</span></td>
+    </tr>
+    <tr>
+      <td><span class="rule-id">SHP-04</span></td>
+      <td><strong>การล็อกบริษัทขนส่ง (Carrier Pinning)</strong> — พนักงาน CC สามารถล็อกให้คำสั่งซื้อนั้นใช้บริษัทขนส่งเฉพาะรายได้ — แทนการให้ระบบเลือกอัตโนมัติ</td>
+      <td>พนักงาน CC</td>
+      <td><span class="confirmed-tag">ยืนยันแล้ว</span></td>
+    </tr>
+    <tr>
+      <td><span class="rule-id">SHP-05</span></td>
+      <td><strong>ค่าจัดส่งด่วน (Express Shipping Fee)</strong> — กรณีลูกค้าเลือก<strong>การจัดส่งภายในวันเดียวกัน</strong> ระบบคิดค่าธรรมเนียมเพิ่ม — อัตราเป็นไปตามที่กำหนด</td>
+      <td>เว็บไซต์, พนักงาน CC</td>
+      <td><span class="confirmed-tag">ยืนยันแล้ว</span></td>
+    </tr>
+    <tr>
+      <td><span class="rule-id">SHP-06</span></td>
+      <td><strong>ค่าธรรมเนียมสินค้าแตกง่าย (Fragile Fee)</strong> — สินค้าที่ทำเครื่องหมายว่าแตกง่าย ระบบคิดค่าบรรจุภัณฑ์เพิ่ม <strong>5 ถึง 10 บาทต่อชิ้น</strong></td>
+      <td>ระบบหลังบ้าน</td>
+      <td><span class="confirmed-tag">ยืนยันแล้ว</span></td>
+    </tr>
+    <tr>
+      <td><span class="rule-id">SHP-07</span></td>
+      <td><strong>การจัดส่งแบบเก็บเงินปลายทาง (Cash on Delivery — COD)</strong> — รองรับเฉพาะบริษัทขนส่งภายนอกบางราย — ลูกค้าต้องชำระเงินสดเมื่อรับสินค้า</td>
+      <td>เว็บไซต์</td>
+      <td><span class="confirmed-tag">ยืนยันแล้ว</span></td>
+    </tr>
+    <tr>
+      <td><span class="rule-id">SHP-08</span></td>
+      <td><strong>การรับสินค้าด้วยตนเอง — ช่วงเวลานัดหมาย</strong> — ลูกค้าเลือกช่วงเวลามารับได้ — ระบบเก็บสินค้าไว้ที่<strong>คลังพักรอ</strong>จนกว่าจะถึงเวลานัด</td>
+      <td>เว็บไซต์, แอปคลัง</td>
+      <td><span class="confirmed-tag">ยืนยันแล้ว</span></td>
+    </tr>
+    <tr>
+      <td><span class="rule-id">SHP-09</span></td>
+      <td><strong>ระยะเวลาเตรียมสินค้าขั้นต่ำ 12 ชั่วโมง</strong> — ลูกค้าไม่สามารถเลือกเวลามารับเร็วกว่า 12 ชั่วโมงนับจากการสร้างคำสั่งซื้อ — เพื่อให้คลังมีเวลาหยิบและบรรจุ</td>
+      <td>เว็บไซต์</td>
+      <td><span class="confirmed-tag">ยืนยันแล้ว</span></td>
+    </tr>
+    <tr>
+      <td><span class="rule-id">SHP-10</span></td>
+      <td><strong>ไม่สามารถจัดส่งจนกว่า ConX ยืนยันการชำระเงิน</strong> — คำสั่งซื้อที่ลูกค้าระบุชำระเงินแล้ว ต้องรอ ConX ยืนยันก่อน — แอปคลังจะไม่แสดงคำสั่งซื้อนั้นจนกว่าสถานะจะเปลี่ยนเป็น "ชำระเงินยืนยันแล้ว"</td>
+      <td>เว็บ, ConX ERP, แอปคลัง</td>
+      <td><span class="confirmed-tag">ยืนยันแล้ว</span></td>
+    </tr>
+    <tr>
+      <td><span class="rule-id">SHP-11</span></td>
+      <td><strong>การจัดส่งบางส่วน (Partial Delivery)</strong> — กรณีสินค้าในคำสั่งซื้อเดียวกันมาจากคลังต่างกัน หรือสินค้าบางรายการขาดสต็อก — ระบบรองรับการจัดส่งหลายรอบโดยอ้างอิงรหัสคำสั่งซื้อเดิม</td>
+      <td>ระบบหลังบ้าน, แอปคลัง</td>
+      <td><span class="confirmed-tag">ยืนยันแล้ว</span></td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ─── 21. Bank Master + Notification ─── -->
+<h1><span class="num">21</span> ธนาคารและระบบแจ้งเตือน</h1>
+
+<p>ข้อมูลหลักของธนาคารที่รองรับ และกฎเกณฑ์การส่ง<strong>การแจ้งเตือน</strong> ไปยังลูกค้าและพนักงานผ่านอีเมล LINE และ OTP</p>
+
+<h2>21.1 ข้อมูลหลักของธนาคาร (Bank Master)</h2>
+<table>
+  <thead><tr><th style="width:100px">รหัส</th><th>กฎเกณฑ์</th><th style="width:140px">ระบบที่เกี่ยวข้อง</th><th style="width:110px">สถานะ</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><span class="rule-id">BNK-01</span></td>
+      <td><strong>ธนาคารที่รองรับ 11 ราย</strong> — KBANK (กสิกรไทย), SCB (ไทยพาณิชย์), BBL (กรุงเทพ), KTB (กรุงไทย), BAY (กรุงศรีอยุธยา), TTB (ทหารไทยธนชาต), GSB (ออมสิน), UOB, CITI (ซิตี้แบงก์), PromptPay (พร้อมเพย์), TrueMoney (ทรูมันนี่)</td>
+      <td>ระบบหลังบ้าน</td>
+      <td><span class="confirmed-tag">ยืนยันแล้ว</span></td>
+    </tr>
+    <tr>
+      <td><span class="rule-id">BNK-02</span></td>
+      <td><strong>สถานะของธนาคาร</strong> — Active (เปิดใช้งาน) / Inactive (ปิดใช้งานชั่วคราว) — ธนาคารที่เป็น Inactive ห้ามแสดงในหน้าชำระเงิน</td>
+      <td>ระบบหลังบ้าน, เว็บไซต์</td>
+      <td><span class="confirmed-tag">ยืนยันแล้ว</span></td>
+    </tr>
+    <tr>
+      <td><span class="rule-id">BNK-03</span></td>
+      <td><strong>การแสดงเลขที่บัญชีของบริษัทในหน้าชำระเงิน</strong> — แสดงรายการบัญชีของบริษัทพร้อมโลโก้ธนาคารและชื่อบัญชี — รองรับการคัดลอกเลขที่บัญชีด้วยปุ่มเดียว</td>
+      <td>เว็บไซต์</td>
+      <td><span class="confirmed-tag">ยืนยันแล้ว</span></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>21.2 ระบบแจ้งเตือน (Notification)</h2>
+<table>
+  <thead><tr><th style="width:100px">รหัส</th><th>กฎเกณฑ์</th><th style="width:140px">ช่องทางส่ง</th><th style="width:110px">สถานะ</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><span class="rule-id">NTF-01</span></td>
+      <td><strong>การแจ้งเตือนสถานะคำสั่งซื้อ</strong> — ส่งอีเมลเมื่อสถานะเปลี่ยน (สร้างคำสั่งซื้อ / ชำระเงินได้รับ / กำลังจัดส่ง / จัดส่งแล้ว / ยกเลิก)</td>
+      <td>อีเมล</td>
+      <td><span class="confirmed-tag">ยืนยันแล้ว</span></td>
+    </tr>
+    <tr>
+      <td><span class="rule-id">NTF-02</span></td>
+      <td><strong>การแจ้งเตือนผ่าน LINE Push</strong> — ส่งเมื่อลูกค้าได้เชื่อมต่อบัญชี LINE กับระบบแล้ว — ส่งสรุปสั้น พร้อมลิงก์ไปยังหน้ารายละเอียดบนเว็บไซต์</td>
+      <td>LINE</td>
+      <td><span class="confirmed-tag">ยืนยันแล้ว</span></td>
+    </tr>
+    <tr>
+      <td><span class="rule-id">NTF-03</span></td>
+      <td><strong>กฎ OTP สำหรับการสมัครและเปลี่ยนข้อมูล</strong>:
+        <ul style="margin:6px 0 0 18px;padding:0">
+          <li><strong>สมัครสมาชิก</strong> — OTP ส่งไปยัง<strong>อีเมล</strong></li>
+          <li><strong>เปลี่ยนเบอร์โทรศัพท์ / อีเมล</strong> — OTP ส่งไปยัง<strong>เบอร์โทรศัพท์</strong>ปัจจุบัน</li>
+        </ul>
+      </td>
+      <td>อีเมล, SMS</td>
+      <td><span class="confirmed-tag">ยืนยันแล้ว</span></td>
+    </tr>
+    <tr>
+      <td><span class="rule-id">NTF-04</span></td>
+      <td><strong>OTP สำหรับธุรกรรมที่มีความเสี่ยงสูง</strong> — เช่น การเปลี่ยนรหัสผ่าน, การถอนคะแนนสะสม — บังคับใช้ OTP ก่อนยืนยันรายการ</td>
+      <td>SMS / อีเมล</td>
+      <td><span class="confirmed-tag">ยืนยันแล้ว</span></td>
+    </tr>
+    <tr>
+      <td><span class="rule-id">NTF-05</span></td>
+      <td><strong>การแจ้งเตือนพนักงาน</strong> — สินค้าใกล้ครบสต็อกขั้นต่ำ (Reorder Point), สินค้าใกล้หมดอายุการรับประกัน (BG Expire), คะแนนสะสมใกล้หมดอายุ (Point Expire)</td>
+      <td>อีเมล, ระบบหลังบ้าน</td>
+      <td><span class="confirmed-tag">ยืนยันแล้ว</span></td>
+    </tr>
+    <tr>
+      <td><span class="rule-id">NTF-06</span></td>
+      <td><strong>การแจ้งเตือนหัวหน้างาน (Supervisor Alert)</strong> — กรณีพนักงาน CC ขออนุมัติเครดิตเกินวงเงิน หรือยกเลิกคำสั่งซื้อที่ชำระเงินแล้ว — ส่งทันทีพร้อมรหัสคำสั่งซื้อ</td>
+      <td>อีเมล, ระบบหลังบ้าน</td>
+      <td><span class="confirmed-tag">ยืนยันแล้ว</span></td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ─── 22. Pending ─── -->
+<h1><span class="num">22</span> รายการที่รอการยืนยัน</h1>
+
+<div class="callout callout-amber">
+  <strong>คำเตือน:</strong> รายการในส่วนนี้ <strong>ห้ามอ้างอิงและห้ามนำไปพัฒนาระบบ</strong> จนกว่าจะได้รับการยืนยันจากผู้มีส่วนได้ส่วนเสีย
+</div>
+
+<table>
+  <thead><tr><th style="width:80px">รหัส</th><th>รายการ</th><th>ผลกระทบ</th><th style="width:120px">ระบบ</th></tr></thead>
+  <tbody>
+    <tr><td><span class="pending-tag">P-01</span></td><td>เปอร์เซ็นต์เงินมัดจำสำหรับการสั่งซื้อสินค้าล่วงหน้า — ขึ้นกับประเภทลูกค้า / สินค้า</td><td>BR-04, BR-05, FR Pre-Order</td><td>เว็บไซต์, พนักงาน CC</td></tr>
+    <tr><td><span class="pending-tag">P-02</span></td><td><strong>ตารางอำนาจการอนุมัติเครดิต</strong> — ตัวเลขวงเงินสำหรับแต่ละตำแหน่ง</td><td>C-02, CC-02, กระบวนการ Over-limit</td><td>พนักงาน CC, ระบบหลังบ้าน</td></tr>
+    <tr><td><span class="pending-tag">P-03</span></td><td><strong>จังหวะการเลื่อนหรือลดระดับสมาชิก</strong> (ทันที หรือ รอสิ้นปี)</td><td>PT, การแสดงระดับสมาชิก</td><td>เว็บ, ระบบหลังบ้าน</td></tr>
+    <tr><td><span class="pending-tag">P-05</span></td><td><strong>ประเภทใบกำกับลูกค้า</strong> (Y, N, M, A) — เงื่อนไขการคิดราคา</td><td>INV-04, ขั้นตอนชำระเงิน</td><td>เว็บไซต์, พนักงาน CC</td></tr>
+    <tr><td><span class="pending-tag">P-06</span></td><td><strong>รายละเอียดการออกใบกำกับ 2 ใบ (EV / EN)</strong> — เงื่อนไขการแยก</td><td>INV-01</td><td>ทุกระบบ</td></tr>
+    <tr><td><span class="pending-tag">P-07</span></td><td><strong>รายละเอียดกระบวนการของแคชเชียร์</strong></td><td>INV-02</td><td>ทุกระบบ</td></tr>
+    <tr><td><span class="pending-tag">P-08</span></td><td><strong>รูปแบบรหัสคำสั่งซื้อฝั่ง Adeptio</strong> และการเชื่อมกับ ConX (SO / OD)</td><td>SO-04, CC-04, INT-08</td><td>ทุกระบบ</td></tr>
+    <tr><td><span class="pending-tag">P-09</span></td><td><strong>ขั้นตอนการยืนยันคำสั่งซื้อหลังพนักงาน CC สร้างตะกร้า</strong></td><td>CC-03</td><td>พนักงาน CC</td></tr>
+    <tr><td><span class="pending-tag">P-10</span></td><td><strong>เหตุผลที่งานหยิบสินค้า 1 ใบ บรรจุได้สูงสุด 99 รายการ</strong></td><td>WH-01</td><td>Handheld</td></tr>
+    <tr><td><span class="pending-tag">P-11</span></td><td><strong>POS: รายละเอียดวิธีการชำระเงิน</strong> (ชำระหน้าร้าน)</td><td>CH-03</td><td>POS</td></tr>
+    <tr><td><span class="pending-tag">P-12</span></td><td><strong>ระบบแจ้งเตือนเมื่อราคาสินค้ามีการเปลี่ยนแปลง</strong> — แสดงสัญลักษณ์ (เช่น *) เมื่อราคาสินค้าเพิ่มขึ้น โดยเทียบกับการสั่งซื้อล่าสุดในช่วง 13 เดือน — แสดงผลที่: ประวัติคำสั่งซื้อของลูกค้า (เว็บไซต์) / หน้าจอ CC / POS</td><td>(แนวคิดใหม่)</td><td>เว็บ, CC, POS</td></tr>
+    <tr><td><span class="pending-tag">P-13</span></td><td><strong>การรองรับสาขาและบริษัทลูก (สาขาสำเพ็ง)</strong> — แนวทางการจัดการระบบหลายบริษัท พร้อมการแยกฐานข้อมูล</td><td>(แนวคิดใหม่)</td><td>ทุกระบบ</td></tr>
+    <tr><td><span class="pending-tag">P-14</span></td><td><strong>ระบบข่าวสารและกิจกรรม</strong> — การประกาศข่าวสาร / โปรโมชั่น / กิจกรรม ของบริษัทไปยังลูกค้า</td><td>(แนวคิดใหม่)</td><td>CMS / เว็บ</td></tr>
+    <tr><td><span class="pending-tag">P-15</span></td><td><strong>การพัฒนาส่วนของสต็อกในอนาคต</strong> — Stock Management ขั้นสูง, ระบบใบสั่งซื้อจัดซื้อ (PR / PO), การซิงค์ข้อมูลกับระบบบัญชี (AP / GL)</td><td>(Roadmap)</td><td>ทุกระบบ</td></tr>
+  </tbody>
+</table>
+
+<div class="callout callout-amber" style="margin-top:14px">
+  <strong>หมายเหตุ:</strong> รายการ P-12 ถึง P-15 มาจากการประชุมเมื่อวันที่ 27 เมษายน 2569 — ยังไม่ได้ถูกบันทึกลงในระบบ Decision Register อย่างเป็นทางการ
+</div>
+
+<!-- ─── 23. Decision Records ─── -->
+<h1><span class="num">23</span> บันทึกการตัดสินใจ (D-001 ถึง D-045)</h1>
+
+<p>บันทึกการตัดสินใจที่ผ่านการประชุมกับผู้มีส่วนได้ส่วนเสียทั้งหมด 9 ครั้ง (14 มกราคม 2569 ถึง 2 เมษายน 2569) — รวม <strong>45 รายการ</strong></p>
+
+<h2>23.1 หมวดสินค้า (Product)</h2>
+<table>
+  <thead><tr><th style="width:90px">รหัส</th><th>การตัดสินใจ</th><th style="width:100px">วันที่</th></tr></thead>
+  <tbody>
+    <tr><td><span class="dec-ref">D-001</span></td><td>1 รหัสสินค้า (SKU) ต่อ 1 หน่วยขายเท่านั้น — ไม่มีระบบ 1 รหัสสินค้าหลายหน่วยขาย</td><td>14 ม.ค. 69</td></tr>
+    <tr><td><span class="dec-ref">D-005</span></td><td>ป้ายสถานะหน้าเว็บไซต์ ("New", "Promotion") — ระบบหน้าบ้านจัดการอัตโนมัติตามระยะเวลา</td><td>14 ม.ค. 69</td></tr>
+    <tr><td><span class="dec-ref">D-026</span></td><td>ตัวแปรของสินค้า (Variation) — ใช้ตัวอักษรระบุสเปก (สี / ขนาด / วัสดุ) แทนการใช้แถบสี</td><td>5 มี.ค. 69</td></tr>
+  </tbody>
+</table>
+
+<h2>23.2 หมวดสต็อกและคลังสินค้า</h2>
+<table>
+  <thead><tr><th style="width:90px">รหัส</th><th>การตัดสินใจ</th><th style="width:100px">วันที่</th></tr></thead>
+  <tbody>
+    <tr><td><span class="dec-ref">D-004</span></td><td>ระบบจองสต็อก<strong>ทันที</strong>ในขั้นตอนการชำระเงิน</td><td>14 ม.ค. 69</td></tr>
+    <tr><td><span class="dec-ref">D-011</span></td><td>การตัดสต็อกเกิดเมื่อ<strong>ออกใบกำกับ</strong>และยืนยันการจัดส่ง — การสร้างคำสั่งซื้อเป็นเพียงการจองสต็อกเท่านั้น</td><td>27 ม.ค. 69</td></tr>
+    <tr><td><span class="dec-ref">D-013</span></td><td>สินค้าสำหรับแลกรางวัลแยกในกลุ่มคลังต่างหาก ไม่ปะปนกับสินค้าขายปกติ</td><td>27 ม.ค. 69</td></tr>
+    <tr><td><span class="dec-ref">D-016</span></td><td><strong>แยกรหัสคลังออนไลน์และคลังหน้าร้าน</strong>ในระบบ ConX อย่างเด็ดขาด</td><td>29 ม.ค. 69</td></tr>
+    <tr><td><span class="dec-ref">D-019</span></td><td>หักสต็อกของแถม ณ จุดสร้างคำสั่งซื้อ — ของแถมหมดต้องระงับ/แจ้งเตือนทันที</td><td>29 ม.ค. 69</td></tr>
+    <tr><td><span class="dec-ref">D-020</span></td><td><strong>การซิงค์ข้อมูลสต็อกแบบผสม:</strong> แบบทันทีสำหรับสินค้าหมุนเร็ว, แบบเป็นชุดสำหรับสินค้าทั่วไป</td><td>29 ม.ค. 69</td></tr>
+    <tr><td><span class="dec-ref">D-024</span></td><td>การสั่งซื้อสินค้าล่วงหน้า: คลังพิเศษ<strong>อนุญาตให้สต็อกติดลบ</strong>ในระบบ ConX</td><td>27 ก.พ. 69</td></tr>
+    <tr><td><span class="dec-ref">D-025</span></td><td><strong>การจัดส่งแบบทยอย:</strong> รองรับการระบุจำนวนแบบบางส่วนสำหรับการสั่งซื้อสินค้าล่วงหน้า</td><td>27 ก.พ. 69</td></tr>
+  </tbody>
+</table>
+
+<h2>23.3 หมวดการชำระเงินและเครดิต</h2>
+<table>
+  <thead><tr><th style="width:90px">รหัส</th><th>การตัดสินใจ</th><th style="width:100px">วันที่</th></tr></thead>
+  <tbody>
+    <tr><td><span class="dec-ref">D-002</span></td><td>ตัดวงเงินเครดิต<strong>ตั้งแต่สร้างคำสั่งซื้อ</strong></td><td>14 ม.ค. 69</td></tr>
+    <tr><td><span class="dec-ref">D-003</span></td><td>ระบบออกใบกำกับแยก 2 ใบโดยอัตโนมัติ ได้แก่ EV (มีภาษี) และ EN (ไม่มีภาษี)</td><td>14 ม.ค. 69</td></tr>
+    <tr><td><span class="dec-ref">D-012</span></td><td><strong>ไม่มีการเก็บเงินปลายทาง (COD)</strong>ในระบบ</td><td>27 ม.ค. 69</td></tr>
+    <tr><td><span class="dec-ref">D-014</span></td><td>ตัดวงเงินตั้งแต่สร้างคำสั่งซื้อ — วงเงินเต็มหรือเกินกำหนดเครดิต ระบบล็อกคำสั่งซื้อทันที</td><td>27 ม.ค. 69</td></tr>
+    <tr><td><span class="dec-ref">D-018</span></td><td>การออกใบกำกับอัตโนมัติสำหรับคำสั่งซื้อที่ชำระแล้ว — ระบบข้ามแคชเชียร์ได้</td><td>29 ม.ค. 69</td></tr>
+    <tr><td><span class="dec-ref">D-041</span></td><td><strong>วงเงินกลุ่ม</strong>ใช้กระเป๋ากลางร่วมกันแบบ<strong>เข้าก่อนใช้ก่อน (FIFO)</strong> ไม่มีวงเงินย่อยรายบุคคล</td><td>2 เม.ย. 69</td></tr>
+    <tr><td><span class="dec-ref">D-042</span></td><td>การคืนวงเงินจากเช็ค — แจ้งกลับสถานะ<strong>เฉพาะเมื่อเช็คผ่านการเรียกเก็บเท่านั้น</strong></td><td>2 เม.ย. 69</td></tr>
+    <tr><td><span class="dec-ref">D-043</span></td><td>การขออนุมัติเกินวงเงิน — พิจารณา<strong>เป็นรายคำสั่งซื้อ</strong> เป็นวงเงินชั่วคราว ไม่มีผลถาวร</td><td>2 เม.ย. 69</td></tr>
+    <tr><td><span class="dec-ref">D-044</span></td><td>ลูกค้าเครดิตสั่งซื้อผ่านพนักงาน CC ต้อง<strong>ตัดเครดิตเท่านั้น</strong> — สั่งผ่านเว็บไซต์ / POS เปลี่ยนวิธีชำระได้</td><td>2 เม.ย. 69</td></tr>
+    <tr><td><span class="dec-ref">D-045</span></td><td>วันหมดอายุของหนังสือค้ำประกัน นับรวมถึงเวลา <strong>23:59 น.</strong> ของวันนั้น</td><td>2 เม.ย. 69</td></tr>
+  </tbody>
+</table>
+
+<h2>23.4 หมวดขั้นตอนการชำระเงินและคำสั่งซื้อ</h2>
+<table>
+  <thead><tr><th style="width:90px">รหัส</th><th>การตัดสินใจ</th><th style="width:100px">วันที่</th></tr></thead>
+  <tbody>
+    <tr><td><span class="dec-ref">D-008</span></td><td>การรับสินค้าด้วยตนเองต้องเลือกเวลา<strong>+12 ชั่วโมงทำการ</strong>ล่วงหน้า</td><td>16 ม.ค. 69</td></tr>
+    <tr><td><span class="dec-ref">D-009</span></td><td>ไม่อนุญาตให้แก้ไขคำสั่งซื้อที่เข้าขั้นตอนการหยิบสินค้าแล้ว — ต้องยกเลิกแล้วสร้างฉบับใหม่</td><td>16 ม.ค. 69</td></tr>
+    <tr><td><span class="dec-ref">D-010</span></td><td>อนุญาตให้หยิบและบรรจุสินค้า<strong>คู่ขนาน</strong>กับการรอตรวจสอบการชำระเงิน</td><td>27 ม.ค. 69</td></tr>
+    <tr><td><span class="dec-ref">D-023</span></td><td>ตะกร้าใบเสนอราคา<strong>แยก</strong>ออกจากตะกร้าสินค้าปกติ</td><td>27 ก.พ. 69</td></tr>
+    <tr><td><span class="dec-ref">D-027</span></td><td>ขั้นตอนชำระเงินและจัดส่ง — ไม่ให้ลูกค้ากดเลือกซ้ำซ้อน — ระบบดึงข้อมูลที่เลือกมาแสดงเป็นหน้ายืนยัน</td><td>5 มี.ค. 69</td></tr>
+    <tr><td><span class="dec-ref">D-028</span></td><td><strong>ค่าจัดส่ง:</strong> ไม่ประเมินค่าจัดส่งล่วงหน้า ใช้ "ค่าจัดส่งชำระปลายทาง"</td><td>5 มี.ค. 69</td></tr>
+    <tr><td><span class="dec-ref">D-029</span></td><td>ใบเสนอราคามีอายุ <strong>7 วันทำการ</strong></td><td>5 มี.ค. 69</td></tr>
+    <tr><td><span class="dec-ref">D-030</span></td><td>การสั่งซื้อซ้ำ — สินค้ารวมกับตะกร้าปัจจุบัน, รหัสซ้ำให้แทนที่จำนวน</td><td>5 มี.ค. 69</td></tr>
+    <tr><td><span class="dec-ref">D-034</span></td><td>การสั่งซื้อสินค้าล่วงหน้าอัตโนมัติ — สต็อกไม่พอ บังคับให้ลูกค้าตัดสินใจแยกรายการสั่งซื้อล่วงหน้าก่อนชำระเงิน</td><td>18 มี.ค. 69</td></tr>
+  </tbody>
+</table>
+
+<h2>23.5 หมวดคลังสินค้าและกระบวนการทำงาน (WMS)</h2>
+<table>
+  <thead><tr><th style="width:90px">รหัส</th><th>การตัดสินใจ</th><th style="width:100px">วันที่</th></tr></thead>
+  <tbody>
+    <tr><td><span class="dec-ref">D-017</span></td><td>การหยิบและบรรจุสินค้าใช้<strong>เครื่องอ่านบาร์โค้ดมือถือ Android</strong> สแกนบาร์โค้ด / คิวอาร์ทั้งหมด</td><td>29 ม.ค. 69</td></tr>
+    <tr><td><span class="dec-ref">D-031</span></td><td>งานหยิบสินค้า 1 ใบ บรรจุได้สูงสุด <strong>99 รายการ</strong> + เรียงลำดับตามตำแหน่งชั้นวาง</td><td>5 มี.ค. 69</td></tr>
+    <tr><td><span class="dec-ref">D-035</span></td><td>บาร์โค้ดสำหรับสแกนในกระบวนการหยิบและบรรจุแสดงเฉพาะบน<strong>"ใบเตรียมสินค้า"</strong> — ไม่แสดงในเอกสารฝั่งลูกค้า — ใบเตรียมต้องไม่แสดงราคา</td><td>18 มี.ค. 69</td></tr>
+  </tbody>
+</table>
+
+<h2>23.6 หมวดลูกค้าและการบริการลูกค้า</h2>
+<table>
+  <thead><tr><th style="width:90px">รหัส</th><th>การตัดสินใจ</th><th style="width:100px">วันที่</th></tr></thead>
+  <tbody>
+    <tr><td><span class="dec-ref">D-006</span></td><td>นับยอดเข้าประวัติลูกค้า<strong>เมื่อออกใบกำกับสำเร็จเท่านั้น</strong></td><td>16 ม.ค. 69</td></tr>
+    <tr><td><span class="dec-ref">D-007</span></td><td>คำนวณจำนวนสินค้าที่ลูกค้าซื้อประจำ ใช้<strong>ค่ากลาง (Median)</strong> แทนค่าเฉลี่ย</td><td>16 ม.ค. 69</td></tr>
+    <tr><td><span class="dec-ref">D-015</span></td><td>เมนูในแอป LINE (Rich Menu) จำกัด <strong>6 เมนู</strong>หลัก (ตามข้อจำกัดของ LINE)</td><td>27 ม.ค. 69</td></tr>
+    <tr><td><span class="dec-ref">D-033</span></td><td>การเปลี่ยนเบอร์โทรศัพท์ — ลูกค้าทำเองไม่ได้บนเว็บไซต์ ต้องแจ้งพนักงาน CC พร้อมหลักฐานยืนยันตัวตน</td><td>18 มี.ค. 69</td></tr>
+    <tr><td><span class="dec-ref">D-040</span></td><td>คะแนนสะสม — สะสมเป็นทศนิยมได้ ผูกที่ระดับคำสั่งซื้อและจ่ายเมื่อออกใบกำกับ + รับชำระสำเร็จ</td><td>24 มี.ค. 69</td></tr>
+  </tbody>
+</table>
+
+<h2>23.7 หมวดโปรโมชั่นและช่องทางการขาย</h2>
+<table>
+  <thead><tr><th style="width:90px">รหัส</th><th>การตัดสินใจ</th><th style="width:100px">วันที่</th></tr></thead>
+  <tbody>
+    <tr><td><span class="dec-ref">D-032</span></td><td>ตั้งค่าส่วนลดเป็น <strong>"บาท"</strong> เสมอ — หน้าเว็บแสดงเป็น "เปอร์เซ็นต์" (ปัดเศษลง)</td><td>18 มี.ค. 69</td></tr>
+    <tr><td><span class="dec-ref">D-039</span></td><td>โครงสร้างช่องทางการขาย: <strong>POS, Agent, เว็บไซต์</strong> — Shopee / CC / CS ใช้เป็นช่องทางย่อยหรือตัวกรองรายงาน</td><td>24 มี.ค. 69</td></tr>
+  </tbody>
+</table>
+
+<h2>23.8 หมวดสถาปัตยกรรมและการเชื่อมต่อระบบ</h2>
+<table>
+  <thead><tr><th style="width:90px">รหัส</th><th>การตัดสินใจ</th><th style="width:100px">วันที่</th></tr></thead>
+  <tbody>
+    <tr><td><span class="dec-ref">D-021</span></td><td>สถาปัตยกรรม — ใช้<strong>บริการประมวลผลแบบคลาวด์ (Cloud Run)</strong> และแยกหน้าจอ (UI) ออกจาก CMS / CRM / ระบบหลังบ้านอย่างเด็ดขาด</td><td>27 ก.พ. 69</td></tr>
+    <tr><td><span class="dec-ref">D-022</span></td><td>ฐานข้อมูล — แยก<strong>ฝั่งอ่านและฝั่งเขียน</strong>ขาดจากกัน (ERP เขียนขาเขียน, เว็บอ่านขาอ่าน)</td><td>27 ก.พ. 69</td></tr>
+    <tr><td><span class="dec-ref">D-036</span></td><td>เทคโนโลยี — <strong>การเชื่อมต่อแบบเข้ารหัส (HTTPS) + การแจ้งกลับอัตโนมัติ (Webhook) + การตรวจสอบลายมือชื่อดิจิทัล (HMAC) + ระบบยืนยันสิทธิ์การเข้าถึง (OAuth)</strong> สำหรับการกู้คืนข้อมูลในการเชื่อมต่อ ConX</td><td>24 มี.ค. 69</td></tr>
+    <tr><td><span class="dec-ref">D-037</span></td><td>การเชื่อมต่อหมวดหมู่ — อิงข้อมูลจาก ConX, ระบบสร้างอัตโนมัติที่ยังไม่มี</td><td>24 มี.ค. 69</td></tr>
+    <tr><td><span class="dec-ref">D-038</span></td><td>ข้อมูลผู้จัดจำหน่าย (Supplier) — <strong>ไม่ซิงค์</strong>ข้อมูลมาที่แพลตฟอร์ม (ไม่จัดทำใบสั่งซื้อ)</td><td>24 มี.ค. 69</td></tr>
+  </tbody>
+</table>
+
+<div class="callout">
+  <strong>สรุปสถิติบันทึกการตัดสินใจ</strong>
+  <p style="margin-top:6px;margin-bottom:0;font-size:13px">รวมทั้งสิ้น <strong>45 รายการ</strong> ใน 8 หมวด — จากการประชุมกับผู้มีส่วนได้ส่วนเสีย <strong>9 ครั้ง</strong> ระหว่างวันที่ 14 มกราคม ถึง 2 เมษายน 2569</p>
+</div>
+
+<!-- ─── Footer ─── -->
+<h1 style="margin-top:60px;border:none;padding:0;font-size:18px">แหล่งข้อมูลอ้างอิง</h1>
+
+<table>
+  <thead><tr><th style="width:320px">เอกสาร</th><th>เนื้อหา</th></tr></thead>
+  <tbody>
+    <tr><td><code>docs/business-rules.md</code></td><td>เอกสารหลักรวมกฎเกณฑ์เชิงธุรกิจ — 18 สารบัญ</td></tr>
+    <tr><td><code>knowledge/decisions-register.md</code></td><td>บันทึกการตัดสินใจทั้ง 45 รายการ</td></tr>
+    <tr><td><code>docs/open-questions.md</code></td><td>คำถามที่ค้างรอตอบจากผู้มีส่วนได้ส่วนเสีย</td></tr>
+    <tr><td><code>knowledge/crm-customer.md</code></td><td>รายละเอียดลูกค้า / Loyalty</td></tr>
+    <tr><td><code>knowledge/order-checkout-payment.md</code></td><td>รายละเอียดคำสั่งซื้อ / การชำระเงิน</td></tr>
+    <tr><td><code>knowledge/inventory-warehouse.md</code></td><td>รายละเอียดสต็อก / คลังสินค้า</td></tr>
+    <tr><td><code>knowledge/conx-integration.md</code></td><td>รายละเอียดการเชื่อมต่อกับ ConX</td></tr>
+    <tr><td><code>knowledge/promotions/Promotion_BRD.md</code></td><td>เอกสารโมดูลโปรโมชั่นฉบับเต็ม</td></tr>
+    <tr><td><code>knowledge/คู่มือกระบวนการจัดการวงเงินเครดิตและคำสั่งซื้อ.md</code></td><td>คู่มือการจัดการวงเงินเครดิตและคำสั่งซื้อ</td></tr>
+  </tbody>
+</table>
+
+</div>
+
+</body>
+</html>

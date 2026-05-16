@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>YSC POS BRD — ระบบขายหน้าร้าน (Point of Sale) v1.0</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#F3F4F6;font-family:'Sarabun',Tahoma,sans-serif;color:#1E293B;padding:0 0 80px;line-height:1.65}
+.toolbar{position:sticky;top:0;z-index:200;background:#1E3A5F;display:flex;align-items:center;justify-content:space-between;padding:9px 22px;box-shadow:0 2px 12px rgba(0,0,0,.25)}
+.toolbar-title{color:#93C5FD;font-size:13px;font-weight:600;letter-spacing:.04em}
+.toolbar a.home{color:#93C5FD;text-decoration:none;font-size:13px;font-weight:600;padding:4px 10px;border-radius:5px}
+.toolbar a.home:hover{background:rgba(255,255,255,.1)}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:6px;font-family:'Sarabun',sans-serif;font-size:12.5px;font-weight:600;cursor:pointer;border:none;background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.2)}
+.btn:hover{background:rgba(255,255,255,.2)}
+#doc{max-width:980px;margin:36px auto;background:#fff;padding:64px 72px;box-shadow:0 6px 28px rgba(0,0,0,.12);border-radius:6px}
+.cover{background:#1E3A5F;color:#fff;margin:-64px -72px 36px;padding:64px 72px 48px;border-radius:6px 6px 0 0}
+.cover .tag{display:inline-block;background:#2563EB;font-size:11px;font-weight:700;letter-spacing:.1em;padding:5px 14px;border-radius:4px;margin-bottom:24px}
+.cover h1{font-size:32px;font-weight:700;line-height:1.25;margin-bottom:8px;color:#fff;border:none;padding:0}
+.cover .sub{font-size:16px;color:#93C5FD;font-weight:300;margin-bottom:32px}
+.cover .info-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid rgba(255,255,255,.15);border-radius:8px;overflow:hidden}
+.cover .info-cell{padding:14px 20px;border-bottom:1px solid rgba(255,255,255,.1);border-right:1px solid rgba(255,255,255,.1)}
+.cover .info-cell:nth-child(2n){border-right:none}
+.cover .info-cell:nth-last-child(-n+2){border-bottom:none}
+.cover .info-label{font-size:10px;color:#93C5FD;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
+.cover .info-value{font-size:13px;color:#fff;font-weight:600}
+h1{font-size:24px;color:#1E3A5F;margin:42px 0 14px;font-weight:700;padding-bottom:8px;border-bottom:3px solid #1E3A5F}
+h2{font-size:18px;color:#1E3A5F;margin:30px 0 12px;font-weight:700}
+h3{font-size:15px;color:#2563EB;margin:22px 0 10px;font-weight:700}
+p{margin-bottom:12px;font-size:13.5px}
+ul,ol{margin:8px 0 14px 22px;font-size:13.5px}
+li{margin-bottom:5px;line-height:1.7}
+table{width:100%;border-collapse:collapse;margin:14px 0 22px;font-size:12.5px}
+thead th{background:#1E3A5F;color:#fff;padding:10px 12px;text-align:left;font-weight:600;border:1px solid #1E3A5F}
+tbody td{padding:9px 12px;border:1px solid #D1D5DB;vertical-align:top;line-height:1.6}
+tbody tr:nth-child(even) td{background:#F9FAFB}
+td strong{color:#1E3A5F}
+.callout{border-left:4px solid #2563EB;background:#EFF6FF;padding:14px 18px;margin:14px 0;border-radius:0 6px 6px 0}
+.callout strong{color:#1E3A5F}
+.callout-amber{border-left-color:#F59E0B;background:#FFFBEB}
+.callout-amber strong{color:#92400E}
+.callout-green{border-left-color:#10B981;background:#ECFDF5}
+.callout-green strong{color:#065F46}
+.toc{background:#F8FAFC;border:1px solid #E5E7EB;border-radius:8px;padding:20px 28px;margin:20px 0}
+.toc ol{list-style:none;margin:0;padding:0;counter-reset:toc;font-size:13px}
+.toc ol > li{counter-increment:toc;padding:4px 0;border-bottom:1px dashed #E5E7EB}
+.toc ol > li::before{content:counter(toc) ". ";font-weight:700;color:#1E3A5F;margin-right:6px}
+.toc ol ol{margin:4px 0 4px 24px;font-size:12px;color:#6B7280;counter-reset:sub}
+.toc ol ol li{counter-increment:sub;padding:1px 0;border:none}
+.toc ol ol li::before{content:counter(toc) "." counter(sub) " ";color:#6B7280;font-weight:600;margin-right:4px}
+.screen-ref{display:inline-block;background:#F3F4F6;border:1px solid #D1D5DB;color:#374151;font-size:11.5px;padding:1px 8px;border-radius:4px;font-weight:600}
+.br-ref{display:inline-block;background:#FFFBEB;border:1px solid #FDE68A;color:#92400E;font-size:11px;padding:1px 7px;border-radius:4px;font-weight:600;font-family:'Sarabun',monospace}
+.use-case{border:1px solid #E5E7EB;border-radius:10px;margin:18px 0;background:#fff;overflow:hidden}
+.uc-header{background:#1E3A5F;color:#fff;padding:12px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.uc-header .uc-num{font-size:13px;font-weight:700;letter-spacing:.04em}
+.uc-header .uc-title{font-size:14px;font-weight:600;flex:1}
+.uc-body{padding:16px 22px}
+.uc-section{margin:12px 0}
+.uc-section-label{font-size:11.5px;font-weight:700;color:#1E3A5F;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+.uc-flow{counter-reset:flow;list-style:none;margin-left:0}
+.uc-flow > li{counter-increment:flow;position:relative;padding:5px 0 5px 32px;font-size:13px}
+.uc-flow > li::before{content:counter(flow);position:absolute;left:0;top:5px;width:22px;height:22px;background:#2563EB;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700}
+.uc-alt{background:#FFFBEB;border-left:3px solid #F59E0B;padding:8px 14px;margin:6px 0;border-radius:0 6px 6px 0;font-size:12.5px}
+.uc-exc{background:#FEF2F2;border-left:3px solid #E11D48;padding:8px 14px;margin:6px 0;border-radius:0 6px 6px 0;font-size:12.5px}
+.uc-ac{background:#ECFDF5;border:1px solid #A7F3D0;border-radius:6px;padding:10px 14px;margin:4px 0;font-size:12.5px}
+.uc-ac strong{color:#065F46}
+.tag-confirmed{display:inline-block;background:#DCFCE7;color:#166534;font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:10px}
+.tag-pending{display:inline-block;background:#FEF3C7;color:#92400E;font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:10px}
+.tag-design{display:inline-block;background:#DBEAFE;color:#1E40AF;font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:10px}
+.screen-figure{margin:18px 0 22px;border:1px solid #E5E7EB;border-radius:10px;overflow:hidden;background:#FAFAFA}
+.screen-figure img{display:block;width:100%;height:auto}
+.screen-caption{padding:10px 16px;background:#1E3A5F;color:#fff;font-size:12px;font-weight:600;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.screen-caption .ref{font-size:10.5px;color:#93C5FD;font-weight:500}
+.screen-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:18px 0}
+.screen-grid .screen-figure{margin:0}
+@media print{body{background:#fff}.toolbar{display:none}#doc{max-width:none;margin:0;box-shadow:none;padding:24px 40px}.cover{margin:-24px -40px 24px;padding:50px 40px 40px}h1{page-break-before:always}h1:first-of-type{page-break-before:auto}table,.use-case,.screen-figure{page-break-inside:avoid}}
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <div style="display:flex;align-items:center;gap:14px">
+    <a href="index.html" class="home">สารบัญ</a>
+    <span style="color:rgba(255,255,255,.25)">|</span>
+    <span class="toolbar-title">YSC POS BRD — ระบบขายหน้าร้าน v1.0</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:8px"><button class="btn" onclick="window.print()">พิมพ์ / PDF</button></div>
+</div>
+
+<div id="doc">
+
+<div class="cover">
+  <div class="tag">เอกสารโมดูล · CHANNEL · POS (POINT OF SALE)</div>
+  <h1>ระบบขายหน้าร้าน<br>(Point of Sale)</h1>
+  <div class="sub">เอกสารข้อกำหนดเชิงธุรกิจ ระบบสำหรับพนักงานแคชเชียร์ + แนบ Mockup จาก Figma</div>
+  <div class="info-grid">
+    <div class="info-cell"><div class="info-label">รหัสโมดูล</div><div class="info-value">POS (Point of Sale)</div></div>
+    <div class="info-cell"><div class="info-label">เวอร์ชัน / วันที่</div><div class="info-value">v1.0 พฤษภาคม 2569</div></div>
+    <div class="info-cell"><div class="info-label">เจ้าของโครงการ</div><div class="info-value">บริษัท ยงเจริญศูนย์เครื่องเขียน จำกัด</div></div>
+    <div class="info-cell"><div class="info-label">ผู้พัฒนาระบบ</div><div class="info-value">บริษัท อะเดพทิโอ จำกัด</div></div>
+    <div class="info-cell"><div class="info-label">แหล่งดีไซน์</div><div class="info-value">Figma: POS-System (J8DUNqa9hBwI2R3uhY4IK0)</div></div>
+    <div class="info-cell"><div class="info-label">อ้างอิงเอกสารแม่บท</div><div class="info-value">ysc_business_rules.html v2.2</div></div>
+  </div>
+</div>
+
+<div class="callout callout-green">
+  <strong>วัตถุประสงค์ของเอกสาร</strong>
+  <p style="margin-top:6px;margin-bottom:0;font-size:13px">เอกสารฉบับนี้ระบุข้อกำหนดของ<strong>ระบบขายหน้าร้าน (Point of Sale — POS)</strong> ของยงเจริญศูนย์เครื่องเขียน สำหรับพนักงานแคชเชียร์ ครอบคลุมการเข้าสู่ระบบ การค้นหาลูกค้า การสแกนสินค้า การใช้โปรโมชั่นและคูปอง การแลกของรางวัล การเลือกวิธีรับสินค้า การชำระเงิน การพิมพ์ใบคำสั่งซื้อ และหน้าจอแสดงให้ลูกค้า (Customer Display) โดยอ้างอิง<strong>Mockup จาก Figma</strong>ที่แนบมาและ<strong>กฎเกณฑ์เชิงธุรกิจจาก ysc_business_rules.html v2.2</strong></p>
+</div>
+
+<div class="callout">
+  <strong>เกี่ยวกับดีไซน์ Figma:</strong> ไฟล์ Figma POS-System มี 14 หน้าจอ State Variants ของหน้า Sales หลัก + 1 Login + 1 Customer Display + 4 Modal/Popup รวม <strong>20 screens</strong> ทั้งหมดสร้างจาก Template เดียวกันโดยมี Parameter ต่างกันตามสถานการณ์ (มี/ไม่มีลูกค้า, มี/ไม่มีสินค้า, วงเงินพอ/ไม่พอ, รับเอง/ส่ง ฯลฯ)
+</div>
+
+<h2 style="margin-top:32px">สารบัญ</h2>
+<div class="toc">
+  <ol>
+    <li>ข้อมูลเอกสารและการอนุมัติ</li>
+    <li>วัตถุประสงค์เชิงธุรกิจ</li>
+    <li>ขอบเขตของงาน</li>
+    <li>ผู้มีส่วนได้ส่วนเสียและบทบาทผู้ใช้งาน</li>
+    <li>โครงสร้างหน้าจอ POS (Layout Anatomy)</li>
+    <li>สถานะปัจจุบัน (As-Is) และกระบวนการในอนาคต (To-Be)</li>
+    <li>ข้อกำหนดเชิงหน้าที่ — กรณีการใช้งาน (Use Cases) พร้อม Mockup
+      <ol>
+        <li>UC-POS-001 พนักงานแคชเชียร์เข้าสู่ระบบ</li>
+        <li>UC-POS-002 ค้นหาและเลือกลูกค้า</li>
+        <li>UC-POS-003 สแกนบาร์โค้ดหรือค้นหาสินค้าเพิ่มลงตะกร้า</li>
+        <li>UC-POS-004 ระบบใช้โปรโมชั่นและส่วนลดอัตโนมัติ</li>
+        <li>UC-POS-005 ใช้คูปองส่วนลด</li>
+        <li>UC-POS-006 แลกของรางวัลจากคำสั่งซื้อ</li>
+        <li>UC-POS-007 เลือกวิธีการรับสินค้า (รับเอง / จัดส่ง / แยกส่ง)</li>
+        <li>UC-POS-008 ชำระเงิน</li>
+        <li>UC-POS-009 พิมพ์ใบคำสั่งซื้อและออกใบกำกับ</li>
+        <li>UC-POS-010 หน้าจอลูกค้า (Customer Display)</li>
+        <li>UC-POS-011 ลูกค้านิติบุคคล: วงเงินไม่พอ / มียอดค้าง</li>
+        <li>UC-POS-012 เตือนคูปองใกล้หมดอายุ</li>
+        <li>UC-POS-013 ยกเลิกคำสั่งซื้อ / คืนสินค้าหน้าร้าน</li>
+      </ol>
+    </li>
+    <li>การออกแบบประสบการณ์ผู้ใช้ (Screen Inventory)</li>
+    <li>กฎเกณฑ์เชิงธุรกิจ — อ้างอิงเอกสารแม่บท</li>
+    <li>การเชื่อมต่อระบบภายนอก (Integration)</li>
+    <li>อุปกรณ์ฮาร์ดแวร์ (Hardware)</li>
+    <li>ข้อกำหนดเชิงคุณภาพ (NFR)</li>
+    <li>ความปลอดภัยและสิทธิ์การเข้าถึง (Security &amp; RBAC)</li>
+    <li>Offline Mode และการ Sync</li>
+    <li>สมมติฐานและข้อจำกัด</li>
+    <li>เกณฑ์การยอมรับผลงาน</li>
+    <li>ประเด็นเปิดและความเสี่ยง</li>
+  </ol>
+</div>
+
+<h2 style="margin-top:36px">สรุปกรณีการใช้งาน (Use Case Catalog)</h2>
+<p style="font-size:13px;color:#475569">ตารางสรุปกรณีการใช้งานทั้ง 13 รายการของระบบขายหน้าร้าน ครอบคลุม Login ค้นหาลูกค้า สแกนสินค้า โปรโมชั่นและคูปอง การชำระเงิน 4 วิธี รายละเอียดเต็มอยู่ในหัวข้อที่ 7 พร้อม Mockup จาก Figma</p>
+<table>
+  <thead>
+    <tr>
+      <th style="width:46px">#</th>
+      <th style="width:118px">รหัส</th>
+      <th>ชื่อกรณีการใช้งาน</th>
+      <th style="width:160px">ผู้ใช้งานหลัก</th>
+      <th style="width:160px">กฎที่เกี่ยวข้อง</th>
+      <th style="width:100px">สถานะ Figma</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>1</td><td><strong>UC-POS-001</strong></td><td>พนักงานแคชเชียร์เข้าสู่ระบบ</td><td>พนักงานแคชเชียร์</td><td>—</td><td><span class="tag-confirmed">มี Mockup</span></td></tr>
+    <tr><td>2</td><td><strong>UC-POS-002</strong></td><td>ค้นหาและเลือกลูกค้า</td><td>พนักงานแคชเชียร์</td><td><span class="br-ref">CC-05</span></td><td><span class="tag-design">รอออกแบบ Modal</span></td></tr>
+    <tr><td>3</td><td><strong>UC-POS-003</strong></td><td>สแกนบาร์โค้ดหรือค้นหาสินค้าเพิ่มลงตะกร้า</td><td>พนักงานแคชเชียร์</td><td><span class="br-ref">PRD-03</span></td><td><span class="tag-confirmed">มี Mockup</span></td></tr>
+    <tr><td>4</td><td><strong>UC-POS-004</strong></td><td>ระบบใช้โปรโมชั่นและส่วนลดอัตโนมัติ</td><td>ระบบ</td><td><span class="br-ref">หมวด 11</span></td><td><span class="tag-confirmed">มี Mockup</span></td></tr>
+    <tr><td>5</td><td><strong>UC-POS-005</strong></td><td>ใช้คูปองส่วนลด</td><td>พนักงานแคชเชียร์</td><td><span class="br-ref">PR-05</span></td><td><span class="tag-confirmed">มี Mockup</span></td></tr>
+    <tr><td>6</td><td><strong>UC-POS-006</strong></td><td>แลกของรางวัลจากคำสั่งซื้อ</td><td>พนักงานแคชเชียร์</td><td><span class="br-ref">หมวด 10</span></td><td><span class="tag-confirmed">มี Mockup</span></td></tr>
+    <tr><td>7</td><td><strong>UC-POS-007</strong></td><td>เลือกวิธีการรับสินค้า (รับเอง / จัดส่ง / แยกส่ง)</td><td>พนักงานแคชเชียร์</td><td><span class="br-ref">SHP-02</span> <span class="br-ref">SHP-06</span> <span class="br-ref">SHP-11</span></td><td><span class="tag-confirmed">มี Mockup</span></td></tr>
+    <tr><td>8</td><td><strong>UC-POS-008</strong></td><td>ชำระเงิน</td><td>พนักงานแคชเชียร์ + ลูกค้า</td><td><span class="br-ref">P-01</span> <span class="br-ref">CH-03</span></td><td><span class="tag-design">รอออกแบบ Modal</span></td></tr>
+    <tr><td>9</td><td><strong>UC-POS-009</strong></td><td>พิมพ์ใบคำสั่งซื้อและออกใบกำกับ</td><td>พนักงานแคชเชียร์</td><td><span class="br-ref">INV-04</span></td><td><span class="tag-confirmed">มี Mockup</span></td></tr>
+    <tr><td>10</td><td><strong>UC-POS-010</strong></td><td>หน้าจอลูกค้า (Customer Display)</td><td>ลูกค้าหน้าร้าน (ดู)</td><td>—</td><td><span class="tag-confirmed">มี Mockup</span></td></tr>
+    <tr><td>11</td><td><strong>UC-POS-011</strong></td><td>ลูกค้านิติบุคคล: วงเงินไม่พอ / มียอดค้าง</td><td>พนักงานแคชเชียร์ + หัวหน้าสาขา</td><td><span class="br-ref">หมวด 6</span> <span class="br-ref">CC-02</span> <span class="br-ref">NTF-06</span></td><td><span class="tag-confirmed">มี Mockup</span></td></tr>
+    <tr><td>12</td><td><strong>UC-POS-012</strong></td><td>เตือนคูปองใกล้หมดอายุ</td><td>พนักงานแคชเชียร์</td><td>—</td><td><span class="tag-confirmed">มี Mockup</span></td></tr>
+    <tr><td>13</td><td><strong>UC-POS-013</strong></td><td>ยกเลิกคำสั่งซื้อ / คืนสินค้าหน้าร้าน</td><td>พนักงานแคชเชียร์ + หัวหน้าสาขา</td><td><span class="br-ref">RTN-04</span> <span class="br-ref">RTN-05</span> <span class="br-ref">RTN-07</span></td><td><span class="tag-design">รอออกแบบ Modal</span></td></tr>
+  </tbody>
+</table>
+
+<h1>1. ข้อมูลเอกสารและการอนุมัติ</h1>
+<h2>1.1 ประวัติการแก้ไข</h2>
+<table>
+  <thead><tr><th style="width:80px">เวอร์ชัน</th><th style="width:110px">วันที่</th><th>รายละเอียดการเปลี่ยนแปลง</th><th style="width:90px">สถานะ</th></tr></thead>
+  <tbody>
+    <tr><td>1.0</td><td>16 พ.ค. 2569</td><td>ฉบับแรกของเอกสารโมดูล POS อ้างอิง Figma file POS-System และ Business Rules v2.2 ครอบคลุม 13 Use Cases พร้อมแนบ Mockup 7 หน้าจอ</td><td><span class="tag-confirmed">ปัจจุบัน</span></td></tr>
+  </tbody>
+</table>
+
+<h2>1.2 ผู้อนุมัติเอกสาร</h2>
+<table>
+  <thead><tr><th style="width:240px">บทบาท</th><th>ชื่อ-นามสกุล</th><th style="width:140px">วันที่อนุมัติ</th><th style="width:140px">ลายเซ็น</th></tr></thead>
+  <tbody>
+    <tr><td><strong>เจ้าของผลิตภัณฑ์ (YSC)</strong></td><td>____________________</td><td>____________</td><td>____________</td></tr>
+    <tr><td><strong>หัวหน้าฝ่ายขายหน้าร้าน (YSC)</strong></td><td>____________________</td><td>____________</td><td>____________</td></tr>
+    <tr><td><strong>หัวหน้าฝ่ายไอที (YSC)</strong></td><td>____________________</td><td>____________</td><td>____________</td></tr>
+    <tr><td><strong>UX/UI Designer (Adeptio)</strong></td><td>____________________</td><td>____________</td><td>____________</td></tr>
+    <tr><td><strong>ผู้จัดการโครงการ (Adeptio)</strong></td><td>____________________</td><td>____________</td><td>____________</td></tr>
+  </tbody>
+</table>
+
+<h1>2. วัตถุประสงค์เชิงธุรกิจ</h1>
+<p>ระบบ POS เป็น<strong>ระบบขายหน้าร้าน</strong>ของยงเจริญฯ ใช้โดยพนักงานแคชเชียร์ที่สาขา รองรับทั้งลูกค้า<strong>ขาจร (Walk-in)</strong>และลูกค้าสมาชิก (ทั่วไป + นิติบุคคลที่มีวงเงินเครดิต) — ต้องทำงานได้รวดเร็ว ใช้งานง่าย และเชื่อมกับสต็อกของคลังหน้าร้านและ ConX ERP แบบเวลาจริง</p>
+
+<table>
+  <thead><tr><th style="width:80px">รหัส</th><th>เป้าหมายธุรกิจ</th><th style="width:180px">ตัวชี้วัด (KPI)</th></tr></thead>
+  <tbody>
+    <tr><td><strong>BG-POS-1</strong></td><td>ลดเวลาในการขายต่อรายการ เพิ่ม Throughput ของแคชเชียร์</td><td>เวลาเฉลี่ยต่อบิล ≤ 90 วินาที</td></tr>
+    <tr><td><strong>BG-POS-2</strong></td><td>คำนวณส่วนลดและโปรโมชั่นถูกต้องแบบอัตโนมัติ ลดข้อผิดพลาด</td><td>การคำนวณตรง 100%</td></tr>
+    <tr><td><strong>BG-POS-3</strong></td><td>ลูกค้าสมาชิกได้รับสิทธิ์ (Tier, คะแนน, Coupon) ที่ POS เหมือนเว็บ</td><td>สิทธิ์สมาชิกตรงกันทุกช่องทาง</td></tr>
+    <tr><td><strong>BG-POS-4</strong></td><td>รองรับการสั่งซื้อแบบหลายโหมด: รับเอง / จัดส่ง / แยกส่ง</td><td>ครบทุกโหมดในระบบเดียว</td></tr>
+    <tr><td><strong>BG-POS-5</strong></td><td>ทำงานต่อเนื่องได้แม้เครือข่ายช้า / ขาดชั่วคราว</td><td>Offline mode ทำงานได้ ≥ 5 นาที ก่อนต้อง Sync</td></tr>
+    <tr><td><strong>BG-POS-6</strong></td><td>หน้าจอลูกค้า (Customer Display) สร้างความโปร่งใส ลดข้อโต้แย้ง</td><td>มีจอลูกค้าที่ทุกเครื่อง POS</td></tr>
+  </tbody>
+</table>
+
+<h1>3. ขอบเขตของงาน</h1>
+<h2>3.1 อยู่ในขอบเขต (In Scope)</h2>
+<ul>
+  <li><strong>การเข้าสู่ระบบ (Login)</strong> ของพนักงานแคชเชียร์ด้วย Username/Password</li>
+  <li><strong>การค้นหาและเลือกลูกค้า</strong> ด้วยเบอร์โทร / รหัสสมาชิก / ชื่อ / เลขทะเบียนนิติบุคคล</li>
+  <li><strong>การเพิ่มสินค้าลงตะกร้า</strong> ด้วยการสแกนบาร์โค้ดหรือค้นหา</li>
+  <li><strong>การคำนวณโปรโมชั่นและส่วนลดอัตโนมัติ</strong> ตามแคมเปญ + Tier ลูกค้า</li>
+  <li><strong>การใช้คูปอง</strong> ของลูกค้า</li>
+  <li><strong>การแลกของรางวัล</strong> จากคำสั่งซื้อ (Order Rewards)</li>
+  <li><strong>วิธีรับสินค้า 3 รูปแบบ</strong>: รับเองหน้าร้าน / จัดส่ง / แยกส่ง (Partial Delivery)</li>
+  <li><strong>การชำระเงิน 4 วิธี</strong>: เงินสด / โอน / บัตรเครดิต / วงเงินเครดิต</li>
+  <li><strong>การพิมพ์ใบคำสั่งซื้อและใบกำกับภาษี</strong></li>
+  <li><strong>หน้าจอลูกค้า (Customer Display)</strong></li>
+  <li><strong>การยกเลิกและคืนสินค้าหน้าร้าน</strong></li>
+  <li><strong>Offline Mode</strong> เบื้องต้น (ขายต่อเนื่องได้ ≥ 5 นาที)</li>
+</ul>
+
+<h2>3.2 ไม่อยู่ในขอบเขต (Out of Scope)</h2>
+<ul>
+  <li><strong>ระบบเงินสด (Cash Drawer)</strong> เปิด/ปิดและการรายงาน End-of-Day — เฟสถัดไป</li>
+  <li><strong>Hold/Recall Sale</strong> พักบิลและเรียกคืน — เฟสถัดไป</li>
+  <li><strong>Multi-store inventory transfer</strong> ทำผ่าน WMS ไม่ใช่ POS</li>
+  <li><strong>การลงทะเบียนสมาชิกใหม่ที่ POS</strong> — ใช้เว็บไซต์หรือพนักงาน CC แทน</li>
+</ul>
+
+<h1>4. ผู้มีส่วนได้ส่วนเสียและบทบาทผู้ใช้งาน</h1>
+<table>
+  <thead><tr><th style="width:200px">บทบาท</th><th>หน้าที่ในระบบ POS</th><th style="width:140px">สิทธิ์</th></tr></thead>
+  <tbody>
+    <tr><td><strong>พนักงานแคชเชียร์ (Cashier)</strong></td><td>ขายสินค้า เก็บเงิน พิมพ์ใบเสร็จ</td><td>ใช้งานหลัก</td></tr>
+    <tr><td><strong>หัวหน้าสาขา (Store Manager)</strong></td><td>อนุมัติส่วนลดพิเศษ ยกเลิกบิล จัดการลูกค้า</td><td>เต็มสิทธิ์</td></tr>
+    <tr><td><strong>ลูกค้าหน้าร้าน</strong></td><td>ดูข้อมูลผ่านหน้าจอลูกค้า ชำระเงิน</td><td>ดูอย่างเดียว</td></tr>
+    <tr><td><strong>ระบบ ConX ERP</strong></td><td>รับคำสั่งซื้อ ออกเลข SO/OD ออกใบกำกับ</td><td>API</td></tr>
+    <tr><td><strong>ระบบหลังบ้าน (Backoffice)</strong></td><td>ส่งข้อมูลสินค้า ลูกค้า สต็อกหน้าร้าน แคมเปญ</td><td>API</td></tr>
+  </tbody>
+</table>
+
+<h1>5. โครงสร้างหน้าจอ POS (Layout Anatomy)</h1>
+
+<p>หน้าจอหลักของ POS ทุกหน้าใช้<strong>โครงสร้างเดียวกัน</strong> เปลี่ยนเฉพาะเนื้อหาตามสถานการณ์ — โครงสร้างประกอบด้วย 5 ส่วน:</p>
+
+<div class="screen-figure">
+  <img src="ysc_screens/pos_sales_main.png" alt="หน้าจอหลัก POS โครงสร้าง 5 ส่วน">
+  <div class="screen-caption">
+    <span>หน้าจอหลัก POS — มีลูกค้า + มีสินค้า + รับเองหน้าร้าน</span>
+    <span class="ref">Figma node 23:906</span>
+  </div>
+</div>
+
+<table>
+  <thead><tr><th style="width:160px">ส่วน</th><th>เนื้อหา</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Top Bar</strong> (1920×82)</td><td>โลโก้, ชื่อสาขา, ผู้ใช้งาน, นาฬิกา, ปุ่ม Logout</td></tr>
+    <tr><td><strong>Header (#POS-001)</strong> (1500×92)</td><td>Search bar สำหรับสแกน/ค้นหาสินค้า, ปุ่มลัด</td></tr>
+    <tr><td><strong>Item Table (ตรงกลาง)</strong></td><td>รายการสินค้าในตะกร้า + รูป + จำนวน + ราคา + ปุ่มลบ</td></tr>
+    <tr><td><strong>Totals Bar (คำนวน)</strong> (1500×128)</td><td>ยอดรวม, ส่วนลด, ภาษี, ยอดสุทธิ, ปุ่ม "ชำระเงิน"</td></tr>
+    <tr><td><strong>Right Rail (420 wide)</strong></td><td>Panel ซ้อนกัน: Member → Promotion → Order Rewards → Coupons → Pickup/Packing → ปุ่ม "พิมพ์ใบคำสั่งซื้อ"</td></tr>
+  </tbody>
+</table>
+
+<div class="callout">
+  <strong>หลักการ State Variants:</strong> หน้าจอ Sales หลักมี <strong>14 State Variants</strong> ขึ้นกับ Parameter:
+  <ol style="margin-top:8px;margin-bottom:0">
+    <li><strong>การมีลูกค้า</strong> (มี / ไม่มี)</li>
+    <li><strong>การมีสินค้าในตะกร้า</strong> (มี / ไม่มี)</li>
+    <li><strong>Tier ลูกค้า</strong> (สมาชิกปกติ / Starter)</li>
+    <li><strong>สถานะวงเงิน</strong> (พอ / ไม่พอ / มียอดค้าง)</li>
+    <li><strong>โหมดรับสินค้า</strong> (รับเอง / จัดส่ง / แยกส่ง / รับเอง+บรรจุภัณฑ์)</li>
+    <li><strong>เงื่อนไขโปรโมชั่น</strong> (ครบ / ใกล้ครบ)</li>
+    <li><strong>คูปอง</strong> (ปกติ / ใกล้หมดอายุ)</li>
+  </ol>
+</div>
+
+<h1>6. สถานะปัจจุบัน (As-Is) และกระบวนการในอนาคต (To-Be)</h1>
+<h2>6.1 สถานะปัจจุบัน (As-Is)</h2>
+<ul>
+  <li>POS เดิมไม่เชื่อมกับระบบลูกค้า — สมาชิกไม่ได้รับคะแนน/Tier</li>
+  <li>ส่วนลดและโปรโมชั่นคำนวณด้วยมือ มีข้อผิดพลาดบ่อย</li>
+  <li>ไม่มีหน้าจอลูกค้า — ลูกค้าไม่เห็นรายการที่ขาย</li>
+  <li>ไม่มีระบบรับใบเสร็จและออกใบกำกับภาษีในจุดเดียว</li>
+  <li>ไม่รองรับการขายแบบจัดส่งจากหน้าร้าน</li>
+</ul>
+
+<h2>6.2 กระบวนการในอนาคต (To-Be)</h2>
+<ul>
+  <li><strong>POS ใหม่เชื่อม Backoffice และ ConX</strong> ทำงานเวลาจริง</li>
+  <li><strong>Auto-calculation</strong> โปรโมชั่นและคูปองทำงานอัตโนมัติ</li>
+  <li><strong>Customer Display</strong> ที่ทุกจุดขาย ความโปร่งใสสูง</li>
+  <li><strong>รองรับการขายแบบจัดส่ง</strong> สำหรับสินค้าที่ลูกค้าไม่ขนเองได้</li>
+  <li><strong>Offline Mode</strong> ขายต่อเนื่องได้แม้เครือข่ายช้า</li>
+</ul>
+
+<h1>7. ข้อกำหนดเชิงหน้าที่ — กรณีการใช้งาน (Use Cases) พร้อม Mockup</h1>
+
+<p>หัวข้อนี้ระบุรายละเอียดทั้ง 13 Use Cases ของ POS พร้อม<strong>แนบ Mockup จาก Figma</strong> ที่ตรงกับแต่ละกรณี — บางกรณีอ้างอิง State Variant ที่ตรงกับสถานการณ์นั้น</p>
+
+<!-- UC-POS-001 -->
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-POS-001</span><span class="uc-title">พนักงานแคชเชียร์เข้าสู่ระบบ</span></div>
+  <div class="uc-body">
+    <div class="screen-figure">
+      <img src="ysc_screens/pos_login.png" alt="หน้าจอ Login POS">
+      <div class="screen-caption">
+        <span>หน้าจอเข้าสู่ระบบ POS — ฟอร์ม Username + Password</span>
+        <span class="ref">Figma node 402:12824</span>
+      </div>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">จุดประสงค์</div><p style="margin:0">พนักงานแคชเชียร์เข้าสู่ระบบ POS ก่อนเริ่มการขาย</p></div>
+    <div class="uc-section"><div class="uc-section-label">เงื่อนไขก่อนเริ่มต้น</div><p style="margin:0">มีบัญชีผู้ใช้ในระบบ และเครื่อง POS เปิดอยู่</p></div>
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>เครื่อง POS แสดง <span class="screen-ref">หน้าจอเข้าสู่ระบบ</span> "ยินดีต้อนรับกลับมา"</li>
+        <li>พนักงานกรอก<strong>ชื่อผู้ใช้หรืออีเมล</strong></li>
+        <li>พนักงานกรอก<strong>รหัสผ่าน</strong> (ปุ่ม Show/Hide ไอคอน eye)</li>
+        <li>พนักงานกดปุ่ม "เข้าสู่ระบบ"</li>
+        <li>ระบบตรวจสอบบัญชี + สิทธิ์ของผู้ใช้</li>
+        <li>หากผ่าน ระบบเปิด<strong>หน้าจอ Sales หลัก</strong> (ไม่มีลูกค้า ไม่มีสินค้า)</li>
+        <li>หน้าจอแสดงชื่อพนักงานและสาขาที่ Top Bar</li>
+      </ol>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนทางเลือก</div>
+      <div class="uc-alt"><strong>3a.</strong> พนักงานกด "ลืมรหัสผ่าน" ระบบแสดงข้อความให้ติดต่อหัวหน้า (รีเซ็ตด้วย Admin)</div>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนกรณีผิดพลาด</div>
+      <div class="uc-exc"><strong>5-E.</strong> Login ผิด 3 ครั้ง ระบบล็อคบัญชี 15 นาที <span class="tag-pending">รอยืนยัน</span></div>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-POS-001-01:</strong> เฉพาะบุคลากรที่ได้รับอนุญาตเท่านั้นเข้าได้</div>
+      <div class="uc-ac"><strong>AC-POS-001-02:</strong> Session มีอายุ 8 ชั่วโมง (กะการทำงาน)</div>
+      <div class="uc-ac"><strong>AC-POS-001-03:</strong> Activity Log บันทึก Login/Logout ทุกครั้ง</div>
+    </div>
+  </div>
+</div>
+
+<!-- UC-POS-002 -->
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-POS-002</span><span class="uc-title">ค้นหาและเลือกลูกค้า</span></div>
+  <div class="uc-body">
+    <div class="uc-section"><div class="uc-section-label">จุดประสงค์</div><p style="margin:0">ผูกคำสั่งซื้อกับลูกค้าสมาชิก เพื่อให้ได้สิทธิ์ Tier, คะแนนสะสม, Coupon</p></div>
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>พนักงานกดปุ่ม "ค้นหาลูกค้า" ที่ Right Rail Panel "Member"</li>
+        <li>ระบบเปิด Modal ค้นหา</li>
+        <li>พนักงานกรอก: เบอร์โทร / รหัสสมาชิก / ชื่อ / เลขทะเบียนนิติบุคคล</li>
+        <li>ระบบแสดงผลค้นหา</li>
+        <li>พนักงานเลือกลูกค้า ระบบผูกกับคำสั่งซื้อปัจจุบัน</li>
+        <li>Panel "Member" แสดง: ชื่อ, Tier, คะแนน, วงเงินคงเหลือ (กรณีนิติบุคคล)</li>
+      </ol>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนทางเลือก</div>
+      <div class="uc-alt"><strong>4a.</strong> ไม่พบลูกค้า — พนักงานข้ามและขายให้ลูกค้าขาจร (Walk-in)</div>
+      <div class="uc-alt"><strong>4b.</strong> ลูกค้าต้องการสมัครสมาชิก — พนักงานแนะนำให้สมัครผ่านเว็บไซต์หรือโทรหา CC (ไม่รองรับการสมัครที่ POS)</div>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-POS-002-01:</strong> ค้นหาตอบสนอง ≤ 1 วินาที</div>
+      <div class="uc-ac"><strong>AC-POS-002-02:</strong> รองรับการเปลี่ยนลูกค้า (Switch) ระหว่างขาย — ยกเลิกราคาสมาชิกเดิมและคำนวณใหม่</div>
+      <div class="uc-ac"><strong>AC-POS-002-03:</strong> แสดงสินค้ายอดนิยม 10 อันดับของลูกค้า (Median 6 เดือน) ตาม <span class="br-ref">CC-05</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- UC-POS-003 -->
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-POS-003</span><span class="uc-title">สแกนบาร์โค้ดหรือค้นหาสินค้าเพิ่มลงตะกร้า</span></div>
+  <div class="uc-body">
+    <div class="screen-figure">
+      <img src="ysc_screens/pos_overview.png" alt="ภาพรวม POS System">
+      <div class="screen-caption">
+        <span>ภาพรวม POS System — แสดง 14 State Variants ของหน้า Sales</span>
+        <span class="ref">Figma node 23:778</span>
+      </div>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>พนักงานสแกนบาร์โค้ดสินค้าด้วยเครื่อง Scanner (USB / Bluetooth)</li>
+        <li>ระบบค้นหาสินค้าและเพิ่มในตะกร้า 1 ชิ้น</li>
+        <li>หากสินค้าเดียวกันมีหลายบาร์โค้ด ระบบจัดการตาม <span class="br-ref">PRD-03</span></li>
+        <li>รายการสินค้าใหม่แสดงในตาราง พร้อมรูป, ชื่อ, SKU, ราคา/ชิ้น, จำนวน, ยอดรวม</li>
+        <li>พนักงานปรับจำนวน (+/-) หรือลบรายการ ระบบคำนวณใหม่</li>
+      </ol>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนทางเลือก</div>
+      <div class="uc-alt"><strong>1a.</strong> สแกนไม่ได้ พนักงานพิมพ์ชื่อหรือ SKU ใน Search Bar Header ระบบแสดงผลค้นหา</div>
+      <div class="uc-alt"><strong>2a.</strong> สินค้าไม่อยู่ในสต็อกหน้าร้าน — ระบบแสดง "สั่งจัดส่งจากคลังออนไลน์" และเปลี่ยนโหมดเป็นจัดส่ง</div>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนกรณีผิดพลาด</div>
+      <div class="uc-exc"><strong>1-E.</strong> ไม่พบบาร์โค้ดในระบบ ระบบเตือน "ไม่พบสินค้า" และให้พนักงานค้นหาด้วยมือ</div>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-POS-003-01:</strong> สแกน 1 ครั้ง = เพิ่ม 1 ชิ้น (สแกนซ้ำ = เพิ่ม)</div>
+      <div class="uc-ac"><strong>AC-POS-003-02:</strong> ราคาที่แสดงเป็นราคาตามระดับของลูกค้า (P1-P5)</div>
+      <div class="uc-ac"><strong>AC-POS-003-03:</strong> สต็อกตัดทันทีในระบบเมื่อสแกน (Hold) — คืนเมื่อยกเลิกบิล</div>
+    </div>
+  </div>
+</div>
+
+<!-- UC-POS-004 -->
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-POS-004</span><span class="uc-title">ระบบใช้โปรโมชั่นและส่วนลดอัตโนมัติ</span></div>
+  <div class="uc-body">
+    <div class="uc-section"><div class="uc-section-label">จุดประสงค์</div><p style="margin:0">ระบบคำนวณส่วนลดและโปรโมชั่นอัตโนมัติเมื่อตรงเงื่อนไข ไม่ต้องให้พนักงานคำนวณเอง</p></div>
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>ทุกครั้งที่มีการเปลี่ยนแปลงตะกร้า (เพิ่ม/ลบ/เปลี่ยนจำนวน) — ระบบ Recalculate</li>
+        <li>ตรวจสอบ<strong>แคมเปญที่ใช้ได้</strong>: ส่วนลด %, ส่วนลดคงที่, Buy X Get Y, ตามระดับสมาชิก</li>
+        <li>เลือกแคมเปญที่ให้ส่วนลดสูงสุด (กรณีหลายแคมเปญทับซ้อน)</li>
+        <li>Panel "Promotion" แสดงแคมเปญที่ใช้และยอดส่วนลด</li>
+        <li>กรณี Buy X Get Y — ระบบเพิ่มของแถมในตะกร้าโดยอัตโนมัติและแสดงใน Panel "ของแถม"</li>
+      </ol>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนทางเลือก</div>
+      <div class="uc-alt"><strong>2a.</strong> ใกล้ถึงเงื่อนไขโปรโมชั่น (เช่น ซื้ออีก ฿280 รับลด ฿250) ระบบแสดง<strong>Pop-up "ใกล้ได้รับโปรโมชันเพิ่มเติม!"</strong> (Figma node 1001:21099)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-POS-004-01:</strong> การคำนวณตรงกัน 100% กับเว็บไซต์และ Backoffice</div>
+      <div class="uc-ac"><strong>AC-POS-004-02:</strong> Pre-Order ไม่ได้รับโปรโมชั่นใดๆ (ตาม Promotion BRD)</div>
+      <div class="uc-ac"><strong>AC-POS-004-03:</strong> เวลาคำนวณ ≤ 1 วินาที</div>
+    </div>
+  </div>
+</div>
+
+<!-- UC-POS-005 -->
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-POS-005</span><span class="uc-title">ใช้คูปองส่วนลด</span></div>
+  <div class="uc-body">
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>ลูกค้าให้รหัสคูปองกับพนักงาน</li>
+        <li>พนักงานกดปุ่ม "ใช้คูปอง" ที่ Panel "คูปองส่วนลด"</li>
+        <li>พนักงานกรอกรหัสคูปอง</li>
+        <li>ระบบตรวจสอบ: รหัสมี / ไม่หมดอายุ / ลูกค้าใช้ได้ / เงื่อนไขผ่าน</li>
+        <li>กรณีผ่าน ระบบใช้คูปองและคำนวณยอดใหม่ Panel แสดงคูปองที่ใช้</li>
+      </ol>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนกรณีผิดพลาด</div>
+      <div class="uc-exc"><strong>4-E.</strong> คูปองหมดอายุ / ไม่ตรงเงื่อนไข ระบบแสดง<strong>เหตุผล</strong>และไม่ใช้</div>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-POS-005-01:</strong> ใช้คูปองได้ครั้งละ 1 ใบต่อบิล <span class="tag-pending">รอยืนยัน</span></div>
+      <div class="uc-ac"><strong>AC-POS-005-02:</strong> คูปองที่ใช้แล้วลดจำนวนคงเหลือใน CRM ทันที</div>
+    </div>
+  </div>
+</div>
+
+<!-- UC-POS-006 -->
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-POS-006</span><span class="uc-title">แลกของรางวัลจากคำสั่งซื้อ</span></div>
+  <div class="uc-body">
+    <div class="uc-section"><div class="uc-section-label">จุดประสงค์</div><p style="margin:0">ลูกค้าใช้คะแนนสะสมแลกของรางวัลจาก Rewards Catalog หรือรับของรางวัลตามเงื่อนไขคำสั่งซื้อ</p></div>
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>Panel "ของรางวัลจากคำสั่งซื้อ" แสดงรายการของรางวัลที่ลูกค้ามีสิทธิ์ได้รับ</li>
+        <li>พนักงานเลือกของรางวัลที่ลูกค้าต้องการ</li>
+        <li>ระบบเพิ่มของรางวัลในตะกร้าและตัดคะแนน/สิทธิ์ที่ใช้</li>
+      </ol>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-POS-006-01:</strong> ของรางวัลตัดสต็อกจากคลัง Reward (ไม่ใช่คลังหน้าร้าน)</div>
+      <div class="uc-ac"><strong>AC-POS-006-02:</strong> คะแนนคงเหลือลดทันทีเมื่อแลก</div>
+    </div>
+  </div>
+</div>
+
+<!-- UC-POS-007 -->
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-POS-007</span><span class="uc-title">เลือกวิธีการรับสินค้า (รับเอง / จัดส่ง / แยกส่ง)</span></div>
+  <div class="uc-body">
+    <div class="screen-figure">
+      <img src="ysc_screens/pos_sales_shipping.png" alt="POS โหมดจัดส่ง">
+      <div class="screen-caption">
+        <span>POS — โหมดจัดส่ง (Shipping) มีลูกค้า + มีสินค้า</span>
+        <span class="ref">Figma node 419:10807</span>
+      </div>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">จุดประสงค์</div><p style="margin:0">ลูกค้าเลือกว่าจะรับสินค้าหน้าร้าน หรือให้จัดส่งไปที่อยู่</p></div>
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>Panel "การรับสินค้า" แสดง 3 ทางเลือก:
+          <ul style="margin:6px 0 0 18px">
+            <li><strong>รับเองหน้าร้าน</strong> (ค่าจัดส่ง 0)</li>
+            <li><strong>จัดส่ง</strong> (เลือก Carrier ภายในหรือภายนอก ตาม <span class="br-ref">SHP-02, SHP-03</span>)</li>
+            <li><strong>แยกส่ง</strong> (Partial Delivery — บางส่วนรับเอง บางส่วนจัดส่ง) ตาม <span class="br-ref">SHP-11</span></li>
+          </ul>
+        </li>
+        <li>พนักงานเลือก กรณีจัดส่ง: เลือกที่อยู่ของลูกค้า / เพิ่มที่อยู่ใหม่ / เลือก Carrier</li>
+        <li>กรณีแยกส่ง: พนักงานเลือกสินค้าที่จะส่งและสินค้าที่รับเอง</li>
+        <li>ระบบคำนวณค่าจัดส่งและแสดงในยอดรวม</li>
+      </ol>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-POS-007-01:</strong> สินค้าแตกง่าย (Fragile) คิดค่าบรรจุ 5-10 บาท/ชิ้น ตาม <span class="br-ref">SHP-06</span></div>
+      <div class="uc-ac"><strong>AC-POS-007-02:</strong> Self-Pickup ไม่ใช้กับ POS (สินค้าอยู่ในมือลูกค้าทันที)</div>
+      <div class="uc-ac"><strong>AC-POS-007-03:</strong> Partial Delivery สร้าง Shipment หลายรายการ อ้างอิงรหัสคำสั่งซื้อเดิม</div>
+    </div>
+  </div>
+</div>
+
+<!-- UC-POS-008 -->
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-POS-008</span><span class="uc-title">ชำระเงิน</span></div>
+  <div class="uc-body">
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>พนักงานกดปุ่ม "ชำระเงิน" ที่ Totals Bar</li>
+        <li>ระบบเปิด Modal เลือกวิธีชำระเงิน 4 รูปแบบ ตาม <span class="br-ref">P-01 ถึง P-08</span>:
+          <ul style="margin:6px 0 0 18px">
+            <li><strong>เงินสด</strong> (เฉพาะ POS — กรอกจำนวนเงินรับ + คำนวณเงินทอน)</li>
+            <li><strong>บัตรเครดิต/เดบิต</strong> — เชื่อม EDC + บวก 3%</li>
+            <li><strong>โอนเงิน</strong> (PromptPay QR) — สแกนสลิปยืนยัน</li>
+            <li><strong>วงเงินเครดิต</strong> — เฉพาะลูกค้านิติบุคคลที่มีวงเงิน</li>
+          </ul>
+        </li>
+        <li>พนักงานเลือกวิธี รับเงินจากลูกค้า</li>
+        <li>ระบบบันทึกการชำระเงินและเปลี่ยนสถานะคำสั่งซื้อ</li>
+        <li>ระบบส่งคำสั่งซื้อไปยัง ConX และได้รหัส SO กลับ</li>
+      </ol>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนทางเลือก</div>
+      <div class="uc-alt"><strong>2a.</strong> ลูกค้าจ่ายแบบผสม (เช่น เงินสด + บัตร) ระบบรองรับ Split Payment</div>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-POS-008-01:</strong> ข้อมูลบัตรเครดิตไม่ถูกเก็บในระบบ POS</div>
+      <div class="uc-ac"><strong>AC-POS-008-02:</strong> รองรับ Split Payment</div>
+      <div class="uc-ac"><strong>AC-POS-008-03:</strong> เงินสดบันทึก<strong>เงินรับ</strong>และ<strong>เงินทอน</strong>ใน Activity Log</div>
+    </div>
+  </div>
+</div>
+
+<!-- UC-POS-009 -->
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-POS-009</span><span class="uc-title">พิมพ์ใบคำสั่งซื้อและออกใบกำกับ</span></div>
+  <div class="uc-body">
+    <div class="screen-figure">
+      <img src="ysc_screens/pos_order_summary.png" alt="Order Summary Modal" style="max-width:500px;margin:0 auto">
+      <div class="screen-caption">
+        <span>Modal สรุปคำสั่งซื้อก่อนพิมพ์ — รวมรายการ ของแถม รางวัล ส่วนลด</span>
+        <span class="ref">Figma node 1003:21390</span>
+      </div>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>ระบบเปิด<strong>Modal สรุปคำสั่งซื้อ</strong>หลังการชำระเงิน แสดง:
+          <ul style="margin:6px 0 0 18px">
+            <li>หัวข้อแยกตามโหมด (รับเอง / จัดส่ง / แยกส่ง)</li>
+            <li>รายการสินค้าที่สั่งซื้อ + ของแถม + ของรางวัล</li>
+            <li>บรรจุภัณฑ์ที่ใช้ (Fragile)</li>
+            <li>สรุปยอด: ยอดรวม, ส่วนลด, ค่าจัดส่ง, ค่าบรรจุภัณฑ์, ยอดสุทธิ</li>
+          </ul>
+        </li>
+        <li>พนักงานตรวจสอบความถูกต้อง</li>
+        <li>กดปุ่ม "พิมพ์ใบคำสั่งซื้อ" ระบบสั่งพิมพ์ใบคำสั่งซื้อ (Receipt Printer)</li>
+        <li>ระบบขอประเภทใบกำกับภาษี (Y / N / M / A) ตาม <span class="br-ref">INV-04</span></li>
+        <li>ระบบสั่งพิมพ์ใบกำกับภาษีตามประเภทที่เลือก</li>
+        <li>ระบบส่งสำเนาใบกำกับเป็น PDF ไปอีเมลลูกค้า (กรณีเป็นสมาชิก)</li>
+      </ol>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-POS-009-01:</strong> ใบคำสั่งซื้อพิมพ์ภายใน 3 วินาที</div>
+      <div class="uc-ac"><strong>AC-POS-009-02:</strong> ใบกำกับภาษีออกจาก ConX เลขที่ตรงกัน</div>
+      <div class="uc-ac"><strong>AC-POS-009-03:</strong> รองรับการพิมพ์ซ้ำ (Reprint) ภายใน 24 ชั่วโมง</div>
+    </div>
+  </div>
+</div>
+
+<!-- UC-POS-010 -->
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-POS-010</span><span class="uc-title">หน้าจอลูกค้า (Customer Display)</span></div>
+  <div class="uc-body">
+    <div class="screen-figure">
+      <img src="ysc_screens/pos_customer_display.png" alt="หน้าจอลูกค้า (Customer Display)">
+      <div class="screen-caption">
+        <span>หน้าจอลูกค้า (Customer Display) — แสดงรายการสินค้าและยอดให้ลูกค้าเห็น</span>
+        <span class="ref">Figma node 981:24345</span>
+      </div>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">จุดประสงค์</div><p style="margin:0">แสดงข้อมูลให้ลูกค้าหน้าร้านเห็นแบบเวลาจริง — เพิ่มความโปร่งใส ลดข้อโต้แย้ง</p></div>
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>เมื่อพนักงาน Login จอลูกค้าแสดง "ยินดีต้อนรับ"</li>
+        <li>ระหว่างขาย จอลูกค้าแสดง:
+          <ul style="margin:6px 0 0 18px">
+            <li><strong>ยอดรวมสุทธิ</strong> (TOTAL) ขนาดใหญ่</li>
+            <li><strong>รายละเอียดสรุป</strong>: ยอดรวม, ยอดของแถม, ส่วนลดโปรโมชั่น, ส่วนลดท้ายบิล, ยอดชำระสุทธิ</li>
+            <li><strong>ของแถม / สิทธิประโยชน์ที่คุณได้รับ</strong> (Reward chips)</li>
+          </ul>
+        </li>
+        <li>เมื่อพนักงานชำระเงินสำเร็จ จอลูกค้าแสดง "ขอบคุณค่ะ/ครับ" + รหัสคำสั่งซื้อ</li>
+      </ol>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-POS-010-01:</strong> จอลูกค้า Sync กับจอแคชเชียร์เวลาจริง (delay ≤ 0.5 วินาที)</div>
+      <div class="uc-ac"><strong>AC-POS-010-02:</strong> รองรับการแสดงผลบนจอที่ 2 (Dual Display หรือ Pole Display)</div>
+    </div>
+  </div>
+</div>
+
+<!-- UC-POS-011 -->
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-POS-011</span><span class="uc-title">ลูกค้านิติบุคคล: วงเงินไม่พอ / มียอดค้าง</span></div>
+  <div class="uc-body">
+    <div class="screen-figure">
+      <img src="ysc_screens/pos_credit_warning.png" alt="POS วงเงินไม่พอ / มียอดค้าง">
+      <div class="screen-caption">
+        <span>POS — แจ้งเตือนวงเงินไม่พอ / มียอดค้างชำระ</span>
+        <span class="ref">Figma node 284:6909 / 764:19332</span>
+      </div>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">จุดประสงค์</div><p style="margin:0">ป้องกันการขายเกินวงเงินหรือกรณีลูกค้ามียอดค้างชำระเกินกำหนด</p></div>
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>ระบบตรวจสอบวงเงินคงเหลือและสถานะการชำระเงินของลูกค้านิติบุคคล</li>
+        <li><strong>กรณีวงเงินไม่พอ</strong>: Panel "Member" แสดงสีแดง + ข้อความ "วงเงินไม่เพียงพอ" + Modal เตือน</li>
+        <li><strong>กรณีมียอดค้างเกินกำหนด</strong>: Panel แสดง "มียอดค้างชำระเกินกำหนด" + เลขที่บิลที่ค้าง</li>
+        <li>ระบบเสนอ 3 ทางเลือก ตาม <span class="br-ref">หมวด 6</span>:
+          <ul style="margin:6px 0 0 18px">
+            <li>ลูกค้าชำระส่วนเกินด้วยวิธีอื่น (เงินสด/บัตร/โอน)</li>
+            <li>ลดสินค้าให้อยู่ในวงเงิน</li>
+            <li>หัวหน้าสาขาขออนุมัติวงเงินชั่วคราว ตาม <span class="br-ref">CC-02</span></li>
+          </ul>
+        </li>
+        <li>หัวหน้าสาขา Approve ระบบเพิ่มวงเงินชั่วคราวเฉพาะบิลนี้</li>
+      </ol>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-POS-011-01:</strong> วงเงินคงเหลือตรงกับ ConX เวลาจริง</div>
+      <div class="uc-ac"><strong>AC-POS-011-02:</strong> Supervisor Alert ส่งทันทีเมื่อขออนุมัติ ตาม <span class="br-ref">NTF-06</span></div>
+      <div class="uc-ac"><strong>AC-POS-011-03:</strong> ตารางอำนาจการอนุมัติ <span class="tag-pending">รอยืนยัน P-02</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- UC-POS-012 -->
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-POS-012</span><span class="uc-title">เตือนคูปองใกล้หมดอายุ</span></div>
+  <div class="uc-body">
+    <div class="uc-section"><div class="uc-section-label">จุดประสงค์</div><p style="margin:0">แจ้งลูกค้าเมื่อมีคูปองใกล้หมดอายุที่ยังไม่ได้ใช้</p></div>
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>เมื่อพนักงานเลือกลูกค้า ระบบตรวจคูปองคงเหลือ</li>
+        <li>หากมีคูปองที่จะหมดอายุภายใน 7 วัน Panel "คูปองส่วนลด" แสดงสีเหลือง + รายการคูปอง</li>
+        <li>พนักงานแจ้งลูกค้าและช่วยใช้คูปองถ้าตรงเงื่อนไข</li>
+      </ol>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-POS-012-01:</strong> เตือนคูปองที่จะหมดอายุภายใน 7 วันเท่านั้น</div>
+    </div>
+  </div>
+</div>
+
+<!-- UC-POS-013 -->
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-POS-013</span><span class="uc-title">ยกเลิกคำสั่งซื้อ / คืนสินค้าหน้าร้าน</span></div>
+  <div class="uc-body">
+    <div class="uc-section"><div class="uc-section-label">จุดประสงค์</div><p style="margin:0">ยกเลิกบิลที่ยังไม่ปิด หรือคืนสินค้าหลังจ่ายแล้ว</p></div>
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li><strong>กรณีบิลยังไม่ปิด (ยังไม่ Print):</strong>
+          <ul style="margin:6px 0 0 18px">
+            <li>พนักงานกดปุ่ม "ยกเลิกบิล"</li>
+            <li>กรอกเหตุผล หัวหน้าสาขา Approve</li>
+            <li>ระบบคืนสต็อกและล้างตะกร้า</li>
+          </ul>
+        </li>
+        <li><strong>กรณีบิลปิดแล้ว (คืนสินค้า):</strong>
+          <ul style="margin:6px 0 0 18px">
+            <li>พนักงานสแกนใบเสร็จเดิม</li>
+            <li>ตรวจสอบระยะเวลา: บุคคลธรรมดา 7 วัน / นิติบุคคล 14 วัน ตาม <span class="br-ref">RTN-04</span></li>
+            <li>เลือกสินค้าที่คืนและจำนวน</li>
+            <li>หัวหน้าสาขา Approve การคืน</li>
+            <li>กรณีไม่ใช่ความผิดบริษัท คิด Restocking Fee 10% ตาม <span class="br-ref">RTN-05</span></li>
+            <li>ระบบสร้างใบลดหนี้ (CN) ตาม <span class="br-ref">RTN-07</span></li>
+            <li>คืนเงินผ่านช่องทางเดิม (เงินสด/บัตร) ตาม <span class="br-ref">RTN-06</span></li>
+          </ul>
+        </li>
+      </ol>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-POS-013-01:</strong> การคืนสินค้าทุกครั้งต้องอนุมัติจากหัวหน้าสาขา</div>
+      <div class="uc-ac"><strong>AC-POS-013-02:</strong> สินค้าคืนเข้าคลังหน้าร้านตามเดิม ตาม <span class="br-ref">RTN-09</span></div>
+      <div class="uc-ac"><strong>AC-POS-013-03:</strong> ใบ CN ออกจาก ConX และเลขตรงกัน</div>
+    </div>
+  </div>
+</div>
+
+<h1>8. การออกแบบประสบการณ์ผู้ใช้ (Screen Inventory)</h1>
+<table>
+  <thead><tr><th style="width:140px">รหัสหน้าจอ</th><th>ชื่อหน้าจอ</th><th>หน้าที่หลัก</th><th style="width:90px">Figma Node</th></tr></thead>
+  <tbody>
+    <tr><td><strong>SCR-POS-001</strong></td><td>หน้าจอเข้าสู่ระบบ POS</td><td>Login พนักงานแคชเชียร์</td><td>402:12824</td></tr>
+    <tr><td><strong>SCR-POS-002</strong></td><td>หน้าจอ Sales หลัก (Empty)</td><td>ไม่มีลูกค้า ไม่มีสินค้า (เริ่มต้น)</td><td>262:7042</td></tr>
+    <tr><td><strong>SCR-POS-003</strong></td><td>หน้าจอ Sales — มีลูกค้า มีสินค้า รับเอง</td><td>โหมดรับเองหน้าร้าน</td><td>23:906</td></tr>
+    <tr><td><strong>SCR-POS-004</strong></td><td>หน้าจอ Sales — โหมดจัดส่ง</td><td>สั่งจัดส่ง</td><td>419:10807</td></tr>
+    <tr><td><strong>SCR-POS-005</strong></td><td>หน้าจอ Sales — โหมดแยกส่ง</td><td>Partial Delivery</td><td>284:7895</td></tr>
+    <tr><td><strong>SCR-POS-006</strong></td><td>หน้าจอ Sales — Starter Member ไม่มีวงเงิน</td><td>ลูกค้าใหม่ ไม่มีเครดิต</td><td>274:8758</td></tr>
+    <tr><td><strong>SCR-POS-007</strong></td><td>หน้าจอ Sales — Starter Member มีวงเงิน</td><td>ลูกค้าใหม่ มีเครดิต</td><td>500:11641</td></tr>
+    <tr><td><strong>SCR-POS-008</strong></td><td>หน้าจอ Sales — วงเงินไม่พอ</td><td>เตือน Insufficient Credit</td><td>284:6909</td></tr>
+    <tr><td><strong>SCR-POS-009</strong></td><td>หน้าจอ Sales — มียอดค้างชำระ</td><td>เตือน Overdue</td><td>764:19332</td></tr>
+    <tr><td><strong>SCR-POS-010</strong></td><td>หน้าจอ Sales — เตือนคูปองใกล้หมดอายุ</td><td>Coupon Expiring</td><td>764:20719</td></tr>
+    <tr><td><strong>SCR-POS-011</strong></td><td>หน้าจอ Sales — กับ Packing</td><td>มีบรรจุภัณฑ์เพิ่ม</td><td>948:23095 / 948:25013</td></tr>
+    <tr><td><strong>SCR-POS-012</strong></td><td>หน้าจอลูกค้า (Customer Display)</td><td>จอด้านลูกค้า</td><td>981:24345</td></tr>
+    <tr><td><strong>SCR-POS-013</strong></td><td>Modal สรุปคำสั่งซื้อ</td><td>ก่อนพิมพ์ใบเสร็จ</td><td>1003:21390</td></tr>
+    <tr><td><strong>SCR-POS-014</strong></td><td>Pop-up ใกล้ได้รับโปรโมชั่น</td><td>Upsell prompt</td><td>1001:21099</td></tr>
+    <tr><td><strong>SCR-POS-015</strong></td><td>Modal ค้นหาลูกค้า</td><td>ค้นหาด้วยเบอร์/รหัส</td><td><span class="tag-design">รอออกแบบ</span></td></tr>
+    <tr><td><strong>SCR-POS-016</strong></td><td>Modal เลือกวิธีชำระเงิน</td><td>4 วิธี + Split Payment</td><td><span class="tag-design">รอออกแบบ</span></td></tr>
+    <tr><td><strong>SCR-POS-017</strong></td><td>Modal ยกเลิก / คืนสินค้า</td><td>Cancel/Return flow</td><td><span class="tag-design">รอออกแบบ</span></td></tr>
+  </tbody>
+</table>
+
+<h1>9. กฎเกณฑ์เชิงธุรกิจ — อ้างอิงเอกสารแม่บท</h1>
+<div class="callout"><strong>หมายเหตุ:</strong> กฎฉบับเต็มอยู่ใน <a href="ysc_business_rules.html" style="color:#1E3A5F;font-weight:700">ysc_business_rules.html v2.2</a></div>
+<table>
+  <thead><tr><th style="width:130px">รหัส</th><th>กฎเกณฑ์ที่ใช้ใน POS</th></tr></thead>
+  <tbody>
+    <tr><td><span class="br-ref">CH-03</span></td><td>POS: รายละเอียดวิธีการชำระเงิน <span class="tag-pending">P-11</span></td></tr>
+    <tr><td><span class="br-ref">P-01 ถึง P-08</span></td><td>การชำระเงิน 4 วิธี (POS เพิ่มเงินสด)</td></tr>
+    <tr><td><span class="br-ref">หมวด 6</span></td><td>กรณีลูกค้าใช้เงินเกินวงเงิน</td></tr>
+    <tr><td><span class="br-ref">หมวด 10</span></td><td>ระดับสมาชิก คะแนน Tier ราคา P1-P5</td></tr>
+    <tr><td><span class="br-ref">หมวด 11</span></td><td>โปรโมชั่นและคูปอง</td></tr>
+    <tr><td><span class="br-ref">INV-04</span></td><td>ใบกำกับ Y/N/M/A</td></tr>
+    <tr><td><span class="br-ref">SHP-02, SHP-03, SHP-11</span></td><td>วิธีจัดส่ง (สาย A/B/C, Carrier ภายนอก, Partial)</td></tr>
+    <tr><td><span class="br-ref">SHP-06</span></td><td>ค่าบรรจุภัณฑ์สินค้าแตกง่าย 5-10 บาท/ชิ้น</td></tr>
+    <tr><td><span class="br-ref">RTN-04 ถึง RTN-09</span></td><td>การคืนสินค้า CN-DN Restocking Fee</td></tr>
+    <tr><td><span class="br-ref">POS-01 ถึง POS-08</span></td><td>POS Operations (จากหมวด 16.2)</td></tr>
+    <tr><td><span class="br-ref">PRD-03</span></td><td>1 SKU มีหลายบาร์โค้ดได้</td></tr>
+    <tr><td><span class="br-ref">CC-05</span></td><td>สินค้ายอดนิยม 10 อันดับของลูกค้า</td></tr>
+    <tr><td><span class="br-ref">NTF-06</span></td><td>Supervisor Alert กรณีขออนุมัติ</td></tr>
+  </tbody>
+</table>
+
+<h1>10. การเชื่อมต่อระบบภายนอก (Integration)</h1>
+<table>
+  <thead><tr><th style="width:140px">ระบบ</th><th>ข้อมูล</th><th style="width:120px">ทิศทาง</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Backoffice OMS</strong></td><td>คำสั่งซื้อจาก POS ส่งเข้าระบบกลาง</td><td>POS → OMS</td></tr>
+    <tr><td><strong>Backoffice PRD</strong></td><td>ข้อมูลสินค้า ราคา บาร์โค้ด สต็อกหน้าร้าน</td><td>PRD → POS</td></tr>
+    <tr><td><strong>Backoffice CRM</strong></td><td>ข้อมูลลูกค้า Tier วงเงิน คะแนน คูปอง</td><td>CRM ↔ POS</td></tr>
+    <tr><td><strong>Backoffice Promotion</strong></td><td>แคมเปญและเงื่อนไข</td><td>Promotion → POS</td></tr>
+    <tr><td><strong>ConX ERP</strong></td><td>รหัส SO/OD ใบกำกับภาษี การยืนยันชำระ</td><td>POS ↔ ConX</td></tr>
+    <tr><td><strong>EDC (Credit Card Terminal)</strong></td><td>การชำระบัตรเครดิต</td><td>POS → EDC</td></tr>
+    <tr><td><strong>Receipt Printer</strong></td><td>พิมพ์ใบคำสั่งซื้อและใบกำกับ</td><td>POS → Printer</td></tr>
+    <tr><td><strong>Barcode Scanner</strong></td><td>สแกนบาร์โค้ด</td><td>Scanner → POS</td></tr>
+    <tr><td><strong>Cash Drawer</strong></td><td>เปิดอัตโนมัติเมื่อรับเงินสด</td><td>POS → Drawer</td></tr>
+    <tr><td><strong>Customer Display</strong></td><td>จอแสดงข้อมูลให้ลูกค้า</td><td>POS → Display</td></tr>
+  </tbody>
+</table>
+
+<h1>11. อุปกรณ์ฮาร์ดแวร์ (Hardware)</h1>
+<table>
+  <thead><tr><th style="width:200px">อุปกรณ์</th><th>สเปคขั้นต่ำ</th></tr></thead>
+  <tbody>
+    <tr><td><strong>เครื่อง POS</strong></td><td>Touch Screen 15-17" / RAM 8GB / Windows หรือ Linux POS</td></tr>
+    <tr><td><strong>จอลูกค้า (Customer Display)</strong></td><td>หน้าจอ 10-15" Pole Display หรือ Dual Monitor</td></tr>
+    <tr><td><strong>Barcode Scanner</strong></td><td>USB / Bluetooth รองรับ 1D + 2D</td></tr>
+    <tr><td><strong>Receipt Printer</strong></td><td>Thermal 80mm รองรับ Auto-cut</td></tr>
+    <tr><td><strong>Cash Drawer</strong></td><td>ลิ้นชักเงินสด พร้อมสาย RJ11 เชื่อมเครื่องพิมพ์</td></tr>
+    <tr><td><strong>EDC Terminal</strong></td><td>เครื่องรับบัตรของธนาคารหลัก (KBANK, SCB, BBL, KTB)</td></tr>
+    <tr><td><strong>เครื่องพิมพ์ใบกำกับ</strong></td><td>Laser A4 (กรณีออกใบเต็ม)</td></tr>
+  </tbody>
+</table>
+
+<h1>12. ข้อกำหนดเชิงคุณภาพ (NFR)</h1>
+<table>
+  <thead><tr><th style="width:200px">หัวข้อ</th><th>เกณฑ์</th></tr></thead>
+  <tbody>
+    <tr><td><strong>เวลาตอบสนอง</strong></td><td>สแกนบาร์โค้ด ≤ 0.5 วินาที, คำนวณส่วนลด ≤ 1 วินาที, พิมพ์ใบเสร็จ ≤ 3 วินาที</td></tr>
+    <tr><td><strong>ความพร้อมใช้งาน</strong></td><td>99.9% ในช่วงเวลาเปิดร้าน</td></tr>
+    <tr><td><strong>Offline Mode</strong></td><td>ขายได้ต่อเนื่อง ≥ 5 นาที กรณีเครือข่ายขาด Sync เมื่อกลับมา Online</td></tr>
+    <tr><td><strong>การรองรับโหลด</strong></td><td>≥ 100 บิล/ชั่วโมงต่อเครื่อง</td></tr>
+    <tr><td><strong>การรองรับหลายเครื่อง</strong></td><td>≥ 20 เครื่องต่อสาขา</td></tr>
+  </tbody>
+</table>
+
+<h1>13. ความปลอดภัยและสิทธิ์การเข้าถึง (Security &amp; RBAC)</h1>
+<table>
+  <thead><tr><th style="width:200px">บทบาท</th><th>ขาย</th><th>ยกเลิก/คืน</th><th>อนุมัติส่วนลด</th><th>อนุมัติวงเงิน</th></tr></thead>
+  <tbody>
+    <tr><td>พนักงานแคชเชียร์</td><td>ทำได้</td><td>ขออนุมัติ</td><td>-</td><td>-</td></tr>
+    <tr><td>หัวหน้าสาขา</td><td>ทำได้</td><td>อนุมัติ</td><td>อนุมัติ</td><td>อนุมัติ (ตามวงเงินที่ได้รับ)</td></tr>
+    <tr><td>ผู้บริหาร</td><td>-</td><td>ดู</td><td>ดู</td><td>อนุมัติสูงสุด</td></tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>Login ต้องมี Username + Password ขั้นต่ำ</li>
+  <li>Session มีอายุ 8 ชั่วโมง (1 กะ) บังคับ Logout เมื่อเปลี่ยนกะ</li>
+  <li>การยกเลิกบิลและคืนสินค้าต้องใส่<strong>รหัส Approve จากหัวหน้า</strong></li>
+  <li>ข้อมูลบัตรเครดิตไม่เก็บในระบบ POS</li>
+  <li>Activity Log บันทึก Login/Logout, ยอดขายต่อพนักงาน, การ Override, การยกเลิก</li>
+</ul>
+
+<h1>14. Offline Mode และการ Sync</h1>
+<ul>
+  <li>POS เก็บ Cache ของสินค้า ราคา ลูกค้า (ที่ Search ล่าสุด) ใน Local Storage</li>
+  <li>กรณี<strong>เครือข่ายขาดชั่วคราว</strong>:
+    <ul style="margin:6px 0 0 18px">
+      <li>สแกนสินค้าจาก Cache ได้</li>
+      <li>ขายเงินสดได้</li>
+      <li>คำสั่งซื้อบันทึกใน Local Queue รอ Sync</li>
+    </ul>
+  </li>
+  <li>กรณี<strong>เครือข่ายขาดนาน (เกิน 5 นาที)</strong>:
+    <ul style="margin:6px 0 0 18px">
+      <li>ระบบเตือนพนักงานและแสดง Banner สีแดง</li>
+      <li>การชำระบัตรเครดิต / วงเงินเครดิต / โอน — ไม่รองรับ</li>
+    </ul>
+  </li>
+  <li>เมื่อ Online กลับมา ระบบ Sync อัตโนมัติและส่งคำสั่งซื้อค้างให้ ConX</li>
+</ul>
+
+<h1>15. สมมติฐานและข้อจำกัด</h1>
+<ul>
+  <li>มี Wi-Fi และ Wired Network ที่เสถียรในทุกสาขา</li>
+  <li>ConX และ Backoffice มีความพร้อมใช้งานสูง</li>
+  <li>พนักงานแคชเชียร์ได้รับการอบรมก่อน Go-live</li>
+  <li>อุปกรณ์ฮาร์ดแวร์ครบทุกเครื่อง (Printer, Scanner, EDC, Cash Drawer, Customer Display)</li>
+  <li>การสมัครสมาชิกที่ POS<strong>ไม่อยู่ในขอบเขต</strong> ใช้เว็บไซต์หรือพนักงาน CC แทน</li>
+</ul>
+
+<h1>16. เกณฑ์การยอมรับผลงาน</h1>
+<table>
+  <thead><tr><th style="width:100px">รหัส</th><th>เกณฑ์</th><th style="width:120px">UC อ้างอิง</th></tr></thead>
+  <tbody>
+    <tr><td><strong>AC-POS-G-01</strong></td><td>พนักงานขายบิลครบได้ทุกกรณีในเวลา ≤ 90 วินาที</td><td>UC-POS-002 ถึง 009</td></tr>
+    <tr><td><strong>AC-POS-G-02</strong></td><td>การคำนวณส่วนลด/โปรโมชั่นตรงกับเว็บและ Backoffice 100%</td><td>UC-POS-004</td></tr>
+    <tr><td><strong>AC-POS-G-03</strong></td><td>การชำระเงิน 4 วิธี + Split Payment ทำงานครบ</td><td>UC-POS-008</td></tr>
+    <tr><td><strong>AC-POS-G-04</strong></td><td>จอลูกค้าแสดงเวลาจริงตรงกับจอแคชเชียร์</td><td>UC-POS-010</td></tr>
+    <tr><td><strong>AC-POS-G-05</strong></td><td>Offline Mode ขายได้ต่อเนื่อง 5 นาที</td><td>ทุก UC</td></tr>
+    <tr><td><strong>AC-POS-G-06</strong></td><td>การยกเลิก/คืนต้องผ่านอนุมัติหัวหน้าและออก CN ถูกต้อง</td><td>UC-POS-013</td></tr>
+  </tbody>
+</table>
+
+<h1>17. ประเด็นเปิดและความเสี่ยง</h1>
+<table>
+  <thead><tr><th style="width:100px">รหัส</th><th>ประเด็น / ความเสี่ยง</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Q-POS-001</strong></td><td>รายละเอียดวิธีการชำระเงินที่ POS <span class="tag-pending">P-11</span></td></tr>
+    <tr><td><strong>Q-POS-002</strong></td><td>ตารางอำนาจการอนุมัติ (วงเงิน + ส่วนลด) <span class="tag-pending">P-02</span></td></tr>
+    <tr><td><strong>Q-POS-003</strong></td><td>Cash Drawer Reconciliation และ End-of-Day Report (เฟสถัดไป)</td></tr>
+    <tr><td><strong>Q-POS-004</strong></td><td>Hold/Recall Sale (พักบิลและเรียกคืน) เฟสถัดไป</td></tr>
+    <tr><td><strong>Q-POS-005</strong></td><td>ระยะเวลา Lock บัญชีกรณี Login ผิด <span class="tag-pending">รอยืนยัน</span></td></tr>
+    <tr><td><strong>R-POS-001</strong></td><td>ความเสี่ยง: เครือข่ายขาดและ ConX ล่ม ทำให้ขายแบบเครดิตไม่ได้</td></tr>
+    <tr><td><strong>R-POS-002</strong></td><td>ความเสี่ยง: พนักงานหลายคนใช้บัญชีเดียวกัน ทำให้ Audit ผิดพลาด</td></tr>
+    <tr><td><strong>R-POS-003</strong></td><td>ความเสี่ยง: ฮาร์ดแวร์เก่า ไม่รองรับสเปคขั้นต่ำ</td></tr>
+  </tbody>
+</table>
+
+</div>
+</body>
+</html>

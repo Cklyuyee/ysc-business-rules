@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>YSC Screen Library — รายการ Screen Reference</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#F3F4F6;font-family:'Sarabun',Tahoma,sans-serif;color:#1E293B;min-height:100vh;padding:0 0 80px;line-height:1.6}
+
+/* Toolbar */
+.toolbar{position:sticky;top:0;z-index:200;background:#1E3A5F;display:flex;align-items:center;justify-content:space-between;padding:10px 22px;box-shadow:0 2px 12px rgba(0,0,0,.25)}
+.toolbar a{color:#93C5FD;text-decoration:none;font-size:13px;font-weight:600;display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:5px}
+.toolbar a:hover{background:rgba(255,255,255,.1)}
+.toolbar-title{color:#fff;font-size:14px;font-weight:700}
+.toolbar-actions{display:flex;gap:8px}
+.btn-export{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.2);padding:6px 14px;border-radius:5px;font-size:12px;cursor:pointer;font-family:'Sarabun',sans-serif;font-weight:600}
+.btn-export:hover{background:rgba(255,255,255,.2)}
+
+/* Hero */
+.hero{background:linear-gradient(135deg,#1E3A5F 0%,#2563EB 100%);color:#fff;padding:48px 24px}
+.hero-inner{max-width:1200px;margin:0 auto}
+.hero h1{font-size:32px;font-weight:800;margin-bottom:6px}
+.hero .sub{font-size:15px;color:#BFDBFE;font-weight:300}
+.hero-stats{display:flex;gap:32px;margin-top:24px;flex-wrap:wrap}
+.stat{display:flex;flex-direction:column}
+.stat-value{font-size:24px;font-weight:800}
+.stat-label{font-size:11px;color:#BFDBFE;text-transform:uppercase;letter-spacing:.06em;font-weight:600;margin-top:2px}
+
+/* Container */
+.container{max-width:1200px;margin:24px auto 0;padding:0 24px}
+
+/* Filter */
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
+.filter-btn{padding:8px 16px;border-radius:8px;border:1px solid #E5E7EB;background:#fff;color:#374151;font-size:12.5px;font-weight:600;cursor:pointer;font-family:'Sarabun',sans-serif;transition:all .15s}
+.filter-btn:hover{border-color:#2563EB;color:#1D4ED8}
+.filter-btn.active{background:#1E3A5F;color:#fff;border-color:#1E3A5F}
+
+/* Module heading */
+.module-section{margin-bottom:36px}
+.module-head{display:flex;align-items:center;gap:10px;padding-bottom:10px;border-bottom:2px solid #E5E7EB;margin-bottom:16px}
+.module-head h2{font-size:18px;font-weight:700;color:#1E3A5F}
+.module-head .count{font-size:12.5px;color:#6B7280;background:#F3F4F6;padding:2px 10px;border-radius:10px}
+
+/* Grid */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+
+/* Card */
+.card{background:#fff;border:1px solid #E5E7EB;border-radius:10px;overflow:hidden;transition:all .15s;position:relative}
+.card:hover{border-color:#2563EB;box-shadow:0 8px 20px rgba(0,0,0,.08)}
+.card.has-img{border-color:#10B981}
+.card-img{aspect-ratio:16/10;background:#F8FAFC;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;cursor:pointer}
+.card-img img{width:100%;height:100%;object-fit:cover}
+.card-img.empty{flex-direction:column;gap:8px;color:#9CA3AF;font-size:12px}
+.card-img.empty .icon{font-size:32px}
+.card-img.drag-over{background:#DBEAFE;border:2px dashed #2563EB}
+.card-body{padding:12px 14px}
+.card-id{font-family:Consolas,'Courier New',monospace;font-size:11px;font-weight:700;color:#1E40AF;background:#EFF6FF;padding:2px 8px;border-radius:4px;display:inline-block;margin-bottom:4px}
+.card-title{font-size:13px;font-weight:600;color:#374151;line-height:1.4}
+.card-actions{display:flex;gap:6px;padding:0 14px 12px}
+.card-actions button{flex:1;padding:5px 8px;border:1px solid #E5E7EB;background:#fff;color:#6B7280;border-radius:5px;font-size:11px;cursor:pointer;font-family:'Sarabun',sans-serif}
+.card-actions button:hover{background:#F8FAFC;color:#1D4ED8;border-color:#BFDBFE}
+.card-actions .danger:hover{color:#DC2626;border-color:#FECACA;background:#FEF2F2}
+
+.badge{position:absolute;top:8px;right:8px;font-size:10px;font-weight:700;padding:3px 8px;border-radius:10px;background:#10B981;color:#fff}
+.badge.placeholder{background:#F59E0B}
+
+/* Lightbox */
+.lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:999;align-items:center;justify-content:center;flex-direction:column;gap:12px;padding:24px}
+.lightbox.show{display:flex}
+.lightbox img{max-width:95vw;max-height:85vh;object-fit:contain;border-radius:6px;box-shadow:0 12px 40px rgba(0,0,0,.5)}
+.lightbox .meta{color:#fff;font-size:14px;font-weight:600;text-align:center}
+.lightbox .meta .id{font-family:Consolas,'Courier New',monospace;color:#93C5FD;font-size:13px}
+.lightbox .close{position:absolute;top:20px;right:24px;background:rgba(255,255,255,.15);color:#fff;border:none;width:40px;height:40px;border-radius:50%;font-size:20px;cursor:pointer;font-weight:300}
+.lightbox .close:hover{background:rgba(255,255,255,.25)}
+
+/* Footer */
+.footer{text-align:center;font-size:12px;color:#9CA3AF;margin-top:48px;padding:0 24px}
+.footer code{background:#F3F4F6;padding:2px 8px;border-radius:4px;color:#374151}
+
+/* Drag info banner */
+.info-banner{background:#FFFBEB;border:1px solid #FDE68A;border-radius:8px;padding:14px 18px;margin-bottom:20px;color:#92400E;font-size:13px}
+.info-banner strong{color:#78350F}
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <div style="display:flex;gap:14px;align-items:center">
+    <a href="/">🏠 สารบัญ</a>
+    <span style="color:rgba(255,255,255,.25)">|</span>
+    <span class="toolbar-title">📷 Screen Library</span>
+  </div>
+  <div class="toolbar-actions">
+    <button class="btn-export" onclick="exportLibrary()">💾 Export ภาพทั้งหมด (ZIP)</button>
+    <button class="btn-export" onclick="clearAll()">🗑 ล้างทั้งหมด</button>
+  </div>
+</div>
+
+<div class="hero">
+  <div class="hero-inner">
+    <h1>📷 Screen Library</h1>
+    <div class="sub">Screenshot ของระบบ ysc-backoffice — ลาก-วางเพื่อเพิ่ม / คลิกเพื่อขยาย</div>
+    <div class="hero-stats">
+      <div class="stat"><span class="stat-value" id="stat-total">0</span><span class="stat-label">Screen Refs ทั้งหมด</span></div>
+      <div class="stat"><span class="stat-value" id="stat-done">0</span><span class="stat-label">มี Screenshot แล้ว</span></div>
+      <div class="stat"><span class="stat-value" id="stat-pending">0</span><span class="stat-label">รอ Screenshot</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="info-banner">
+    <strong>💡 วิธีใช้:</strong>
+    1) <strong>ลาก-วาง</strong> ภาพ Screenshot ลงในการ์ดที่ต้องการ — ระบบจะเก็บใน LocalStorage<br>
+    2) หรือสร้างโฟลเดอร์ <code style="background:rgba(0,0,0,.05);padding:1px 6px;border-radius:3px">C:\Users\GPR_S\Downloads\screens\</code> แล้วใส่ไฟล์ชื่อ <code style="background:rgba(0,0,0,.05);padding:1px 6px;border-radius:3px">SCR-XXX.png</code> — ระบบจะโหลดอัตโนมัติ<br>
+    3) <strong>คลิกการ์ด</strong> เพื่อขยายดู — กด Esc ปิด<br>
+    4) ทุก Screen Ref มี <strong>Anchor link</strong> (เช่น <code style="background:rgba(0,0,0,.05);padding:1px 6px;border-radius:3px">#SCR-CRM-CREATE</code>) ใช้ลิงก์จาก BRD มาตรงจุดได้
+  </div>
+
+  <div class="filters" id="filters">
+    <button class="filter-btn active" data-mod="all">ทั้งหมด</button>
+    <button class="filter-btn" data-mod="CRM">👥 CRM</button>
+    <button class="filter-btn" data-mod="CC">💬 Customer Connect</button>
+    <button class="filter-btn" data-mod="OMS">📦 OMS</button>
+    <button class="filter-btn" data-mod="WMS">🏭 WMS</button>
+    <button class="filter-btn" data-mod="LINE">📱 LINE</button>
+    <button class="filter-btn" data-mod="ADMIN">⚙️ Admin</button>
+    <button class="filter-btn" data-mod="WEB">🌐 Web (Storefront)</button>
+    <button class="filter-btn" data-mod="POS">💵 POS</button>
+  </div>
+
+  <div id="library"></div>
+
+</div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <button class="close" onclick="closeLightbox(event)">✕</button>
+  <img id="lb-img" src="" alt="">
+  <div class="meta">
+    <div class="id" id="lb-id"></div>
+    <div id="lb-title"></div>
+  </div>
+</div>
+
+<div class="footer">
+  Screen Library &nbsp;•&nbsp; YSC Digital Platform &nbsp;•&nbsp; ภาพทั้งหมดเก็บที่ <code>localStorage.ysc_screens</code> หรือ <code>./screens/{id}.png</code>
+</div>
+
+<script>
+// ─── SCREEN DEFINITIONS ──────────────────────────────────────
+const SCREENS = [
+  // System / Dashboard
+  { mod: 'ADMIN', id: 'SCR-DASHBOARD', title: 'หน้า Dashboard หลัก — KPI + กราฟยอดขาย' },
+
+  // CRM Module
+  { mod: 'CRM', id: 'SCR-CRM-LIST', title: 'หน้ารายการลูกค้า (Customer List) + KPI Strip' },
+  { mod: 'CRM', id: 'SCR-CRM-QUICK', title: 'Quick View Dialog' },
+  { mod: 'CRM', id: 'SCR-CRM-CREATE', title: 'สร้างลูกค้าใหม่ (3 ประเภท)' },
+  { mod: 'CRM', id: 'SCR-CRM-DOC', title: 'KYC Document Upload' },
+  { mod: 'CRM', id: 'SCR-CRM-EDIT', title: 'แก้ไขข้อมูลลูกค้า' },
+  { mod: 'CRM', id: 'SCR-CRM-DETAIL', title: 'Customer Detail (รวม Tab)' },
+  { mod: 'CRM', id: 'SCR-CRM-ADDR', title: 'Address Management Card' },
+  { mod: 'CRM', id: 'SCR-CRM-TAX', title: 'Tax Invoice Profiles' },
+  { mod: 'CRM', id: 'SCR-CRM-TIER', title: 'Spending Tier Card + Progress' },
+  { mod: 'CRM', id: 'SCR-CRM-CREDIT', title: 'Credit Info Card' },
+  { mod: 'CRM', id: 'SCR-CRM-ADJ', title: 'Credit Limit Adjust Dialog' },
+  { mod: 'CRM', id: 'SCR-CRM-LEDGER', title: 'Credit Ledger Page (ประวัติเครดิต)' },
+  { mod: 'CRM', id: 'SCR-CRM-BG-ALERT', title: 'BG Expiring Alert' },
+  { mod: 'CRM', id: 'SCR-CRM-BG-DIALOG', title: 'BG Add/Edit Dialog' },
+  { mod: 'CRM', id: 'SCR-CRM-GROUP', title: 'Group Credit Tab' },
+  { mod: 'CRM', id: 'SCR-CRM-APPROVAL', title: 'Create Credit Approval Dialog' },
+  { mod: 'CRM', id: 'SCR-CRM-POINTS', title: 'Reward Points Card' },
+  { mod: 'CRM', id: 'SCR-CRM-REDEEM', title: 'Reward Redemption' },
+  { mod: 'CRM', id: 'SCR-CRM-PENDING', title: 'Pending Rewards Dialog' },
+  { mod: 'CRM', id: 'SCR-CRM-KPI', title: 'CRM KPI Dashboard' },
+
+  // Customer Connect
+  { mod: 'CC', id: 'SCR-CC-INBOX', title: 'Multi-channel Inbox' },
+  { mod: 'CC', id: 'SCR-CC-PROFILE', title: 'Customer Profile (Sidebar)' },
+  { mod: 'CC', id: 'SCR-CC-005', title: 'Cart Templates' },
+  { mod: 'CC', id: 'SCR-CC-006', title: 'Agent Discount + Approval Trigger' },
+  { mod: 'CC', id: 'SCR-CC-007', title: 'Save Draft Dropdown' },
+  { mod: 'CC', id: 'SCR-CC-008', title: 'Quotation Send (Send via LINE/Email)' },
+  { mod: 'CC', id: 'SCR-CC-009', title: 'Discount > 15% Manager Approval' },
+
+  // OMS Module
+  { mod: 'OMS', id: 'SCR-WMS-CASHIER', title: 'Cashier Gate (ขั้นออก Invoice)' },
+  { mod: 'OMS', id: 'SCR-PAY-UPLOAD', title: 'Public Payment Upload (/payment-upload/:token)' },
+  { mod: 'OMS', id: 'SCR-ADMIN-SLIPS', title: 'Admin Slip Verification Queue (/admin/slips)' },
+  { mod: 'OMS', id: 'SCR-ADMIN-APPROVAL', title: 'Admin Approvals Queue (/admin/approvals)' },
+
+  // LINE
+  { mod: 'LINE', id: 'SCR-LINE-001', title: 'LINE OA Rich Menu (6 slots)' },
+  { mod: 'LINE', id: 'SCR-LINE-002', title: 'Push Notification — Order Status' },
+
+  // Admin (system)
+  { mod: 'ADMIN', id: 'SCR-ADMIN-USERS', title: 'จัดการ Users / Permission' },
+  { mod: 'ADMIN', id: 'SCR-ADMIN-ROLES', title: 'จัดการ Roles' },
+  { mod: 'ADMIN', id: 'SCR-ADMIN-AUDIT', title: 'Audit Log' },
+
+  // Storefront (Web)
+  { mod: 'WEB', id: 'SCR-WEB-HOME', title: 'หน้าแรกเว็บไซต์ (Landing)' },
+  { mod: 'WEB', id: 'SCR-WEB-PRODUCT', title: 'หน้ารายละเอียดสินค้า' },
+  { mod: 'WEB', id: 'SCR-WEB-CART', title: 'ตะกร้าสินค้า' },
+  { mod: 'WEB', id: 'SCR-WEB-CHECKOUT', title: 'หน้า Checkout (เลือกที่อยู่ + Payment)' },
+
+  // POS
+  { mod: 'POS', id: 'SCR-POS-MAIN', title: 'POS หน้าหลัก — สแกน Barcode' },
+  { mod: 'POS', id: 'SCR-POS-PAYMENT', title: 'POS เลือก Payment Method (Mixed)' },
+  { mod: 'POS', id: 'SCR-POS-RECEIPT', title: 'POS พิมพ์ใบกำกับภาษีอย่างย่อ' },
+];
+
+const MODULE_NAMES = {
+  CRM: '👥 CRM — ระบบลูกค้า',
+  CC: '💬 Customer Connect',
+  OMS: '📦 OMS — คำสั่งซื้อ',
+  WMS: '🏭 WMS — คลังสินค้า',
+  LINE: '📱 LINE OA',
+  ADMIN: '⚙️ Admin / System',
+  WEB: '🌐 Web Storefront',
+  POS: '💵 POS — หน้าร้าน',
+};
+
+const LS_KEY = 'ysc_screens';
+
+// ─── STORAGE ────────────────────────────────────────────────
+function loadStore(){ try { return JSON.parse(localStorage.getItem(LS_KEY) || '{}'); } catch { return {}; } }
+function saveStore(store){ try { localStorage.setItem(LS_KEY, JSON.stringify(store)); } catch(e) { alert('LocalStorage เต็ม — ลองลบภาพเก่าก่อน'); } }
+
+// ─── RENDER ─────────────────────────────────────────────────
+let currentFilter = 'all';
+function render(){
+  const store = loadStore();
+  const root = document.getElementById('library');
+  root.innerHTML = '';
+
+  const modules = currentFilter === 'all'
+    ? Object.keys(MODULE_NAMES)
+    : [currentFilter];
+
+  let total = 0, done = 0;
+
+  modules.forEach(mod => {
+    const items = SCREENS.filter(s => s.mod === mod);
+    if (!items.length) return;
+    total += items.length;
+    done += items.filter(s => store[s.id]).length;
+
+    const section = document.createElement('div');
+    section.className = 'module-section';
+    section.innerHTML = `
+      <div class="module-head">
+        <h2>${MODULE_NAMES[mod]}</h2>
+        <span class="count">${items.filter(s=>store[s.id]).length} / ${items.length}</span>
+      </div>
+      <div class="grid"></div>
+    `;
+    const grid = section.querySelector('.grid');
+
+    items.forEach(s => {
+      const lsImg = store[s.id];
+      const fsUrl = `screens/${s.id}.png?t=${Date.now()}`;  // cache-bust
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.id = s.id;
+      card.dataset.scrId = s.id;
+
+      // Always try image first — show placeholder via onerror if missing
+      card.innerHTML = `
+        <div class="card-img" onclick="openLightbox('${s.id}')">
+          <img class="lazy-img" src="${lsImg || fsUrl}" alt="${s.id}"
+               onload="this.parentElement.parentElement.classList.add('has-img');this.parentElement.querySelector('.badge').textContent='✓';this.parentElement.querySelector('.badge').classList.remove('placeholder');this.parentElement.classList.remove('empty');this.parentElement.querySelector('.fallback').style.display='none'"
+               onerror="this.style.display='none';this.parentElement.classList.add('empty');this.parentElement.querySelector('.fallback').style.display='flex'">
+          <div class="fallback" style="display:flex;flex-direction:column;gap:8px;color:#9CA3AF;font-size:12px;align-items:center;justify-content:center;height:100%;width:100%;position:absolute;inset:0">
+            <div style="font-size:32px">📷</div>
+            <div style="text-align:center">ลาก Screenshot มาวาง<br>หรือเซฟไฟล์ที่ <code style="background:#fff;padding:1px 4px;border-radius:3px;font-size:10px">screens/${s.id}.png</code></div>
+          </div>
+          <span class="badge placeholder">รอ</span>
+        </div>
+        <div class="card-body">
+          <span class="card-id">${s.id}</span>
+          <div class="card-title">${s.title}</div>
+        </div>
+        <div class="card-actions">
+          <button onclick="copyAnchor('${s.id}')">🔗 Copy Link</button>
+          <button onclick="document.getElementById('file-${s.id}').click()">📤 เปลี่ยน/เพิ่มไฟล์</button>
+          <button class="danger" onclick="removeImg('${s.id}')">🗑 ลบ</button>
+          <input type="file" id="file-${s.id}" accept="image/*" style="display:none" onchange="onFile(event,'${s.id}')">
+        </div>
+      `;
+
+      // Drag & drop
+      const imgArea = card.querySelector('.card-img');
+      imgArea.addEventListener('dragover', e => { e.preventDefault(); imgArea.classList.add('drag-over'); });
+      imgArea.addEventListener('dragleave', () => imgArea.classList.remove('drag-over'));
+      imgArea.addEventListener('drop', e => {
+        e.preventDefault();
+        imgArea.classList.remove('drag-over');
+        const file = Array.from(e.dataTransfer.files).find(f => f.type.startsWith('image/'));
+        if (file) saveImg(s.id, file);
+      });
+
+      grid.appendChild(card);
+    });
+
+    root.appendChild(section);
+  });
+
+  document.getElementById('stat-total').textContent = total;
+  // นับจาก DOM หลังโหลด (img.onload จะ update class)
+  setTimeout(() => {
+    const haveImg = document.querySelectorAll('.card.has-img').length;
+    document.getElementById('stat-done').textContent = haveImg;
+    document.getElementById('stat-pending').textContent = total - haveImg;
+  }, 800);
+}
+
+// Try filesystem first (won't work for file:// in many browsers but works via server)
+function tryFilesystem(id){
+  return `screens/${id}.png`;
+}
+
+// ─── FILE HANDLING ──────────────────────────────────────────
+function saveImg(id, file){
+  const reader = new FileReader();
+  reader.onload = ev => {
+    const store = loadStore();
+    store[id] = ev.target.result;
+    saveStore(store);
+    render();
+  };
+  reader.readAsDataURL(file);
+}
+
+function onFile(e, id){
+  const file = e.target.files[0];
+  if (file) saveImg(id, file);
+}
+
+function removeImg(id){
+  if (!confirm(`ลบ Screenshot ของ ${id}?`)) return;
+  const store = loadStore();
+  delete store[id];
+  saveStore(store);
+  render();
+}
+
+// ─── LIGHTBOX ───────────────────────────────────────────────
+function openLightbox(id){
+  const store = loadStore();
+  const screen = SCREENS.find(s => s.id === id);
+  if (!screen) return;
+  const img = store[id] || `screens/${id}.png`;
+  document.getElementById('lb-img').src = img;
+  document.getElementById('lb-id').textContent = id;
+  document.getElementById('lb-title').textContent = screen.title;
+  document.getElementById('lightbox').classList.add('show');
+}
+function closeLightbox(e){
+  if (e && e.target.tagName === 'IMG') return;
+  document.getElementById('lightbox').classList.remove('show');
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+// ─── COPY ANCHOR ────────────────────────────────────────────
+function copyAnchor(id){
+  const url = window.location.origin + window.location.pathname + '#' + id;
+  navigator.clipboard.writeText(url).then(() => {
+    const btn = event.target;
+    const orig = btn.textContent;
+    btn.textContent = '✓ คัดลอกแล้ว';
+    setTimeout(() => btn.textContent = orig, 1500);
+  });
+}
+
+// ─── EXPORT / CLEAR ─────────────────────────────────────────
+function exportLibrary(){
+  alert('ฟีเจอร์ Export ZIP — รอ implementation\n\nวิธีชั่วคราว:\n1. คลิกขวาที่ภาพ → Save as\n2. หรือ Open DevTools → Application → Local Storage → ดาวน์โหลด ysc_screens');
+}
+function clearAll(){
+  if (!confirm('ลบ Screenshot ทั้งหมด? (ไม่กระทบไฟล์ในโฟลเดอร์ screens/)')) return;
+  localStorage.removeItem(LS_KEY);
+  render();
+}
+
+// ─── FILTER ─────────────────────────────────────────────────
+document.getElementById('filters').addEventListener('click', e => {
+  if (e.target.tagName !== 'BUTTON') return;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  e.target.classList.add('active');
+  currentFilter = e.target.dataset.mod;
+  render();
+});
+
+// ─── INIT ───────────────────────────────────────────────────
+render();
+
+// Scroll to anchor if present
+setTimeout(() => {
+  if (window.location.hash) {
+    const el = document.querySelector(window.location.hash);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+}, 200);
+</script>
+</body>
+</html>
