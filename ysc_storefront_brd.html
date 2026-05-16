@@ -1,0 +1,1472 @@
+﻿<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>YSC Storefront BRD — เว็บไซต์สำหรับลูกค้า (Website / E-Commerce) v2.0</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FFFFFF;
+  --bg-soft:#FAFAFA;
+  --ink:#0A0A0A;
+  --ink-2:#2B2B2B;
+  --ink-3:#525252;
+  --ink-4:#8A8A8A;
+  --line:#EDEDED;
+  --line-2:#E5E5E5;
+  --teal:#14E4C7;
+  --blue:#3B82F6;
+  --purple:#8B5CF6;
+  --pink:#EC4899;
+  --gradient:linear-gradient(90deg,#14E4C7 0%,#3B82F6 30%,#8B5CF6 55%,#EC4899 80%,#FB7185 100%);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#FAFAFA;font-family:'Plus Jakarta Sans','Sarabun',Tahoma,sans-serif;color:#0A0A0A;padding:0 0 80px;line-height:1.65}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:6px;font-family:'Plus Jakarta Sans','Sarabun',sans-serif;font-size:12.5px;font-weight:600;cursor:pointer;border:none;background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.2)}
+.btn:hover{background:rgba(255,255,255,.2)}
+#doc{max-width:1000px;margin:36px auto;background:#fff;padding:64px 72px;box-shadow:0 6px 28px rgba(0,0,0,.12);border-radius:6px}
+.cover{background:#0A0A0A;color:#fff;margin:-64px -72px 36px;padding:64px 72px 48px;border-radius:6px 6px 0 0}
+.cover .tag{display:inline-block;background:linear-gradient(90deg,#14E4C7,#3B82F6);font-size:11px;font-weight:700;letter-spacing:.1em;padding:5px 14px;border-radius:4px;margin-bottom:24px}
+.cover h1{font-size:32px;font-weight:700;line-height:1.25;margin-bottom:8px;color:#fff;border:none;padding:0}
+.cover .sub{font-size:16px;color:rgba(255,255,255,0.65);font-weight:300;margin-bottom:32px}
+.cover .info-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid rgba(255,255,255,.15);border-radius:8px;overflow:hidden}
+.cover .info-cell{padding:14px 20px;border-bottom:1px solid rgba(255,255,255,.1);border-right:1px solid rgba(255,255,255,.1)}
+.cover .info-cell:nth-child(2n){border-right:none}
+.cover .info-cell:nth-last-child(-n+2){border-bottom:none}
+.cover .info-label{font-size:10px;color:rgba(255,255,255,0.65);font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
+.cover .info-value{font-size:13px;color:#fff;font-weight:600}
+h1{font-size:24px;color:#0A0A0A;margin:42px 0 14px;font-weight:700;padding-bottom:8px;border-bottom:3px solid transparent;border-image:linear-gradient(90deg,#14E4C7,#3B82F6,#8B5CF6,#EC4899) 1}
+h2{font-size:18px;color:#0A0A0A;margin:30px 0 12px;font-weight:700}
+h3{font-size:15px;color:#3B82F6;margin:22px 0 10px;font-weight:700}
+.section-band{background:linear-gradient(135deg,#0A0A0A,#2B2B2B);color:#fff;padding:16px 24px;border-radius:8px;margin:32px 0 20px;font-weight:700;font-size:17px;display:flex;align-items:center;gap:12px}
+.section-band .letter{background:#fff;color:#0A0A0A;width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px;flex-shrink:0}
+.section-band .desc{font-size:12px;font-weight:400;color:rgba(255,255,255,0.65);margin-top:2px}
+p{margin-bottom:12px;font-size:13.5px}
+ul,ol{margin:8px 0 14px 22px;font-size:13.5px}
+li{margin-bottom:5px;line-height:1.7}
+table{width:100%;border-collapse:collapse;margin:14px 0 22px;font-size:12.5px}
+thead th{background:#0A0A0A;color:#fff;padding:10px 12px;text-align:left;font-weight:600;border:1px solid #0A0A0A}
+tbody td{padding:9px 12px;border:1px solid #D1D5DB;vertical-align:top;line-height:1.6}
+tbody tr:nth-child(even) td{background:#F9FAFB}
+td strong{color:#0A0A0A}
+.callout{border-left:4px solid #3B82F6;background:#EFF6FF;padding:14px 18px;margin:14px 0;border-radius:0 6px 6px 0}
+.callout strong{color:#0A0A0A}
+.callout-amber{border-left-color:#F59E0B;background:#FFFBEB}
+.callout-amber strong{color:#92400E}
+.callout-green{border-left-color:#10B981;background:#ECFDF5}
+.callout-green strong{color:#065F46}
+.callout-red{border-left-color:#E11D48;background:#FEF2F2}
+.callout-red strong{color:#9F1239}
+.toc{background:#F8FAFC;border:1px solid #E5E7EB;border-radius:8px;padding:20px 28px;margin:20px 0}
+.toc ol{list-style:none;margin:0;padding:0;counter-reset:toc;font-size:13px}
+.toc ol > li{counter-increment:toc;padding:4px 0;border-bottom:1px dashed #E5E7EB}
+.toc ol > li::before{content:counter(toc) ". ";font-weight:700;color:#0A0A0A;margin-right:6px}
+.toc ol ol{margin:4px 0 4px 24px;font-size:12px;color:#6B7280;counter-reset:sub}
+.toc ol ol li{counter-increment:sub;padding:1px 0;border:none}
+.toc ol ol li::before{content:counter(toc) "." counter(sub) " ";color:#6B7280;font-weight:600;margin-right:4px}
+.screen-ref{display:inline-block;background:#FAFAFA;border:1px solid #D1D5DB;color:#374151;font-size:11.5px;padding:1px 8px;border-radius:4px;font-weight:600}
+.br-ref{display:inline-block;background:#FFFBEB;border:1px solid #FDE68A;color:#92400E;font-size:11px;padding:1px 7px;border-radius:4px;font-weight:600;font-family:'Sarabun',monospace}
+.use-case{border:1px solid #E5E7EB;border-radius:10px;margin:18px 0;background:#fff;overflow:hidden}
+.uc-header{background:#0A0A0A;color:#fff;padding:12px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.uc-header .uc-num{font-size:13px;font-weight:700;letter-spacing:.04em}
+.uc-header .uc-title{font-size:14px;font-weight:600;flex:1}
+.uc-body{padding:16px 22px}
+.uc-section{margin:12px 0}
+.uc-section-label{font-size:11.5px;font-weight:700;color:#0A0A0A;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+.uc-flow{counter-reset:flow;list-style:none;margin-left:0}
+.uc-flow > li{counter-increment:flow;position:relative;padding:5px 0 5px 32px;font-size:13px}
+.uc-flow > li::before{content:counter(flow);position:absolute;left:0;top:5px;width:22px;height:22px;background:linear-gradient(90deg,#3B82F6,#8B5CF6);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700}
+.uc-alt{background:#FFFBEB;border-left:3px solid #F59E0B;padding:8px 14px;margin:6px 0;border-radius:0 6px 6px 0;font-size:12.5px}
+.uc-exc{background:#FEF2F2;border-left:3px solid #E11D48;padding:8px 14px;margin:6px 0;border-radius:0 6px 6px 0;font-size:12.5px}
+.uc-ac{background:#ECFDF5;border:1px solid #A7F3D0;border-radius:6px;padding:10px 14px;margin:4px 0;font-size:12.5px}
+.uc-ac strong{color:#065F46}
+.tag-confirmed{display:inline-block;background:#DCFCE7;color:#166534;font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:10px}
+.tag-pending{display:inline-block;background:#FEF3C7;color:#92400E;font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:10px}
+.tag-design{display:inline-block;background:#DBEAFE;color:#1E40AF;font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:10px}
+.screen-figure{margin:18px 0 22px;border:1px solid #E5E7EB;border-radius:10px;overflow:hidden;background:#FAFAFA}
+.screen-figure img{display:block;width:100%;height:auto}
+.screen-caption{padding:10px 16px;background:#0A0A0A;color:#fff;font-size:12px;font-weight:600;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.screen-caption .ref{font-size:10.5px;color:rgba(255,255,255,0.65);font-weight:500}
+.screen-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:18px 0}
+.screen-grid .screen-figure{margin:0}
+.flow-overview{margin:8px 0 24px;border:2px solid #0A0A0A;border-radius:10px;overflow:hidden;background:#FAFAFA}
+.flow-overview img{display:block;width:100%;height:auto}
+.flow-overview .caption{padding:10px 16px;background:#0A0A0A;color:#fff;font-size:12.5px;font-weight:600}
+@media print{body{background:#fff}#doc{max-width:none;margin:0;box-shadow:none;padding:24px 40px}.cover{margin:-24px -40px 24px;padding:50px 40px 40px}h1{page-break-before:always}h1:first-of-type{page-break-before:auto}table,.use-case,.screen-figure,.flow-overview{page-break-inside:avoid}}
+
+/* ── Upload Widget ── */
+.screen-figure,.flow-overview{position:relative;cursor:pointer;transition:transform .15s,box-shadow .15s}
+.screen-figure:hover,.flow-overview:hover{box-shadow:0 6px 18px rgba(59,130,246,0.25)}
+.screen-figure .upload-overlay,.flow-overview .upload-overlay{position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(10,10,10,0.92);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;transition:opacity .2s;z-index:5;pointer-events:none;text-align:center;padding:24px}
+.screen-figure:hover .upload-overlay,.flow-overview:hover .upload-overlay{opacity:1}
+.screen-figure.no-image,.flow-overview.no-image{background:#F8FAFC;border:2px dashed #3B82F6;min-height:240px;display:flex;align-items:center;justify-content:center}
+.screen-figure.no-image .upload-overlay,.flow-overview.no-image .upload-overlay{position:relative;opacity:1;background:transparent;color:#0A0A0A;border:none}
+.screen-figure.no-image img,.flow-overview.no-image img{display:none}
+.screen-figure.no-image .screen-caption,.flow-overview.no-image .caption{display:none}
+.upload-icon{font-size:42px;font-weight:800;color:#3B82F6;border:3px solid currentColor;width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:12px;line-height:1}
+.screen-figure:hover .upload-icon,.flow-overview:hover .upload-icon{color:#fff;border-color:#fff}
+.screen-figure.no-image .upload-icon,.flow-overview.no-image .upload-icon{color:#3B82F6;border-color:#3B82F6}
+.upload-text{font-size:14px;font-weight:700;margin-bottom:4px}
+.upload-filename{font-size:11.5px;font-family:'Sarabun',monospace;background:rgba(255,255,255,.18);padding:4px 10px;border-radius:4px;margin-top:6px}
+.screen-figure.no-image .upload-filename,.flow-overview.no-image .upload-filename{background:#EFF6FF;color:#0A0A0A;border:1px solid #BFDBFE}
+.uploaded-badge{position:absolute;top:8px;right:8px;background:#10B981;color:#fff;font-size:10.5px;font-weight:700;padding:3px 9px;border-radius:10px;z-index:6;display:none}
+.screen-figure.uploaded .uploaded-badge,.flow-overview.uploaded .uploaded-badge{display:block}
+
+#upload-toolbar{position:fixed;bottom:24px;right:24px;background:#0A0A0A;color:#fff;padding:14px 18px;border-radius:14px;box-shadow:0 8px 28px rgba(0,0,0,0.25);z-index:1000;font-family:'Plus Jakarta Sans','Sarabun',sans-serif;display:flex;flex-direction:column;gap:10px;min-width:240px}
+#upload-toolbar .ut-header{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:rgba(255,255,255,0.65);font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+#upload-toolbar .ut-stats{font-size:13px;font-weight:600}
+#upload-toolbar .ut-stats b{color:#FDE68A;font-size:16px}
+#upload-toolbar button{background:#3B82F6;color:#fff;border:none;padding:10px 14px;border-radius:8px;cursor:pointer;font-weight:700;font-size:12.5px;font-family:'Plus Jakarta Sans','Sarabun',sans-serif}
+#upload-toolbar button:hover{background:#1D4ED8}
+#upload-toolbar button.danger{background:transparent;color:#FCA5A5;border:1px solid #EF4444;padding:6px 10px;font-size:11px}
+#upload-toolbar button.danger:hover{background:rgba(239,68,68,.15)}
+#upload-toolbar.collapsed{padding:10px 14px;min-width:auto}
+#upload-toolbar.collapsed .ut-body{display:none}
+#upload-toolbar .toggle{cursor:pointer;font-size:14px;background:transparent;padding:0;border:none;color:rgba(255,255,255,0.65)}
+@media print{#upload-toolbar{display:none}.screen-figure .upload-overlay,.flow-overview .upload-overlay,.uploaded-badge{display:none !important}}
+</style>
+</head>
+<body>
+
+<nav style="position:sticky;top:0;z-index:200;background:rgba(255,255,255,.9);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid #EDEDED;display:flex;align-items:center;justify-content:space-between;padding:10px 28px;">
+  <div style="display:flex;align-items:center;gap:16px;">
+    <a href="index.html"><img src="assets/adeptio_logo.png" alt="Adeptio" style="height:26px;display:block"></a>
+    <span style="width:1px;height:20px;background:#EDEDED;display:inline-block"></span>
+    <a href="index.html" style="font-size:13px;font-weight:600;color:#525252;text-decoration:none;">สารบัญ</a>
+    <span style="font-size:13px;color:#8A8A8A;">|</span>
+    <span class="toolbar-title" style="font-size:13px;font-weight:600;color:#2B2B2B;">YSC Storefront BRD — เว็บไซต์สำหรับลูกค้า v2.0</span>
+  </div>
+  <button onclick="window.print()" style="display:inline-flex;align-items:center;gap:6px;padding:8px 18px;border-radius:999px;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;border:1.5px solid #EDEDED;background:#fff;color:#0A0A0A;">พิมพ์ / PDF</button>
+</nav>
+
+<div id="doc">
+
+<div class="cover">
+  <div class="tag">เอกสารโมดูล · CHANNEL · STOREFRONT (WEB)</div>
+  <h1>เว็บไซต์สำหรับลูกค้า<br>(Storefront / E-Commerce Website)</h1>
+  <div class="sub">เอกสารข้อกำหนดเชิงธุรกิจ ครอบคลุมเว็บไซต์ครบทุก Section พร้อม Mockup จาก Figma ฉบับเต็ม</div>
+  <div class="info-grid">
+    <div class="info-cell"><div class="info-label">รหัสโมดูล</div><div class="info-value">WEB (Storefront)</div></div>
+    <div class="info-cell"><div class="info-label">เวอร์ชัน / วันที่</div><div class="info-value">v2.0 พฤษภาคม 2569</div></div>
+    <div class="info-cell"><div class="info-label">เจ้าของโครงการ</div><div class="info-value">บริษัท ยงเจริญศูนย์เครื่องเขียน จำกัด</div></div>
+    <div class="info-cell"><div class="info-label">ผู้พัฒนาระบบ</div><div class="info-value">บริษัท อะเดพทิโอ จำกัด</div></div>
+    <div class="info-cell"><div class="info-label">แหล่งดีไซน์</div><div class="info-value">Figma: Yongcharoen (mM7WCqGCqFcPLXUY6Ea3c4)</div></div>
+    <div class="info-cell"><div class="info-label">อ้างอิงเอกสารแม่บท</div><div class="info-value">ysc_business_rules.html v2.2</div></div>
+  </div>
+</div>
+
+<div class="callout callout-red">
+  <strong>ฉบับนี้เป็นการเขียนใหม่ทั้งหมด (v2.0):</strong>
+  <p style="margin-top:6px;margin-bottom:0;font-size:13px">ฉบับ v1.0 ครอบคลุมเฉพาะ <strong>กระบวนการซื้อสินค้า (Buying Flow)</strong> เท่านั้น ขาด Section สำคัญหลายส่วน — ฉบับ v2.0 นี้รวม<strong>ครบทุก Flow</strong>ตามที่ออกแบบใน Figma จริง: Mobile experience, Login/Register (3 ทาง), My Account (Dashboard, Profile, Addresses, Orders, Pre-Orders, Quotations, Cart Templates), Loyalty &amp; Rewards, Promotion campaigns, Brand pages, Help/Policy/About pages</p>
+</div>
+
+<div class="callout callout-green">
+  <strong>วัตถุประสงค์ของเอกสาร</strong>
+  <p style="margin-top:6px;margin-bottom:0;font-size:13px">ระบุข้อกำหนดของ<strong>เว็บไซต์สำหรับลูกค้า (Storefront)</strong>ของยงเจริญฯ ครอบคลุมทุกหน้าจอที่ออกแบบใน Figma แบ่งเป็น 8 Section (A-H) แต่ละ Section มี Flow Diagram จาก Figma เป็น Overview และ Use Cases ภายใน รวมถึงกฎเกณฑ์เชิงธุรกิจอ้างอิง <strong>ysc_business_rules.html v2.2</strong></p>
+</div>
+
+<h2 style="margin-top:32px">สารบัญ</h2>
+<div class="toc">
+  <ol>
+    <li>ข้อมูลเอกสารและการอนุมัติ</li>
+    <li>วัตถุประสงค์เชิงธุรกิจ</li>
+    <li>ขอบเขตของงาน</li>
+    <li>ผู้มีส่วนได้ส่วนเสียและบทบาทผู้ใช้งาน</li>
+    <li>โครงสร้างเว็บไซต์ (8 Sections)</li>
+    <li>กระบวนการในอนาคต (To-Be)</li>
+    <li>ข้อกำหนดเชิงหน้าที่ — กรณีการใช้งาน (Use Cases) ตาม Section
+      <ol>
+        <li>Section A: หน้าแรก ค้นหา และหน้าตามแบรนด์/โปรโมชั่น (4 UCs)</li>
+        <li>Section B: รายละเอียดสินค้าและตะกร้า (3 UCs)</li>
+        <li>Section C: ขั้นตอนชำระเงิน (5 UCs)</li>
+        <li>Section D: เข้าสู่ระบบและสมัครสมาชิก (5 UCs)</li>
+        <li>Section E: บัญชีของฉัน (My Account) (6 UCs)</li>
+        <li>Section F: คะแนนสะสมและของรางวัล (4 UCs)</li>
+        <li>Section G: หน้าข้อมูลทั่วไป (Footer Pages) (4 UCs)</li>
+        <li>Section H: เวอร์ชัน Mobile (1 UC)</li>
+      </ol>
+    </li>
+    <li>การออกแบบประสบการณ์ผู้ใช้ (Screen Inventory)</li>
+    <li>กฎเกณฑ์เชิงธุรกิจ — อ้างอิงเอกสารแม่บท</li>
+    <li>การเชื่อมต่อระบบภายนอก (Integration)</li>
+    <li>ข้อกำหนดเชิงคุณภาพ (NFR)</li>
+    <li>ความปลอดภัยและความเป็นส่วนตัว</li>
+    <li>SEO และ Analytics</li>
+    <li>สมมติฐานและข้อจำกัด</li>
+    <li>เกณฑ์การยอมรับผลงาน</li>
+    <li>ประเด็นเปิดและความเสี่ยง</li>
+  </ol>
+</div>
+
+<h2 style="margin-top:36px">สรุปกรณีการใช้งาน (Use Case Catalog)</h2>
+<p style="font-size:13px;color:#475569">ตารางสรุปทั้ง <strong>32 รายการ</strong> ของเว็บไซต์ครบทุก Section รายละเอียดเต็มอยู่ในหัวข้อที่ 7 พร้อม Flow Diagram + Mockup จาก Figma</p>
+<table>
+  <thead>
+    <tr>
+      <th style="width:46px">#</th>
+      <th style="width:120px">รหัส</th>
+      <th>ชื่อกรณีการใช้งาน</th>
+      <th style="width:130px">Section</th>
+      <th style="width:140px">กฎที่เกี่ยวข้อง</th>
+      <th style="width:100px">สถานะ Figma</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>1</td><td><strong>UC-WEB-A01</strong></td><td>เข้าหน้าแรกเว็บไซต์</td><td>A. Browse</td><td>—</td><td><span class="tag-confirmed">มี Mockup</span></td></tr>
+    <tr><td>2</td><td><strong>UC-WEB-A02</strong></td><td>ค้นหาสินค้าและดูผลค้นหา</td><td>A. Browse</td><td><span class="br-ref">PRD-03</span></td><td><span class="tag-confirmed">มี Mockup</span></td></tr>
+    <tr><td>3</td><td><strong>UC-WEB-A03</strong></td><td>ดูหน้าสินค้าตามแบรนด์ (Brand Page)</td><td>A. Browse</td><td><span class="br-ref">PRD-11</span></td><td><span class="tag-confirmed">มี Mockup</span></td></tr>
+    <tr><td>4</td><td><strong>UC-WEB-A04</strong></td><td>ดูหน้าแคมเปญโปรโมชั่น (Promotion Page)</td><td>A. Browse</td><td><span class="br-ref">PR-01</span> <span class="br-ref">PR-07</span></td><td><span class="tag-confirmed">มี Mockup</span></td></tr>
+    <tr><td>5</td><td><strong>UC-WEB-B01</strong></td><td>ดูรายละเอียดสินค้า (Product Detail Page)</td><td>B. Product</td><td><span class="br-ref">PRD-06</span> <span class="br-ref">PRD-08</span></td><td><span class="tag-confirmed">มี Mockup</span></td></tr>
+    <tr><td>6</td><td><strong>UC-WEB-B02</strong></td><td>เพิ่มสินค้าและจัดการตะกร้า</td><td>B. Product</td><td><span class="br-ref">AUTH-01</span></td><td><span class="tag-confirmed">มี Mockup</span></td></tr>
+    <tr><td>7</td><td><strong>UC-WEB-B03</strong></td><td>ใช้เทมเพลตตะกร้า (Cart Templates: Marketing + ส่วนตัว)</td><td>B. Product</td><td>—</td><td><span class="tag-confirmed">มี Mockup</span></td></tr>
+    <tr><td>8</td><td><strong>UC-WEB-C01</strong></td><td>Checkout Step 1: ตรวจสอบตะกร้า</td><td>C. Checkout</td><td>—</td><td><span class="tag-confirmed">มี Mockup</span></td></tr>
+    <tr><td>9</td><td><strong>UC-WEB-C02</strong></td><td>Checkout Step 2: ที่อยู่และวิธีจัดส่ง</td><td>C. Checkout</td><td><span class="br-ref">INV-04</span> <span class="br-ref">SHP-02</span></td><td><span class="tag-confirmed">มี Mockup</span></td></tr>
+    <tr><td>10</td><td><strong>UC-WEB-C03</strong></td><td>Checkout Step 3: วิธีการชำระเงิน</td><td>C. Checkout</td><td><span class="br-ref">P-01</span> <span class="br-ref">BNK-03</span></td><td><span class="tag-confirmed">มี Mockup</span></td></tr>
+    <tr><td>11</td><td><strong>UC-WEB-C04</strong></td><td>Checkout Step 4: ตรวจสอบและยืนยัน</td><td>C. Checkout</td><td><span class="br-ref">RTN-01</span></td><td><span class="tag-confirmed">มี Mockup</span></td></tr>
+    <tr><td>12</td><td><strong>UC-WEB-C05</strong></td><td>หน้าสั่งซื้อสำเร็จ (Order Confirmation)</td><td>C. Checkout</td><td><span class="br-ref">CC-04</span> <span class="br-ref">NTF-01</span></td><td><span class="tag-confirmed">มี Mockup</span></td></tr>
+    <tr><td>13</td><td><strong>UC-WEB-D01</strong></td><td>เข้าสู่ระบบด้วยอีเมล / รหัสผ่าน</td><td>D. Auth</td><td><span class="br-ref">NTF-04</span></td><td><span class="tag-confirmed">มี Mockup</span></td></tr>
+    <tr><td>14</td><td><strong>UC-WEB-D02</strong></td><td>เข้าสู่ระบบด้วย OTP (ไม่ใช้รหัสผ่าน)</td><td>D. Auth</td><td><span class="br-ref">NTF-03</span></td><td><span class="tag-confirmed">มี Mockup</span></td></tr>
+    <tr><td>15</td><td><strong>UC-WEB-D03</strong></td><td>สมัครสมาชิกบุคคลธรรมดา</td><td>D. Auth</td><td><span class="br-ref">AUTH-01</span> <span class="br-ref">AUTH-02</span></td><td><span class="tag-confirmed">มี Mockup</span></td></tr>
+    <tr><td>16</td><td><strong>UC-WEB-D04</strong></td><td>สมัครสมาชิกนิติบุคคล (รับใบกำกับในนามนิติบุคคล)</td><td>D. Auth</td><td><span class="br-ref">C-01</span> <span class="br-ref">INV-04</span></td><td><span class="tag-confirmed">มี Mockup</span></td></tr>
+    <tr><td>17</td><td><strong>UC-WEB-D05</strong></td><td>ลืมรหัสผ่าน / รีเซ็ตรหัสผ่าน</td><td>D. Auth</td><td><span class="br-ref">NTF-04</span></td><td><span class="tag-confirmed">มี Mockup</span></td></tr>
+    <tr><td>18</td><td><strong>UC-WEB-E01</strong></td><td>หน้าหลักบัญชีของฉัน (Account Dashboard)</td><td>E. My Account</td><td><span class="br-ref">หมวด 10</span></td><td><span class="tag-confirmed">มี Mockup</span></td></tr>
+    <tr><td>19</td><td><strong>UC-WEB-E02</strong></td><td>จัดการข้อมูลบัญชีผู้ใช้งาน</td><td>E. My Account</td><td><span class="br-ref">NTF-03</span></td><td><span class="tag-confirmed">มี Mockup</span></td></tr>
+    <tr><td>20</td><td><strong>UC-WEB-E03</strong></td><td>จัดการที่อยู่ (จัดส่ง + ออกเอกสาร)</td><td>E. My Account</td><td><span class="br-ref">INV-04</span></td><td><span class="tag-confirmed">มี Mockup</span></td></tr>
+    <tr><td>21</td><td><strong>UC-WEB-E04</strong></td><td>ดูประวัติคำสั่งซื้อและ Pre-Order</td><td>E. My Account</td><td><span class="br-ref">SO-01</span> <span class="br-ref">RO-01</span></td><td><span class="tag-confirmed">มี Mockup</span></td></tr>
+    <tr><td>22</td><td><strong>UC-WEB-E05</strong></td><td>ดูใบเสนอราคา (Quotations)</td><td>E. My Account</td><td><span class="br-ref">Q-01</span> <span class="br-ref">Q-04</span></td><td><span class="tag-confirmed">มี Mockup</span></td></tr>
+    <tr><td>23</td><td><strong>UC-WEB-E06</strong></td><td>จัดการเทมเพลตตะกร้า (My Cart Templates)</td><td>E. My Account</td><td>—</td><td><span class="tag-confirmed">มี Mockup</span></td></tr>
+    <tr><td>24</td><td><strong>UC-WEB-F01</strong></td><td>ดูคะแนนสะสมและกิจกรรม</td><td>F. Loyalty</td><td><span class="br-ref">หมวด 10</span></td><td><span class="tag-confirmed">มี Mockup</span></td></tr>
+    <tr><td>25</td><td><strong>UC-WEB-F02</strong></td><td>แลกของรางวัลจาก Rewards Catalog</td><td>F. Loyalty</td><td><span class="br-ref">หมวด 10</span></td><td><span class="tag-confirmed">มี Mockup</span></td></tr>
+    <tr><td>26</td><td><strong>UC-WEB-F03</strong></td><td>คูปองส่วนลด ของขวัญวันเกิด สิทธิ์พิเศษ</td><td>F. Loyalty</td><td><span class="br-ref">PR-05</span></td><td><span class="tag-confirmed">มี Mockup</span></td></tr>
+    <tr><td>27</td><td><strong>UC-WEB-F04</strong></td><td>ดูประวัติคะแนน (Points History)</td><td>F. Loyalty</td><td><span class="br-ref">NTF-05</span></td><td><span class="tag-confirmed">มี Mockup</span></td></tr>
+    <tr><td>28</td><td><strong>UC-WEB-G01</strong></td><td>หน้าช่วยเหลือ FAQ และติดต่อ</td><td>G. Info</td><td>—</td><td><span class="tag-confirmed">มี Mockup</span></td></tr>
+    <tr><td>29</td><td><strong>UC-WEB-G02</strong></td><td>หน้านโยบาย (Privacy, Return, Terms)</td><td>G. Info</td><td>—</td><td><span class="tag-confirmed">มี Mockup</span></td></tr>
+    <tr><td>30</td><td><strong>UC-WEB-G03</strong></td><td>หน้าเกี่ยวกับเรา (About Us / Story)</td><td>G. Info</td><td>—</td><td><span class="tag-confirmed">มี Mockup</span></td></tr>
+    <tr><td>31</td><td><strong>UC-WEB-G04</strong></td><td>หน้าผลิตภัณฑ์โบนัส / Special Offers</td><td>G. Info</td><td>—</td><td><span class="tag-confirmed">มี Mockup</span></td></tr>
+    <tr><td>32</td><td><strong>UC-WEB-H01</strong></td><td>การใช้งานบน Mobile (Responsive)</td><td>H. Mobile</td><td>—</td><td><span class="tag-confirmed">มี Mockup</span></td></tr>
+  </tbody>
+</table>
+
+<h1>1. ข้อมูลเอกสารและการอนุมัติ</h1>
+<h2>1.1 ประวัติการแก้ไข</h2>
+<table>
+  <thead><tr><th style="width:80px">เวอร์ชัน</th><th style="width:110px">วันที่</th><th>รายละเอียดการเปลี่ยนแปลง</th><th style="width:90px">สถานะ</th></tr></thead>
+  <tbody>
+    <tr><td>1.0</td><td>16 พ.ค. 2569</td><td>ฉบับแรก ครอบคลุมเฉพาะ Buying Flow (15 UC)</td><td><span class="tag-pending">เก่า</span></td></tr>
+    <tr><td>2.0</td><td>16 พ.ค. 2569</td><td><strong>เขียนใหม่ทั้งฉบับ</strong> ครอบคลุม 8 Section / 32 UC ตามดีไซน์จริงจาก Figma (อ้างอิง 6 Flow Diagrams ที่ผู้ใช้ส่งให้): Mobile Flow, Account Flow, Login Flow, Info Flow, Promotion Flow และ Brand Detail Page</td><td><span class="tag-confirmed">ปัจจุบัน</span></td></tr>
+  </tbody>
+</table>
+
+<h2>1.2 ผู้อนุมัติเอกสาร</h2>
+<table>
+  <thead><tr><th style="width:240px">บทบาท</th><th>ชื่อ-นามสกุล</th><th style="width:140px">วันที่อนุมัติ</th><th style="width:140px">ลายเซ็น</th></tr></thead>
+  <tbody>
+    <tr><td><strong>เจ้าของผลิตภัณฑ์ (YSC)</strong></td><td>____________________</td><td>____________</td><td>____________</td></tr>
+    <tr><td><strong>หัวหน้าฝ่ายการตลาด (YSC)</strong></td><td>____________________</td><td>____________</td><td>____________</td></tr>
+    <tr><td><strong>หัวหน้าฝ่ายดิจิทัล (YSC)</strong></td><td>____________________</td><td>____________</td><td>____________</td></tr>
+    <tr><td><strong>UX/UI Designer (Adeptio)</strong></td><td>____________________</td><td>____________</td><td>____________</td></tr>
+    <tr><td><strong>ผู้จัดการโครงการ (Adeptio)</strong></td><td>____________________</td><td>____________</td><td>____________</td></tr>
+  </tbody>
+</table>
+
+<h1>2. วัตถุประสงค์เชิงธุรกิจ</h1>
+<p>เว็บไซต์สำหรับลูกค้าเป็น<strong>ช่องทางการขายออนไลน์หลัก</strong>ของยงเจริญฯ รองรับทั้งลูกค้าบุคคลธรรมดาและนิติบุคคล ครอบคลุมตั้งแต่การสำรวจสินค้า การสั่งซื้อ การชำระเงิน การจัดการบัญชีและที่อยู่ การติดตามคำสั่งซื้อ การสะสมและแลกของรางวัล จนถึงการขอใบเสนอราคา</p>
+
+<table>
+  <thead><tr><th style="width:80px">รหัส</th><th>เป้าหมายธุรกิจ</th><th style="width:180px">ตัวชี้วัด (KPI)</th></tr></thead>
+  <tbody>
+    <tr><td><strong>BG-WEB-1</strong></td><td>เพิ่มยอดขายผ่านช่องทางออนไลน์</td><td>สัดส่วนยอดขายจากเว็บ ≥ 40% ในปีที่ 1</td></tr>
+    <tr><td><strong>BG-WEB-2</strong></td><td>ลูกค้าสั่งซื้อและชำระเงินครบในเว็บ ไม่ต้องโทร</td><td>Cart Abandonment Rate ≤ 60%</td></tr>
+    <tr><td><strong>BG-WEB-3</strong></td><td>รองรับทั้งลูกค้าบุคคลธรรมดาและนิติบุคคล (เครดิต/ใบกำกับ)</td><td>ครอบคลุมการสมัคร 2 ประเภท + วงเงินเครดิต + ใบกำกับ Y/N/M/A</td></tr>
+    <tr><td><strong>BG-WEB-4</strong></td><td>Mobile-friendly เปิดบนมือถือได้ดีเทียบเท่า Desktop</td><td>Mobile Friendly ≥ 90/100, ยอดจาก Mobile ≥ 50%</td></tr>
+    <tr><td><strong>BG-WEB-5</strong></td><td>ระบบสะสมคะแนนและของรางวัลกระตุ้นการกลับมาซื้อ</td><td>อัตรา Re-purchase 90 วัน ≥ 35%</td></tr>
+    <tr><td><strong>BG-WEB-6</strong></td><td>เทมเพลตตะกร้าช่วยลูกค้าธุรกิจสั่งซื้อซ้ำได้รวดเร็ว</td><td>การใช้ Cart Template ≥ 20% ของคำสั่งซื้อ B2B</td></tr>
+  </tbody>
+</table>
+
+<h1>3. ขอบเขตของงาน</h1>
+<h2>3.1 อยู่ในขอบเขต (In Scope)</h2>
+<ul>
+  <li><strong>Browse</strong> — หน้าแรก, ค้นหา, หน้าแบรนด์, หน้าโปรโมชั่น</li>
+  <li><strong>Product &amp; Cart</strong> — รายละเอียดสินค้า, ตะกร้า, เทมเพลตตะกร้า (Marketing + ส่วนตัว)</li>
+  <li><strong>Checkout 4 ขั้นตอน</strong> + หน้าสั่งซื้อสำเร็จ</li>
+  <li><strong>Authentication</strong> — Login (Email+Password / OTP), Register บุคคลธรรมดา + นิติบุคคล, ลืมรหัสผ่าน</li>
+  <li><strong>My Account</strong> — Dashboard, Profile, Addresses (2 ประเภท), Orders + Pre-Orders, Quotations, Cart Templates</li>
+  <li><strong>Loyalty</strong> — คะแนนสะสม, ของรางวัล, คูปอง, สิทธิ์พิเศษวันเกิด, ประวัติคะแนน</li>
+  <li><strong>Info Pages</strong> — ช่วยเหลือ, FAQ, ติดต่อ, นโยบาย, เกี่ยวกับเรา, ผลิตภัณฑ์โบนัส</li>
+  <li><strong>Mobile Web (Responsive)</strong> — ทุกหน้าจอใน 7 Section ข้างต้น</li>
+  <li>SEO basics: Sitemap, Meta tags, Schema.org</li>
+</ul>
+<h2>3.2 ไม่อยู่ในขอบเขต (Out of Scope)</h2>
+<ul>
+  <li>Mobile Native App — ใช้ Responsive Web ไปก่อน</li>
+  <li>Social Login (Facebook/Google) — เฟสถัดไป</li>
+  <li>Live Chat บนเว็บ — ใช้ LINE OA แทน</li>
+  <li>ระบบรีวิวสินค้า/ดาวคะแนน — เฟสถัดไป</li>
+</ul>
+
+<h1>4. ผู้มีส่วนได้ส่วนเสียและบทบาทผู้ใช้งาน</h1>
+<table>
+  <thead><tr><th style="width:200px">บทบาท</th><th>หน้าที่</th><th style="width:140px">สิทธิ์</th></tr></thead>
+  <tbody>
+    <tr><td><strong>ลูกค้าทั่วไป (Guest)</strong></td><td>ดูสินค้า อ่านโปรโมชั่น <strong>สั่งซื้อไม่ได้</strong> ตาม <span class="br-ref">AUTH-01</span></td><td>ดูอย่างเดียว</td></tr>
+    <tr><td><strong>ลูกค้าบุคคลธรรมดา (สมาชิก)</strong></td><td>สั่งซื้อ ชำระเงิน ดูประวัติ จัดการที่อยู่ คะแนน</td><td>เฉพาะข้อมูลตนเอง</td></tr>
+    <tr><td><strong>ลูกค้านิติบุคคล</strong></td><td>สั่งซื้อด้วยวงเงินเครดิต ขอใบกำกับ Y/N/M/A ขอใบเสนอราคา ใช้ Cart Templates</td><td>เฉพาะข้อมูลบริษัทตนเอง</td></tr>
+  </tbody>
+</table>
+
+<h1>5. โครงสร้างเว็บไซต์ (8 Sections)</h1>
+<p>เว็บไซต์แบ่งโครงสร้างเป็น <strong>8 Section หลัก</strong> โดยแต่ละ Section อ้างอิง Flow Diagram จาก Figma ดังภาพรวมต่อไปนี้:</p>
+
+<div class="flow-overview">
+  <img src="ysc_screens/web_sitemap.png" alt="Sitemap ภาพรวม">
+  <div class="caption">Sitemap ภาพรวมเว็บไซต์ทั้งหมด (Figma node 437:1248)</div>
+</div>
+
+<table>
+  <thead><tr><th style="width:120px">Section</th><th>เนื้อหา</th><th style="width:160px">Figma Flow</th></tr></thead>
+  <tbody>
+    <tr><td><strong>A. Browse</strong></td><td>หน้าแรก ค้นหา หน้าสินค้าตามแบรนด์ หน้าแคมเปญโปรโมชั่น</td><td>Promotion + Brand (node 5383, 8865)</td></tr>
+    <tr><td><strong>B. Product &amp; Cart</strong></td><td>รายละเอียดสินค้า ตะกร้า เทมเพลตตะกร้า</td><td>(ใน Cart Flow)</td></tr>
+    <tr><td><strong>C. Checkout</strong></td><td>4 ขั้นตอน + สั่งซื้อสำเร็จ</td><td>(ใน Cart > Payment > Complete)</td></tr>
+    <tr><td><strong>D. Authentication</strong></td><td>Login (Email/OTP), Register บุคคลธรรมดา + นิติบุคคล, ลืมรหัสผ่าน</td><td>Login Flow (node 5822:37207)</td></tr>
+    <tr><td><strong>E. My Account</strong></td><td>Dashboard, Profile, Addresses, Orders, Pre-Orders, Quotations, Cart Templates</td><td>Account Flow (node 3172:13345)</td></tr>
+    <tr><td><strong>F. Loyalty</strong></td><td>คะแนน รางวัล คูปอง สิทธิ์พิเศษ ประวัติคะแนน</td><td>Account Flow (node 3172:13345)</td></tr>
+    <tr><td><strong>G. Info Pages</strong></td><td>ช่วยเหลือ นโยบาย เกี่ยวกับเรา ผลิตภัณฑ์โบนัส</td><td>Info Flow (node 7100:44288)</td></tr>
+    <tr><td><strong>H. Mobile</strong></td><td>เวอร์ชัน Mobile ของทุกหน้า</td><td>Mobile Flow (node 5246:37634)</td></tr>
+  </tbody>
+</table>
+
+<h1>6. กระบวนการในอนาคต (To-Be)</h1>
+<ul>
+  <li><strong>เว็บไซต์ E-Commerce ครบวงจร</strong> ลูกค้าสั่งซื้อและจัดการบัญชีตนเองได้</li>
+  <li><strong>รองรับ 2 ประเภทลูกค้า</strong> ในเว็บเดียว — บุคคลธรรมดา + นิติบุคคล (วงเงิน, ใบกำกับ, Cart Templates)</li>
+  <li><strong>ระบบ Loyalty ครบ</strong> สะสมคะแนน, แลกของรางวัล, คูปอง, สิทธิ์พิเศษวันเกิด</li>
+  <li><strong>Cart Templates</strong> สำหรับลูกค้าธุรกิจ — ทำซ้ำคำสั่งซื้อประจำได้รวดเร็ว</li>
+  <li><strong>Login 2 ทาง</strong> — รหัสผ่าน หรือ OTP</li>
+  <li><strong>Responsive ทุกหน้า</strong> Desktop / Tablet / Mobile</li>
+</ul>
+
+<h1>7. ข้อกำหนดเชิงหน้าที่ — กรณีการใช้งาน (Use Cases)</h1>
+<p>หัวข้อนี้แบ่งเป็น 8 Section (A-H) แต่ละ Section มี Flow Diagram จาก Figma แสดงภาพรวม + Use Cases รายละเอียด</p>
+
+<!-- ───────────────────────────────────────── -->
+<!-- Section A: Browse                          -->
+<!-- ───────────────────────────────────────── -->
+<div class="section-band">
+  <div class="letter">A</div>
+  <div>
+    หน้าแรก ค้นหา และหน้าสินค้าตามแบรนด์/โปรโมชั่น
+    <div class="desc">4 Use Cases — เกี่ยวกับการค้นพบและสำรวจสินค้า</div>
+  </div>
+</div>
+
+<div class="flow-overview">
+  <img src="ysc_screens/web_flow_promotion.png" alt="Promotion Flow Diagram">
+  <div class="caption">Flow Diagram: หน้าโปรโมชั่นและแคมเปญ (Figma node 5383:32810)</div>
+</div>
+
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-WEB-A01</span><span class="uc-title">เข้าหน้าแรกเว็บไซต์</span></div>
+  <div class="uc-body">
+    <div class="screen-figure">
+      <img src="ysc_screens/web_homepage.png" alt="หน้าแรกเว็บไซต์">
+      <div class="screen-caption"><span>หน้าแรก — Banner, แบรนด์, สินค้ามาใหม่, โปรโมชั่น</span><span class="ref">Figma node 994:8203</span></div>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>ลูกค้าเข้า URL หลัก ระบบแสดง Header (Logo, Search, Menu, Cart, Login/Account)</li>
+        <li>Hero Banner / Carousel โปรโมชั่นปัจจุบัน</li>
+        <li>หมวดหมู่สินค้ายอดนิยม (Grid ไอคอน)</li>
+        <li>สินค้ามาใหม่ / Hot Trend / ขายดี (Carousel)</li>
+        <li>แบรนด์ยอดนิยม + Newsletter</li>
+        <li>Footer ลิงก์นโยบาย ติดต่อ โซเชียล</li>
+      </ol>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-A01-01:</strong> โหลด ≤ 3 วินาที (LCP ผ่าน Google Web Vitals)</div>
+      <div class="uc-ac"><strong>AC-A01-02:</strong> Banner เปลี่ยนสไลด์อัตโนมัติ 5 วินาที</div>
+      <div class="uc-ac"><strong>AC-A01-03:</strong> Banner / Pop-up มาจาก CMS Backoffice อัปเดต ≤ 5 นาที</div>
+    </div>
+  </div>
+</div>
+
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-WEB-A02</span><span class="uc-title">ค้นหาสินค้าและดูผลค้นหา</span></div>
+  <div class="uc-body">
+    <div class="screen-figure">
+      <img src="ysc_screens/web_search_dropdown.png" alt="Search Auto-suggest">
+      <div class="screen-caption"><span>Auto-suggest dropdown ระหว่างพิมพ์</span><span class="ref">Figma node 1037:5301</span></div>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>ลูกค้าพิมพ์คำค้นใน Search Bar (Header)</li>
+        <li>ตั้งแต่ 2 ตัวอักษร ระบบแสดง Auto-suggest: หมวดหมู่ที่ตรง + สินค้าแนะนำ 5 รายการ</li>
+        <li>ลูกค้ากด Enter / คลิกผลที่ต้องการ ไปหน้าผลค้นหาเต็ม</li>
+        <li>หน้าผลค้นหามีตัวกรอง: แบรนด์, ราคา, หมวดหมู่, สต็อก</li>
+      </ol>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-A02-01:</strong> Auto-suggest ตอบสนอง ≤ 1 วินาที</div>
+      <div class="uc-ac"><strong>AC-A02-02:</strong> รองรับการค้นหาด้วย SKU / Barcode ตาม <span class="br-ref">PRD-03</span></div>
+      <div class="uc-ac"><strong>AC-A02-03:</strong> รองรับภาษาไทย + อังกฤษ และผสม</div>
+    </div>
+  </div>
+</div>
+
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-WEB-A03</span><span class="uc-title">ดูหน้าสินค้าตามแบรนด์ (Brand Page)</span></div>
+  <div class="uc-body">
+    <div class="screen-figure">
+      <img src="ysc_screens/web_brand_detail.png" alt="หน้าแบรนด์ ESY">
+      <div class="screen-caption"><span>Brand Page (ตัวอย่าง: ESY) — Banner + Promo + สินค้าตามแบรนด์</span><span class="ref">Figma node 8865:70318</span></div>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">จุดประสงค์</div><p style="margin:0">หน้ารวมสินค้าตามแบรนด์ พร้อม Banner ของแบรนด์, แคมเปญพิเศษของแบรนด์, และส่วนแลกของรางวัล</p></div>
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>ลูกค้าคลิกแบรนด์จาก Homepage หรือ Menu / Search Filter</li>
+        <li>หน้า Brand Page แสดง: Brand Logo + คำอธิบาย ("อุปกรณ์เครื่องเขียนคู่ใจ ของคนมีไอเดีย"), Hero Banner, Promo Banner 2 รายการ (เช่น 50% off + 60% off)</li>
+        <li>ส่วน "Back to School Promotion" (Sub-campaign ของแบรนด์) — Product Grid 16 รายการ</li>
+        <li>Pagination + ตัวเลือกแสดงต่อหน้า (20 / 40 / 60)</li>
+        <li>ส่วนแลกของรางวัล / สินค้าแนะนำท้ายหน้า</li>
+        <li>ปุ่ม "แชร์โปรนี้" (Link, Facebook, LINE, อื่นๆ)</li>
+      </ol>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-A03-01:</strong> Banner และ Promo Banner ของแบรนด์มาจาก CMS</div>
+      <div class="uc-ac"><strong>AC-A03-02:</strong> Sub-campaign แสดงเมื่อมีโปรโมชั่น Active ของแบรนด์</div>
+      <div class="uc-ac"><strong>AC-A03-03:</strong> ป้าย "ลด %", "Promotion", "ใหม่" ตาม <span class="br-ref">PRD-11</span></div>
+      <div class="uc-ac"><strong>AC-A03-04:</strong> ปุ่มแชร์ตรวจ Tracking ของแคมเปญ</div>
+    </div>
+  </div>
+</div>
+
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-WEB-A04</span><span class="uc-title">ดูหน้าแคมเปญโปรโมชั่น (Promotion Page)</span></div>
+  <div class="uc-body">
+    <div class="uc-section"><div class="uc-section-label">จุดประสงค์</div><p style="margin:0">หน้ารวมแคมเปญและโปรโมชั่นทั้งหมด รวมถึง Landing Page ของแคมเปญพิเศษ</p></div>
+    <div class="uc-section"><div class="uc-section-label">ประเภทของ Promotion Page (จาก Figma Flow)</div>
+      <ul style="margin:6px 0 0 18px">
+        <li><strong>หน้าโปรโมชั่นรวม (Main)</strong> — Catalog ของแคมเปญทั้งหมด</li>
+        <li><strong>หน้าแคมเปญเฉพาะกิจ — ลดราคา</strong> (Promo: Sale)</li>
+        <li><strong>หน้าแคมเปญเฉพาะกิจ — ลูกค้าใหม่</strong> (New Customer)</li>
+        <li><strong>หน้าแคมเปญเฉพาะกิจ — เฉพาะหน้า</strong> (Featured Landing)</li>
+      </ul>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>ลูกค้าคลิก "โปรโมชั่น" จาก Menu / Banner / Email Campaign</li>
+        <li>ระบบแสดง Catalog แคมเปญที่ Active</li>
+        <li>ลูกค้าเลือกแคมเปญ ระบบเปิด Landing Page ของแคมเปญนั้น</li>
+        <li>Landing Page แสดงสินค้าในแคมเปญ + รายละเอียดเงื่อนไข + นับถอยหลังหมดอายุ</li>
+        <li>ลูกค้าสามารถเพิ่มสินค้าลงตะกร้าจากที่นี่</li>
+      </ol>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-A04-01:</strong> Landing Page สร้างจาก CMS Backoffice</div>
+      <div class="uc-ac"><strong>AC-A04-02:</strong> ส่วนลดคำนวณอัตโนมัติเมื่อเพิ่มสินค้าจากแคมเปญลงตะกร้า ตาม <span class="br-ref">PR-01</span></div>
+      <div class="uc-ac"><strong>AC-A04-03:</strong> นับถอยหลังหยุดทันทีเมื่อหมดเวลา</div>
+    </div>
+  </div>
+</div>
+
+<!-- ───────────────────────────────────────── -->
+<!-- Section B: Product & Cart                  -->
+<!-- ───────────────────────────────────────── -->
+<div class="section-band">
+  <div class="letter">B</div>
+  <div>
+    รายละเอียดสินค้าและตะกร้า
+    <div class="desc">3 Use Cases — ดูสินค้า เพิ่มลงตะกร้า และใช้เทมเพลตตะกร้า</div>
+  </div>
+</div>
+
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-WEB-B01</span><span class="uc-title">ดูรายละเอียดสินค้า (PDP)</span></div>
+  <div class="uc-body">
+    <div class="screen-figure">
+      <img src="ysc_screens/web_product_detail.png" alt="หน้ารายละเอียดสินค้า">
+      <div class="screen-caption"><span>Product Detail Page</span><span class="ref">Figma node 487:2653</span></div>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>ลูกค้าคลิกสินค้าจาก Listing / Search</li>
+        <li>หน้า PDP แสดง: รูปสินค้าสูงสุด 8 รูป + Zoom, ชื่อ, SKU, แบรนด์, ป้าย (New/Promotion)</li>
+        <li>ราคาตามระดับลูกค้า (P1-P5), สต็อกคงเหลือ, ปุ่มเลือกจำนวน + "เพิ่มลงตะกร้า"</li>
+        <li>รายละเอียดสินค้า + Tab ข้อกำหนด/การส่ง</li>
+        <li>สินค้าที่คล้ายกัน (Similar) ตาม <span class="br-ref">PRD-09</span></li>
+        <li>กรณีหมดสต็อก แสดงสินค้าทดแทน (Substitute) ตาม <span class="br-ref">PRD-08</span></li>
+        <li>กรณี Pre-Order แสดงวันคาดเข้าคลัง + "ชำระ 100% ล่วงหน้า"</li>
+      </ol>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-B01-01:</strong> Guest เห็นราคา P5 / สมาชิกเห็นตาม Tier ของตน</div>
+      <div class="uc-ac"><strong>AC-B01-02:</strong> ราคาตาม Effective Date <span class="br-ref">PRD-06</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-WEB-B02</span><span class="uc-title">เพิ่มสินค้าและจัดการตะกร้า</span></div>
+  <div class="uc-body">
+    <div class="screen-figure">
+      <img src="ysc_screens/web_cart.png" alt="หน้าตะกร้าสินค้า">
+      <div class="screen-caption"><span>หน้าตะกร้า (Cart) — Checkout Step 1</span><span class="ref">Figma node 857:5081</span></div>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>ลูกค้ากด "เพิ่มลงตะกร้า" จาก PDP / Promotion Page / Brand Page</li>
+        <li>ระบบเพิ่มสินค้าและแสดง Toast ยืนยัน + ปรับ Cart Badge</li>
+        <li>ลูกค้าคลิกไอคอนตะกร้า เปิดหน้า Cart</li>
+        <li>หน้า Cart แสดง 3 Tabs:
+          <ul style="margin:6px 0 0 18px">
+            <li><strong>รายการสั่งซื้อ</strong> (สินค้าปกติ)</li>
+            <li><strong>รายการขอใบเสนอราคา</strong></li>
+            <li><strong>รายการ Pre-Order</strong></li>
+          </ul>
+        </li>
+        <li>สินค้าจัดกลุ่มตามแบรนด์ (เพื่อแสดงโปรโมชั่นแบรนด์)</li>
+        <li>แสดงข้อความ "ซื้อเพิ่ม ฿x รับโปรโมชั่น y" เมื่อใกล้ถึงเงื่อนไข</li>
+        <li>Right Panel: เลือกประเภทรับสินค้า (รับเอง/ส่ง), สรุปยอด, ค่าจัดส่ง, ปุ่ม "ดำเนินการต่อ"</li>
+      </ol>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนกรณีผิดพลาด</div>
+      <div class="uc-exc"><strong>3-E.</strong> ลูกค้าไม่ Login ระบบขอ Login ก่อน Checkout ตาม <span class="br-ref">AUTH-01</span></div>
+      <div class="uc-exc"><strong>5-E.</strong> สินค้าหมดสต็อกระหว่างอยู่ในตะกร้า ระบบเตือนและเสนอเปลี่ยนเป็น Pre-Order</div>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-B02-01:</strong> Persistent Cart เก็บข้อมูลแม้ปิด Browser</div>
+      <div class="uc-ac"><strong>AC-B02-02:</strong> Pre-Order ไม่มีโปรโมชั่นใดๆ</div>
+    </div>
+  </div>
+</div>
+
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-WEB-B03</span><span class="uc-title">ใช้เทมเพลตตะกร้า (Cart Templates)</span></div>
+  <div class="uc-body">
+    <div class="uc-section"><div class="uc-section-label">จุดประสงค์</div><p style="margin:0">ช่วยลูกค้าธุรกิจสั่งซื้อสินค้าที่ซื้อประจำได้รวดเร็ว ผ่าน Template ที่บันทึกไว้ หรือ Template จาก Marketing</p></div>
+    <div class="uc-section"><div class="uc-section-label">ประเภทของ Cart Template</div>
+      <ul style="margin:6px 0 0 18px">
+        <li><strong>Template ของฉัน</strong> — ลูกค้าสร้างและตั้งชื่อเอง</li>
+        <li><strong>Template ของ Marketing</strong> — YSC สร้างให้ (ชุดสินค้าโปรโมชั่น, ชุดเปิดเทอม, ฯลฯ)</li>
+      </ul>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>ลูกค้าเข้า My Account → "เทมเพลตตะกร้า"</li>
+        <li>เลือก Tab: ของฉัน / ของ Marketing</li>
+        <li>คลิกเทมเพลต ระบบเปิดรายละเอียด (สินค้าและจำนวน)</li>
+        <li>ลูกค้ากด "เพิ่มลงตะกร้า" ระบบเพิ่มทั้งหมดไปยังตะกร้าหลัก</li>
+        <li>ลูกค้าปรับจำนวนได้ก่อน Checkout</li>
+      </ol>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนทางเลือก</div>
+      <div class="uc-alt"><strong>1a.</strong> ลูกค้าสร้าง Template ใหม่จากตะกร้าปัจจุบัน — กด "บันทึกเป็น Template"</div>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-B03-01:</strong> Template เก็บได้ไม่จำกัดจำนวนต่อบัญชี</div>
+      <div class="uc-ac"><strong>AC-B03-02:</strong> สินค้าใน Template ที่หมดสต็อก ระบบแจ้งก่อนเพิ่มลงตะกร้า</div>
+    </div>
+  </div>
+</div>
+
+<!-- ───────────────────────────────────────── -->
+<!-- Section C: Checkout                        -->
+<!-- ───────────────────────────────────────── -->
+<div class="section-band">
+  <div class="letter">C</div>
+  <div>
+    ขั้นตอนชำระเงิน (Checkout 4 Steps)
+    <div class="desc">5 Use Cases — Step 1-4 + หน้าสั่งซื้อสำเร็จ</div>
+  </div>
+</div>
+
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-WEB-C01</span><span class="uc-title">Step 1: ตรวจสอบตะกร้า</span></div>
+  <div class="uc-body">
+    <p style="margin:0;font-size:13px">หน้าตะกร้าทำหน้าที่เป็น Step 1 ของ Checkout (ดู UC-WEB-B02 สำหรับรายละเอียด)</p>
+    <p style="margin:8px 0 0;font-size:13px">ลูกค้ากด "ดำเนินการต่อ" → ไป Step 2</p>
+  </div>
+</div>
+
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-WEB-C02</span><span class="uc-title">Step 2: ที่อยู่และวิธีจัดส่ง</span></div>
+  <div class="uc-body">
+    <div class="screen-grid">
+      <div class="screen-figure">
+        <img src="ysc_screens/web_checkout_information.png" alt="Checkout Information">
+        <div class="screen-caption"><span>Step 2 — Information แบบรวม</span><span class="ref">Figma node 867:14194</span></div>
+      </div>
+      <div class="screen-figure">
+        <img src="ysc_screens/web_checkout_address.png" alt="Select Address ขนส่งเอกชน">
+        <div class="screen-caption"><span>Step 2 — เลือกที่อยู่ขนส่งเอกชน</span><span class="ref">Figma node 3211:13755</span></div>
+      </div>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>เลือก/เพิ่มที่อยู่จัดส่ง (จาก Address Book)</li>
+        <li>เลือกประเภทใบกำกับ Y/N/M/A ตาม <span class="br-ref">INV-04</span></li>
+        <li>เลือกวิธีจัดส่ง: YSC (สาย A/B/C), ด่วน (Express), Carrier ภายนอก, รับเอง (Self-Pickup)</li>
+        <li>Self-Pickup เลือกเวลานัด (≥ 12 ชั่วโมง) ตาม <span class="br-ref">SHP-09</span></li>
+      </ol>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-C02-01:</strong> ค่าจัดส่งคำนวณจากที่อยู่ + น้ำหนัก/ขนาดสินค้า</div>
+      <div class="uc-ac"><strong>AC-C02-02:</strong> Fragile fee 5-10 บาท/ชิ้น ตาม <span class="br-ref">SHP-06</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-WEB-C03</span><span class="uc-title">Step 3: วิธีการชำระเงิน</span></div>
+  <div class="uc-body">
+    <div class="screen-figure">
+      <img src="ysc_screens/web_checkout_payment.png" alt="หน้าเลือกวิธีชำระเงิน">
+      <div class="screen-caption"><span>Step 3 — Payment Methods</span><span class="ref">Figma node 614:1753</span></div>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>ระบบแสดงวิธีชำระเงินตาม <span class="br-ref">P-01 ถึง P-08</span>:
+          <ul style="margin:6px 0 0 18px">
+            <li>โอนเงิน (11 ธนาคารตาม <span class="br-ref">BNK-01</span>)</li>
+            <li>บัตรเครดิต/เดบิต (+3%)</li>
+            <li>วงเงินเครดิต (เฉพาะนิติบุคคล)</li>
+          </ul>
+        </li>
+        <li>ลูกค้าเลือกวิธี ระบบแสดงค่าธรรมเนียม/รายละเอียด</li>
+        <li>กด "ดำเนินการต่อ" → Step 4</li>
+      </ol>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนทางเลือก</div>
+      <div class="uc-alt"><strong>1a.</strong> วงเงินไม่พอ → ดู UC-OMS-014 (Over-limit) ตาม <span class="br-ref">หมวด 6</span></div>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-C03-01:</strong> ค่าธรรมเนียมบัตร 3% แสดงในยอดรวม</div>
+      <div class="uc-ac"><strong>AC-C03-02:</strong> แสดงโลโก้ธนาคาร + ปุ่มคัดลอกเลขบัญชี ตาม <span class="br-ref">BNK-03</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-WEB-C04</span><span class="uc-title">Step 4: ตรวจสอบและยืนยันคำสั่งซื้อ</span></div>
+  <div class="uc-body">
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>หน้าสรุปแสดงทั้งหมด: สินค้า, จำนวน, ราคา, ที่อยู่จัดส่ง, ที่อยู่ใบกำกับ, วิธีจัดส่ง, วิธีชำระเงิน, ยอดสุทธิ</li>
+        <li>ลูกค้ายอมรับ<strong>เงื่อนไขการสั่งซื้อ</strong></li>
+        <li>กด "ยืนยันคำสั่งซื้อ"</li>
+        <li>ระบบสร้างคำสั่งซื้อ ส่งให้ ConX รับเลข SO/OD</li>
+        <li>ระบบเปิดหน้า "สั่งซื้อสำเร็จ" + ส่งอีเมลแจ้ง ตาม <span class="br-ref">NTF-01</span></li>
+      </ol>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-C04-01:</strong> Auto-cancel 24 ชั่วโมงถ้าไม่ชำระ ตาม <span class="br-ref">RTN-01</span></div>
+      <div class="uc-ac"><strong>AC-C04-02:</strong> ป้องกัน Duplicate Order กรณีกด 2 ครั้งติด</div>
+    </div>
+  </div>
+</div>
+
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-WEB-C05</span><span class="uc-title">หน้าสั่งซื้อสำเร็จ (Order Confirmation)</span></div>
+  <div class="uc-body">
+    <div class="screen-figure">
+      <img src="ysc_screens/web_order_success.png" alt="สั่งซื้อสำเร็จ" style="max-width:400px;margin:0 auto">
+      <div class="screen-caption"><span>Modal สั่งซื้อสำเร็จ</span><span class="ref">Figma node 618:2356</span></div>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>แสดง Modal "คำสั่งซื้อสำเร็จ" พร้อมรหัส SO (เช่น OD2510000147), วันที่, สถานะ</li>
+        <li>กรณีโอน — แสดงเลขบัญชี + คำแนะนำให้อัปโหลดสลิป</li>
+        <li>ปุ่ม "ตรวจสอบคำสั่งซื้อของฉัน" และ "สั่งซื้ออีกครั้ง"</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<!-- ───────────────────────────────────────── -->
+<!-- Section D: Authentication                  -->
+<!-- ───────────────────────────────────────── -->
+<div class="section-band">
+  <div class="letter">D</div>
+  <div>
+    เข้าสู่ระบบและสมัครสมาชิก
+    <div class="desc">5 Use Cases — Login 2 ทาง + Register 2 ประเภท + ลืมรหัสผ่าน</div>
+  </div>
+</div>
+
+<div class="flow-overview">
+  <img src="ysc_screens/web_flow_login.png" alt="Login &amp; Register Flow Diagram">
+  <div class="caption">Flow Diagram: เข้าสู่ระบบและสมัครสมาชิก (Figma node 5822:37207)</div>
+</div>
+
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-WEB-D01</span><span class="uc-title">เข้าสู่ระบบด้วยอีเมล / รหัสผ่าน</span></div>
+  <div class="uc-body">
+    <div class="screen-figure">
+      <img src="ysc_screens/web_login.png" alt="หน้าเข้าสู่ระบบ">
+      <div class="screen-caption"><span>หน้า Login</span><span class="ref">Figma node 994:7246</span></div>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>ลูกค้าคลิก "เข้าสู่ระบบ" ที่ Header</li>
+        <li>กรอกอีเมล + รหัสผ่าน (Show/Hide eye)</li>
+        <li>Checkbox "จดจำการเข้าสู่ระบบ" (Remember Me 30 วัน)</li>
+        <li>กด "เข้าสู่ระบบ" ระบบตรวจสอบ → Redirect ไปหน้าที่เรียก</li>
+      </ol>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนทางเลือก</div>
+      <div class="uc-alt"><strong>2a.</strong> ลูกค้ากด "เข้าสู่ระบบด้วย OTP" → UC-WEB-D02</div>
+      <div class="uc-alt"><strong>2b.</strong> ลูกค้ากด "ลืมรหัสผ่าน?" → UC-WEB-D05</div>
+      <div class="uc-alt"><strong>2c.</strong> ลูกค้ากด "สมัครสมาชิก" → UC-WEB-D03 / D04</div>
+    </div>
+  </div>
+</div>
+
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-WEB-D02</span><span class="uc-title">เข้าสู่ระบบด้วย OTP (Passwordless)</span></div>
+  <div class="uc-body">
+    <div class="uc-section"><div class="uc-section-label">จุดประสงค์</div><p style="margin:0">ลูกค้าเข้าสู่ระบบโดยไม่ใช้รหัสผ่าน — เหมาะกับลูกค้าที่ลืมรหัสบ่อยหรือใช้คอมส่วนกลาง</p></div>
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>ลูกค้ากด "เข้าสู่ระบบด้วย OTP" ที่หน้า Login</li>
+        <li>กรอกอีเมล / เบอร์โทร ระบบส่ง OTP 6 หลัก</li>
+        <li>ลูกค้ากรอก OTP กด "ยืนยัน"</li>
+        <li>ระบบเข้าสู่ระบบและ Redirect</li>
+      </ol>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-D02-01:</strong> OTP มีอายุ 10 นาที</div>
+      <div class="uc-ac"><strong>AC-D02-02:</strong> ส่งใหม่ได้สูงสุด 3 ครั้ง/ชั่วโมง</div>
+      <div class="uc-ac"><strong>AC-D02-03:</strong> ช่องทาง OTP ตาม <span class="br-ref">NTF-03</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-WEB-D03</span><span class="uc-title">สมัครสมาชิกบุคคลธรรมดา</span></div>
+  <div class="uc-body">
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>ลูกค้าเลือก "สมัครสมาชิก" — เลือก "บุคคลธรรมดา"</li>
+        <li>กรอกอีเมล ระบบส่ง OTP ไปอีเมล ตาม <span class="br-ref">AUTH-02</span></li>
+        <li>ลูกค้ายืนยัน OTP</li>
+        <li>กรอกข้อมูลส่วนตัว: ชื่อ-สกุล, เบอร์โทร, วันเกิด (สำหรับสิทธิ์วันเกิด), เพศ</li>
+        <li>กรอกที่อยู่จัดส่งหลัก</li>
+        <li>ยอมรับเงื่อนไขและกด "สมัคร"</li>
+        <li>ระบบสร้างบัญชีระดับ Prospect และเข้าสู่ระบบทันที</li>
+      </ol>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-D03-01:</strong> ใช้งานบัญชีได้ทันทีหลังสมัคร ตาม <span class="br-ref">AUTH-02</span></div>
+      <div class="uc-ac"><strong>AC-D03-02:</strong> Guest Checkout ไม่รองรับ ตาม <span class="br-ref">AUTH-01</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-WEB-D04</span><span class="uc-title">สมัครสมาชิกนิติบุคคล (รับใบกำกับในนามนิติบุคคล)</span></div>
+  <div class="uc-body">
+    <div class="uc-section"><div class="uc-section-label">จุดประสงค์</div><p style="margin:0">ลูกค้าธุรกิจที่ต้องการรับใบกำกับภาษีในนามนิติบุคคล และอาจขอวงเงินเครดิต</p></div>
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>เลือก "สมัครสมาชิก" — เลือก "นิติบุคคล / รับใบกำกับในนามนิติบุคคล"</li>
+        <li>กรอกอีเมล + ยืนยัน OTP</li>
+        <li>กรอกข้อมูลผู้ติดต่อ (ชื่อ, เบอร์, ตำแหน่ง)</li>
+        <li>กรอกข้อมูลบริษัท: เลขทะเบียน 13 หลัก, ชื่อบริษัท, ประเภทธุรกิจ</li>
+        <li>กรอกที่อยู่บริษัท (ตามทะเบียน) + ที่อยู่ออกใบกำกับ (ถ้าต่างกัน)</li>
+        <li>อัปโหลดเอกสาร: หนังสือรับรอง, ภ.พ.20, สำเนาบัตรประชาชนกรรมการ</li>
+        <li>เลือกประเภทใบกำกับ Y/N/M/A เริ่มต้น ตาม <span class="br-ref">INV-04</span></li>
+        <li>ระบุว่าต้องการขอวงเงินเครดิตหรือไม่ (ถ้าใช่ จะมีขั้นตอนเพิ่ม — ดู UC-CRM-006)</li>
+        <li>ยอมรับเงื่อนไข + กด "สมัคร"</li>
+        <li>ระบบสร้างบัญชี รอ Admin ตรวจสอบเอกสาร (สถานะ "รอตรวจสอบ")</li>
+      </ol>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-D04-01:</strong> เอกสารที่อัปโหลดตรวจสอบขนาดไฟล์ ≤ 5 MB/ไฟล์</div>
+      <div class="uc-ac"><strong>AC-D04-02:</strong> ก่อนอนุมัติเอกสาร ลูกค้าสั่งซื้อแบบโอน/บัตรได้ แต่ขอวงเงินไม่ได้</div>
+      <div class="uc-ac"><strong>AC-D04-03:</strong> หลังอนุมัติ ระบบส่งอีเมลแจ้งและเปิดให้ขอวงเงินเครดิตได้</div>
+    </div>
+  </div>
+</div>
+
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-WEB-D05</span><span class="uc-title">ลืมรหัสผ่าน / รีเซ็ตรหัสผ่าน</span></div>
+  <div class="uc-body">
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>ลูกค้ากด "ลืมรหัสผ่าน?" ที่หน้า Login</li>
+        <li>กรอกอีเมลที่ใช้ลงทะเบียน</li>
+        <li>ระบบส่งลิงก์รีเซ็ต + OTP ไปอีเมล</li>
+        <li>ลูกค้าคลิกลิงก์ / กรอก OTP</li>
+        <li>กรอกรหัสผ่านใหม่ 2 ครั้ง</li>
+        <li>ระบบบันทึกและให้ Login ใหม่</li>
+      </ol>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-D05-01:</strong> ลิงก์รีเซ็ตหมดอายุภายใน 30 นาที</div>
+      <div class="uc-ac"><strong>AC-D05-02:</strong> รหัสผ่านใหม่ต้องตรงเงื่อนไข (อย่างน้อย 8 ตัว, ผสม)</div>
+    </div>
+  </div>
+</div>
+
+<!-- ───────────────────────────────────────── -->
+<!-- Section E: My Account                      -->
+<!-- ───────────────────────────────────────── -->
+<div class="section-band">
+  <div class="letter">E</div>
+  <div>
+    บัญชีของฉัน (My Account)
+    <div class="desc">6 Use Cases — Dashboard, Profile, Addresses, Orders, Quotations, Cart Templates</div>
+  </div>
+</div>
+
+<div class="flow-overview">
+  <img src="ysc_screens/web_flow_account.png" alt="My Account Flow Diagram">
+  <div class="caption">Flow Diagram: บัญชีของฉัน — Dashboard, Loyalty, Orders, Profile, Addresses, Quotations, Cart Templates (Figma node 3172:13345)</div>
+</div>
+
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-WEB-E01</span><span class="uc-title">หน้าหลักบัญชีของฉัน (Account Dashboard)</span></div>
+  <div class="uc-body">
+    <div class="uc-section"><div class="uc-section-label">จุดประสงค์</div><p style="margin:0">หน้าเริ่มต้นของ My Account แสดงข้อมูลสำคัญและทางลัดไปยัง Sub-pages</p></div>
+    <div class="uc-section"><div class="uc-section-label">เนื้อหาที่แสดง</div>
+      <ul style="margin:6px 0 0 18px">
+        <li><strong>Header บัญชี</strong> — ชื่อลูกค้า, Tier ปัจจุบัน (Prospect/Member/Silver/Gold/Platinum/Diamond/Coronet)</li>
+        <li><strong>Quick Stats</strong> — คะแนนคงเหลือ, คำสั่งซื้อล่าสุด, ใบเสนอราคารอ, คูปองคงเหลือ</li>
+        <li><strong>กรณีนิติบุคคลที่มีวงเงิน</strong> — แสดงวงเงินคงเหลือ + วันครบกำหนดชำระ</li>
+        <li><strong>กรณีลูกค้าทั่วไป (ไม่มีเครดิต)</strong> — แสดงคำเชิญสมัครเป็นนิติบุคคล</li>
+        <li><strong>Menu ด้านข้าง</strong> — ลิงก์ไป Sub-pages: ข้อมูลบัญชี, ที่อยู่, คำสั่งซื้อ, ใบเสนอราคา, คะแนน, รางวัล, เทมเพลตตะกร้า</li>
+      </ul>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-E01-01:</strong> Dashboard มี 2 layout — ลูกค้าทั่วไป / นิติบุคคลที่มีเครดิต</div>
+      <div class="uc-ac"><strong>AC-E01-02:</strong> Quick Stats อัปเดตเวลาจริง</div>
+    </div>
+  </div>
+</div>
+
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-WEB-E02</span><span class="uc-title">จัดการข้อมูลบัญชีผู้ใช้งาน (Profile)</span></div>
+  <div class="uc-body">
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>ลูกค้าเข้า My Account → "ข้อมูลบัญชี"</li>
+        <li>ระบบแสดง: ชื่อ-สกุล, อีเมล, เบอร์โทร, วันเกิด, เพศ, รูปโปรไฟล์</li>
+        <li>กรณีนิติบุคคล แสดงเพิ่ม: ชื่อบริษัท, เลขทะเบียน, ประเภทธุรกิจ</li>
+        <li>ลูกค้ากด "แก้ไข" ระบบเปิดฟอร์ม</li>
+        <li>เปลี่ยนเบอร์โทร / อีเมล — ต้อง OTP ยืนยัน ตาม <span class="br-ref">NTF-03</span></li>
+        <li>เปลี่ยนรหัสผ่าน — ต้อง OTP ยืนยัน ตาม <span class="br-ref">NTF-04</span></li>
+        <li>ระบบบันทึกและ Activity Log</li>
+      </ol>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-E02-01:</strong> รองรับการอัปโหลดรูปโปรไฟล์ (JPG/PNG ≤ 2 MB)</div>
+      <div class="uc-ac"><strong>AC-E02-02:</strong> ลบบัญชี (Account Deletion) ตามสิทธิ์ PDPA</div>
+    </div>
+  </div>
+</div>
+
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-WEB-E03</span><span class="uc-title">จัดการที่อยู่ (Address Book)</span></div>
+  <div class="uc-body">
+    <div class="uc-section"><div class="uc-section-label">จุดประสงค์</div><p style="margin:0">จัดการที่อยู่ 2 ประเภท — ที่อยู่จัดส่ง + ที่อยู่ออกเอกสาร</p></div>
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>เข้า My Account → "ที่อยู่"</li>
+        <li>ระบบแสดง 2 Tabs: <strong>ที่อยู่จัดส่ง</strong> + <strong>ที่อยู่ออกเอกสาร</strong></li>
+        <li>แต่ละรายการแสดง: ชื่อผู้รับ, ที่อยู่เต็ม, เบอร์โทร, ป้าย "Default"</li>
+        <li>ลูกค้ากด "เพิ่ม / แก้ไข / ลบ"</li>
+        <li>กรอกข้อมูลที่อยู่ครบ — ตรวจสอบรหัสไปรษณีย์</li>
+        <li>กำหนด Default ของแต่ละประเภท</li>
+        <li>บันทึก</li>
+      </ol>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-E03-01:</strong> เก็บที่อยู่ได้ไม่จำกัดต่อบัญชี</div>
+      <div class="uc-ac"><strong>AC-E03-02:</strong> ลบที่อยู่ Default ไม่ได้ ต้องตั้งใหม่ก่อน</div>
+      <div class="uc-ac"><strong>AC-E03-03:</strong> ที่อยู่ออกเอกสารต้องตรงกับ ภ.พ.20 (นิติบุคคล)</div>
+    </div>
+  </div>
+</div>
+
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-WEB-E04</span><span class="uc-title">ดูประวัติคำสั่งซื้อและ Pre-Order</span></div>
+  <div class="uc-body">
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>เข้า My Account → "คำสั่งซื้อ"</li>
+        <li>ระบบแสดง 2 Tabs: <strong>คำสั่งซื้อทั่วไป</strong> + <strong>คำสั่งซื้อ Pre-Order</strong></li>
+        <li>แต่ละรายการแสดง: รหัส SO/OD, วันที่, สถานะ (10 สถานะ ตาม <span class="br-ref">SO-01-06</span>), ยอดรวม, สินค้าตัวอย่าง</li>
+        <li>ลูกค้าคลิกดูรายละเอียด — เห็น Tracking สถานะแบบ Timeline</li>
+        <li>กรณีรอชำระ — มีปุ่ม "อัปโหลดสลิป" / "ยกเลิก"</li>
+        <li>กรณีจัดส่งแล้ว — มีปุ่ม "ติดตามขนส่ง" + Carrier Tracking Code</li>
+        <li>กรณีปิดงานแล้ว — มีปุ่ม "สั่งซื้อซ้ำ (Re-order)" ตาม <span class="br-ref">RO-01</span></li>
+      </ol>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-E04-01:</strong> Re-order เปิดตะกร้าใหม่จากรายการเดิม เตือนหากสินค้าหมดสต็อก</div>
+      <div class="uc-ac"><strong>AC-E04-02:</strong> ดาวน์โหลดใบกำกับภาษี PDF ได้</div>
+    </div>
+  </div>
+</div>
+
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-WEB-E05</span><span class="uc-title">ดูใบเสนอราคา (Quotations)</span></div>
+  <div class="uc-body">
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>เข้า My Account → "ใบเสนอราคา"</li>
+        <li>ระบบแสดงรายการใบเสนอราคาเรียงตามวันที่</li>
+        <li>แต่ละรายการแสดง: เลขที่ Quote, วันที่, อายุ (วันที่หมดอายุ), สถานะ (Active / Expired / Used)</li>
+        <li>ลูกค้าคลิกดูรายละเอียด</li>
+        <li>ลูกค้ากด "แปลงเป็นคำสั่งซื้อ" — ระบบเปิด Checkout ด้วยข้อมูลจาก Quote</li>
+        <li>หรือดาวน์โหลด PDF / แชร์ลิงก์ให้ฝ่ายจัดซื้อ</li>
+      </ol>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-E05-01:</strong> ราคาตามใบเสนอราคาคงที่จนหมดอายุ ตาม <span class="br-ref">Q-01</span></div>
+      <div class="uc-ac"><strong>AC-E05-02:</strong> อายุใบเสนอราคา <span class="tag-pending">รอยืนยัน</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-WEB-E06</span><span class="uc-title">จัดการเทมเพลตตะกร้า (My Cart Templates)</span></div>
+  <div class="uc-body">
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>เข้า My Account → "เทมเพลตตะกร้า"</li>
+        <li>2 Tabs: <strong>ของฉัน</strong> + <strong>ของ Marketing</strong></li>
+        <li>Template ของฉัน — แสดงรายการที่ลูกค้าสร้างเอง พร้อมจำนวนสินค้าและยอดรวม</li>
+        <li>คลิกดูรายละเอียด → แสดงสินค้าครบ + ปุ่ม "เพิ่มลงตะกร้า"</li>
+        <li>ลูกค้าสามารถ: แก้ไขชื่อ, ลบ Template, ปรับจำนวนสินค้าใน Template</li>
+        <li>Template ของ Marketing — แสดง Template ที่ YSC สร้างไว้ (ชุดเปิดเทอม, ฯลฯ)</li>
+      </ol>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-E06-01:</strong> ลูกค้ามีสิทธิ์สร้าง/แก้/ลบ เฉพาะ Template ของตน</div>
+      <div class="uc-ac"><strong>AC-E06-02:</strong> Template ของ Marketing อ่านอย่างเดียว</div>
+    </div>
+  </div>
+</div>
+
+<!-- ───────────────────────────────────────── -->
+<!-- Section F: Loyalty                         -->
+<!-- ───────────────────────────────────────── -->
+<div class="section-band">
+  <div class="letter">F</div>
+  <div>
+    คะแนนสะสมและของรางวัล (Loyalty &amp; Rewards)
+    <div class="desc">4 Use Cases — Points, Rewards, Coupons (รวมวันเกิด), History</div>
+  </div>
+</div>
+
+<div class="callout">
+  <strong>Flow Diagram:</strong> Loyalty section อยู่ใน Account Flow เดียวกัน (Figma node 3172:13345) — ดูภาพรวมที่ section E ด้านบน
+</div>
+
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-WEB-F01</span><span class="uc-title">ดูคะแนนสะสมและกิจกรรม</span></div>
+  <div class="uc-body">
+    <div class="uc-section"><div class="uc-section-label">เนื้อหาที่แสดง</div>
+      <ul style="margin:6px 0 0 18px">
+        <li><strong>คะแนนคงเหลือ</strong> ขนาดใหญ่</li>
+        <li><strong>Tier ปัจจุบัน</strong> + ความก้าวหน้าไป Tier ถัดไป (Progress Bar)</li>
+        <li><strong>คะแนนที่กำลังจะหมดอายุ</strong> (31 ธ.ค.) + จำนวน</li>
+        <li><strong>กิจกรรมที่ทำได้</strong> — ซื้อสินค้า ฿1,500 = 1 คะแนน, รีวิวสินค้า, สมัครรับข่าวสาร <span class="tag-pending">รอยืนยันอัตรา</span></li>
+      </ul>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-F01-01:</strong> แจ้งเตือนคะแนนใกล้หมดอายุล่วงหน้า 60 วัน ตาม <span class="br-ref">NTF-05</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-WEB-F02</span><span class="uc-title">แลกของรางวัลจาก Rewards Catalog</span></div>
+  <div class="uc-body">
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>เข้า My Account → "ของรางวัล"</li>
+        <li>ระบบแสดง Catalog ของรางวัล แบ่ง: สินค้า, คูปอง, ส่วนลด</li>
+        <li>แต่ละรายการแสดง: รูป, ชื่อ, คะแนนที่ใช้, สต็อกคงเหลือ</li>
+        <li>ลูกค้าคลิก "แลก" — ระบบตรวจคะแนนพอ</li>
+        <li>กรณีพอ — หักคะแนนและเพิ่มของรางวัลในตะกร้าครั้งถัดไป / ส่งคูปองให้</li>
+        <li>กรณีไม่พอ — แสดงข้อความ "ต้องเพิ่ม x คะแนน"</li>
+      </ol>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-F02-01:</strong> ของรางวัลตัดสต็อกจากคลัง Reward (ไม่ใช่คลังขาย)</div>
+      <div class="uc-ac"><strong>AC-F02-02:</strong> Reward Tier exclusive — บางรางวัลเฉพาะ Tier สูง</div>
+    </div>
+  </div>
+</div>
+
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-WEB-F03</span><span class="uc-title">คูปองส่วนลด ของขวัญวันเกิด สิทธิ์พิเศษ</span></div>
+  <div class="uc-body">
+    <div class="uc-section"><div class="uc-section-label">เนื้อหาที่แสดง</div>
+      <ul style="margin:6px 0 0 18px">
+        <li><strong>คูปองคงเหลือ</strong> — รหัส, ส่วนลด, วันหมดอายุ, เงื่อนไข</li>
+        <li><strong>สิทธิ์พิเศษวันเกิด</strong> — แสดงเมื่อใกล้/ในเดือนเกิด (ส่วนลด/ของขวัญพิเศษ)</li>
+        <li><strong>สิทธิ์เฉพาะ Tier</strong> — Diamond/Coronet มีสิทธิ์พิเศษเพิ่ม</li>
+      </ul>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>เข้า My Account → "คูปองและสิทธิ์พิเศษ"</li>
+        <li>คลิกคูปองดูเงื่อนไขครบ</li>
+        <li>ปุ่ม "ใช้คูปองนี้" — ระบบนำไปหน้าสินค้าที่ใช้ได้ หรือเพิ่มในตะกร้าทันที</li>
+      </ol>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-F03-01:</strong> สิทธิ์วันเกิดส่งให้ลูกค้า 7 วันก่อนวันเกิด</div>
+      <div class="uc-ac"><strong>AC-F03-02:</strong> คูปองที่หมดอายุย้ายไป "ประวัติ"</div>
+    </div>
+  </div>
+</div>
+
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-WEB-F04</span><span class="uc-title">ดูประวัติคะแนน (Points History)</span></div>
+  <div class="uc-body">
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>เข้า My Account → "ประวัติคะแนน"</li>
+        <li>ระบบแสดง Timeline เรียงตามวันที่ล่าสุด</li>
+        <li>แต่ละรายการแสดง: วันที่, เหตุการณ์ (ซื้อสินค้า/แลกรางวัล/หมดอายุ), คะแนน +/-, คะแนนคงเหลือหลังรายการ</li>
+        <li>ตัวกรอง: ทุกประเภท / เพิ่มเข้า / ใช้ออก / หมดอายุ</li>
+      </ol>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-F04-01:</strong> ประวัติย้อนหลังไม่จำกัดเวลา</div>
+      <div class="uc-ac"><strong>AC-F04-02:</strong> ดาวน์โหลด Excel ได้ ≥ 2 ปี</div>
+    </div>
+  </div>
+</div>
+
+<!-- ───────────────────────────────────────── -->
+<!-- Section G: Info Pages                      -->
+<!-- ───────────────────────────────────────── -->
+<div class="section-band">
+  <div class="letter">G</div>
+  <div>
+    หน้าข้อมูลทั่วไป (Footer / Info Pages)
+    <div class="desc">4 Use Cases — Help, Policy, About, Bonus</div>
+  </div>
+</div>
+
+<div class="flow-overview">
+  <img src="ysc_screens/web_flow_info.png" alt="Info Pages Flow Diagram">
+  <div class="caption">Flow Diagram: หน้าข้อมูลทั่วไป (Figma node 7100:44288)</div>
+</div>
+
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-WEB-G01</span><span class="uc-title">หน้าช่วยเหลือ FAQ และติดต่อ</span></div>
+  <div class="uc-body">
+    <div class="uc-section"><div class="uc-section-label">เนื้อหา</div>
+      <ul style="margin:6px 0 0 18px">
+        <li><strong>FAQ</strong> จัดหมวด: บัญชี / การสั่งซื้อ / การชำระเงิน / การจัดส่ง / การคืน / โปรโมชั่น</li>
+        <li><strong>วิธีการสั่งซื้อ</strong> — Step-by-step พร้อมรูป</li>
+        <li><strong>คู่มือการใช้งานเว็บไซต์</strong> — Video Tutorial (ถ้ามี)</li>
+        <li><strong>ติดต่อเรา</strong> — เบอร์, อีเมล, LINE OA, แผนที่, แบบฟอร์มส่งคำถาม</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-WEB-G02</span><span class="uc-title">หน้านโยบาย (Privacy / Return / Terms)</span></div>
+  <div class="uc-body">
+    <div class="uc-section"><div class="uc-section-label">เนื้อหา</div>
+      <ul style="margin:6px 0 0 18px">
+        <li><strong>นโยบายความเป็นส่วนตัว</strong> — ตามมาตรฐาน PDPA</li>
+        <li><strong>นโยบายการคืนสินค้า</strong> — 7 วัน (บุคคลธรรมดา) / 14 วัน (นิติบุคคล) ตาม <span class="br-ref">RTN-04</span></li>
+        <li><strong>นโยบายการจัดส่ง</strong> — สาย A/B/C, Carrier ภายนอก, ค่าบริการ</li>
+        <li><strong>เงื่อนไขการใช้งาน</strong> — Terms of Service</li>
+      </ul>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-G02-01:</strong> เนื้อหาจัดการผ่าน CMS Backoffice</div>
+      <div class="uc-ac"><strong>AC-G02-02:</strong> Print-friendly และ Download PDF ได้</div>
+    </div>
+  </div>
+</div>
+
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-WEB-G03</span><span class="uc-title">หน้าเกี่ยวกับเรา (About Us)</span></div>
+  <div class="uc-body">
+    <div class="uc-section"><div class="uc-section-label">เนื้อหา</div>
+      <ul style="margin:6px 0 0 18px">
+        <li><strong>เรื่องราวบริษัท</strong> — ประวัติยงเจริญฯ, วิสัยทัศน์, ทีมงาน</li>
+        <li><strong>สาขาและจุดบริการ</strong> — รายชื่อสาขา, แผนที่</li>
+        <li><strong>การรับรอง / มาตรฐาน</strong> — ISO, รางวัล</li>
+        <li><strong>ติดต่องาน / สมัครงาน</strong> (ถ้ามี)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-WEB-G04</span><span class="uc-title">หน้าผลิตภัณฑ์โบนัส / Special Offers</span></div>
+  <div class="uc-body">
+    <div class="uc-section"><div class="uc-section-label">จุดประสงค์</div><p style="margin:0">รวมสินค้าพิเศษ โปรพิเศษ ของแถมพิเศษที่ไม่ได้อยู่ในแคมเปญหลัก</p></div>
+    <div class="uc-section"><div class="uc-section-label">เนื้อหา</div>
+      <ul style="margin:6px 0 0 18px">
+        <li>สินค้าแถม / ของรางวัลพิเศษ</li>
+        <li>ข้อเสนอเฉพาะกลุ่ม (B2B Volume Discount, etc.)</li>
+        <li>ลิงก์ไปหน้า Brand / Promotion ที่เกี่ยวข้อง</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ───────────────────────────────────────── -->
+<!-- Section H: Mobile                          -->
+<!-- ───────────────────────────────────────── -->
+<div class="section-band">
+  <div class="letter">H</div>
+  <div>
+    เวอร์ชัน Mobile (Responsive Web)
+    <div class="desc">1 Use Case — Mobile experience ของทุก Section</div>
+  </div>
+</div>
+
+<div class="flow-overview">
+  <img src="ysc_screens/web_flow_mobile.png" alt="Mobile Flow Diagram">
+  <div class="caption">Flow Diagram: เวอร์ชัน Mobile ทั้งเว็บ — Homepage, Product List, News &amp; Event, Product Detail, Cart > Payment > Complete, Login &amp; Register, More (Figma node 5246:37634)</div>
+</div>
+
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-WEB-H01</span><span class="uc-title">การใช้งานบน Mobile (Responsive)</span></div>
+  <div class="uc-body">
+    <div class="uc-section"><div class="uc-section-label">จุดประสงค์</div><p style="margin:0">ทุกหน้าจอใน Section A-G รองรับ Mobile responsive โดยมี Layout / Component พิเศษสำหรับขนาดเล็ก</p></div>
+    <div class="uc-section"><div class="uc-section-label">ส่วนประกอบ Mobile-specific</div>
+      <ul style="margin:6px 0 0 18px">
+        <li><strong>Hamburger Menu</strong> แทน Top Menu — กดเปิดเมนูข้างซ้าย</li>
+        <li><strong>Sticky Bottom Bar</strong> — ทางลัด: หน้าแรก / ค้นหา / ตะกร้า / บัญชี</li>
+        <li><strong>Cards 1-2 คอลัมน์</strong> ใน Product Listing</li>
+        <li><strong>Image Gallery แบบ Swipe</strong> ใน PDP</li>
+        <li><strong>Sticky CTA "เพิ่มลงตะกร้า"</strong> ที่ด้านล่าง PDP</li>
+        <li><strong>Checkout เป็นหลาย Step</strong> ทีละหน้า (ไม่ใช่หลายคอลัมน์)</li>
+      </ul>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-H01-01:</strong> Google Mobile-Friendly Test ผ่าน ≥ 90/100</div>
+      <div class="uc-ac"><strong>AC-H01-02:</strong> Web Vitals (LCP, FID, CLS) ผ่านเกณฑ์ Google</div>
+      <div class="uc-ac"><strong>AC-H01-03:</strong> ใช้งานได้กับ iOS Safari 15+ และ Android Chrome 90+</div>
+    </div>
+  </div>
+</div>
+
+<h1>8. การออกแบบประสบการณ์ผู้ใช้ (Screen Inventory)</h1>
+<p>ภาพรวมของหน้าจอทั้งหมดที่อยู่ในขอบเขต — รวมถึงสถานะของดีไซน์ใน Figma</p>
+<table>
+  <thead><tr><th style="width:140px">รหัส</th><th>ชื่อหน้าจอ</th><th style="width:120px">Section</th><th style="width:120px">สถานะ Figma</th></tr></thead>
+  <tbody>
+    <tr><td><strong>SCR-WEB-A01</strong></td><td>หน้าแรก (Homepage)</td><td>A</td><td><span class="tag-confirmed">มี</span></td></tr>
+    <tr><td><strong>SCR-WEB-A02</strong></td><td>ผลการค้นหา (Search Result + Auto-suggest)</td><td>A</td><td><span class="tag-confirmed">มี</span></td></tr>
+    <tr><td><strong>SCR-WEB-A03</strong></td><td>หน้าตามแบรนด์ (Brand Page) — ตัวอย่าง ESY</td><td>A</td><td><span class="tag-confirmed">มี</span></td></tr>
+    <tr><td><strong>SCR-WEB-A04</strong></td><td>หน้าโปรโมชั่น (Promotion Hub + Landing 4 รูปแบบ)</td><td>A</td><td><span class="tag-confirmed">มี</span></td></tr>
+    <tr><td><strong>SCR-WEB-B01</strong></td><td>รายละเอียดสินค้า (PDP)</td><td>B</td><td><span class="tag-confirmed">มี</span></td></tr>
+    <tr><td><strong>SCR-WEB-B02</strong></td><td>ตะกร้า (Cart) — 3 Tabs</td><td>B</td><td><span class="tag-confirmed">มี</span></td></tr>
+    <tr><td><strong>SCR-WEB-B03</strong></td><td>เทมเพลตตะกร้า (My Cart Templates)</td><td>B</td><td><span class="tag-confirmed">มี</span></td></tr>
+    <tr><td><strong>SCR-WEB-C01</strong></td><td>Checkout Step 2: Information</td><td>C</td><td><span class="tag-confirmed">มี</span></td></tr>
+    <tr><td><strong>SCR-WEB-C02</strong></td><td>Checkout Step 2 variant: Select Address ขนส่งเอกชน</td><td>C</td><td><span class="tag-confirmed">มี</span></td></tr>
+    <tr><td><strong>SCR-WEB-C03</strong></td><td>Checkout Step 3: Payment</td><td>C</td><td><span class="tag-confirmed">มี</span></td></tr>
+    <tr><td><strong>SCR-WEB-C04</strong></td><td>Checkout Step 4: Review</td><td>C</td><td><span class="tag-confirmed">มี</span></td></tr>
+    <tr><td><strong>SCR-WEB-C05</strong></td><td>หน้าสั่งซื้อสำเร็จ (Modal)</td><td>C</td><td><span class="tag-confirmed">มี</span></td></tr>
+    <tr><td><strong>SCR-WEB-D01</strong></td><td>เข้าสู่ระบบ (Login Email + OTP)</td><td>D</td><td><span class="tag-confirmed">มี</span></td></tr>
+    <tr><td><strong>SCR-WEB-D02</strong></td><td>สมัครสมาชิกบุคคลธรรมดา</td><td>D</td><td><span class="tag-confirmed">มี</span></td></tr>
+    <tr><td><strong>SCR-WEB-D03</strong></td><td>สมัครสมาชิกนิติบุคคล (Multi-step)</td><td>D</td><td><span class="tag-confirmed">มี</span></td></tr>
+    <tr><td><strong>SCR-WEB-D04</strong></td><td>ลืม/รีเซ็ตรหัสผ่าน</td><td>D</td><td><span class="tag-confirmed">มี</span></td></tr>
+    <tr><td><strong>SCR-WEB-E01</strong></td><td>Account Dashboard (2 variants: เครดิต / ไม่มีเครดิต)</td><td>E</td><td><span class="tag-confirmed">มี</span></td></tr>
+    <tr><td><strong>SCR-WEB-E02</strong></td><td>ข้อมูลบัญชีผู้ใช้งาน (Profile)</td><td>E</td><td><span class="tag-confirmed">มี</span></td></tr>
+    <tr><td><strong>SCR-WEB-E03</strong></td><td>จัดการที่อยู่ (2 Tabs: จัดส่ง / ออกเอกสาร)</td><td>E</td><td><span class="tag-confirmed">มี</span></td></tr>
+    <tr><td><strong>SCR-WEB-E04</strong></td><td>คำสั่งซื้อทั่วไป + Pre-Order</td><td>E</td><td><span class="tag-confirmed">มี</span></td></tr>
+    <tr><td><strong>SCR-WEB-E05</strong></td><td>ใบเสนอราคา</td><td>E</td><td><span class="tag-confirmed">มี</span></td></tr>
+    <tr><td><strong>SCR-WEB-E06</strong></td><td>เทมเพลตตะกร้าของฉัน + ของ Marketing</td><td>E</td><td><span class="tag-confirmed">มี</span></td></tr>
+    <tr><td><strong>SCR-WEB-F01</strong></td><td>คะแนนสะสมและกิจกรรม</td><td>F</td><td><span class="tag-confirmed">มี</span></td></tr>
+    <tr><td><strong>SCR-WEB-F02</strong></td><td>Rewards Catalog (แลกรับสินค้า)</td><td>F</td><td><span class="tag-confirmed">มี</span></td></tr>
+    <tr><td><strong>SCR-WEB-F03</strong></td><td>คูปองส่วนลด + วันเกิด + สิทธิ์พิเศษ</td><td>F</td><td><span class="tag-confirmed">มี</span></td></tr>
+    <tr><td><strong>SCR-WEB-F04</strong></td><td>ประวัติคะแนน</td><td>F</td><td><span class="tag-confirmed">มี</span></td></tr>
+    <tr><td><strong>SCR-WEB-G01</strong></td><td>ช่วยเหลือ / FAQ / ติดต่อ</td><td>G</td><td><span class="tag-confirmed">มี</span></td></tr>
+    <tr><td><strong>SCR-WEB-G02</strong></td><td>นโยบาย</td><td>G</td><td><span class="tag-confirmed">มี</span></td></tr>
+    <tr><td><strong>SCR-WEB-G03</strong></td><td>เกี่ยวกับเรา</td><td>G</td><td><span class="tag-confirmed">มี</span></td></tr>
+    <tr><td><strong>SCR-WEB-G04</strong></td><td>ผลิตภัณฑ์โบนัส</td><td>G</td><td><span class="tag-confirmed">มี</span></td></tr>
+    <tr><td><strong>SCR-WEB-H01</strong></td><td>Mobile (ทุก Section)</td><td>H</td><td><span class="tag-confirmed">มี (ดู Mobile Flow)</span></td></tr>
+  </tbody>
+</table>
+
+<h1>9. กฎเกณฑ์เชิงธุรกิจ — อ้างอิงเอกสารแม่บท</h1>
+<div class="callout"><strong>หมายเหตุ:</strong> กฎฉบับเต็มอยู่ใน <a href="ysc_business_rules.html" style="color:#0A0A0A;font-weight:700">ysc_business_rules.html v2.2</a></div>
+<table>
+  <thead><tr><th style="width:140px">รหัส</th><th>กฎเกณฑ์ที่ใช้</th></tr></thead>
+  <tbody>
+    <tr><td><span class="br-ref">AUTH-01, AUTH-02</span></td><td>ห้าม Guest Checkout, OTP ผ่านอีเมล</td></tr>
+    <tr><td><span class="br-ref">หมวด 2</span></td><td>ประเภทคำสั่งซื้อ 3 ประเภท</td></tr>
+    <tr><td><span class="br-ref">P-01 ถึง P-08</span></td><td>การชำระเงิน 4 วิธี (เว็บไม่รับเงินสด)</td></tr>
+    <tr><td><span class="br-ref">C-01 ถึง C-11</span></td><td>วงเงินเครดิตลูกค้านิติบุคคล</td></tr>
+    <tr><td><span class="br-ref">Q-01 ถึง Q-04</span></td><td>ใบเสนอราคา</td></tr>
+    <tr><td><span class="br-ref">RO-01 ถึง RO-03</span></td><td>การสั่งซื้อซ้ำ</td></tr>
+    <tr><td><span class="br-ref">หมวด 10</span></td><td>ระดับสมาชิก 7 ระดับ + คะแนนสะสม + ระดับราคา P1-P5</td></tr>
+    <tr><td><span class="br-ref">PR-01 ถึง PR-07</span></td><td>โปรโมชั่น</td></tr>
+    <tr><td><span class="br-ref">INV-04</span></td><td>ใบกำกับ Y/N/M/A</td></tr>
+    <tr><td><span class="br-ref">SO-01 ถึง SO-06</span></td><td>10 สถานะคำสั่งซื้อ</td></tr>
+    <tr><td><span class="br-ref">PRD-06, PRD-08, PRD-09, PRD-11</span></td><td>ราคา Effective, สินค้าทดแทน, คล้าย, ป้ายสถานะ</td></tr>
+    <tr><td><span class="br-ref">RTN-01, RTN-04</span></td><td>Auto-cancel 24 ชั่วโมง + ระยะเวลาคืน</td></tr>
+    <tr><td><span class="br-ref">SHP-02 ถึง SHP-11</span></td><td>วิธีจัดส่งทุกรูปแบบ</td></tr>
+    <tr><td><span class="br-ref">BNK-01, BNK-03</span></td><td>11 ธนาคารและการแสดงเลขบัญชี</td></tr>
+    <tr><td><span class="br-ref">NTF-01 ถึง NTF-05</span></td><td>แจ้งเตือนอีเมล/LINE และ OTP</td></tr>
+  </tbody>
+</table>
+
+<h1>10. การเชื่อมต่อระบบภายนอก (Integration)</h1>
+<table>
+  <thead><tr><th style="width:140px">ระบบ</th><th>ข้อมูล</th><th style="width:120px">ทิศทาง</th></tr></thead>
+  <tbody>
+    <tr><td><strong>OMS (Backoffice)</strong></td><td>คำสั่งซื้อ การชำระเงิน สถานะ ใบเสนอราคา Pre-Order</td><td>เว็บ ↔ OMS</td></tr>
+    <tr><td><strong>PRD (Backoffice)</strong></td><td>ข้อมูลสินค้า ราคา รูปภาพ สต็อก</td><td>PRD → เว็บ</td></tr>
+    <tr><td><strong>CRM (Backoffice)</strong></td><td>ข้อมูลลูกค้า สมาชิก Tier คะแนน วงเงิน คูปอง Cart Templates</td><td>เว็บ ↔ CRM</td></tr>
+    <tr><td><strong>Promotion Engine</strong></td><td>แคมเปญ คูปอง การคำนวณส่วนลด</td><td>Promotion → เว็บ</td></tr>
+    <tr><td><strong>CMS (Backoffice)</strong></td><td>Banner ข่าวสาร Landing Page Pop-up FAQ นโยบาย</td><td>CMS → เว็บ</td></tr>
+    <tr><td><strong>Payment Gateway</strong></td><td>การชำระเงินบัตร</td><td>เว็บ ↔ Gateway</td></tr>
+    <tr><td><strong>ConX ERP</strong></td><td>SO/OD ใบกำกับ ผ่าน OMS</td><td>ทางอ้อม</td></tr>
+    <tr><td><strong>LINE OA</strong></td><td>การแจ้งเตือนสถานะ + Loyalty Update</td><td>เว็บ → LINE</td></tr>
+    <tr><td><strong>Google Analytics</strong></td><td>การติดตามพฤติกรรม</td><td>เว็บ → GA</td></tr>
+  </tbody>
+</table>
+
+<h1>11. ข้อกำหนดเชิงคุณภาพ (NFR)</h1>
+<table>
+  <thead><tr><th style="width:200px">หัวข้อ</th><th>เกณฑ์</th></tr></thead>
+  <tbody>
+    <tr><td><strong>เวลาตอบสนอง</strong></td><td>หน้าแรก ≤ 3 วินาที, PDP ≤ 2 วินาที, ค้นหา ≤ 1 วินาที</td></tr>
+    <tr><td><strong>Web Vitals</strong></td><td>LCP ≤ 2.5s, FID ≤ 100ms, CLS ≤ 0.1</td></tr>
+    <tr><td><strong>ความพร้อมใช้งาน</strong></td><td>99.9% ตลอด 24/7</td></tr>
+    <tr><td><strong>Concurrent Users</strong></td><td>≥ 5,000 ผู้ใช้พร้อมกัน</td></tr>
+    <tr><td><strong>Browser</strong></td><td>Chrome, Safari, Edge, Firefox (2 เวอร์ชันล่าสุด)</td></tr>
+    <tr><td><strong>Mobile</strong></td><td>iOS Safari 15+, Android Chrome 90+</td></tr>
+    <tr><td><strong>ภาษา</strong></td><td>ไทย (หลัก), อังกฤษ (เฟส 2)</td></tr>
+  </tbody>
+</table>
+
+<h1>12. ความปลอดภัยและความเป็นส่วนตัว</h1>
+<ul>
+  <li><strong>HTTPS</strong> ทุกหน้า</li>
+  <li><strong>การยืนยันตัวตน</strong> Session-based + JWT, Remember Me 30 วัน</li>
+  <li><strong>OTP</strong> สำหรับการสมัคร / เปลี่ยนข้อมูล / ธุรกรรมเสี่ยง</li>
+  <li><strong>การชำระบัตร</strong> ผ่าน Payment Gateway มาตรฐาน PCI-DSS — ไม่เก็บข้อมูลบัตรในระบบ</li>
+  <li><strong>PDPA</strong> ขอความยินยอม + รองรับคำขอลบข้อมูล</li>
+  <li><strong>Rate Limiting</strong> ป้องกัน Brute-force</li>
+  <li><strong>CAPTCHA</strong> ในหน้าสมัครและหลัง Login ผิด 3 ครั้ง</li>
+</ul>
+
+<h1>13. SEO และ Analytics</h1>
+<ul>
+  <li>Meta Tags, OG Tags, Twitter Cards ทุกหน้า</li>
+  <li>Sitemap.xml อัปเดตอัตโนมัติ</li>
+  <li>Schema.org: Product, Organization, BreadcrumbList</li>
+  <li>Friendly URL: /product/{slug}, /category/{slug}, /brand/{slug}</li>
+  <li>Google Analytics 4 + Google Search Console</li>
+  <li>Event tracking: view_item, add_to_cart, begin_checkout, purchase, sign_up, login, view_promotion</li>
+</ul>
+
+<h1>14. สมมติฐานและข้อจำกัด</h1>
+<ul>
+  <li>ดีไซน์ Mobile + Desktop ใน Figma ครอบคลุมครบทุก Section A-H (จาก Flow Diagrams ที่อ้างอิง)</li>
+  <li>Adeptio backend เป็นแหล่งข้อมูลหลัก — ConX เป็น ERP สำหรับบัญชี</li>
+  <li>Mobile Native App ไม่อยู่ในขอบเขต Phase 1</li>
+  <li>LINE OA ใช้ Notification เท่านั้น ไม่ใช่ Order Channel</li>
+</ul>
+
+<h1>15. เกณฑ์การยอมรับผลงาน (Acceptance Criteria)</h1>
+<table>
+  <thead><tr><th style="width:100px">รหัส</th><th>เกณฑ์</th><th style="width:130px">UC อ้างอิง</th></tr></thead>
+  <tbody>
+    <tr><td><strong>AC-WEB-G01</strong></td><td>ลูกค้าสมัครและสั่งซื้อได้ครบทั้ง 2 ประเภท (บุคคลธรรมดา + นิติบุคคล)</td><td>UC-D03, D04, C01-C05</td></tr>
+    <tr><td><strong>AC-WEB-G02</strong></td><td>My Account ครบทุก Sub-page (Profile, Addresses, Orders, Quotations, Templates, Loyalty)</td><td>UC-E01-E06, F01-F04</td></tr>
+    <tr><td><strong>AC-WEB-G03</strong></td><td>การคำนวณส่วนลด/คะแนน/วงเงิน ตรงกัน 100% กับ Backoffice</td><td>ทุก UC</td></tr>
+    <tr><td><strong>AC-WEB-G04</strong></td><td>Mobile Responsive ผ่าน Google Mobile-Friendly Test</td><td>UC-H01</td></tr>
+    <tr><td><strong>AC-WEB-G05</strong></td><td>OTP สำเร็จ ≥ 99% (สมัคร + Login + เปลี่ยนข้อมูล)</td><td>UC-D02, D03, E02</td></tr>
+    <tr><td><strong>AC-WEB-G06</strong></td><td>Cart Templates ใช้งานได้ครบทั้งของฉัน + ของ Marketing</td><td>UC-B03, E06</td></tr>
+    <tr><td><strong>AC-WEB-G07</strong></td><td>Loyalty: สะสม-แลก-ใช้คูปอง-สิทธิ์วันเกิด ทำงานครบ</td><td>UC-F01-F04</td></tr>
+  </tbody>
+</table>
+
+<h1>16. ประเด็นเปิดและความเสี่ยง</h1>
+<table>
+  <thead><tr><th style="width:100px">รหัส</th><th>ประเด็น / ความเสี่ยง</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Q-WEB-001</strong></td><td>อัตราส่วนคะแนนต่อบาท <span class="tag-pending">รอฝ่ายการตลาด</span></td></tr>
+    <tr><td><strong>Q-WEB-002</strong></td><td>เปอร์เซ็นต์เงินมัดจำ Pre-Order <span class="tag-pending">P-01</span></td></tr>
+    <tr><td><strong>Q-WEB-003</strong></td><td>อายุใบเสนอราคา (วัน) <span class="tag-pending">รอยืนยัน</span></td></tr>
+    <tr><td><strong>Q-WEB-004</strong></td><td>สิทธิ์พิเศษวันเกิดในแต่ละ Tier <span class="tag-pending">รอฝ่ายการตลาด</span></td></tr>
+    <tr><td><strong>Q-WEB-005</strong></td><td>เกณฑ์การได้ Reward Tier exclusive</td></tr>
+    <tr><td><strong>Q-WEB-006</strong></td><td>การรองรับภาษาอังกฤษ เฟสไหน</td></tr>
+    <tr><td><strong>R-WEB-001</strong></td><td>ความเสี่ยง: Cart Abandonment Rate สูงในขั้นตอน Checkout 4 ขั้น พิจารณาลดเป็น 3 ขั้น</td></tr>
+    <tr><td><strong>R-WEB-002</strong></td><td>ความเสี่ยง: Payment Gateway ล่ม — ต้องมี Fallback เป็นโอนเงิน</td></tr>
+    <tr><td><strong>R-WEB-003</strong></td><td>ความเสี่ยง: PDPA Compliance — ต้องมีหน้าจัดการความยินยอมและลบข้อมูล</td></tr>
+  </tbody>
+</table>
+
+</div>
+
+<!-- ── Upload Toolbar ── -->
+<div id="upload-toolbar">
+  <div class="ut-header">
+    <span>การจัดการรูปภาพ</span>
+    <button class="toggle" id="ut-toggle">─</button>
+  </div>
+  <div class="ut-body">
+    <div class="ut-stats">อัพโหลดแล้ว <b id="ut-count">0</b> / <span id="ut-total">0</span> รูป</div>
+    <div style="font-size:11.5px;color:rgba(255,255,255,0.65);line-height:1.5">คลิกที่กรอบรูปใดก็ได้เพื่ออัพโหลด Screenshot จากเครื่องคุณ ระบบจะดาวน์โหลดไฟล์ให้อัตโนมัติเพื่อนำไปวางใน <code style="background:rgba(255,255,255,.15);padding:2px 6px;border-radius:3px">docs/ysc_screens/</code> แล้ว commit เข้า GitHub</div>
+    <button id="ut-export">ดาวน์โหลดรูปทั้งหมดอีกครั้ง</button>
+    <button id="ut-clear" class="danger">ล้างรูปที่อัพโหลดในเครื่อง</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  const STORAGE_PREFIX = 'ysc_screen_';
+  const figs = document.querySelectorAll('.screen-figure, .flow-overview');
+  let totalSlots = 0;
+  let uploadedSlots = 0;
+
+  figs.forEach(fig => {
+    const img = fig.querySelector('img');
+    if (!img) return;
+    const src = img.getAttribute('src') || '';
+    const filename = src.split('/').pop();
+    const slotName = filename.replace(/\.(png|jpe?g|webp|gif)$/i, '');
+    if (!slotName) return;
+    fig.dataset.slot = slotName;
+    totalSlots++;
+
+    // File input
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'image/png,image/jpeg,image/webp';
+    input.style.display = 'none';
+    fig.appendChild(input);
+
+    // Overlay
+    const overlay = document.createElement('div');
+    overlay.className = 'upload-overlay';
+    overlay.innerHTML = `
+      <div class="upload-icon">+</div>
+      <div class="upload-text">คลิกเพื่ออัพโหลด Screenshot</div>
+      <div class="upload-filename">${slotName}.png</div>
+    `;
+    fig.insertBefore(overlay, fig.firstChild);
+
+    // Uploaded badge
+    const badge = document.createElement('div');
+    badge.className = 'uploaded-badge';
+    badge.textContent = 'อัพโหลดแล้ว';
+    fig.appendChild(badge);
+
+    // Check localStorage
+    const saved = localStorage.getItem(STORAGE_PREFIX + slotName);
+    if (saved) {
+      img.src = saved;
+      fig.classList.add('uploaded');
+      uploadedSlots++;
+    }
+
+    // Image error handler
+    img.addEventListener('error', () => {
+      if (!fig.classList.contains('uploaded')) {
+        fig.classList.add('no-image');
+      }
+    });
+    if (img.complete && img.naturalWidth === 0 && !fig.classList.contains('uploaded')) {
+      fig.classList.add('no-image');
+    }
+
+    // Click handler
+    fig.addEventListener('click', (e) => {
+      if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
+      input.click();
+    });
+
+    // File change handler
+    input.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (ev) => {
+        const dataUrl = ev.target.result;
+        img.src = dataUrl;
+        img.style.display = 'block';
+        try {
+          localStorage.setItem(STORAGE_PREFIX + slotName, dataUrl);
+        } catch (err) {
+          alert('ไม่สามารถบันทึกใน Browser ได้ (อาจเกิน Quota) แต่ระบบจะดาวน์โหลดไฟล์ให้');
+        }
+        if (!fig.classList.contains('uploaded')) {
+          fig.classList.add('uploaded');
+          fig.classList.remove('no-image');
+          uploadedSlots++;
+          updateCount();
+        }
+        // Auto-download
+        const ext = file.type === 'image/jpeg' ? 'jpg' : file.type === 'image/webp' ? 'webp' : 'png';
+        const a = document.createElement('a');
+        a.href = dataUrl;
+        a.download = slotName + '.' + ext;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      };
+      reader.readAsDataURL(file);
+    });
+  });
+
+  function updateCount() {
+    document.getElementById('ut-count').textContent = uploadedSlots;
+    document.getElementById('ut-total').textContent = totalSlots;
+  }
+  updateCount();
+
+  // Export all
+  document.getElementById('ut-export').addEventListener('click', () => {
+    let n = 0;
+    document.querySelectorAll('.screen-figure[data-slot], .flow-overview[data-slot]').forEach(fig => {
+      const name = fig.dataset.slot;
+      const saved = localStorage.getItem(STORAGE_PREFIX + name);
+      if (saved) {
+        const a = document.createElement('a');
+        a.href = saved;
+        a.download = name + '.png';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        n++;
+      }
+    });
+    if (n === 0) alert('ยังไม่มีรูปที่อัพโหลด');
+  });
+
+  // Clear all
+  document.getElementById('ut-clear').addEventListener('click', () => {
+    if (!confirm('ลบรูปทั้งหมดที่อัพโหลดในเครื่องนี้? (ไฟล์ที่ดาวน์โหลดไปแล้วไม่ถูกลบ)')) return;
+    document.querySelectorAll('.screen-figure[data-slot], .flow-overview[data-slot]').forEach(fig => {
+      localStorage.removeItem(STORAGE_PREFIX + fig.dataset.slot);
+    });
+    location.reload();
+  });
+
+  // Toggle toolbar
+  document.getElementById('ut-toggle').addEventListener('click', (e) => {
+    e.stopPropagation();
+    const tb = document.getElementById('upload-toolbar');
+    tb.classList.toggle('collapsed');
+    e.target.textContent = tb.classList.contains('collapsed') ? '+' : '─';
+  });
+})();
+</script>
+
+</body>
+</html>
