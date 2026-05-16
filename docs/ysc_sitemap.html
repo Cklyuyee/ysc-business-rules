@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>YSC Documentation Sitemap — แผนผังเอกสารโครงการ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#F3F4F6;font-family:'Sarabun',Tahoma,sans-serif;color:#1E293B;padding:0 0 80px;line-height:1.65}
+.toolbar{position:sticky;top:0;z-index:200;background:#1E3A5F;display:flex;align-items:center;justify-content:space-between;padding:9px 22px;box-shadow:0 2px 12px rgba(0,0,0,.25)}
+.toolbar-title{color:#93C5FD;font-size:13px;font-weight:600;letter-spacing:.04em}
+.toolbar a.home{color:#93C5FD;text-decoration:none;font-size:13px;font-weight:600;padding:4px 10px;border-radius:5px}
+.toolbar a.home:hover{background:rgba(255,255,255,.1)}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:6px;font-family:'Sarabun',sans-serif;font-size:12.5px;font-weight:600;cursor:pointer;border:none;background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.2)}
+.btn:hover{background:rgba(255,255,255,.2)}
+
+.hero{background:linear-gradient(135deg,#1E3A5F 0%,#2563EB 100%);color:#fff;padding:56px 24px 70px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50%;right:-10%;width:600px;height:600px;background:radial-gradient(circle,rgba(255,255,255,.08) 0%,transparent 70%);border-radius:50%}
+.hero-inner{max-width:1180px;margin:0 auto;position:relative;z-index:1}
+.hero .tag{display:inline-block;background:rgba(255,255,255,.15);font-size:11px;font-weight:700;letter-spacing:.12em;padding:6px 14px;border-radius:20px;margin-bottom:18px;border:1px solid rgba(255,255,255,.2)}
+.hero h1{font-size:38px;font-weight:800;line-height:1.2;margin-bottom:8px}
+.hero .sub{font-size:16px;color:#BFDBFE;font-weight:300;margin-bottom:24px}
+.hero-stats{display:flex;gap:32px;flex-wrap:wrap;margin-top:24px}
+.stat{display:flex;flex-direction:column}
+.stat-value{font-size:26px;font-weight:800;color:#fff}
+.stat-label{font-size:11.5px;color:#BFDBFE;letter-spacing:.06em;text-transform:uppercase;font-weight:600;margin-top:2px}
+
+.container{max-width:1180px;margin:-30px auto 0;padding:0 24px;position:relative;z-index:2}
+
+.group{background:#fff;border:1px solid #E5E7EB;border-radius:14px;padding:32px;margin-bottom:24px;box-shadow:0 4px 18px rgba(0,0,0,.04)}
+.group-head{display:flex;align-items:center;gap:14px;margin-bottom:22px;padding-bottom:18px;border-bottom:2px solid #F3F4F6}
+.group-num{background:#1E3A5F;color:#fff;width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px;flex-shrink:0}
+.group-title{font-size:20px;font-weight:700;color:#1E3A5F}
+.group-sub{font-size:12.5px;color:#6B7280;margin-top:2px}
+
+.overview-section{background:linear-gradient(135deg,#F8FAFC 0%,#EFF6FF 100%);border:2px dashed #93C5FD;border-radius:12px;padding:22px;margin:0 0 28px;display:grid;grid-template-columns:280px 1fr;gap:22px;align-items:center}
+.overview-section .overview-image{position:relative;cursor:pointer;border-radius:10px;overflow:hidden;background:#fff;border:1px solid #E5E7EB;min-height:200px;display:flex;align-items:center;justify-content:center}
+.overview-section .overview-image img{display:block;width:100%;height:auto;max-height:300px;object-fit:contain}
+.overview-section .overview-image .upload-overlay{position:absolute;inset:0;background:rgba(30,58,95,.92);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;transition:opacity .2s;z-index:5;pointer-events:none;text-align:center;padding:14px}
+.overview-section .overview-image:hover .upload-overlay{opacity:1}
+.overview-section .overview-image.no-image{background:#F8FAFC}
+.overview-section .overview-image.no-image .upload-overlay{position:relative;opacity:1;background:transparent;color:#1E3A5F}
+.overview-section .overview-image.no-image img{display:none}
+.upload-icon-large{font-size:36px;font-weight:800;color:#2563EB;border:3px solid currentColor;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:10px;line-height:1}
+.overview-section .overview-image:hover .upload-icon-large{color:#fff;border-color:#fff}
+.upload-text-overview{font-size:13px;font-weight:700;margin-bottom:2px}
+.upload-filename-overview{font-size:11px;font-family:'Sarabun',monospace;background:rgba(255,255,255,.18);padding:3px 8px;border-radius:4px;margin-top:4px}
+.overview-section .overview-image.no-image .upload-filename-overview{background:#fff;color:#1E3A5F;border:1px solid #BFDBFE}
+.overview-section .overview-image.uploaded::after{content:'อัพโหลดแล้ว';position:absolute;top:8px;right:8px;background:#10B981;color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:10px}
+.overview-info h3{font-size:17px;color:#1E3A5F;font-weight:700;margin-bottom:6px}
+.overview-info p{font-size:13px;color:#475569;margin-bottom:10px;line-height:1.6}
+.overview-info .meta{display:inline-block;font-size:11px;background:#DBEAFE;color:#1E40AF;padding:4px 10px;border-radius:10px;font-weight:600;margin-right:6px}
+
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+.card{background:#fff;border:1px solid #E5E7EB;border-radius:10px;padding:18px 20px;text-decoration:none;color:inherit;transition:all .15s;display:flex;flex-direction:column;gap:8px}
+.card:hover{border-color:#2563EB;box-shadow:0 6px 18px rgba(37,99,235,.15);transform:translateY(-1px)}
+.card .num-badge{background:#EFF6FF;color:#1E3A5F;width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0}
+.card .row{display:flex;align-items:center;gap:10px}
+.card .title{font-size:14px;font-weight:700;color:#1E3A5F;flex:1}
+.card .sub{font-size:11.5px;color:#6B7280;font-weight:500}
+.card .stats{display:flex;gap:14px;font-size:11.5px;color:#475569;margin-top:6px;padding-top:10px;border-top:1px dashed #E5E7EB}
+.card .stats b{color:#1E3A5F}
+.card .link{color:#2563EB;font-size:11.5px;font-weight:700;margin-top:auto}
+
+.master-cards{grid-template-columns:1fr 1fr 1fr}
+.card-master{background:linear-gradient(135deg,#fff 0%,#F8FAFC 100%);border:2px solid #1E3A5F;padding:22px 24px}
+.card-master .num-badge{background:linear-gradient(135deg,#1E3A5F,#2563EB);color:#fff}
+.card-master .title{font-size:15px}
+
+.tools-cards{grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}
+
+.summary-strip{background:#1E3A5F;color:#fff;padding:24px 32px;border-radius:14px;margin-bottom:24px;display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.summary-strip .item{display:flex;flex-direction:column;align-items:center}
+.summary-strip .v{font-size:30px;font-weight:800;color:#FDE68A}
+.summary-strip .l{font-size:11px;color:#BFDBFE;text-transform:uppercase;letter-spacing:.06em;font-weight:600;margin-top:4px}
+
+#upload-toolbar{position:fixed;bottom:24px;right:24px;background:#1E3A5F;color:#fff;padding:14px 18px;border-radius:14px;box-shadow:0 8px 28px rgba(30,58,95,.4);z-index:1000;font-family:'Sarabun',sans-serif;display:flex;flex-direction:column;gap:10px;min-width:240px}
+#upload-toolbar .ut-header{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:#93C5FD;font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+#upload-toolbar .ut-stats{font-size:13px;font-weight:600}
+#upload-toolbar .ut-stats b{color:#FDE68A;font-size:16px}
+#upload-toolbar button{background:#2563EB;color:#fff;border:none;padding:10px 14px;border-radius:8px;cursor:pointer;font-weight:700;font-size:12.5px;font-family:'Sarabun',sans-serif}
+#upload-toolbar button:hover{background:#1D4ED8}
+#upload-toolbar button.danger{background:transparent;color:#FCA5A5;border:1px solid #EF4444;padding:6px 10px;font-size:11px}
+#upload-toolbar button.danger:hover{background:rgba(239,68,68,.15)}
+#upload-toolbar.collapsed{padding:10px 14px;min-width:auto}
+#upload-toolbar.collapsed .ut-body{display:none}
+#upload-toolbar .toggle{cursor:pointer;font-size:14px;background:transparent;padding:0;border:none;color:#93C5FD}
+
+@media print{
+  body{background:#fff}
+  .toolbar,#upload-toolbar{display:none}
+  .hero{background:#fff;color:#1E3A5F;border-bottom:3px solid #1E3A5F}
+  .container{max-width:none;margin:0;padding:24px 40px}
+  .group{box-shadow:none;page-break-inside:avoid}
+  .overview-section .upload-overlay{display:none}
+}
+@media (max-width:760px){
+  .overview-section{grid-template-columns:1fr}
+  .master-cards{grid-template-columns:1fr}
+  .summary-strip{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <div style="display:flex;align-items:center;gap:14px">
+    <a href="index.html" class="home">สารบัญ</a>
+    <span style="color:rgba(255,255,255,.25)">|</span>
+    <span class="toolbar-title">YSC Documentation Sitemap — แผนผังเอกสาร</span>
+  </div>
+  <div><button class="btn" onclick="window.print()">พิมพ์ / PDF</button></div>
+</div>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="tag">SITEMAP · แผนผังเอกสารโครงการ</div>
+    <h1>YSC Digital Platform<br>Documentation Map</h1>
+    <div class="sub">ภาพรวมโครงสร้างเอกสารทั้งหมดของโครงการ — Master, Backoffice 7 โมดูล, Channel 2 ช่องทาง พร้อมรูปรวมของระบบ</div>
+    <div class="hero-stats">
+      <div class="stat"><span class="stat-value">3</span><span class="stat-label">เอกสารหลัก</span></div>
+      <div class="stat"><span class="stat-value">7</span><span class="stat-label">Backoffice โมดูล</span></div>
+      <div class="stat"><span class="stat-value">2</span><span class="stat-label">Channel เว็บ + POS</span></div>
+      <div class="stat"><span class="stat-value">116</span><span class="stat-label">Use Cases รวม</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- ─── Summary Strip ─── -->
+  <div class="summary-strip">
+    <div class="item"><div class="v">22</div><div class="l">หมวด Business Rules</div></div>
+    <div class="item"><div class="v">45</div><div class="l">Decision Records</div></div>
+    <div class="item"><div class="v">12</div><div class="l">เอกสารทั้งหมด</div></div>
+    <div class="item"><div class="v">3</div><div class="l">ระบบ Overview</div></div>
+  </div>
+
+  <!-- ─── Group 1: Master Documents ─── -->
+  <div class="group">
+    <div class="group-head">
+      <div class="group-num">1</div>
+      <div>
+        <div class="group-title">เอกสารหลัก (Master Documents)</div>
+        <div class="group-sub">เอกสารแม่บทที่ทุกโมดูลอ้างอิง</div>
+      </div>
+    </div>
+    <div class="cards master-cards">
+      <a href="ysc_master_brd.html" class="card card-master">
+        <div class="row"><div class="num-badge">M</div><div class="title">YSC Master BRD</div></div>
+        <div class="sub">v2.0 · Umbrella Doc</div>
+        <div class="stats"><span>ลิงก์ <b>9</b> โมดูล</span></div>
+        <div class="link">เปิดอ่าน →</div>
+      </a>
+      <a href="ysc_business_rules.html" class="card card-master">
+        <div class="row"><div class="num-badge">R</div><div class="title">Business Rules</div></div>
+        <div class="sub">v2.2 · 22 หมวด</div>
+        <div class="stats"><span><b>22</b> หมวด</span><span><b>45</b> Decisions</span><span><b>15</b> รอยืนยัน</span></div>
+        <div class="link">เปิดอ่าน →</div>
+      </a>
+      <a href="ysc_mom_summary.html" class="card card-master">
+        <div class="row"><div class="num-badge">N</div><div class="title">MoM Summary</div></div>
+        <div class="sub">บันทึกการประชุม 7 ครั้ง</div>
+        <div class="stats"><span>ม.ค. - เม.ย. 2569</span></div>
+        <div class="link">เปิดอ่าน →</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- ─── Group 2: Backoffice ─── -->
+  <div class="group">
+    <div class="group-head">
+      <div class="group-num">2</div>
+      <div>
+        <div class="group-title">ระบบหลังบ้าน (Backoffice) — 7 โมดูล</div>
+        <div class="group-sub">ระบบสำหรับพนักงาน YSC จัดการข้อมูลและกระบวนการ</div>
+      </div>
+    </div>
+
+    <!-- Overview Image Slot -->
+    <div class="overview-section">
+      <div class="overview-image" data-slot="overview_backoffice">
+        <img src="ysc_screens/overview_backoffice.png" alt="Backoffice Overview">
+      </div>
+      <div class="overview-info">
+        <h3>รูปรวมระบบ Backoffice</h3>
+        <p>ภาพรวมของระบบหลังบ้าน — แสดงเมนูหลัก หน้า Dashboard และการทำงานของพนักงานในทุกโมดูล</p>
+        <span class="meta">7 โมดูล</span>
+        <span class="meta">71 Use Cases</span>
+        <span class="meta">คลิกเพื่ออัพโหลด</span>
+      </div>
+    </div>
+
+    <div class="cards">
+      <a href="ysc_prd_brd.html" class="card">
+        <div class="row"><div class="num-badge">1</div><div class="title">Product Management</div></div>
+        <div class="sub">PRD · จัดการสินค้า</div>
+        <div class="stats"><span><b>10</b> UC</span><span><b>11</b> Rules (PRD-01..11)</span></div>
+        <div class="link">เปิดอ่าน →</div>
+      </a>
+      <a href="ysc_crm_brd.html" class="card">
+        <div class="row"><div class="num-badge">2</div><div class="title">Customer Management</div></div>
+        <div class="sub">CRM · ลูกค้าและสมาชิก</div>
+        <div class="stats"><span><b>11</b> UC</span><span>7 Tiers, P1-P5</span></div>
+        <div class="link">เปิดอ่าน →</div>
+      </a>
+      <a href="ysc_oms_brd.html" class="card">
+        <div class="row"><div class="num-badge">3</div><div class="title">Order Management</div></div>
+        <div class="sub">OMS · คำสั่งซื้อ 3 ช่องทาง</div>
+        <div class="stats"><span><b>14</b> UC</span><span>4 Payment Methods</span></div>
+        <div class="link">เปิดอ่าน →</div>
+      </a>
+      <a href="ysc_wms_brd.html" class="card">
+        <div class="row"><div class="num-badge">4</div><div class="title">Warehouse Management</div></div>
+        <div class="sub">WMS · 5 คลัง + Handheld</div>
+        <div class="stats"><span><b>12</b> UC</span><span>4 Roles</span></div>
+        <div class="link">เปิดอ่าน →</div>
+      </a>
+      <a href="ysc_promotion_brd.html" class="card">
+        <div class="row"><div class="num-badge">5</div><div class="title">Promotion Engine</div></div>
+        <div class="sub">แคมเปญ + คูปอง</div>
+        <div class="stats"><span><b>8</b> UC</span><span>PR-01..07</span></div>
+        <div class="link">เปิดอ่าน →</div>
+      </a>
+      <a href="ysc_cms_brd.html" class="card">
+        <div class="row"><div class="num-badge">6</div><div class="title">Content Management</div></div>
+        <div class="sub">CMS · Banner, FAQ, Pop-up</div>
+        <div class="stats"><span><b>7</b> UC</span><span>P-14</span></div>
+        <div class="link">เปิดอ่าน →</div>
+      </a>
+      <a href="ysc_reporting_brd.html" class="card">
+        <div class="row"><div class="num-badge">7</div><div class="title">Reporting &amp; Analytics</div></div>
+        <div class="sub">แดชบอร์ด + Custom Report</div>
+        <div class="stats"><span><b>9</b> UC</span><span>Exports + Alerts</span></div>
+        <div class="link">เปิดอ่าน →</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- ─── Group 3: Storefront (Web) ─── -->
+  <div class="group">
+    <div class="group-head">
+      <div class="group-num">3</div>
+      <div>
+        <div class="group-title">เว็บไซต์สำหรับลูกค้า (Storefront)</div>
+        <div class="group-sub">เว็บไซต์ E-Commerce สำหรับลูกค้าทั่วไปและนิติบุคคล</div>
+      </div>
+    </div>
+
+    <!-- Overview Image Slot -->
+    <div class="overview-section">
+      <div class="overview-image" data-slot="overview_storefront">
+        <img src="ysc_screens/overview_storefront.png" alt="Storefront Overview">
+      </div>
+      <div class="overview-info">
+        <h3>รูปรวมเว็บไซต์ลูกค้า (Storefront)</h3>
+        <p>ภาพรวมหน้าเว็บไซต์หลัก — Hero Banner, สินค้ามาใหม่, โปรโมชั่น, แบรนด์ยอดนิยม รองรับทั้ง Desktop และ Mobile</p>
+        <span class="meta">8 Sections</span>
+        <span class="meta">32 Use Cases</span>
+        <span class="meta">Responsive</span>
+      </div>
+    </div>
+
+    <div class="cards" style="grid-template-columns:1fr">
+      <a href="ysc_storefront_brd.html" class="card">
+        <div class="row"><div class="num-badge" style="background:linear-gradient(135deg,#1E3A5F,#2563EB);color:#fff">W</div><div class="title">Storefront BRD v2.0 — เอกสารฉบับเต็มของเว็บไซต์</div></div>
+        <div class="sub">ครอบคลุม 8 Sections: Browse, Product/Cart, Checkout, Auth, My Account, Loyalty, Info, Mobile</div>
+        <div class="stats">
+          <span><b>32</b> Use Cases</span>
+          <span><b>30+</b> หน้าจอ</span>
+          <span>มี Figma Mockup</span>
+          <span>Upload Widget ได้</span>
+        </div>
+        <div class="link">เปิดอ่าน →</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- ─── Group 4: POS ─── -->
+  <div class="group">
+    <div class="group-head">
+      <div class="group-num">4</div>
+      <div>
+        <div class="group-title">ระบบขายหน้าร้าน (POS)</div>
+        <div class="group-sub">ระบบสำหรับพนักงานแคชเชียร์ที่สาขา</div>
+      </div>
+    </div>
+
+    <!-- Overview Image Slot -->
+    <div class="overview-section">
+      <div class="overview-image" data-slot="overview_pos">
+        <img src="ysc_screens/overview_pos.png" alt="POS Overview">
+      </div>
+      <div class="overview-info">
+        <h3>รูปรวมระบบ POS (Point of Sale)</h3>
+        <p>ภาพรวมหน้าจอขายหน้าร้าน — Top Bar, Header สำหรับสแกนสินค้า, ตารางตะกร้า, Totals Bar และ Right Rail (Member/Promo/Coupons/Pickup)</p>
+        <span class="meta">5 ส่วน Layout</span>
+        <span class="meta">13 Use Cases</span>
+        <span class="meta">14 State Variants</span>
+      </div>
+    </div>
+
+    <div class="cards" style="grid-template-columns:1fr">
+      <a href="ysc_pos_brd.html" class="card">
+        <div class="row"><div class="num-badge" style="background:linear-gradient(135deg,#1E3A5F,#2563EB);color:#fff">P</div><div class="title">POS BRD — เอกสารฉบับเต็มของระบบขายหน้าร้าน</div></div>
+        <div class="sub">ครอบคลุม Login, ค้นหาลูกค้า, สแกนสินค้า, โปรโมชั่นและคูปอง, รับสินค้า 3 รูปแบบ, ชำระเงิน 4 วิธี, พิมพ์ใบเสร็จ, Customer Display, Offline Mode</div>
+        <div class="stats">
+          <span><b>13</b> Use Cases</span>
+          <span><b>17</b> หน้าจอ</span>
+          <span>มี Figma Mockup</span>
+          <span>Upload Widget ได้</span>
+        </div>
+        <div class="link">เปิดอ่าน →</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- ─── Group 5: Tools ─── -->
+  <div class="group">
+    <div class="group-head">
+      <div class="group-num">5</div>
+      <div>
+        <div class="group-title">เครื่องมือเสริม (Supporting Tools)</div>
+        <div class="group-sub">Screen Library, Executive Preview และเครื่องมืออื่นๆ</div>
+      </div>
+    </div>
+    <div class="cards tools-cards">
+      <a href="ysc_screens_index.html" class="card">
+        <div class="row"><div class="num-badge">S</div><div class="title">Screen Library</div></div>
+        <div class="sub">Screenshot ของระบบ ysc-backoffice</div>
+        <div class="link">เปิด Library →</div>
+      </a>
+      <a href="ysc_requirements_preview.html" class="card">
+        <div class="row"><div class="num-badge">E</div><div class="title">Executive Preview</div></div>
+        <div class="sub">เอกสารฉบับนำเสนอผู้บริหาร 8 หน้า A4</div>
+        <div class="link">เปิดอ่าน →</div>
+      </a>
+    </div>
+  </div>
+
+  <div style="text-align:center;font-size:12px;color:#9CA3AF;margin-top:36px;padding-top:24px;border-top:1px solid #E5E7EB">
+    YSC Digital Platform Documentation · พฤษภาคม 2569 · บริษัท อะเดพทิโอ จำกัด
+  </div>
+
+</div>
+
+<!-- ── Upload Toolbar ── -->
+<div id="upload-toolbar">
+  <div class="ut-header">
+    <span>การจัดการรูปรวม</span>
+    <button class="toggle" id="ut-toggle">─</button>
+  </div>
+  <div class="ut-body">
+    <div class="ut-stats">อัพโหลดแล้ว <b id="ut-count">0</b> / <span id="ut-total">0</span> รูป</div>
+    <div style="font-size:11.5px;color:#BFDBFE;line-height:1.5">คลิกที่กรอบรูปรวมของแต่ละระบบเพื่ออัพโหลด Screenshot ระบบจะดาวน์โหลดไฟล์ให้อัตโนมัติเพื่อนำไปวางใน <code style="background:rgba(255,255,255,.15);padding:2px 6px;border-radius:3px">docs/ysc_screens/</code></div>
+    <button id="ut-export">ดาวน์โหลดรูปทั้งหมดอีกครั้ง</button>
+    <button id="ut-clear" class="danger">ล้างรูปที่อัพโหลดในเครื่อง</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  const STORAGE_PREFIX = 'ysc_screen_';
+  const figs = document.querySelectorAll('.overview-image[data-slot]');
+  let totalSlots = 0;
+  let uploadedSlots = 0;
+
+  figs.forEach(fig => {
+    const slotName = fig.dataset.slot;
+    const img = fig.querySelector('img');
+    totalSlots++;
+
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'image/png,image/jpeg,image/webp';
+    input.style.display = 'none';
+    fig.appendChild(input);
+
+    const overlay = document.createElement('div');
+    overlay.className = 'upload-overlay';
+    overlay.innerHTML = `
+      <div class="upload-icon-large">+</div>
+      <div class="upload-text-overview">คลิกเพื่ออัพโหลด</div>
+      <div class="upload-filename-overview">${slotName}.png</div>
+    `;
+    fig.insertBefore(overlay, fig.firstChild);
+
+    const saved = localStorage.getItem(STORAGE_PREFIX + slotName);
+    if (saved) {
+      img.src = saved;
+      fig.classList.add('uploaded');
+      uploadedSlots++;
+    }
+
+    img.addEventListener('error', () => {
+      if (!fig.classList.contains('uploaded')) {
+        fig.classList.add('no-image');
+      }
+    });
+    if (img.complete && img.naturalWidth === 0 && !fig.classList.contains('uploaded')) {
+      fig.classList.add('no-image');
+    }
+
+    fig.addEventListener('click', (e) => {
+      if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
+      input.click();
+    });
+
+    input.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (ev) => {
+        const dataUrl = ev.target.result;
+        img.src = dataUrl;
+        img.style.display = 'block';
+        try {
+          localStorage.setItem(STORAGE_PREFIX + slotName, dataUrl);
+        } catch (err) {
+          alert('ไม่สามารถบันทึกใน Browser ได้ (อาจเกิน Quota) แต่จะดาวน์โหลดไฟล์ให้');
+        }
+        if (!fig.classList.contains('uploaded')) {
+          fig.classList.add('uploaded');
+          fig.classList.remove('no-image');
+          uploadedSlots++;
+          updateCount();
+        }
+        const ext = file.type === 'image/jpeg' ? 'jpg' : file.type === 'image/webp' ? 'webp' : 'png';
+        const a = document.createElement('a');
+        a.href = dataUrl;
+        a.download = slotName + '.' + ext;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      };
+      reader.readAsDataURL(file);
+    });
+  });
+
+  function updateCount() {
+    document.getElementById('ut-count').textContent = uploadedSlots;
+    document.getElementById('ut-total').textContent = totalSlots;
+  }
+  updateCount();
+
+  document.getElementById('ut-export').addEventListener('click', () => {
+    let n = 0;
+    figs.forEach(fig => {
+      const name = fig.dataset.slot;
+      const saved = localStorage.getItem(STORAGE_PREFIX + name);
+      if (saved) {
+        const a = document.createElement('a');
+        a.href = saved;
+        a.download = name + '.png';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        n++;
+      }
+    });
+    if (n === 0) alert('ยังไม่มีรูปที่อัพโหลด');
+  });
+
+  document.getElementById('ut-clear').addEventListener('click', () => {
+    if (!confirm('ลบรูปทั้งหมดที่อัพโหลดในเครื่องนี้?')) return;
+    figs.forEach(fig => localStorage.removeItem(STORAGE_PREFIX + fig.dataset.slot));
+    location.reload();
+  });
+
+  document.getElementById('ut-toggle').addEventListener('click', (e) => {
+    e.stopPropagation();
+    const tb = document.getElementById('upload-toolbar');
+    tb.classList.toggle('collapsed');
+    e.target.textContent = tb.classList.contains('collapsed') ? '+' : '─';
+  });
+})();
+</script>
+
+</body>
+</html>
