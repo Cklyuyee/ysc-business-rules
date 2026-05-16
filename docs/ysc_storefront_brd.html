@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>YSC Storefront BRD — เว็บไซต์สำหรับลูกค้า (Website / E-Commerce) v1.0</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#F3F4F6;font-family:'Sarabun',Tahoma,sans-serif;color:#1E293B;padding:0 0 80px;line-height:1.65}
+.toolbar{position:sticky;top:0;z-index:200;background:#1E3A5F;display:flex;align-items:center;justify-content:space-between;padding:9px 22px;box-shadow:0 2px 12px rgba(0,0,0,.25)}
+.toolbar-title{color:#93C5FD;font-size:13px;font-weight:600;letter-spacing:.04em}
+.toolbar a.home{color:#93C5FD;text-decoration:none;font-size:13px;font-weight:600;padding:4px 10px;border-radius:5px}
+.toolbar a.home:hover{background:rgba(255,255,255,.1)}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:6px;font-family:'Sarabun',sans-serif;font-size:12.5px;font-weight:600;cursor:pointer;border:none;background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.2)}
+.btn:hover{background:rgba(255,255,255,.2)}
+#doc{max-width:980px;margin:36px auto;background:#fff;padding:64px 72px;box-shadow:0 6px 28px rgba(0,0,0,.12);border-radius:6px}
+.cover{background:#1E3A5F;color:#fff;margin:-64px -72px 36px;padding:64px 72px 48px;border-radius:6px 6px 0 0}
+.cover .tag{display:inline-block;background:#2563EB;font-size:11px;font-weight:700;letter-spacing:.1em;padding:5px 14px;border-radius:4px;margin-bottom:24px}
+.cover h1{font-size:32px;font-weight:700;line-height:1.25;margin-bottom:8px;color:#fff;border:none;padding:0}
+.cover .sub{font-size:16px;color:#93C5FD;font-weight:300;margin-bottom:32px}
+.cover .info-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid rgba(255,255,255,.15);border-radius:8px;overflow:hidden}
+.cover .info-cell{padding:14px 20px;border-bottom:1px solid rgba(255,255,255,.1);border-right:1px solid rgba(255,255,255,.1)}
+.cover .info-cell:nth-child(2n){border-right:none}
+.cover .info-cell:nth-last-child(-n+2){border-bottom:none}
+.cover .info-label{font-size:10px;color:#93C5FD;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
+.cover .info-value{font-size:13px;color:#fff;font-weight:600}
+h1{font-size:24px;color:#1E3A5F;margin:42px 0 14px;font-weight:700;padding-bottom:8px;border-bottom:3px solid #1E3A5F}
+h2{font-size:18px;color:#1E3A5F;margin:30px 0 12px;font-weight:700}
+h3{font-size:15px;color:#2563EB;margin:22px 0 10px;font-weight:700}
+p{margin-bottom:12px;font-size:13.5px}
+ul,ol{margin:8px 0 14px 22px;font-size:13.5px}
+li{margin-bottom:5px;line-height:1.7}
+table{width:100%;border-collapse:collapse;margin:14px 0 22px;font-size:12.5px}
+thead th{background:#1E3A5F;color:#fff;padding:10px 12px;text-align:left;font-weight:600;border:1px solid #1E3A5F}
+tbody td{padding:9px 12px;border:1px solid #D1D5DB;vertical-align:top;line-height:1.6}
+tbody tr:nth-child(even) td{background:#F9FAFB}
+td strong{color:#1E3A5F}
+.callout{border-left:4px solid #2563EB;background:#EFF6FF;padding:14px 18px;margin:14px 0;border-radius:0 6px 6px 0}
+.callout strong{color:#1E3A5F}
+.callout-amber{border-left-color:#F59E0B;background:#FFFBEB}
+.callout-amber strong{color:#92400E}
+.callout-green{border-left-color:#10B981;background:#ECFDF5}
+.callout-green strong{color:#065F46}
+.toc{background:#F8FAFC;border:1px solid #E5E7EB;border-radius:8px;padding:20px 28px;margin:20px 0}
+.toc ol{list-style:none;margin:0;padding:0;counter-reset:toc;font-size:13px}
+.toc ol > li{counter-increment:toc;padding:4px 0;border-bottom:1px dashed #E5E7EB}
+.toc ol > li::before{content:counter(toc) ". ";font-weight:700;color:#1E3A5F;margin-right:6px}
+.toc ol ol{margin:4px 0 4px 24px;font-size:12px;color:#6B7280;counter-reset:sub}
+.toc ol ol li{counter-increment:sub;padding:1px 0;border:none}
+.toc ol ol li::before{content:counter(toc) "." counter(sub) " ";color:#6B7280;font-weight:600;margin-right:4px}
+.screen-ref{display:inline-block;background:#F3F4F6;border:1px solid #D1D5DB;color:#374151;font-size:11.5px;padding:1px 8px;border-radius:4px;font-weight:600}
+.br-ref{display:inline-block;background:#FFFBEB;border:1px solid #FDE68A;color:#92400E;font-size:11px;padding:1px 7px;border-radius:4px;font-weight:600;font-family:'Sarabun',monospace}
+.use-case{border:1px solid #E5E7EB;border-radius:10px;margin:18px 0;background:#fff;overflow:hidden}
+.uc-header{background:#1E3A5F;color:#fff;padding:12px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.uc-header .uc-num{font-size:13px;font-weight:700;letter-spacing:.04em}
+.uc-header .uc-title{font-size:14px;font-weight:600;flex:1}
+.uc-body{padding:16px 22px}
+.uc-section{margin:12px 0}
+.uc-section-label{font-size:11.5px;font-weight:700;color:#1E3A5F;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+.uc-flow{counter-reset:flow;list-style:none;margin-left:0}
+.uc-flow > li{counter-increment:flow;position:relative;padding:5px 0 5px 32px;font-size:13px}
+.uc-flow > li::before{content:counter(flow);position:absolute;left:0;top:5px;width:22px;height:22px;background:#2563EB;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700}
+.uc-alt{background:#FFFBEB;border-left:3px solid #F59E0B;padding:8px 14px;margin:6px 0;border-radius:0 6px 6px 0;font-size:12.5px}
+.uc-exc{background:#FEF2F2;border-left:3px solid #E11D48;padding:8px 14px;margin:6px 0;border-radius:0 6px 6px 0;font-size:12.5px}
+.uc-ac{background:#ECFDF5;border:1px solid #A7F3D0;border-radius:6px;padding:10px 14px;margin:4px 0;font-size:12.5px}
+.uc-ac strong{color:#065F46}
+.tag-confirmed{display:inline-block;background:#DCFCE7;color:#166534;font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:10px}
+.tag-pending{display:inline-block;background:#FEF3C7;color:#92400E;font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:10px}
+.tag-design{display:inline-block;background:#DBEAFE;color:#1E40AF;font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:10px}
+.screen-figure{margin:18px 0 22px;border:1px solid #E5E7EB;border-radius:10px;overflow:hidden;background:#FAFAFA}
+.screen-figure img{display:block;width:100%;height:auto}
+.screen-caption{padding:10px 16px;background:#1E3A5F;color:#fff;font-size:12px;font-weight:600;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.screen-caption .ref{font-size:10.5px;color:#93C5FD;font-weight:500}
+.screen-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:18px 0}
+.screen-grid .screen-figure{margin:0}
+@media print{body{background:#fff}.toolbar{display:none}#doc{max-width:none;margin:0;box-shadow:none;padding:24px 40px}.cover{margin:-24px -40px 24px;padding:50px 40px 40px}h1{page-break-before:always}h1:first-of-type{page-break-before:auto}table,.use-case,.screen-figure{page-break-inside:avoid}}
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <div style="display:flex;align-items:center;gap:14px">
+    <a href="index.html" class="home">สารบัญ</a>
+    <span style="color:rgba(255,255,255,.25)">|</span>
+    <span class="toolbar-title">YSC Storefront BRD — เว็บไซต์สำหรับลูกค้า v1.0</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:8px"><button class="btn" onclick="window.print()">พิมพ์ / PDF</button></div>
+</div>
+
+<div id="doc">
+
+<div class="cover">
+  <div class="tag">เอกสารโมดูล · CHANNEL · STOREFRONT (WEB)</div>
+  <h1>เว็บไซต์สำหรับลูกค้า<br>(Storefront / E-Commerce Website)</h1>
+  <div class="sub">เอกสารข้อกำหนดเชิงธุรกิจ ช่องทางการขายผ่านเว็บไซต์ + แนบ Mockup จาก Figma</div>
+  <div class="info-grid">
+    <div class="info-cell"><div class="info-label">รหัสโมดูล</div><div class="info-value">WEB (Storefront)</div></div>
+    <div class="info-cell"><div class="info-label">เวอร์ชัน / วันที่</div><div class="info-value">v1.0 พฤษภาคม 2569</div></div>
+    <div class="info-cell"><div class="info-label">เจ้าของโครงการ</div><div class="info-value">บริษัท ยงเจริญศูนย์เครื่องเขียน จำกัด</div></div>
+    <div class="info-cell"><div class="info-label">ผู้พัฒนาระบบ</div><div class="info-value">บริษัท อะเดพทิโอ จำกัด</div></div>
+    <div class="info-cell"><div class="info-label">แหล่งดีไซน์</div><div class="info-value">Figma: Yongcharoen (mM7WCqGCqFcPLXUY6Ea3c4)</div></div>
+    <div class="info-cell"><div class="info-label">อ้างอิงเอกสารแม่บท</div><div class="info-value">ysc_business_rules.html v2.2</div></div>
+  </div>
+</div>
+
+<div class="callout callout-green">
+  <strong>วัตถุประสงค์ของเอกสาร</strong>
+  <p style="margin-top:6px;margin-bottom:0;font-size:13px">เอกสารฉบับนี้ระบุข้อกำหนดของ<strong>เว็บไซต์สำหรับลูกค้า (Storefront)</strong> ของยงเจริญศูนย์เครื่องเขียน ครอบคลุมหน้าแรก หน้ารายการสินค้า หน้ารายละเอียดสินค้า ตะกร้า กระบวนการชำระเงิน 4 ขั้นตอน การเข้าสู่ระบบ/สมัครสมาชิก และการจัดการบัญชี โดยอ้างอิง<strong>Mockup จาก Figma</strong>ที่แนบมาในเอกสารและ<strong>กฎเกณฑ์เชิงธุรกิจจาก ysc_business_rules.html v2.2</strong></p>
+</div>
+
+<div class="callout callout-amber">
+  <strong>หมายเหตุเกี่ยวกับ Figma:</strong> ดีไซน์ในไฟล์ Figma ปัจจุบันครอบคลุม<strong>กระบวนการซื้อสินค้าหลัก</strong>เท่านั้น (Homepage, Product Detail, Cart, Checkout, Login) ดีไซน์ที่<strong>ยังไม่มีในไฟล์ Figma</strong>และต้องสร้างเพิ่ม ได้แก่ Registration (General/Dealer), OTP, My Account Dashboard, Order History, Quotation Request, Pre-Order, Address Book, Loyalty Points รายการเหล่านี้ระบุไว้ในแต่ละ Use Case พร้อม <span class="tag-design">รอออกแบบเพิ่ม</span>
+</div>
+
+<h2 style="margin-top:32px">สารบัญ</h2>
+<div class="toc">
+  <ol>
+    <li>ข้อมูลเอกสารและการอนุมัติ</li>
+    <li>วัตถุประสงค์เชิงธุรกิจ</li>
+    <li>ขอบเขตของงาน</li>
+    <li>ผู้มีส่วนได้ส่วนเสียและบทบาทผู้ใช้งาน</li>
+    <li>โครงสร้างข้อมูลและสถาปัตยกรรม (Sitemap)</li>
+    <li>สถานะปัจจุบัน (As-Is) และกระบวนการในอนาคต (To-Be)</li>
+    <li>ข้อกำหนดเชิงหน้าที่ — กรณีการใช้งาน (Use Cases) พร้อม Mockup
+      <ol>
+        <li>UC-WEB-001 ลูกค้าเข้าหน้าแรก</li>
+        <li>UC-WEB-002 ค้นหาสินค้า</li>
+        <li>UC-WEB-003 ดูรายละเอียดสินค้า</li>
+        <li>UC-WEB-004 เพิ่มสินค้าลงตะกร้าและตรวจสอบตะกร้า</li>
+        <li>UC-WEB-005 Checkout ขั้นตอนที่ 2: ที่อยู่และวิธีจัดส่ง</li>
+        <li>UC-WEB-006 Checkout ขั้นตอนที่ 3: วิธีการชำระเงิน</li>
+        <li>UC-WEB-007 Checkout ขั้นตอนที่ 4: ตรวจสอบและยืนยัน</li>
+        <li>UC-WEB-008 ยืนยันคำสั่งซื้อสำเร็จ</li>
+        <li>UC-WEB-009 ลูกค้าเข้าสู่ระบบ</li>
+        <li>UC-WEB-010 ลูกค้าสมัครสมาชิกใหม่</li>
+        <li>UC-WEB-011 ลูกค้าขอใบเสนอราคา</li>
+        <li>UC-WEB-012 ลูกค้าสั่งซื้อสินค้าล่วงหน้า (Pre-Order)</li>
+        <li>UC-WEB-013 ลูกค้าดูประวัติคำสั่งซื้อ</li>
+        <li>UC-WEB-014 ลูกค้าจัดการสมุดที่อยู่</li>
+        <li>UC-WEB-015 ลูกค้าดูคะแนนสะสมและของรางวัล</li>
+      </ol>
+    </li>
+    <li>การออกแบบประสบการณ์ผู้ใช้ (Screen Inventory)</li>
+    <li>กฎเกณฑ์เชิงธุรกิจ — อ้างอิงเอกสารแม่บท</li>
+    <li>การเชื่อมต่อระบบภายนอก (Integration)</li>
+    <li>ข้อกำหนดเชิงคุณภาพ (NFR)</li>
+    <li>ความปลอดภัยและความเป็นส่วนตัว (Security &amp; Privacy)</li>
+    <li>เวอร์ชัน Mobile / Responsive</li>
+    <li>SEO และการวิเคราะห์</li>
+    <li>สมมติฐานและข้อจำกัด</li>
+    <li>เกณฑ์การยอมรับผลงาน (Acceptance Criteria)</li>
+    <li>ประเด็นเปิดและความเสี่ยง</li>
+  </ol>
+</div>
+
+<h2 style="margin-top:36px">สรุปกรณีการใช้งาน (Use Case Catalog)</h2>
+<p style="font-size:13px;color:#475569">ตารางสรุปกรณีการใช้งานทั้ง 15 รายการของเว็บไซต์ ครอบคลุมการสำรวจสินค้า การสั่งซื้อ Checkout 4 ขั้นตอน และการจัดการบัญชี รายละเอียดเต็มอยู่ในหัวข้อที่ 7 พร้อม Mockup จาก Figma</p>
+<table>
+  <thead>
+    <tr>
+      <th style="width:46px">#</th>
+      <th style="width:118px">รหัส</th>
+      <th>ชื่อกรณีการใช้งาน</th>
+      <th style="width:140px">ผู้ใช้งานหลัก</th>
+      <th style="width:140px">กฎที่เกี่ยวข้อง</th>
+      <th style="width:100px">สถานะ Figma</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>1</td><td><strong>UC-WEB-001</strong></td><td>ลูกค้าเข้าหน้าแรก</td><td>ลูกค้า / Guest</td><td>—</td><td><span class="tag-confirmed">มี Mockup</span></td></tr>
+    <tr><td>2</td><td><strong>UC-WEB-002</strong></td><td>ค้นหาสินค้า</td><td>ลูกค้า / Guest</td><td><span class="br-ref">PRD-03</span></td><td><span class="tag-confirmed">มี Mockup</span></td></tr>
+    <tr><td>3</td><td><strong>UC-WEB-003</strong></td><td>ดูรายละเอียดสินค้า</td><td>ลูกค้า / Guest</td><td><span class="br-ref">PRD-06</span> <span class="br-ref">PRD-08</span> <span class="br-ref">PRD-11</span></td><td><span class="tag-confirmed">มี Mockup</span></td></tr>
+    <tr><td>4</td><td><strong>UC-WEB-004</strong></td><td>เพิ่มสินค้าลงตะกร้าและตรวจสอบตะกร้า</td><td>ลูกค้า (สมาชิก)</td><td><span class="br-ref">AUTH-01</span></td><td><span class="tag-confirmed">มี Mockup</span></td></tr>
+    <tr><td>5</td><td><strong>UC-WEB-005</strong></td><td>Checkout Step 2: ที่อยู่และวิธีจัดส่ง</td><td>ลูกค้า</td><td><span class="br-ref">INV-04</span> <span class="br-ref">SHP-02</span> <span class="br-ref">SHP-09</span></td><td><span class="tag-confirmed">มี Mockup</span></td></tr>
+    <tr><td>6</td><td><strong>UC-WEB-006</strong></td><td>Checkout Step 3: วิธีการชำระเงิน</td><td>ลูกค้า</td><td><span class="br-ref">P-01</span> <span class="br-ref">BNK-03</span></td><td><span class="tag-confirmed">มี Mockup</span></td></tr>
+    <tr><td>7</td><td><strong>UC-WEB-007</strong></td><td>Checkout Step 4: ตรวจสอบและยืนยัน</td><td>ลูกค้า</td><td><span class="br-ref">RTN-01</span> <span class="br-ref">NTF-01</span></td><td><span class="tag-design">รอออกแบบ</span></td></tr>
+    <tr><td>8</td><td><strong>UC-WEB-008</strong></td><td>ยืนยันคำสั่งซื้อสำเร็จ</td><td>ลูกค้า</td><td><span class="br-ref">CC-04</span></td><td><span class="tag-confirmed">มี Mockup</span></td></tr>
+    <tr><td>9</td><td><strong>UC-WEB-009</strong></td><td>ลูกค้าเข้าสู่ระบบ</td><td>ลูกค้า</td><td><span class="br-ref">NTF-04</span></td><td><span class="tag-confirmed">มี Mockup</span></td></tr>
+    <tr><td>10</td><td><strong>UC-WEB-010</strong></td><td>ลูกค้าสมัครสมาชิกใหม่</td><td>ลูกค้า (ใหม่)</td><td><span class="br-ref">AUTH-01</span> <span class="br-ref">AUTH-02</span></td><td><span class="tag-design">รอออกแบบ</span></td></tr>
+    <tr><td>11</td><td><strong>UC-WEB-011</strong></td><td>ลูกค้าขอใบเสนอราคา</td><td>ลูกค้านิติบุคคล</td><td><span class="br-ref">Q-01</span> <span class="br-ref">Q-04</span></td><td><span class="tag-design">รอออกแบบ</span></td></tr>
+    <tr><td>12</td><td><strong>UC-WEB-012</strong></td><td>ลูกค้าสั่งซื้อสินค้าล่วงหน้า (Pre-Order)</td><td>ลูกค้า</td><td>—</td><td><span class="tag-design">รอออกแบบ</span></td></tr>
+    <tr><td>13</td><td><strong>UC-WEB-013</strong></td><td>ลูกค้าดูประวัติคำสั่งซื้อ</td><td>ลูกค้า</td><td><span class="br-ref">SO-01</span> <span class="br-ref">RO-01</span></td><td><span class="tag-design">รอออกแบบ</span></td></tr>
+    <tr><td>14</td><td><strong>UC-WEB-014</strong></td><td>ลูกค้าจัดการสมุดที่อยู่</td><td>ลูกค้า</td><td>—</td><td><span class="tag-design">รอออกแบบ</span></td></tr>
+    <tr><td>15</td><td><strong>UC-WEB-015</strong></td><td>ลูกค้าดูคะแนนสะสมและของรางวัล</td><td>ลูกค้า</td><td><span class="br-ref">หมวด 10</span> <span class="br-ref">NTF-05</span></td><td><span class="tag-design">รอออกแบบ</span></td></tr>
+  </tbody>
+</table>
+
+<h1>1. ข้อมูลเอกสารและการอนุมัติ</h1>
+<h2>1.1 ประวัติการแก้ไข</h2>
+<table>
+  <thead><tr><th style="width:80px">เวอร์ชัน</th><th style="width:110px">วันที่</th><th>รายละเอียดการเปลี่ยนแปลง</th><th style="width:90px">สถานะ</th></tr></thead>
+  <tbody>
+    <tr><td>1.0</td><td>16 พ.ค. 2569</td><td>ฉบับแรกของเอกสารโมดูล Storefront อ้างอิง Figma file Yongcharoen และ Business Rules v2.2 ครอบคลุม 15 Use Cases พร้อมแนบ Mockup 9 หน้าจอ</td><td><span class="tag-confirmed">ปัจจุบัน</span></td></tr>
+  </tbody>
+</table>
+
+<h2>1.2 ผู้อนุมัติเอกสาร</h2>
+<table>
+  <thead><tr><th style="width:240px">บทบาท</th><th>ชื่อ-นามสกุล</th><th style="width:140px">วันที่อนุมัติ</th><th style="width:140px">ลายเซ็น</th></tr></thead>
+  <tbody>
+    <tr><td><strong>เจ้าของผลิตภัณฑ์ (YSC)</strong></td><td>____________________</td><td>____________</td><td>____________</td></tr>
+    <tr><td><strong>หัวหน้าฝ่ายการตลาด (YSC)</strong></td><td>____________________</td><td>____________</td><td>____________</td></tr>
+    <tr><td><strong>หัวหน้าฝ่ายดิจิทัล (YSC)</strong></td><td>____________________</td><td>____________</td><td>____________</td></tr>
+    <tr><td><strong>UX/UI Designer (Adeptio)</strong></td><td>____________________</td><td>____________</td><td>____________</td></tr>
+    <tr><td><strong>ผู้จัดการโครงการ (Adeptio)</strong></td><td>____________________</td><td>____________</td><td>____________</td></tr>
+  </tbody>
+</table>
+
+<h1>2. วัตถุประสงค์เชิงธุรกิจ</h1>
+<p>เว็บไซต์สำหรับลูกค้าเป็น<strong>ช่องทางการขายออนไลน์หลัก</strong>ของยงเจริญฯ ที่ลูกค้าสามารถสมัครสมาชิก ค้นหาและสั่งซื้อสินค้า จัดการคำสั่งซื้อและบัญชีของตนเองได้ โดยรองรับทั้งลูกค้าบุคคลธรรมดาและลูกค้านิติบุคคล (ที่มีวงเงินเครดิตและประเภทใบกำกับภาษีพิเศษ)</p>
+
+<table>
+  <thead><tr><th style="width:80px">รหัส</th><th>เป้าหมายธุรกิจ</th><th style="width:180px">ตัวชี้วัด (KPI)</th></tr></thead>
+  <tbody>
+    <tr><td><strong>BG-WEB-1</strong></td><td>เพิ่มยอดขายผ่านช่องทางออนไลน์ ลดภาระของ Contact Center</td><td>สัดส่วนคำสั่งซื้อจากเว็บ ≥ 40% ในปีที่ 1</td></tr>
+    <tr><td><strong>BG-WEB-2</strong></td><td>ลูกค้าสมัครและสั่งซื้อได้สะดวกในขั้นตอนน้อย</td><td>อัตราการสมัครสำเร็จ ≥ 90%, Cart Abandonment Rate ≤ 60%</td></tr>
+    <tr><td><strong>BG-WEB-3</strong></td><td>รองรับทั้งลูกค้าบุคคลธรรมดาและนิติบุคคลในเว็บไซต์เดียว</td><td>รองรับการขอวงเงินเครดิตและใบกำกับภาษี Y/N/M/A ครบ</td></tr>
+    <tr><td><strong>BG-WEB-4</strong></td><td>ดีไซน์เว็บไซต์สวยและใช้งานง่ายบน Desktop และ Mobile</td><td>Mobile Friendly Score ≥ 90/100, Web Vitals ผ่านเกณฑ์ Google</td></tr>
+    <tr><td><strong>BG-WEB-5</strong></td><td>ค้นหาและกรองสินค้าได้รวดเร็ว</td><td>ค้นหาแสดงผลใน ≤ 1 วินาที, Auto-suggest ระหว่างพิมพ์</td></tr>
+  </tbody>
+</table>
+
+<h1>3. ขอบเขตของงาน</h1>
+<h2>3.1 อยู่ในขอบเขต (In Scope)</h2>
+<ul>
+  <li><strong>หน้าแรก (Homepage)</strong> — Banner, สินค้ามาใหม่, โปรโมชั่น, แบรนด์ ฯลฯ</li>
+  <li><strong>การค้นหาสินค้า</strong> — Search Bar พร้อม Auto-suggest</li>
+  <li><strong>หน้ารายการสินค้าตามหมวด (Product Listing)</strong></li>
+  <li><strong>หน้ารายละเอียดสินค้า (Product Detail Page — PDP)</strong></li>
+  <li><strong>ตะกร้าสินค้า (Cart)</strong> และกระบวนการชำระเงิน <strong>4 ขั้นตอน</strong>:
+    <ol>
+      <li>ตรวจสอบตะกร้า</li>
+      <li>ที่อยู่และวิธีส่ง</li>
+      <li>เลือกวิธีการชำระเงิน</li>
+      <li>ตรวจสอบและยืนยัน</li>
+    </ol>
+  </li>
+  <li><strong>หน้า Login / Register</strong> สำหรับลูกค้าบุคคลธรรมดาและนิติบุคคล</li>
+  <li><strong>OTP Verification</strong> ตาม <span class="br-ref">AUTH-02, NTF-03</span></li>
+  <li><strong>My Account</strong> — ดูประวัติคำสั่งซื้อ คะแนนสะสม สมุดที่อยู่ ใบเสนอราคา</li>
+  <li><strong>การขอใบเสนอราคา (Quotation Request)</strong> ตาม <span class="br-ref">Q-01 ถึง Q-04</span></li>
+  <li><strong>การสั่งซื้อล่วงหน้า (Pre-Order)</strong></li>
+  <li><strong>Responsive Web Design</strong> รองรับ Desktop / Tablet / Mobile</li>
+  <li><strong>SEO Basics</strong> — Sitemap, Meta tags, Schema.org markup</li>
+</ul>
+
+<h2>3.2 ไม่อยู่ในขอบเขต (Out of Scope)</h2>
+<ul>
+  <li><strong>Mobile Native App</strong> (iOS/Android) — ใช้ Responsive Web ไปก่อน</li>
+  <li><strong>ระบบสมาชิกแบบโซเชียล</strong> (Login ด้วย Facebook / Google) — เฟสถัดไป</li>
+  <li><strong>การแชทสด (Live Chat)</strong> ใช้ LINE OA แทน</li>
+  <li><strong>ระบบรีวิวสินค้า / ดาวคะแนน</strong> — เฟสถัดไป</li>
+</ul>
+
+<h1>4. ผู้มีส่วนได้ส่วนเสียและบทบาทผู้ใช้งาน</h1>
+<table>
+  <thead><tr><th style="width:200px">บทบาท</th><th>หน้าที่ในเว็บไซต์</th><th style="width:140px">สิทธิ์</th></tr></thead>
+  <tbody>
+    <tr><td><strong>ลูกค้าทั่วไป (Guest)</strong></td><td>ดูสินค้า อ่านโปรโมชั่น แต่<strong>สั่งซื้อไม่ได้</strong> ตาม <span class="br-ref">AUTH-01</span></td><td>ดูอย่างเดียว</td></tr>
+    <tr><td><strong>ลูกค้าบุคคลธรรมดา (สมาชิก)</strong></td><td>สั่งซื้อ ชำระเงิน ดูประวัติ จัดการที่อยู่ คะแนน</td><td>เฉพาะข้อมูลตนเอง</td></tr>
+    <tr><td><strong>ลูกค้านิติบุคคล</strong></td><td>สั่งซื้อด้วยวงเงินเครดิต ขอใบกำกับ Y/N/M/A ขอใบเสนอราคา</td><td>เฉพาะข้อมูลบริษัทตนเอง</td></tr>
+    <tr><td><strong>พนักงาน CC</strong></td><td>ใช้เว็บไซต์ในการสาธิตและตอบคำถามลูกค้า</td><td>ดูอย่างเดียว</td></tr>
+  </tbody>
+</table>
+
+<h1>5. โครงสร้างข้อมูลและสถาปัตยกรรม (Sitemap)</h1>
+
+<p>เว็บไซต์มี<strong>โครงสร้างหลัก 5 ส่วน</strong> ตามแผนภาพต่อไปนี้ (ภาพจาก Figma Sitemap):</p>
+
+<div class="screen-figure">
+  <img src="ysc_screens/web_sitemap.png" alt="Website Sitemap จาก Figma">
+  <div class="screen-caption">
+    <span>Sitemap ภาพรวมของเว็บไซต์ — 5 กลุ่มหลัก: สินค้า, โปรโมชั่น, วิธีสั่งซื้อ, เกี่ยวกับเรา, บัญชีของฉัน</span>
+    <span class="ref">Figma node 437:1248</span>
+  </div>
+</div>
+
+<table>
+  <thead><tr><th style="width:160px">ส่วน</th><th>หน้าจอย่อย</th></tr></thead>
+  <tbody>
+    <tr><td><strong>หน้าหลัก</strong></td><td>Homepage, Search Results, สินค้ามาใหม่, สินค้าขายดี, โปรโมชั่นปัจจุบัน</td></tr>
+    <tr><td><strong>สินค้า</strong></td><td>หมวดหมู่สินค้า (Category), รายการสินค้า (Listing), รายละเอียดสินค้า (PDP), สินค้าที่คล้ายกัน, สินค้าทดแทน</td></tr>
+    <tr><td><strong>โปรโมชั่น</strong></td><td>แคมเปญที่กำลังรัน, สินค้าตามแคมเปญ, คูปองของฉัน</td></tr>
+    <tr><td><strong>ตะกร้าและชำระเงิน</strong></td><td>ตะกร้า, Checkout 4 ขั้นตอน, ใบเสนอราคา, สั่งซื้อสำเร็จ</td></tr>
+    <tr><td><strong>บัญชีของฉัน</strong></td><td>โปรไฟล์, ประวัติคำสั่งซื้อ, สมุดที่อยู่, คะแนนสะสม, ใบเสนอราคา, Pre-Order, ขอวงเงินเครดิต</td></tr>
+    <tr><td><strong>ข้อมูลทั่วไป</strong></td><td>เกี่ยวกับเรา, วิธีการสั่งซื้อ, นโยบายความเป็นส่วนตัว, คำถามที่พบบ่อย (FAQ), ติดต่อเรา</td></tr>
+  </tbody>
+</table>
+
+<h2>5.1 Flow ภาพรวม (E2E)</h2>
+<div class="screen-figure">
+  <img src="ysc_screens/web_flow_e2e.png" alt="End-to-End Flow ของเว็บไซต์">
+  <div class="screen-caption">
+    <span>Flow End-to-End ของกระบวนการสั่งซื้อ ตั้งแต่ค้นหาสินค้าจนถึงรับสินค้า</span>
+    <span class="ref">Figma page Flow E2E</span>
+  </div>
+</div>
+
+<h1>6. สถานะปัจจุบัน (As-Is) และกระบวนการในอนาคต (To-Be)</h1>
+<h2>6.1 สถานะปัจจุบัน (As-Is)</h2>
+<ul>
+  <li>เว็บไซต์เดิมมีลักษณะเป็น <strong>Catalog-only</strong> ลูกค้าโทรสั่งหรือมาที่ร้านเอง</li>
+  <li>ไม่มีระบบสมัครสมาชิก ไม่มีตะกร้า ไม่มี Checkout</li>
+  <li>ลูกค้านิติบุคคลใช้ Email และ Phone Call ในการสั่งซื้อ</li>
+</ul>
+
+<h2>6.2 กระบวนการในอนาคต (To-Be)</h2>
+<ul>
+  <li><strong>เว็บไซต์ E-Commerce เต็มรูปแบบ</strong> ลูกค้าสามารถสั่งซื้อและชำระเงินครบในเว็บ</li>
+  <li>ลูกค้านิติบุคคล<strong>สมัครและขอวงเงิน</strong>ได้จากเว็บ ไม่ต้องส่งเอกสารทาง Email</li>
+  <li>เชื่อมต่อ Backend (OMS) และ ConX ERP แบบเวลาจริง</li>
+  <li>รองรับ Responsive Web ทุกขนาดหน้าจอ</li>
+</ul>
+
+<h1>7. ข้อกำหนดเชิงหน้าที่ — กรณีการใช้งาน (Use Cases) พร้อม Mockup</h1>
+
+<p>หัวข้อนี้ระบุรายละเอียดทั้ง 15 Use Cases ของเว็บไซต์ พร้อม<strong>แนบ Mockup จาก Figma</strong> ที่ตรงกับแต่ละกรณี Use Case ที่<strong>ไม่มีดีไซน์ใน Figma ปัจจุบัน</strong>ระบุไว้ด้วย <span class="tag-design">รอออกแบบเพิ่ม</span></p>
+
+<!-- UC-WEB-001 -->
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-WEB-001</span><span class="uc-title">ลูกค้าเข้าหน้าแรก</span></div>
+  <div class="uc-body">
+    <div class="screen-figure">
+      <img src="ysc_screens/web_homepage.png" alt="หน้าแรกของเว็บไซต์ YSC">
+      <div class="screen-caption">
+        <span>หน้าแรก (Homepage) — Hero Banner, แบรนด์ยอดนิยม, สินค้ามาใหม่, โปรโมชั่น</span>
+        <span class="ref">Figma node 994:8203</span>
+      </div>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">จุดประสงค์</div><p style="margin:0">ลูกค้าเข้าหน้าแรกเพื่อสำรวจสินค้าและโปรโมชั่น ดูภาพรวมของร้าน</p></div>
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>ลูกค้าเข้า URL หลัก (www.yongcharoen.com) ผ่าน Browser</li>
+        <li>ระบบแสดง<strong>Header</strong> มี Logo, Search Bar, Menu, ไอคอนตะกร้า (จำนวนรายการ), Login/Account</li>
+        <li>แสดง<strong>Hero Banner</strong> หรือ Carousel โปรโมชั่นปัจจุบัน</li>
+        <li>แสดง<strong>หมวดหมู่สินค้ายอดนิยม</strong> เป็น Grid ไอคอน</li>
+        <li>แสดง<strong>สินค้ามาใหม่ / ขายดี / Hot Trend</strong> เป็น Carousel</li>
+        <li>แสดง<strong>แบรนด์ยอดนิยม</strong> และ<strong>Newsletter signup</strong> (ถ้ามี)</li>
+        <li>แสดง<strong>Footer</strong> ลิงก์นโยบาย / ติดต่อ / โซเชียล</li>
+      </ol>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-WEB-001-01:</strong> โหลดหน้าแรก ≤ 3 วินาที (LCP ตามมาตรฐาน Google Web Vitals)</div>
+      <div class="uc-ac"><strong>AC-WEB-001-02:</strong> Banner เปลี่ยนสไลด์อัตโนมัติทุก 5 วินาที + กดเปลี่ยนได้</div>
+      <div class="uc-ac"><strong>AC-WEB-001-03:</strong> สินค้าและ Banner สอดคล้องกับ CMS (เพิ่ม/แก้/ลบจาก Backoffice แล้วปรากฏใน 5 นาที)</div>
+      <div class="uc-ac"><strong>AC-WEB-001-04:</strong> รองรับ Responsive — Desktop / Tablet / Mobile</div>
+    </div>
+  </div>
+</div>
+
+<!-- UC-WEB-002 -->
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-WEB-002</span><span class="uc-title">ค้นหาสินค้า</span></div>
+  <div class="uc-body">
+    <div class="screen-figure">
+      <img src="ysc_screens/web_search_dropdown.png" alt="Auto-suggest Search Dropdown">
+      <div class="screen-caption">
+        <span>Search Auto-suggest — แสดงหมวดหมู่และสินค้าระหว่างพิมพ์</span>
+        <span class="ref">Figma node 1037:5301</span>
+      </div>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">จุดประสงค์</div><p style="margin:0">ลูกค้าค้นหาสินค้าด้วยชื่อ, รหัส SKU, หรือบาร์โค้ด</p></div>
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>ลูกค้าพิมพ์คำค้นใน Search Bar ของ Header</li>
+        <li>ระบบแสดง<strong>Auto-suggest Dropdown</strong>ทันที (ตั้งแต่พิมพ์ 2 ตัวอักษร) ประกอบด้วย:
+          <ul style="margin:6px 0 0 18px">
+            <li>หมวดหมู่ที่ตรง</li>
+            <li>สินค้าแนะนำ 5 รายการแรก (รูป, ชื่อ, ราคา)</li>
+          </ul>
+        </li>
+        <li>ลูกค้ากด Enter หรือคลิกที่สินค้า / หมวดหมู่</li>
+        <li>ระบบเปิด<strong>หน้าผลการค้นหา</strong> แสดงรายการทั้งหมดพร้อมตัวกรอง (แบรนด์, ราคา, หมวด)</li>
+      </ol>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนทางเลือก</div>
+      <div class="uc-alt"><strong>1a.</strong> ลูกค้าค้นด้วย<strong>SKU</strong> ระบบไปที่หน้ารายละเอียดสินค้านั้นทันที</div>
+      <div class="uc-alt"><strong>2a.</strong> ไม่พบสินค้า ระบบเสนอ "ลองค้นหาคำอื่น" + สินค้ายอดนิยม</div>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-WEB-002-01:</strong> Auto-suggest ตอบสนอง ≤ 1 วินาที</div>
+      <div class="uc-ac"><strong>AC-WEB-002-02:</strong> รองรับการค้นหาภาษาไทย-อังกฤษ และผสม</div>
+      <div class="uc-ac"><strong>AC-WEB-002-03:</strong> ค้นหาด้วย SKU / Barcode ของสินค้าหลายบาร์โค้ดได้ ตาม <span class="br-ref">PRD-03</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- UC-WEB-003 -->
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-WEB-003</span><span class="uc-title">ดูรายละเอียดสินค้า</span></div>
+  <div class="uc-body">
+    <div class="screen-figure">
+      <img src="ysc_screens/web_product_detail.png" alt="หน้ารายละเอียดสินค้า (PDP)">
+      <div class="screen-caption">
+        <span>หน้ารายละเอียดสินค้า (Product Detail Page) — รูปภาพ, ราคา, จำนวน, ปุ่ม Add to Cart</span>
+        <span class="ref">Figma node 487:2653</span>
+      </div>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">จุดประสงค์</div><p style="margin:0">ลูกค้าดูข้อมูลครบของสินค้ารายตัว เพื่อตัดสินใจซื้อ</p></div>
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>ลูกค้าคลิกที่สินค้าใน Listing / Search Result</li>
+        <li>ระบบเปิด <span class="screen-ref">หน้ารายละเอียดสินค้า</span> แสดง:
+          <ul style="margin:6px 0 0 18px">
+            <li><strong>รูปสินค้าหลายรูป</strong> (สูงสุด 8 รูป ตาม <span class="br-ref">PRD-Q-002</span>) + Zoom</li>
+            <li><strong>ชื่อสินค้า</strong>, <strong>SKU</strong>, <strong>แบรนด์</strong>, <strong>หมวด</strong>, <strong>ป้าย</strong> ("New" / "Promotion" ตาม <span class="br-ref">PRD-11</span>)</li>
+            <li><strong>ราคา</strong> (แสดงตามระดับราคาของลูกค้า P1-P5 ที่ Login)</li>
+            <li><strong>สต็อกคงเหลือ</strong> (มี / ใกล้หมด / Pre-Order)</li>
+            <li><strong>ตัวเลือกจำนวน</strong> และปุ่ม "เพิ่มลงตะกร้า"</li>
+            <li><strong>รายละเอียดสินค้า</strong> + Tab "ข้อกำหนด" / "การส่ง"</li>
+            <li><strong>สินค้าที่คล้ายกัน</strong> ตาม <span class="br-ref">PRD-09</span></li>
+          </ul>
+        </li>
+        <li>ลูกค้าเลือกจำนวนและกด "เพิ่มลงตะกร้า"</li>
+      </ol>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนทางเลือก</div>
+      <div class="uc-alt"><strong>2a.</strong> สินค้าหมดสต็อก ระบบแสดง<strong>สินค้าทดแทน (Substitute)</strong> ตาม <span class="br-ref">PRD-08</span></div>
+      <div class="uc-alt"><strong>2b.</strong> สินค้าเป็น Pre-Order ระบบแสดงวันที่คาดเข้าคลังและข้อความ "ชำระ 100% ล่วงหน้า"</div>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-WEB-003-01:</strong> ลูกค้าที่ไม่ Login ดูสินค้าได้ แต่จะเห็น<strong>ราคาเริ่มต้น P5</strong></div>
+      <div class="uc-ac"><strong>AC-WEB-003-02:</strong> ลูกค้าที่ Login ตามระดับ จะเห็นราคาที่ระดับนั้นทันที</div>
+      <div class="uc-ac"><strong>AC-WEB-003-03:</strong> ราคามีผลตาม Effective Date <span class="br-ref">PRD-06</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- UC-WEB-004 -->
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-WEB-004</span><span class="uc-title">เพิ่มสินค้าลงตะกร้าและตรวจสอบตะกร้า</span></div>
+  <div class="uc-body">
+    <div class="screen-figure">
+      <img src="ysc_screens/web_cart.png" alt="หน้าตะกร้าสินค้า">
+      <div class="screen-caption">
+        <span>หน้าตะกร้า (Cart) — Checkout Step 1: รายการสินค้า, จำนวน, ยอดรวม</span>
+        <span class="ref">Figma node 857:5081</span>
+      </div>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">จุดประสงค์</div><p style="margin:0">ลูกค้าดูสินค้าที่หยิบ ปรับจำนวน และเริ่มกระบวนการชำระเงิน</p></div>
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>ลูกค้ากดปุ่ม "เพิ่มลงตะกร้า" จาก PDP ระบบเพิ่มสินค้าและแสดง Toast ยืนยัน</li>
+        <li>ไอคอนตะกร้าใน Header แสดงจำนวนรายการที่อัปเดต</li>
+        <li>ลูกค้าคลิกไอคอนตะกร้า ระบบเปิด <span class="screen-ref">หน้าตะกร้า</span></li>
+        <li>หน้าตะกร้าแสดง:
+          <ul style="margin:6px 0 0 18px">
+            <li><strong>Breadcrumb Step</strong> 4 ขั้นตอน (ขั้นปัจจุบัน = 1 ตรวจสอบตะกร้า)</li>
+            <li><strong>3 Tabs</strong>: รายการสั่งซื้อ / รายการขอใบเสนอราคา / รายการ Pre-Order</li>
+            <li><strong>รายการสินค้าจัดกลุ่มตามแบรนด์</strong> (ตามภาพ Figma)</li>
+            <li>แต่ละรายการ: รูป, ชื่อ, SKU, จำนวน (ปุ่ม +/-), ราคา/ชิ้น, ราคารวม, ปุ่มลบ</li>
+            <li><strong>โปรโมชั่นที่ยังไม่ถึงเงื่อนไข</strong> (เช่น "ซื้ออีก ฿280 บาทรับส่วนลด ฿250")</li>
+            <li><strong>Right Panel</strong>: เลือกประเภทการรับสินค้า (รับเอง / ส่ง), สรุปยอด, ค่าจัดส่ง, ปุ่ม "ดำเนินการต่อ"</li>
+          </ul>
+        </li>
+        <li>ลูกค้าปรับจำนวน ระบบคำนวณราคาใหม่ทันที</li>
+        <li>ลูกค้ากด "ดำเนินการต่อ" ไป Step 2</li>
+      </ol>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนกรณีผิดพลาด</div>
+      <div class="uc-exc"><strong>3-E.</strong> ลูกค้า<strong>ไม่ Login</strong> ระบบขอให้เข้าสู่ระบบก่อน Checkout ตาม <span class="br-ref">AUTH-01</span></div>
+      <div class="uc-exc"><strong>5-E.</strong> สินค้าหมดสต็อกระหว่างอยู่ในตะกร้า ระบบเตือนและเสนอลบหรือเปลี่ยนเป็น Pre-Order</div>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-WEB-004-01:</strong> ตะกร้าเก็บข้อมูลเมื่อปิด Browser (Persistent Cart ใน LocalStorage)</div>
+      <div class="uc-ac"><strong>AC-WEB-004-02:</strong> รองรับการแยกสินค้าเป็น 3 Tab: ปกติ / Quotation / Pre-Order</div>
+      <div class="uc-ac"><strong>AC-WEB-004-03:</strong> Pre-Order ไม่มีโปรโมชั่นใดๆ ตามกฎ Promotion BRD</div>
+    </div>
+  </div>
+</div>
+
+<!-- UC-WEB-005 -->
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-WEB-005</span><span class="uc-title">Checkout ขั้นตอนที่ 2: ที่อยู่และวิธีจัดส่ง</span></div>
+  <div class="uc-body">
+    <div class="screen-grid">
+      <div class="screen-figure">
+        <img src="ysc_screens/web_checkout_information.png" alt="Checkout Information">
+        <div class="screen-caption">
+          <span>Checkout Step 2 — Information แบบรวม</span>
+          <span class="ref">Figma node 867:14194</span>
+        </div>
+      </div>
+      <div class="screen-figure">
+        <img src="ysc_screens/web_checkout_address.png" alt="Select Address ขนส่งเอกชน">
+        <div class="screen-caption">
+          <span>Checkout Step 2 — เลือกที่อยู่ขนส่งเอกชน</span>
+          <span class="ref">Figma node 3211:13755</span>
+        </div>
+      </div>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">จุดประสงค์</div><p style="margin:0">ลูกค้าระบุที่อยู่จัดส่ง ที่อยู่ออกใบกำกับ และเลือกวิธีจัดส่ง</p></div>
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>ระบบแสดง<strong>ที่อยู่จัดส่งของลูกค้า</strong> (ถ้ามีในสมุดที่อยู่ ให้เลือก / กรณีไม่มี ให้เพิ่มใหม่)</li>
+        <li>ลูกค้าเลือกหรือเพิ่มที่อยู่</li>
+        <li>ลูกค้าเลือก<strong>ประเภทใบกำกับภาษี</strong> (Y / N / M / A ตาม <span class="br-ref">INV-04</span>)</li>
+        <li>ลูกค้าเลือก<strong>วิธีการจัดส่ง</strong>:
+          <ul style="margin:6px 0 0 18px">
+            <li><strong>จัดส่งโดย YSC</strong> (สาย A/B/C/ทั่วประเทศ) ตาม <span class="br-ref">SHP-02</span></li>
+            <li><strong>จัดส่งด่วนภายในวัน</strong> (Express + ค่าธรรมเนียม) ตาม <span class="br-ref">SHP-05</span></li>
+            <li><strong>จัดส่งโดยขนส่งเอกชน</strong> (200+ ราย Carrier ตามเขต) ตาม <span class="br-ref">SHP-03</span></li>
+            <li><strong>รับเอง</strong> (Self-Pickup) ตาม <span class="br-ref">SHP-08, SHP-09</span></li>
+          </ul>
+        </li>
+        <li>กรณี Self-Pickup ลูกค้าเลือก<strong>วันเวลานัด</strong> (≥ 12 ชั่วโมงจากตอนสั่ง)</li>
+        <li>ลูกค้ากด "ดำเนินการต่อ" ไป Step 3</li>
+      </ol>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-WEB-005-01:</strong> รองรับการมีหลายที่อยู่ — สมุดที่อยู่ของลูกค้า</div>
+      <div class="uc-ac"><strong>AC-WEB-005-02:</strong> วิธีจัดส่งและค่าจัดส่งคำนวณจากที่อยู่และน้ำหนัก/ขนาดสินค้า</div>
+      <div class="uc-ac"><strong>AC-WEB-005-03:</strong> Self-Pickup ไม่ให้เลือกเวลาก่อน 12 ชั่วโมง ตาม <span class="br-ref">SHP-09</span></div>
+      <div class="uc-ac"><strong>AC-WEB-005-04:</strong> สินค้าแตกง่าย (Fragile) คิดค่าบรรจุ 5-10 บาทต่อชิ้น ตาม <span class="br-ref">SHP-06</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- UC-WEB-006 -->
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-WEB-006</span><span class="uc-title">Checkout ขั้นตอนที่ 3: วิธีการชำระเงิน</span></div>
+  <div class="uc-body">
+    <div class="screen-figure">
+      <img src="ysc_screens/web_checkout_payment.png" alt="หน้าเลือกวิธีชำระเงิน">
+      <div class="screen-caption">
+        <span>Checkout Step 3 — เลือกวิธีการชำระเงิน + สรุปยอด</span>
+        <span class="ref">Figma node 614:1753</span>
+      </div>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">จุดประสงค์</div><p style="margin:0">ลูกค้าเลือกวิธีการชำระเงินสำหรับคำสั่งซื้อนี้</p></div>
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>ระบบแสดง<strong>วิธีการชำระเงินที่ลูกค้าใช้ได้</strong> ตาม <span class="br-ref">P-01 ถึง P-08</span>:
+          <ul style="margin:6px 0 0 18px">
+            <li><strong>โอนเงิน</strong> (Bank Transfer) — แสดงเลขบัญชี 11 ธนาคารตาม <span class="br-ref">BNK-01, BNK-03</span></li>
+            <li><strong>บัตรเครดิต / เดบิต</strong> — บวกค่าธรรมเนียม 3%</li>
+            <li><strong>วงเงินเครดิต</strong> — เฉพาะลูกค้านิติบุคคลที่มีวงเงิน</li>
+          </ul>
+        </li>
+        <li>ลูกค้าเลือกวิธี ระบบแสดงค่าธรรมเนียม/รายละเอียดเพิ่มเติม</li>
+        <li>ลูกค้ากด "ดำเนินการต่อ" ไป Step 4</li>
+      </ol>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนทางเลือก</div>
+      <div class="uc-alt"><strong>1a.</strong> ลูกค้านิติบุคคลใช้วงเงิน<strong>ไม่พอ</strong> ระบบเสนอชำระส่วนเกินด้วยวิธีอื่นหรือลดสินค้า ตาม <span class="br-ref">หมวด 6</span></div>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-WEB-006-01:</strong> ค่าธรรมเนียมบัตร 3% คำนวณและแสดงในยอดรวมก่อนยืนยัน</div>
+      <div class="uc-ac"><strong>AC-WEB-006-02:</strong> รายการบัญชีธนาคารแสดงโลโก้และปุ่มคัดลอกเลขบัญชี ตาม <span class="br-ref">BNK-03</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- UC-WEB-007 -->
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-WEB-007</span><span class="uc-title">Checkout ขั้นตอนที่ 4: ตรวจสอบและยืนยัน</span></div>
+  <div class="uc-body">
+    <div class="uc-section"><div class="uc-section-label">จุดประสงค์</div><p style="margin:0">ลูกค้าตรวจสอบข้อมูลทั้งหมดและยืนยันคำสั่งซื้อ</p></div>
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>ระบบแสดงสรุปทั้งหมด: สินค้า, จำนวน, ราคา, ที่อยู่จัดส่ง, ที่อยู่ใบกำกับ, วิธีจัดส่ง, วิธีชำระเงิน, ยอดรวมสุทธิ</li>
+        <li>ลูกค้าอ่านและยอมรับ<strong>เงื่อนไขการสั่งซื้อ</strong></li>
+        <li>ลูกค้ากด "ยืนยันคำสั่งซื้อ"</li>
+        <li>ระบบสร้างคำสั่งซื้อสถานะ "รอชำระเงิน" (กรณีโอน) หรือ "ชำระเงินแล้ว" (กรณีบัตร/วงเงิน)</li>
+        <li>ระบบส่งคำสั่งซื้อไปยัง ConX และได้รหัส SO กลับ</li>
+        <li>ระบบเปิดหน้า "สั่งซื้อสำเร็จ" (ดู UC-WEB-008)</li>
+        <li>ระบบส่งอีเมลแจ้งลูกค้า ตาม <span class="br-ref">NTF-01</span></li>
+      </ol>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-WEB-007-01:</strong> คำสั่งซื้อที่ไม่ชำระภายใน 24 ชั่วโมง Auto-cancel ตาม <span class="br-ref">RTN-01</span></div>
+      <div class="uc-ac"><strong>AC-WEB-007-02:</strong> หากกด "ยืนยัน" 2 ครั้งติด ระบบป้องกัน Duplicate Order</div>
+    </div>
+  </div>
+</div>
+
+<!-- UC-WEB-008 -->
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-WEB-008</span><span class="uc-title">ยืนยันคำสั่งซื้อสำเร็จ</span></div>
+  <div class="uc-body">
+    <div class="screen-figure">
+      <img src="ysc_screens/web_order_success.png" alt="หน้าสั่งซื้อสำเร็จ" style="max-width:400px;margin:0 auto">
+      <div class="screen-caption">
+        <span>ยืนยันคำสั่งซื้อสำเร็จ — Modal Dialog</span>
+        <span class="ref">Figma node 618:2356</span>
+      </div>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>ระบบแสดง Modal/Page "คำสั่งซื้อสำเร็จ" พร้อม:
+          <ul style="margin:6px 0 0 18px">
+            <li>รหัสคำสั่งซื้อ (เช่น OD2510000147)</li>
+            <li>วันที่และเวลา</li>
+            <li>สถานะปัจจุบัน</li>
+            <li>ปุ่ม "ตรวจสอบคำสั่งซื้อของฉัน" และ "สั่งซื้ออีกครั้ง"</li>
+          </ul>
+        </li>
+        <li>กรณีโอนเงิน — แสดงเลขบัญชีและคำแนะนำให้อัปโหลดสลิป</li>
+      </ol>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-WEB-008-01:</strong> รหัสคำสั่งซื้อ (SO/OD) ที่แสดงตรงกับ ConX ตาม <span class="br-ref">CC-04</span></div>
+      <div class="uc-ac"><strong>AC-WEB-008-02:</strong> Email confirmation ส่งภายใน 1 นาที</div>
+    </div>
+  </div>
+</div>
+
+<!-- UC-WEB-009 -->
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-WEB-009</span><span class="uc-title">ลูกค้าเข้าสู่ระบบ</span></div>
+  <div class="uc-body">
+    <div class="screen-figure">
+      <img src="ysc_screens/web_login.png" alt="หน้าเข้าสู่ระบบ">
+      <div class="screen-caption">
+        <span>หน้าเข้าสู่ระบบ (Login) — ฟอร์ม Email + Password</span>
+        <span class="ref">Figma node 994:7246</span>
+      </div>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>ลูกค้าคลิก "เข้าสู่ระบบ" ที่ Header</li>
+        <li>ระบบเปิด <span class="screen-ref">หน้าเข้าสู่ระบบ</span> มีฟอร์ม:
+          <ul style="margin:6px 0 0 18px">
+            <li>ชื่อผู้ใช้ / อีเมล</li>
+            <li>รหัสผ่าน (ปุ่ม Show/Hide)</li>
+            <li>Checkbox "จดจำการเข้าสู่ระบบ"</li>
+            <li>ลิงก์ "ลืมรหัสผ่าน?" และ "สมัครสมาชิก"</li>
+          </ul>
+        </li>
+        <li>ลูกค้ากรอกและกด "เข้าสู่ระบบ"</li>
+        <li>ระบบตรวจสอบและ Login สำเร็จ Redirect ไปยังหน้าที่เรียก</li>
+      </ol>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนทางเลือก</div>
+      <div class="uc-alt"><strong>3a.</strong> ลูกค้ากด "ลืมรหัสผ่าน" ระบบส่งลิงก์รีเซ็ตไปอีเมล (ผ่าน OTP)</div>
+      <div class="uc-alt"><strong>3b.</strong> ลูกค้ากด "สมัครสมาชิก" ไป UC-WEB-010</div>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-WEB-009-01:</strong> หลัง Login สำเร็จ Session อยู่ได้ ≥ 30 วัน (ถ้า Remember Me)</div>
+      <div class="uc-ac"><strong>AC-WEB-009-02:</strong> การเปลี่ยนรหัสผ่านต้องผ่าน OTP ตาม <span class="br-ref">NTF-04</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- UC-WEB-010 -->
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-WEB-010</span><span class="uc-title">ลูกค้าสมัครสมาชิกใหม่ <span class="tag-design">รอออกแบบเพิ่ม</span></span></div>
+  <div class="uc-body">
+    <div class="callout callout-amber">
+      <strong>ดีไซน์ที่ขาดใน Figma:</strong> หน้าจอสมัครสมาชิกแบบ Full Page ยังไม่มีในไฟล์ Figma ปัจจุบัน มีเฉพาะ Tab "สมัครสมาชิก" ใน Modal Login ขนาดเล็ก ดีไซน์เนอร์ต้องออกแบบเพิ่ม 3 หน้าจอ: (1) สมัครลูกค้าทั่วไป (2) สมัครลูกค้านิติบุคคล (3) OTP Verification — โดยอ้างอิงโครงสร้างจาก Sitemap (Figma node 437:1475)
+    </div>
+    <div class="uc-section"><div class="uc-section-label">จุดประสงค์</div><p style="margin:0">ลูกค้าใหม่สมัครสมาชิกผ่านเว็บ — รองรับทั้งบุคคลธรรมดาและนิติบุคคล (อ้างอิง UC-CRM-001)</p></div>
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก (จาก Business Rules)</div>
+      <ol class="uc-flow">
+        <li>ลูกค้าเลือก<strong>ประเภท</strong>: บุคคลธรรมดา หรือ นิติบุคคล</li>
+        <li>ลูกค้ากรอกอีเมล ระบบส่ง OTP ตาม <span class="br-ref">AUTH-02, NTF-03</span></li>
+        <li>ลูกค้ายืนยัน OTP จากอีเมล</li>
+        <li>ลูกค้ากรอกข้อมูลส่วนตัว (ชื่อ-สกุล, เบอร์โทร, ที่อยู่)</li>
+        <li>กรณีนิติบุคคล: กรอกเลขทะเบียน 13 หลัก, ชื่อบริษัท, อัปโหลดเอกสาร (หนังสือรับรอง, ภ.พ.20)</li>
+        <li>ลูกค้ายอมรับเงื่อนไขและกด "สมัคร"</li>
+        <li>ระบบสร้างบัญชีระดับ Prospect และเข้าสู่ระบบทันที</li>
+      </ol>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-WEB-010-01:</strong> Guest Checkout ไม่รองรับ ตาม <span class="br-ref">AUTH-01</span></div>
+      <div class="uc-ac"><strong>AC-WEB-010-02:</strong> ลูกค้านิติบุคคลที่ยังไม่อนุมัติเอกสาร ขอวงเงินเครดิตไม่ได้</div>
+    </div>
+  </div>
+</div>
+
+<!-- UC-WEB-011 -->
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-WEB-011</span><span class="uc-title">ลูกค้าขอใบเสนอราคา <span class="tag-design">รอออกแบบเพิ่ม</span></span></div>
+  <div class="uc-body">
+    <div class="callout callout-amber">
+      <strong>ดีไซน์ที่ขาดใน Figma:</strong> หน้าจอ Quotation Request ยังไม่มีในไฟล์ Figma ปัจจุบัน ดีไซน์เนอร์ต้องออกแบบเพิ่ม
+    </div>
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>ลูกค้าเปิดตะกร้าและเลือก "ขอใบเสนอราคา" แทน "ดำเนินการชำระเงิน"</li>
+        <li>ลูกค้ากรอกข้อมูล (บริษัท, ที่อยู่, ข้อความเพิ่มเติม)</li>
+        <li>ระบบสร้างใบเสนอราคา (Quotation) ตาม <span class="br-ref">Q-01 ถึง Q-04</span></li>
+        <li>ส่งใบเสนอราคา PDF ไปอีเมลลูกค้า</li>
+        <li>ใบเสนอราคามีอายุที่กำหนด ลูกค้ายืนยันสั่งซื้อภายในระยะเวลาได้</li>
+      </ol>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-WEB-011-01:</strong> ราคาในใบเสนอราคาคงที่จนหมดอายุ</div>
+      <div class="uc-ac"><strong>AC-WEB-011-02:</strong> ระยะเวลาอายุใบเสนอราคา <span class="tag-pending">รอยืนยัน</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- UC-WEB-012 -->
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-WEB-012</span><span class="uc-title">ลูกค้าสั่งซื้อสินค้าล่วงหน้า (Pre-Order) <span class="tag-design">รอออกแบบเพิ่ม</span></span></div>
+  <div class="uc-body">
+    <div class="callout callout-amber">
+      <strong>ดีไซน์ที่ขาดใน Figma:</strong> Tab "Pre-Order" ใน Cart มีอยู่แล้ว แต่หน้าจอ flow Pre-Order เต็ม ยังต้องออกแบบเพิ่ม
+    </div>
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>ลูกค้าเลือกสินค้าที่มีสถานะ "Pre-Order" จาก PDP</li>
+        <li>ระบบแสดงวันที่คาดเข้าคลังและข้อความเตือน "ชำระ 100% ล่วงหน้า ไม่มีลดราคา"</li>
+        <li>ลูกค้ากด "Pre-Order" สินค้าเข้าตะกร้าใน Tab "Pre-Order"</li>
+        <li>Checkout 4 ขั้นตอนตามปกติ ชำระเงินครบ</li>
+        <li>เมื่อสินค้าเข้าคลัง ระบบดำเนินการต่อตามวงจรปกติ</li>
+      </ol>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-WEB-012-01:</strong> Pre-Order ชำระ 100% — ไม่มีโปรโมชั่นใดๆ</div>
+      <div class="uc-ac"><strong>AC-WEB-012-02:</strong> ลูกค้าได้คะแนนสะสมจาก Pre-Order</div>
+      <div class="uc-ac"><strong>AC-WEB-012-03:</strong> เปอร์เซ็นต์เงินมัดจำ <span class="tag-pending">รอยืนยัน P-01</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- UC-WEB-013 -->
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-WEB-013</span><span class="uc-title">ลูกค้าดูประวัติคำสั่งซื้อ <span class="tag-design">รอออกแบบเพิ่ม</span></span></div>
+  <div class="uc-body">
+    <div class="callout callout-amber">
+      <strong>ดีไซน์ที่ขาดใน Figma:</strong> หน้าจอประวัติคำสั่งซื้อยังไม่มี ต้องออกแบบเพิ่มในส่วน My Account
+    </div>
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>ลูกค้าเข้า My Account เลือก "ประวัติคำสั่งซื้อ"</li>
+        <li>ระบบแสดงรายการคำสั่งซื้อทั้งหมดเรียงตามเวลาล่าสุด</li>
+        <li>แต่ละรายการแสดง: รหัส SO/OD, วันที่, สถานะ (10 สถานะ ตาม <span class="br-ref">SO-01 ถึง SO-06</span>), ยอดรวม</li>
+        <li>ลูกค้าคลิกเข้าดูรายละเอียดและ Tracking</li>
+        <li>ลูกค้ากด "สั่งซื้อซ้ำ" (Re-order) ระบบสร้างตะกร้าใหม่จากรายการเดิม ตาม <span class="br-ref">RO-01 ถึง RO-03</span></li>
+      </ol>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-WEB-013-01:</strong> รองรับการ Re-order และเสนอสินค้าทดแทนกรณีหมดสต็อก</div>
+      <div class="uc-ac"><strong>AC-WEB-013-02:</strong> ลูกค้าอัปโหลดสลิปการโอนที่นี่ได้ (กรณีรอชำระ)</div>
+    </div>
+  </div>
+</div>
+
+<!-- UC-WEB-014 -->
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-WEB-014</span><span class="uc-title">ลูกค้าจัดการสมุดที่อยู่ <span class="tag-design">รอออกแบบเพิ่ม</span></span></div>
+  <div class="uc-body">
+    <div class="callout callout-amber">
+      <strong>ดีไซน์ที่ขาดใน Figma:</strong> หน้าจอ Address Book Standalone ยังไม่มี (ปัจจุบันมีเฉพาะ inline ในหน้า Checkout)
+    </div>
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>ลูกค้าเข้า My Account เลือก "สมุดที่อยู่"</li>
+        <li>ระบบแสดงรายการที่อยู่ทั้งหมด (จัดส่ง + ออกใบกำกับ)</li>
+        <li>ลูกค้าเพิ่ม / แก้ไข / ลบ ที่อยู่</li>
+        <li>กำหนดที่อยู่หลัก (Default) ที่ใช้ตอน Checkout</li>
+      </ol>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-WEB-014-01:</strong> เก็บที่อยู่ได้ไม่จำกัดจำนวน</div>
+      <div class="uc-ac"><strong>AC-WEB-014-02:</strong> ลบที่อยู่ Default ไม่ได้ ต้องตั้งที่อยู่อื่นเป็น Default ก่อน</div>
+    </div>
+  </div>
+</div>
+
+<!-- UC-WEB-015 -->
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-WEB-015</span><span class="uc-title">ลูกค้าดูคะแนนสะสมและของรางวัล <span class="tag-design">รอออกแบบเพิ่ม</span></span></div>
+  <div class="uc-body">
+    <div class="callout callout-amber">
+      <strong>ดีไซน์ที่ขาดใน Figma:</strong> หน้าจอ Loyalty Points และ Rewards Catalog ยังไม่มี ต้องออกแบบเพิ่ม
+    </div>
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>ลูกค้าเข้า My Account เลือก "คะแนนของฉัน"</li>
+        <li>ระบบแสดง: คะแนนคงเหลือ, คะแนนที่ได้รับเดือนนี้, คะแนนที่ใช้ไป, คะแนนที่จะหมดอายุ (31 ธ.ค.)</li>
+        <li>ลูกค้าเลือก<strong>แลกของรางวัล</strong> จาก Rewards Catalog</li>
+        <li>ระบบหักคะแนนและเพิ่มของรางวัลในตะกร้าครั้งถัดไป</li>
+      </ol>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-WEB-015-01:</strong> คะแนนหมดอายุวันที่ 31 ธันวาคม ของแต่ละปี</div>
+      <div class="uc-ac"><strong>AC-WEB-015-02:</strong> แจ้งเตือนล่วงหน้าก่อนหมดอายุ ตาม <span class="br-ref">NTF-05</span></div>
+      <div class="uc-ac"><strong>AC-WEB-015-03:</strong> อัตราส่วนคะแนน:บาท <span class="tag-pending">รอยืนยัน</span></div>
+    </div>
+  </div>
+</div>
+
+<h1>8. การออกแบบประสบการณ์ผู้ใช้ (Screen Inventory)</h1>
+<table>
+  <thead><tr><th style="width:140px">รหัสหน้าจอ</th><th>ชื่อหน้าจอ</th><th>หน้าที่หลัก</th><th style="width:90px">สถานะ Figma</th></tr></thead>
+  <tbody>
+    <tr><td><strong>SCR-WEB-001</strong></td><td>หน้าแรก (Homepage)</td><td>Banner, แบรนด์, สินค้ามาใหม่, โปรโมชั่น</td><td><span class="tag-confirmed">มี</span></td></tr>
+    <tr><td><strong>SCR-WEB-002</strong></td><td>หน้ารายการสินค้า (Listing)</td><td>กรอง เรียง แสดงสินค้าตามหมวด</td><td><span class="tag-confirmed">มี</span></td></tr>
+    <tr><td><strong>SCR-WEB-003</strong></td><td>หน้ารายละเอียดสินค้า (PDP)</td><td>รูปภาพ ราคา ปุ่มเพิ่มลงตะกร้า</td><td><span class="tag-confirmed">มี</span></td></tr>
+    <tr><td><strong>SCR-WEB-004</strong></td><td>ผลการค้นหา (Search Result)</td><td>Dropdown + หน้าเต็ม</td><td><span class="tag-confirmed">มี (Dropdown)</span></td></tr>
+    <tr><td><strong>SCR-WEB-005</strong></td><td>ตะกร้า (Cart) — Step 1</td><td>ตรวจสอบรายการ ปรับจำนวน</td><td><span class="tag-confirmed">มี</span></td></tr>
+    <tr><td><strong>SCR-WEB-006</strong></td><td>Checkout Step 2: ที่อยู่และวิธีส่ง</td><td>เลือกที่อยู่ จัดส่ง ใบกำกับ</td><td><span class="tag-confirmed">มี</span></td></tr>
+    <tr><td><strong>SCR-WEB-007</strong></td><td>Checkout Step 3: ชำระเงิน</td><td>เลือกวิธีชำระเงิน</td><td><span class="tag-confirmed">มี</span></td></tr>
+    <tr><td><strong>SCR-WEB-008</strong></td><td>Checkout Step 4: ตรวจสอบและยืนยัน</td><td>สรุปและกดยืนยัน</td><td><span class="tag-design">รอออกแบบ</span></td></tr>
+    <tr><td><strong>SCR-WEB-009</strong></td><td>สั่งซื้อสำเร็จ (Order Success)</td><td>Modal/Page ยืนยัน + รหัสคำสั่งซื้อ</td><td><span class="tag-confirmed">มี</span></td></tr>
+    <tr><td><strong>SCR-WEB-010</strong></td><td>หน้าเข้าสู่ระบบ (Login)</td><td>Email/Password + Forgot</td><td><span class="tag-confirmed">มี</span></td></tr>
+    <tr><td><strong>SCR-WEB-011</strong></td><td>หน้าสมัครสมาชิก (Register)</td><td>ทั่วไป + นิติบุคคล + OTP</td><td><span class="tag-design">รอออกแบบ</span></td></tr>
+    <tr><td><strong>SCR-WEB-012</strong></td><td>My Account Dashboard</td><td>โปรไฟล์ ประวัติ คะแนน</td><td><span class="tag-design">รอออกแบบ</span></td></tr>
+    <tr><td><strong>SCR-WEB-013</strong></td><td>ประวัติคำสั่งซื้อ</td><td>รายการคำสั่งซื้อทั้งหมด</td><td><span class="tag-design">รอออกแบบ</span></td></tr>
+    <tr><td><strong>SCR-WEB-014</strong></td><td>ใบเสนอราคา</td><td>ขอและจัดการใบเสนอราคา</td><td><span class="tag-design">รอออกแบบ</span></td></tr>
+    <tr><td><strong>SCR-WEB-015</strong></td><td>Pre-Order</td><td>สั่งซื้อล่วงหน้า</td><td><span class="tag-design">รอออกแบบ</span></td></tr>
+    <tr><td><strong>SCR-WEB-016</strong></td><td>สมุดที่อยู่ (Address Book)</td><td>เพิ่ม/แก้/ลบ ที่อยู่</td><td><span class="tag-design">รอออกแบบ</span></td></tr>
+    <tr><td><strong>SCR-WEB-017</strong></td><td>คะแนนสะสมและของรางวัล</td><td>ดูคะแนน แลกของรางวัล</td><td><span class="tag-design">รอออกแบบ</span></td></tr>
+    <tr><td><strong>SCR-WEB-018</strong></td><td>ขอวงเงินเครดิต</td><td>ลูกค้านิติบุคคลขอวงเงิน</td><td><span class="tag-design">รอออกแบบ</span></td></tr>
+  </tbody>
+</table>
+
+<h1>9. กฎเกณฑ์เชิงธุรกิจ — อ้างอิงเอกสารแม่บท</h1>
+<div class="callout"><strong>หมายเหตุ:</strong> กฎฉบับเต็มอยู่ใน <a href="ysc_business_rules.html" style="color:#1E3A5F;font-weight:700">ysc_business_rules.html v2.2</a> หมวด 1, 2, 4, 7, 12, 13, 18, 19, 20, 21</div>
+<table>
+  <thead><tr><th style="width:130px">รหัส</th><th>กฎเกณฑ์ที่ใช้ในเว็บไซต์</th></tr></thead>
+  <tbody>
+    <tr><td><span class="br-ref">AUTH-01, AUTH-02</span></td><td>ห้าม Guest Checkout, OTP ผ่านอีเมล</td></tr>
+    <tr><td><span class="br-ref">หมวด 2</span></td><td>ประเภทคำสั่งซื้อ 3 ประเภท</td></tr>
+    <tr><td><span class="br-ref">P-01 ถึง P-08</span></td><td>การชำระเงิน 4 วิธี (โอน/บัตร/วงเงิน) — เว็บไม่รองรับเงินสด</td></tr>
+    <tr><td><span class="br-ref">Q-01 ถึง Q-04</span></td><td>ใบเสนอราคา</td></tr>
+    <tr><td><span class="br-ref">RO-01 ถึง RO-03</span></td><td>การสั่งซื้อซ้ำ (Re-order)</td></tr>
+    <tr><td><span class="br-ref">หมวด 10</span></td><td>ระดับสมาชิก ระดับราคา P1-P5 คะแนน</td></tr>
+    <tr><td><span class="br-ref">INV-04</span></td><td>ใบกำกับ Y/N/M/A</td></tr>
+    <tr><td><span class="br-ref">SO-01 ถึง SO-06</span></td><td>วงจรชีวิตของคำสั่งซื้อ 10 สถานะ</td></tr>
+    <tr><td><span class="br-ref">PRD-06</span></td><td>ราคา Effective Date</td></tr>
+    <tr><td><span class="br-ref">PRD-08, PRD-09, PRD-11</span></td><td>สินค้าทดแทน คล้ายกัน ป้ายสถานะ</td></tr>
+    <tr><td><span class="br-ref">RTN-01</span></td><td>Auto-cancel 24 ชั่วโมง</td></tr>
+    <tr><td><span class="br-ref">SHP-02, SHP-03, SHP-08, SHP-09</span></td><td>วิธีจัดส่ง สาย A/B/C, Carrier ภายนอก, Self-Pickup</td></tr>
+    <tr><td><span class="br-ref">BNK-03</span></td><td>แสดงเลขที่บัญชี 11 ธนาคาร</td></tr>
+    <tr><td><span class="br-ref">NTF-01 ถึง NTF-04</span></td><td>การแจ้งเตือนอีเมล/LINE และ OTP</td></tr>
+  </tbody>
+</table>
+
+<h1>10. การเชื่อมต่อระบบภายนอก (Integration)</h1>
+<table>
+  <thead><tr><th style="width:140px">ระบบ</th><th>ข้อมูล</th><th style="width:120px">ทิศทาง</th></tr></thead>
+  <tbody>
+    <tr><td><strong>OMS (Backoffice)</strong></td><td>คำสั่งซื้อ การชำระเงิน สถานะ</td><td>เว็บ ↔ OMS</td></tr>
+    <tr><td><strong>PRD (Backoffice)</strong></td><td>ข้อมูลสินค้า ราคา รูปภาพ สต็อก</td><td>PRD → เว็บ</td></tr>
+    <tr><td><strong>CRM (Backoffice)</strong></td><td>ข้อมูลลูกค้า สมาชิก คะแนน วงเงิน</td><td>เว็บ ↔ CRM</td></tr>
+    <tr><td><strong>Promotion Engine</strong></td><td>แคมเปญ คูปอง การคำนวณส่วนลด</td><td>Promotion → เว็บ</td></tr>
+    <tr><td><strong>CMS (Backoffice)</strong></td><td>Banner ข่าวสาร Landing Page Pop-up</td><td>CMS → เว็บ</td></tr>
+    <tr><td><strong>Payment Gateway</strong></td><td>การชำระเงินบัตรเครดิต/เดบิต</td><td>เว็บ ↔ Gateway</td></tr>
+    <tr><td><strong>ConX ERP</strong></td><td>รหัส SO/OD ใบกำกับภาษี</td><td>ผ่าน OMS</td></tr>
+    <tr><td><strong>LINE OA</strong></td><td>แจ้งเตือนสถานะคำสั่งซื้อ (กรณีเชื่อมบัญชี)</td><td>เว็บ → LINE</td></tr>
+    <tr><td><strong>Google Analytics</strong></td><td>การติดตามพฤติกรรมผู้ใช้</td><td>เว็บ → GA</td></tr>
+  </tbody>
+</table>
+
+<h1>11. ข้อกำหนดเชิงคุณภาพ (NFR)</h1>
+<table>
+  <thead><tr><th style="width:200px">หัวข้อ</th><th>เกณฑ์</th></tr></thead>
+  <tbody>
+    <tr><td><strong>เวลาตอบสนอง</strong></td><td>โหลดหน้าแรก ≤ 3 วินาที, PDP ≤ 2 วินาที, ค้นหา ≤ 1 วินาที</td></tr>
+    <tr><td><strong>Web Vitals (Google)</strong></td><td>LCP ≤ 2.5s, FID ≤ 100ms, CLS ≤ 0.1</td></tr>
+    <tr><td><strong>ความพร้อมใช้งาน</strong></td><td>99.9% ตลอด 24/7</td></tr>
+    <tr><td><strong>การรองรับการเข้าพร้อมกัน</strong></td><td>≥ 5,000 ผู้ใช้พร้อมกัน (Concurrent Users)</td></tr>
+    <tr><td><strong>การรองรับ Browser</strong></td><td>Chrome, Safari, Edge, Firefox (2 เวอร์ชันล่าสุด)</td></tr>
+    <tr><td><strong>การรองรับอุปกรณ์</strong></td><td>Responsive — Desktop, Tablet, Mobile (iPhone/Android)</td></tr>
+    <tr><td><strong>ภาษา</strong></td><td>ไทย (หลัก) อังกฤษ (รอง — เฟส 2)</td></tr>
+    <tr><td><strong>Mobile Friendly Score</strong></td><td>≥ 90/100 ตามมาตรฐาน Google</td></tr>
+  </tbody>
+</table>
+
+<h1>12. ความปลอดภัยและความเป็นส่วนตัว (Security &amp; Privacy)</h1>
+<ul>
+  <li><strong>HTTPS</strong> ทุกหน้าเว็บไซต์ (SSL Certificate)</li>
+  <li><strong>การยืนยันตัวตน</strong> ใช้ Session-based + JWT, รองรับ Remember Me 30 วัน</li>
+  <li><strong>OTP</strong> สำหรับการสมัคร / เปลี่ยนรหัส / ธุรกรรมเสี่ยง ตาม <span class="br-ref">NTF-03, NTF-04</span></li>
+  <li><strong>การชำระเงินด้วยบัตร</strong> ส่งต่อให้ Payment Gateway ตามมาตรฐาน PCI-DSS — ไม่เก็บข้อมูลบัตรในระบบ</li>
+  <li><strong>PDPA</strong> ขอความยินยอมเก็บและประมวลผลข้อมูลส่วนตัว</li>
+  <li><strong>Rate Limiting</strong> ป้องกัน Brute-force Login</li>
+  <li><strong>CAPTCHA</strong> ในหน้าสมัครสมาชิก และหลัง Login ผิด 3 ครั้ง</li>
+</ul>
+
+<h1>13. เวอร์ชัน Mobile / Responsive</h1>
+<p>ทุกหน้าจอต้องรองรับ Responsive Design ตามขนาดหน้าจอ:</p>
+<table>
+  <thead><tr><th style="width:140px">Breakpoint</th><th>ขนาด</th><th>เป้าหมาย</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Mobile</strong></td><td>≤ 768px</td><td>iPhone, Android — 1-column layout, Hamburger menu</td></tr>
+    <tr><td><strong>Tablet</strong></td><td>769px - 1024px</td><td>iPad, Tablet — 2-column layout</td></tr>
+    <tr><td><strong>Desktop</strong></td><td>≥ 1025px</td><td>Computer, Notebook — Full layout</td></tr>
+  </tbody>
+</table>
+<div class="callout callout-amber">
+  <strong>หมายเหตุ Mobile:</strong> Figma มี Page "00-Website-Mobile" (node 6406:40031) สำหรับดีไซน์ Mobile โดยเฉพาะ ดีไซน์เนอร์ต้องอัปเดต Mobile Mockup ให้สอดคล้องกับ 15 Use Cases ทั้งหมด
+</div>
+
+<h1>14. SEO และการวิเคราะห์</h1>
+<ul>
+  <li><strong>Meta Tags</strong> ทุกหน้า (title, description, OG tags, Twitter Cards)</li>
+  <li><strong>Sitemap.xml</strong> อัปเดตอัตโนมัติเมื่อมีสินค้าใหม่</li>
+  <li><strong>Robots.txt</strong> ยกเว้นหน้า /account, /cart, /checkout</li>
+  <li><strong>Schema.org Markup</strong> Product, Organization, BreadcrumbList</li>
+  <li><strong>Friendly URL</strong> /product/{slug}, /category/{slug}</li>
+  <li><strong>Google Analytics 4</strong> ติดตาม Event: view_item, add_to_cart, begin_checkout, purchase</li>
+  <li><strong>Google Search Console</strong> สำหรับติดตามการค้นหา</li>
+</ul>
+
+<h1>15. สมมติฐานและข้อจำกัด</h1>
+<ul>
+  <li>ดีไซน์ใน Figma ยังขาด 10 หน้าจอที่ไม่อยู่ในขอบเขตการ Mockup ปัจจุบัน ต้องออกแบบเพิ่มก่อนพัฒนา</li>
+  <li>ระบบใหม่ใช้ Adeptio backend เป็นแหล่งข้อมูลหลัก ConX เป็น ERP สำหรับบัญชี</li>
+  <li>Mobile Native App ไม่อยู่ในขอบเขต ใช้ Responsive Web ไปก่อน</li>
+  <li>การรวมกับ LINE OA ใช้แบบ Notification เท่านั้น ไม่ใช่ Order Channel</li>
+</ul>
+
+<h1>16. เกณฑ์การยอมรับผลงาน (Acceptance Criteria)</h1>
+<table>
+  <thead><tr><th style="width:100px">รหัส</th><th>เกณฑ์</th><th style="width:130px">UC อ้างอิง</th></tr></thead>
+  <tbody>
+    <tr><td><strong>AC-WEB-G-01</strong></td><td>ลูกค้าสามารถสมัคร เข้าสู่ระบบ ค้นหา สั่งซื้อ และชำระเงินได้ครบกระบวนการ</td><td>UC-WEB-001 ถึง 010</td></tr>
+    <tr><td><strong>AC-WEB-G-02</strong></td><td>การคำนวณยอด ส่วนลด ค่าจัดส่ง ตรงกันระหว่างเว็บและ Backoffice</td><td>UC-WEB-004 ถึง 008</td></tr>
+    <tr><td><strong>AC-WEB-G-03</strong></td><td>รองรับ Responsive ทุกขนาดหน้าจอ ผ่าน Google Mobile Friendly Test</td><td>ทุก UC</td></tr>
+    <tr><td><strong>AC-WEB-G-04</strong></td><td>Web Vitals ผ่านเกณฑ์ Google</td><td>ทุก UC</td></tr>
+    <tr><td><strong>AC-WEB-G-05</strong></td><td>การชำระเงินด้วยบัตรเครดิตทำผ่าน Gateway ไม่เก็บข้อมูลบัตรในระบบ</td><td>UC-WEB-006</td></tr>
+    <tr><td><strong>AC-WEB-G-06</strong></td><td>การสมัครสมาชิก OTP ทำงานสำเร็จ ≥ 99%</td><td>UC-WEB-009, 010</td></tr>
+  </tbody>
+</table>
+
+<h1>17. ประเด็นเปิดและความเสี่ยง</h1>
+<table>
+  <thead><tr><th style="width:100px">รหัส</th><th>ประเด็น / ความเสี่ยง</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Q-WEB-001</strong></td><td>ดีไซน์ Mobile ของหน้าจอ 15 UC ครบถ้วนแล้วหรือยัง</td></tr>
+    <tr><td><strong>Q-WEB-002</strong></td><td>ดีไซน์ Registration, OTP, My Account Dashboard, Order History, Quotation, Pre-Order, Address Book, Loyalty Points <span class="tag-design">รอออกแบบเพิ่ม</span></td></tr>
+    <tr><td><strong>Q-WEB-003</strong></td><td>อัตราส่วนคะแนนต่อบาท <span class="tag-pending">รอฝ่ายการตลาด</span></td></tr>
+    <tr><td><strong>Q-WEB-004</strong></td><td>เปอร์เซ็นต์เงินมัดจำ Pre-Order <span class="tag-pending">P-01</span></td></tr>
+    <tr><td><strong>Q-WEB-005</strong></td><td>การรองรับภาษาอังกฤษเป็นเฟสไหน</td></tr>
+    <tr><td><strong>R-WEB-001</strong></td><td>ความเสี่ยง: Cart Abandonment Rate สูงในขั้นตอน Checkout 4 ขั้น พิจารณาลดเป็น 3 ขั้น</td></tr>
+    <tr><td><strong>R-WEB-002</strong></td><td>ความเสี่ยง: Payment Gateway ล่ม ระบบต้องมี Fallback เป็นโอนเงิน</td></tr>
+    <tr><td><strong>R-WEB-003</strong></td><td>ความเสี่ยง: PDPA ต้องมีหน้าจอจัดการความยินยอมและคำขอลบข้อมูล</td></tr>
+  </tbody>
+</table>
+
+</div>
+</body>
+</html>

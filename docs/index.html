@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>YSC Digital Platform — สารบัญเอกสาร</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#F3F4F6;font-family:'Sarabun',Tahoma,sans-serif;color:#1E293B;min-height:100vh;padding:0 0 60px;line-height:1.6}
+.hero{background:linear-gradient(135deg,#1E3A5F 0%,#2563EB 100%);color:#fff;padding:64px 24px 80px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50%;right:-10%;width:600px;height:600px;background:radial-gradient(circle,rgba(255,255,255,.08) 0%,transparent 70%);border-radius:50%}
+.hero-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1}
+.hero .tag{display:inline-block;background:rgba(255,255,255,.15);font-size:11px;font-weight:700;letter-spacing:.12em;padding:6px 14px;border-radius:20px;margin-bottom:20px;border:1px solid rgba(255,255,255,.2)}
+.hero h1{font-size:42px;font-weight:800;line-height:1.2;margin-bottom:8px}
+.hero .sub{font-size:18px;color:#BFDBFE;font-weight:300;margin-bottom:28px}
+.hero-stats{display:flex;gap:32px;flex-wrap:wrap;margin-top:32px}
+.stat{display:flex;flex-direction:column}
+.stat-value{font-size:28px;font-weight:800;color:#fff}
+.stat-label{font-size:11.5px;color:#BFDBFE;letter-spacing:.06em;text-transform:uppercase;font-weight:600;margin-top:2px}
+.container{max-width:1100px;margin:-40px auto 0;padding:0 24px;position:relative;z-index:2}
+.section{margin-bottom:48px}
+.section-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;gap:16px}
+.section-title{font-size:20px;font-weight:700;color:#1E3A5F;display:flex;align-items:center;gap:10px}
+.section-title .num{background:#1E3A5F;color:#fff;width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700}
+.section-sub{font-size:13px;color:#6B7280;margin-bottom:16px;margin-left:42px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:18px}
+.grid-master{grid-template-columns:1fr}
+.card{background:#fff;border:1px solid #E5E7EB;border-radius:14px;padding:24px;text-decoration:none;color:#1E293B;display:flex;flex-direction:column;gap:12px;transition:all .15s;position:relative;overflow:hidden}
+.card:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(0,0,0,.1);border-color:#2563EB}
+.card-head{display:flex;align-items:flex-start;gap:14px}
+.card-num{flex-shrink:0;width:56px;height:56px;background:#EFF6FF;color:#1E3A5F;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800}
+.card.master .card-num{background:linear-gradient(135deg,#1E3A5F,#2563EB);color:#fff}
+.card-titles{flex:1;min-width:0}
+.card-title{font-size:15px;font-weight:700;color:#1E3A5F;margin-bottom:2px;line-height:1.4}
+.card-sub{font-size:11.5px;color:#6B7280;font-weight:500}
+.card-desc{font-size:13px;color:#475569;line-height:1.65;margin-top:4px}
+.badge{display:inline-block;font-size:10.5px;font-weight:700;padding:3px 10px;border-radius:12px;letter-spacing:.04em;white-space:nowrap}
+.badge-done{background:#DCFCE7;color:#166534}
+.badge-master{background:#DBEAFE;color:#1E40AF}
+.badge-rules{background:#FEF3C7;color:#92400E}
+.card-meta{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:14px;border-top:1px dashed #E5E7EB;font-size:11.5px;color:#9CA3AF}
+.card-link{color:#2563EB;font-weight:700;font-size:12.5px;display:flex;align-items:center;gap:4px}
+.card.master{background:#fff;border:2px solid #1E3A5F;padding:28px 32px}
+.card.master .card-title{font-size:20px}
+.card.master .card-desc{font-size:14px;color:#374151}
+.footer{text-align:center;font-size:12px;color:#9CA3AF;margin-top:48px;padding:0 24px}
+.footer-divider{height:1px;background:linear-gradient(to right,transparent,#E5E7EB,transparent);margin:32px 0 20px}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="tag">ชุดเอกสารโครงการ · v2.0 พฤษภาคม 2569</div>
+    <h1>YSC Digital Platform<br>&amp; Backoffice System</h1>
+    <div class="sub">เอกสารข้อกำหนดและขอบเขตโครงการ · บริษัท ยงเจริญศูนย์เครื่องเขียน จำกัด</div>
+    <div class="hero-stats">
+      <div class="stat"><span class="stat-value">3</span><span class="stat-label">ช่องทางการขาย</span></div>
+      <div class="stat"><span class="stat-value">9</span><span class="stat-label">โมดูล/ช่องทาง</span></div>
+      <div class="stat"><span class="stat-value">99</span><span class="stat-label">Use Cases รวม</span></div>
+      <div class="stat"><span class="stat-value">ต.ค.<br><span style="font-size:18px">2569</span></span><span class="stat-label">กำหนดส่งมอบ</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="section">
+    <div class="section-head">
+      <div class="section-title"><span class="num">1</span>เอกสารหลัก (Master Documents)</div>
+    </div>
+    <div class="section-sub">เริ่มอ่านที่นี่ก่อน ภาพรวมโครงการและกฎเกณฑ์เชิงธุรกิจร่วมของทุกโมดูล</div>
+
+    <div class="grid grid-master">
+      <a href="ysc_master_brd.html" class="card master">
+        <div class="card-head">
+          <div class="card-num">M</div>
+          <div class="card-titles">
+            <div class="card-title">YSC Master BRD เอกสารหลักโครงการ</div>
+            <div class="card-sub">v2.0 พฤษภาคม 2569 · Umbrella ที่ลิงก์ไปยังโมดูลย่อยและเอกสารแม่บท</div>
+          </div>
+          <span class="badge badge-master">เอกสารหลัก</span>
+        </div>
+        <div class="card-desc">
+          ภาพรวมโครงการ สถาปัตยกรรมระบบ ผู้มีส่วนได้ส่วนเสีย เป้าหมายธุรกิจ มาตรฐานกลาง ครอบคลุม 7 โมดูล Backoffice + Storefront + POS + Handheld + ConX ERP รวมถึงกำหนดส่งมอบและความเสี่ยง
+        </div>
+        <div class="card-meta">
+          <span>ไฟล์: ysc_master_brd.html</span>
+          <span class="card-link">เปิดอ่าน →</span>
+        </div>
+      </a>
+
+      <a href="ysc_business_rules.html" class="card master">
+        <div class="card-head">
+          <div class="card-num">R</div>
+          <div class="card-titles">
+            <div class="card-title">กฎเกณฑ์เชิงธุรกิจและเงื่อนไขของระบบ <em style="font-size:11px;color:#10B981">v2.2</em></div>
+            <div class="card-sub">เอกสารแม่บท · 22 หมวด + 45 Decisions + 15 รายการรอยืนยัน</div>
+          </div>
+          <span class="badge badge-rules">Master Rules</span>
+        </div>
+        <div class="card-desc">
+          <strong>เอกสารแม่บทกฎเกณฑ์เชิงธุรกิจ</strong> ของยงเจริญฯ ครอบคลุมการสมัครสมาชิก ประเภทคำสั่งซื้อ สต็อก ชำระเงิน เครดิตนิติบุคคล ใบเสนอราคา ระดับสมาชิก/คะแนน โปรโมชั่น ใบกำกับ วงจรคำสั่งซื้อ การหยิบ/บรรจุ การเชื่อม ConX <strong>ข้อมูลหลักสินค้า (PRD-01 ถึง PRD-11) การยกเลิก/คืน (RTN) การจัดส่ง (SHP) ธนาคารและแจ้งเตือน (BNK/NTF)</strong>
+        </div>
+        <div class="card-meta">
+          <span>ไฟล์: ysc_business_rules.html</span>
+          <span class="card-link">เปิดอ่าน →</span>
+        </div>
+      </a>
+
+      <a href="ysc_mom_summary.html" class="card master">
+        <div class="card-head">
+          <div class="card-num">N</div>
+          <div class="card-titles">
+            <div class="card-title">สรุปบันทึกการประชุม (Minutes of Meeting Summary)</div>
+            <div class="card-sub">เอกสารแม่บท · 7 ครั้ง · ม.ค. ถึง เม.ย. 2569</div>
+          </div>
+          <span class="badge badge-master">MoM Summary</span>
+        </div>
+        <div class="card-desc">
+          สรุปประเด็นสำคัญจากบันทึกการประชุมระหว่างยงเจริญฯ และ Adeptio ตั้งแต่ Kickoff (8 ม.ค.) ถึงการประชุมล่าสุด (27 เม.ย.) รวมประเด็นที่ยังไม่ได้บันทึกใน Decision Register, Pain Points หลัก และประเด็นข้ามการประชุม
+        </div>
+        <div class="card-meta">
+          <span>ไฟล์: ysc_mom_summary.html</span>
+          <span class="card-link">เปิดอ่าน →</span>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <div class="section-title"><span class="num">2</span>เอกสารโมดูล Backoffice (v2.0)</div>
+    </div>
+    <div class="section-sub">เอกสาร 7 โมดูล · เขียนใหม่ทั้งหมดเดือน พฤษภาคม 2569 · อ้างอิง Business Rules v2.2 · มี Use Cases ครบทุกโมดูล</div>
+
+    <div class="grid">
+
+      <a href="ysc_prd_brd.html" class="card">
+        <div class="card-head">
+          <div class="card-num">1</div>
+          <div class="card-titles">
+            <div class="card-title">ระบบจัดการข้อมูลสินค้า</div>
+            <div class="card-sub">PRD · Product Management · v2.0</div>
+          </div>
+          <span class="badge badge-done">10 UC</span>
+        </div>
+        <div class="card-desc">14 ประเภทสินค้า, 1 SKU = 1 หน่วยขาย, Multi-Barcode, Effective Date pricing, สีสถานะคลัง 4 สี, Activity Log, สินค้าทดแทน/คล้ายกัน, Bundle, ป้าย New/Promotion, Batch Import/Export</div>
+        <div class="card-meta"><span>Product Team · ฝ่ายจัดซื้อ</span><span class="card-link">เปิดอ่าน →</span></div>
+      </a>
+
+      <a href="ysc_crm_brd.html" class="card">
+        <div class="card-head">
+          <div class="card-num">2</div>
+          <div class="card-titles">
+            <div class="card-title">ระบบลูกค้าและสมาชิก</div>
+            <div class="card-sub">CRM · Customer Management · v2.0</div>
+          </div>
+          <span class="badge badge-done">11 UC</span>
+        </div>
+        <div class="card-desc">ลูกค้า 2 ระดับ (ทั่วไป/ธุรกิจ → บุคคลธรรมดา/นิติบุคคล), ระดับสมาชิก 7 ระดับ, ระดับราคา P1-P5, คะแนนสะสม, วงเงินเครดิตและการอนุมัติ 2 ระดับ, 10 อันดับสินค้าประจำ (CC-05)</div>
+        <div class="card-meta"><span>CC · ฝ่ายการเงิน · BA</span><span class="card-link">เปิดอ่าน →</span></div>
+      </a>
+
+      <a href="ysc_oms_brd.html" class="card">
+        <div class="card-head">
+          <div class="card-num">3</div>
+          <div class="card-titles">
+            <div class="card-title">ระบบจัดการคำสั่งซื้อ</div>
+            <div class="card-sub">OMS · Order Management · v2.0</div>
+          </div>
+          <span class="badge badge-done">14 UC</span>
+        </div>
+        <div class="card-desc">คำสั่งซื้อ 3 ช่องทาง (เว็บ/CC/POS), การชำระเงิน 4 วิธี, Admin ตรวจสลิป (ไม่ใช่ OCR), Auto-cancel 24 ชั่วโมง, การยกเลิก/คืน/CN-DN, ใบกำกับภาษี Y/N/M/A, Pre-Order, Re-order, Over-limit</div>
+        <div class="card-meta"><span>CC · ฝ่ายขาย · ฝ่ายบัญชี</span><span class="card-link">เปิดอ่าน →</span></div>
+      </a>
+
+      <a href="ysc_wms_brd.html" class="card">
+        <div class="card-head">
+          <div class="card-num">4</div>
+          <div class="card-titles">
+            <div class="card-title">ระบบบริหารคลังสินค้า</div>
+            <div class="card-sub">WMS · Warehouse Management · v2.0</div>
+          </div>
+          <span class="badge badge-done">12 UC</span>
+        </div>
+        <div class="card-desc">5 คลัง (ออนไลน์/หน้าร้าน/พักรอ/พิเศษ/Reward), 4 บทบาท Handheld (Picker/Packer/Logistic/PC), Pick จากคลังออนไลน์เท่านั้น, ตรวจนับ ปรับยอด ย้ายสต็อก, สีสถานะ 4 สี, Self-Pickup</div>
+        <div class="card-meta"><span>หัวหน้าคลัง · พนักงานคลัง</span><span class="card-link">เปิดอ่าน →</span></div>
+      </a>
+
+      <a href="ysc_promotion_brd.html" class="card">
+        <div class="card-head">
+          <div class="card-num">5</div>
+          <div class="card-titles">
+            <div class="card-title">ระบบจัดการโปรโมชั่น</div>
+            <div class="card-sub">Promotion Engine · v2.0</div>
+          </div>
+          <span class="badge badge-done">8 UC</span>
+        </div>
+        <div class="card-desc">แคมเปญส่วนลด (%, คงที่, Tier), คูปอง (ดิจิทัล + รหัสสุ่ม), Buy X Get Y, โปรโมชั่นตามระดับสมาชิก, คำนวณส่วนลดอัตโนมัติทุกช่องทาง, Pre-Order ไม่ลดราคา, รายงาน ROI</div>
+        <div class="card-meta"><span>Marketing</span><span class="card-link">เปิดอ่าน →</span></div>
+      </a>
+
+      <a href="ysc_cms_brd.html" class="card">
+        <div class="card-head">
+          <div class="card-num">6</div>
+          <div class="card-titles">
+            <div class="card-title">ระบบจัดการเนื้อหา</div>
+            <div class="card-sub">CMS · Content Management · v2.0</div>
+          </div>
+          <span class="badge badge-done">7 UC</span>
+        </div>
+        <div class="card-desc">Banner หน้าเว็บ (Hero/Carousel/Side), ข่าวสารและกิจกรรม, Landing Page, เมนูและหมวดสินค้า, FAQ และนโยบาย, Pop-up โปรโมชั่น, ตั้งเวลาเผยแพร่และเก็บถาวรอัตโนมัติ</div>
+        <div class="card-meta"><span>Marketing · Content</span><span class="card-link">เปิดอ่าน →</span></div>
+      </a>
+
+      <a href="ysc_reporting_brd.html" class="card">
+        <div class="card-head">
+          <div class="card-num">7</div>
+          <div class="card-titles">
+            <div class="card-title">ระบบรายงานและแดชบอร์ด</div>
+            <div class="card-sub">Reporting &amp; Analytics · v2.0</div>
+          </div>
+          <span class="badge badge-done">9 UC</span>
+        </div>
+        <div class="card-desc">แดชบอร์ดผู้บริหาร, รายงานยอดขาย/สต็อก/ลูกค้า/แคมเปญ/CC, ส่งออก Excel/PDF/CSV, การแจ้งเตือนเมื่อค่าเข้าเกณฑ์, Custom Report, การส่งรายงานอัตโนมัติทางอีเมล</div>
+        <div class="card-meta"><span>ผู้บริหาร · หัวหน้างาน</span><span class="card-link">เปิดอ่าน →</span></div>
+      </a>
+
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <div class="section-title"><span class="num">3</span>เอกสารช่องทางการขาย (Storefront + POS)</div>
+    </div>
+    <div class="section-sub">เอกสาร 2 ช่องทาง · เขียนใหม่ พฤษภาคม 2569 · อ้างอิงดีไซน์จาก Figma · มี Use Cases พร้อมแนบ Mockup</div>
+
+    <div class="grid">
+
+      <a href="ysc_storefront_brd.html" class="card" style="border:2px solid #2563EB">
+        <div class="card-head">
+          <div class="card-num">W</div>
+          <div class="card-titles">
+            <div class="card-title">เว็บไซต์สำหรับลูกค้า (Storefront)</div>
+            <div class="card-sub">WEB · E-Commerce · v1.0 · มี Figma Mockup 9 หน้า</div>
+          </div>
+          <span class="badge badge-done">15 UC</span>
+        </div>
+        <div class="card-desc">หน้าแรก, ค้นหา, รายละเอียดสินค้า, ตะกร้า, Checkout 4 ขั้นตอน, Login, สมัครสมาชิก, OTP, ขอใบเสนอราคา, Pre-Order, ประวัติคำสั่งซื้อ, สมุดที่อยู่, คะแนนสะสม รองรับ Responsive Desktop+Mobile</div>
+        <div class="card-meta"><span>ลูกค้าออนไลน์</span><span class="card-link">เปิดอ่าน →</span></div>
+      </a>
+
+      <a href="ysc_pos_brd.html" class="card" style="border:2px solid #2563EB">
+        <div class="card-head">
+          <div class="card-num">P</div>
+          <div class="card-titles">
+            <div class="card-title">ระบบขายหน้าร้าน (POS)</div>
+            <div class="card-sub">POS · Point of Sale · v1.0 · มี Figma Mockup 7 หน้า</div>
+          </div>
+          <span class="badge badge-done">13 UC</span>
+        </div>
+        <div class="card-desc">Login พนักงานแคชเชียร์, ค้นหาลูกค้า, สแกนสินค้า, โปรโมชั่นและคูปองอัตโนมัติ, แลกของรางวัล, เลือกการรับสินค้า (รับเอง/จัดส่ง/แยกส่ง), ชำระเงิน 4 วิธี, พิมพ์ใบเสร็จ, หน้าจอลูกค้า, Offline Mode</div>
+        <div class="card-meta"><span>พนักงานแคชเชียร์ · หัวหน้าสาขา</span><span class="card-link">เปิดอ่าน →</span></div>
+      </a>
+
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <div class="section-title"><span class="num">4</span>เครื่องมือเสริม</div>
+    </div>
+    <div class="section-sub">Screen Library และ Reference ที่ใช้ร่วมในชุดเอกสาร</div>
+
+    <div class="grid">
+      <a href="ysc_screens_index.html" class="card">
+        <div class="card-head">
+          <div class="card-num">S</div>
+          <div class="card-titles">
+            <div class="card-title">Screen Library</div>
+            <div class="card-sub">Screenshot ของระบบ ysc-backoffice</div>
+          </div>
+          <span class="badge badge-done">พร้อมใช้</span>
+        </div>
+        <div class="card-desc">รวม Screen Reference ทั้งหมด (45 หน้าจอ) ลาก-วางเพิ่ม Screenshot ได้ + ลิงก์อัตโนมัติจาก BRD ทุกเล่ม</div>
+        <div class="card-meta"><span>ysc_screens_index.html</span><span class="card-link">เปิด Library →</span></div>
+      </a>
+
+      <a href="ysc_requirements_preview.html" class="card">
+        <div class="card-head">
+          <div class="card-num">E</div>
+          <div class="card-titles">
+            <div class="card-title">Project Requirements (Executive)</div>
+            <div class="card-sub">เอกสารฉบับนำเสนอ · 8 หน้า A4</div>
+          </div>
+          <span class="badge badge-done">เสร็จแล้ว</span>
+        </div>
+        <div class="card-desc">เอกสารกระชับสำหรับผู้บริหาร บทสรุป สถานะ ฟีเจอร์หลัก Timeline แบบ Gantt ทีม ขอบเขต</div>
+        <div class="card-meta"><span>ysc_requirements_preview.html</span><span class="card-link">เปิดอ่าน →</span></div>
+      </a>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-divider"></div>
+    <div>YSC Digital Platform Documentation · พฤษภาคม 2569 · บริษัท อะเดพทิโอ จำกัด</div>
+    <div style="margin-top:6px;font-size:11px;color:#9CA3AF">เอกสารทั้งหมดอยู่ในขั้นตอน Draft v2.0 ใช้สำหรับ Workshop และทบทวนภายในเท่านั้น</div>
+  </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>YSC Reporting BRD — ระบบรายงานและแดชบอร์ด (Reporting &amp; Analytics) v2.0</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#F3F4F6;font-family:'Sarabun',Tahoma,sans-serif;color:#1E293B;padding:0 0 80px;line-height:1.65}
+.toolbar{position:sticky;top:0;z-index:200;background:#1E3A5F;display:flex;align-items:center;justify-content:space-between;padding:9px 22px;box-shadow:0 2px 12px rgba(0,0,0,.25)}
+.toolbar-title{color:#93C5FD;font-size:13px;font-weight:600;letter-spacing:.04em}
+.toolbar a.home{color:#93C5FD;text-decoration:none;font-size:13px;font-weight:600;padding:4px 10px;border-radius:5px}
+.toolbar a.home:hover{background:rgba(255,255,255,.1)}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:6px;font-family:'Sarabun',sans-serif;font-size:12.5px;font-weight:600;cursor:pointer;border:none;background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.2)}
+.btn:hover{background:rgba(255,255,255,.2)}
+#doc{max-width:920px;margin:36px auto;background:#fff;padding:64px 72px;box-shadow:0 6px 28px rgba(0,0,0,.12);border-radius:6px}
+.cover{background:#1E3A5F;color:#fff;margin:-64px -72px 36px;padding:64px 72px 48px;border-radius:6px 6px 0 0}
+.cover .tag{display:inline-block;background:#2563EB;font-size:11px;font-weight:700;letter-spacing:.1em;padding:5px 14px;border-radius:4px;margin-bottom:24px}
+.cover h1{font-size:32px;font-weight:700;line-height:1.25;margin-bottom:8px;color:#fff;border:none;padding:0}
+.cover .sub{font-size:16px;color:#93C5FD;font-weight:300;margin-bottom:32px}
+.cover .info-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid rgba(255,255,255,.15);border-radius:8px;overflow:hidden}
+.cover .info-cell{padding:14px 20px;border-bottom:1px solid rgba(255,255,255,.1);border-right:1px solid rgba(255,255,255,.1)}
+.cover .info-cell:nth-child(2n){border-right:none}
+.cover .info-cell:nth-last-child(-n+2){border-bottom:none}
+.cover .info-label{font-size:10px;color:#93C5FD;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
+.cover .info-value{font-size:13px;color:#fff;font-weight:600}
+h1{font-size:24px;color:#1E3A5F;margin:42px 0 14px;font-weight:700;padding-bottom:8px;border-bottom:3px solid #1E3A5F}
+h2{font-size:18px;color:#1E3A5F;margin:30px 0 12px;font-weight:700}
+h3{font-size:15px;color:#2563EB;margin:22px 0 10px;font-weight:700}
+p{margin-bottom:12px;font-size:13.5px}
+ul,ol{margin:8px 0 14px 22px;font-size:13.5px}
+li{margin-bottom:5px;line-height:1.7}
+table{width:100%;border-collapse:collapse;margin:14px 0 22px;font-size:12.5px}
+thead th{background:#1E3A5F;color:#fff;padding:10px 12px;text-align:left;font-weight:600;border:1px solid #1E3A5F}
+tbody td{padding:9px 12px;border:1px solid #D1D5DB;vertical-align:top;line-height:1.6}
+tbody tr:nth-child(even) td{background:#F9FAFB}
+td strong{color:#1E3A5F}
+.callout{border-left:4px solid #2563EB;background:#EFF6FF;padding:14px 18px;margin:14px 0;border-radius:0 6px 6px 0}
+.callout strong{color:#1E3A5F}
+.callout-amber{border-left-color:#F59E0B;background:#FFFBEB}
+.callout-amber strong{color:#92400E}
+.callout-green{border-left-color:#10B981;background:#ECFDF5}
+.callout-green strong{color:#065F46}
+.toc{background:#F8FAFC;border:1px solid #E5E7EB;border-radius:8px;padding:20px 28px;margin:20px 0}
+.toc ol{list-style:none;margin:0;padding:0;counter-reset:toc;font-size:13px}
+.toc ol > li{counter-increment:toc;padding:4px 0;border-bottom:1px dashed #E5E7EB}
+.toc ol > li::before{content:counter(toc) ". ";font-weight:700;color:#1E3A5F;margin-right:6px}
+.toc ol ol{margin:4px 0 4px 24px;font-size:12px;color:#6B7280;counter-reset:sub}
+.toc ol ol li{counter-increment:sub;padding:1px 0;border:none}
+.toc ol ol li::before{content:counter(toc) "." counter(sub) " ";color:#6B7280;font-weight:600;margin-right:4px}
+.screen-ref{display:inline-block;background:#F3F4F6;border:1px solid #D1D5DB;color:#374151;font-size:11.5px;padding:1px 8px;border-radius:4px;font-weight:600}
+.br-ref{display:inline-block;background:#FFFBEB;border:1px solid #FDE68A;color:#92400E;font-size:11px;padding:1px 7px;border-radius:4px;font-weight:600;font-family:'Sarabun',monospace}
+.use-case{border:1px solid #E5E7EB;border-radius:10px;margin:18px 0;background:#fff;overflow:hidden}
+.uc-header{background:#1E3A5F;color:#fff;padding:12px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.uc-header .uc-num{font-size:13px;font-weight:700;letter-spacing:.04em}
+.uc-header .uc-title{font-size:14px;font-weight:600;flex:1}
+.uc-body{padding:16px 22px}
+.uc-section{margin:12px 0}
+.uc-section-label{font-size:11.5px;font-weight:700;color:#1E3A5F;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+.uc-flow{counter-reset:flow;list-style:none;margin-left:0}
+.uc-flow > li{counter-increment:flow;position:relative;padding:5px 0 5px 32px;font-size:13px}
+.uc-flow > li::before{content:counter(flow);position:absolute;left:0;top:5px;width:22px;height:22px;background:#2563EB;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700}
+.uc-ac{background:#ECFDF5;border:1px solid #A7F3D0;border-radius:6px;padding:10px 14px;margin:4px 0;font-size:12.5px}
+.uc-ac strong{color:#065F46}
+.tag-confirmed{display:inline-block;background:#DCFCE7;color:#166534;font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:10px}
+.tag-pending{display:inline-block;background:#FEF3C7;color:#92400E;font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:10px}
+@media print{body{background:#fff}.toolbar{display:none}#doc{max-width:none;margin:0;box-shadow:none;padding:24px 40px}.cover{margin:-24px -40px 24px;padding:50px 40px 40px}h1{page-break-before:always}h1:first-of-type{page-break-before:auto}table,.use-case{page-break-inside:avoid}}
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <div style="display:flex;align-items:center;gap:14px">
+    <a href="index.html" class="home">สารบัญ</a>
+    <span style="color:rgba(255,255,255,.25)">|</span>
+    <span class="toolbar-title">YSC Reporting BRD — ระบบรายงานและแดชบอร์ด v2.0</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:8px"><button class="btn" onclick="window.print()">พิมพ์ / PDF</button></div>
+</div>
+
+<div id="doc">
+
+<div class="cover">
+  <div class="tag">เอกสารโมดูล · BACKOFFICE · REPORTING</div>
+  <h1>ระบบรายงานและแดชบอร์ด<br>(Reporting &amp; Analytics)</h1>
+  <div class="sub">เอกสารข้อกำหนดเชิงธุรกิจ โมดูลย่อยที่ 7 ของระบบหลังบ้าน</div>
+  <div class="info-grid">
+    <div class="info-cell"><div class="info-label">รหัสโมดูล</div><div class="info-value">RPT (Reporting)</div></div>
+    <div class="info-cell"><div class="info-label">เวอร์ชัน / วันที่</div><div class="info-value">v2.0 พฤษภาคม 2569</div></div>
+    <div class="info-cell"><div class="info-label">เจ้าของโครงการ</div><div class="info-value">บริษัท ยงเจริญศูนย์เครื่องเขียน จำกัด</div></div>
+    <div class="info-cell"><div class="info-label">ผู้พัฒนาระบบ</div><div class="info-value">บริษัท อะเดพทิโอ จำกัด</div></div>
+    <div class="info-cell"><div class="info-label">แหล่งข้อมูล</div><div class="info-value">OMS, CRM, PRD, WMS, Promotion, ConX</div></div>
+    <div class="info-cell"><div class="info-label">อ้างอิงเอกสารแม่บท</div><div class="info-value">ysc_business_rules.html v2.2</div></div>
+  </div>
+</div>
+
+<div class="callout callout-green">
+  <strong>วัตถุประสงค์ของเอกสาร</strong>
+  <p style="margin-top:6px;margin-bottom:0;font-size:13px">เอกสารฉบับนี้ระบุข้อกำหนดของ<strong>ระบบรายงานและแดชบอร์ด (Reporting &amp; Analytics)</strong> ของยงเจริญฯ ครอบคลุมรายงานสำหรับผู้บริหาร (Executive Dashboard) รายงานเชิงปฏิบัติการ (Operational Reports) ในแต่ละโมดูล (OMS, CRM, PRD, WMS, Promotion) การส่งออกข้อมูลเป็น Excel / PDF การกำหนดสิทธิ์การเข้าถึงรายงาน และการแจ้งเตือนเมื่อค่าเข้าเกณฑ์</p>
+</div>
+
+<h2 style="margin-top:32px">สารบัญ</h2>
+<div class="toc">
+  <ol>
+    <li>ข้อมูลเอกสารและการอนุมัติ</li>
+    <li>วัตถุประสงค์เชิงธุรกิจ</li>
+    <li>ขอบเขตของงาน</li>
+    <li>ผู้มีส่วนได้ส่วนเสีย</li>
+    <li>สถานะปัจจุบัน (As-Is)</li>
+    <li>กระบวนการในอนาคต (To-Be)</li>
+    <li>ข้อกำหนดเชิงหน้าที่ — กรณีการใช้งาน (Use Cases)
+      <ol>
+        <li>UC-RPT-001 ดูแดชบอร์ดผู้บริหาร</li>
+        <li>UC-RPT-002 ดูรายงานยอดขายรายวัน / รายเดือน</li>
+        <li>UC-RPT-003 ดูรายงานสต็อกและการเคลื่อนไหว</li>
+        <li>UC-RPT-004 ดูรายงานลูกค้าและสมาชิก</li>
+        <li>UC-RPT-005 ดูรายงานประสิทธิภาพแคมเปญ</li>
+        <li>UC-RPT-006 ดูรายงานสำหรับ Contact Center</li>
+        <li>UC-RPT-007 ส่งออกรายงานเป็น Excel / PDF</li>
+        <li>UC-RPT-008 ตั้งการแจ้งเตือนเมื่อค่าเข้าเกณฑ์</li>
+        <li>UC-RPT-009 สร้างรายงานกำหนดเอง (Custom Report)</li>
+      </ol>
+    </li>
+    <li>การออกแบบประสบการณ์ผู้ใช้ (Screen Inventory)</li>
+    <li>กฎเกณฑ์เชิงธุรกิจ</li>
+    <li>การเชื่อมต่อระบบภายนอก</li>
+    <li>การออกแบบข้อมูลและข้อมูลหลัก</li>
+    <li>ความปลอดภัยและสิทธิ์การเข้าถึง</li>
+    <li>ข้อกำหนดเชิงคุณภาพ (NFR)</li>
+    <li>รายงานและแดชบอร์ดที่ระบบรองรับ</li>
+    <li>ข้อกำหนดการโอนย้ายข้อมูล</li>
+    <li>สมมติฐานและข้อจำกัด</li>
+    <li>เกณฑ์การยอมรับผลงาน</li>
+    <li>ประเด็นเปิดและความเสี่ยง</li>
+  </ol>
+</div>
+
+<h2 style="margin-top:36px">สรุปกรณีการใช้งาน (Use Case Catalog)</h2>
+<p style="font-size:13px;color:#475569">ตารางสรุปกรณีการใช้งานทั้ง 9 รายการของระบบรายงานและแดชบอร์ด ครอบคลุมแดชบอร์ดผู้บริหาร รายงานทุกโมดูล การส่งออก และการแจ้งเตือน รายละเอียดเต็มอยู่ในหัวข้อที่ 7</p>
+<table>
+  <thead>
+    <tr>
+      <th style="width:46px">#</th>
+      <th style="width:118px">รหัส</th>
+      <th>ชื่อกรณีการใช้งาน</th>
+      <th style="width:160px">ผู้ใช้งานหลัก</th>
+      <th style="width:160px">กฎที่เกี่ยวข้อง</th>
+      <th style="width:90px">สถานะ</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>1</td><td><strong>UC-RPT-001</strong></td><td>ดูแดชบอร์ดผู้บริหาร</td><td>ผู้บริหาร</td><td>—</td><td><span class="tag-confirmed">ยืนยัน</span></td></tr>
+    <tr><td>2</td><td><strong>UC-RPT-002</strong></td><td>ดูรายงานยอดขายรายวัน / รายเดือน</td><td>ผู้บริหาร + หัวหน้าฝ่ายขาย</td><td>—</td><td><span class="tag-confirmed">ยืนยัน</span></td></tr>
+    <tr><td>3</td><td><strong>UC-RPT-003</strong></td><td>ดูรายงานสต็อกและการเคลื่อนไหว</td><td>หัวหน้าคลัง + WMS Admin</td><td><span class="br-ref">PRD-05</span></td><td><span class="tag-confirmed">ยืนยัน</span></td></tr>
+    <tr><td>4</td><td><strong>UC-RPT-004</strong></td><td>ดูรายงานลูกค้าและสมาชิก</td><td>ฝ่ายการตลาด + CRM Admin</td><td>—</td><td><span class="tag-confirmed">ยืนยัน</span></td></tr>
+    <tr><td>5</td><td><strong>UC-RPT-005</strong></td><td>ดูรายงานประสิทธิภาพแคมเปญ</td><td>ฝ่ายการตลาด</td><td>—</td><td><span class="tag-confirmed">ยืนยัน</span></td></tr>
+    <tr><td>6</td><td><strong>UC-RPT-006</strong></td><td>ดูรายงานสำหรับ Contact Center</td><td>หัวหน้า Contact Center</td><td>—</td><td><span class="tag-confirmed">ยืนยัน</span></td></tr>
+    <tr><td>7</td><td><strong>UC-RPT-007</strong></td><td>ส่งออกรายงานเป็น Excel / PDF</td><td>ผู้ใช้ทุกบทบาท</td><td>—</td><td><span class="tag-confirmed">ยืนยัน</span></td></tr>
+    <tr><td>8</td><td><strong>UC-RPT-008</strong></td><td>ตั้งการแจ้งเตือนเมื่อค่าเข้าเกณฑ์</td><td>หัวหน้างานแต่ละฝ่าย</td><td><span class="br-ref">NTF-05</span> <span class="br-ref">NTF-06</span></td><td><span class="tag-confirmed">ยืนยัน</span></td></tr>
+    <tr><td>9</td><td><strong>UC-RPT-009</strong></td><td>สร้างรายงานกำหนดเอง (Custom Report)</td><td>ผู้ใช้ทุกบทบาท</td><td>—</td><td><span class="tag-confirmed">ยืนยัน</span></td></tr>
+  </tbody>
+</table>
+
+<h1>1. ข้อมูลเอกสารและการอนุมัติ</h1>
+<h2>1.1 ประวัติการแก้ไข</h2>
+<table>
+  <thead><tr><th style="width:80px">เวอร์ชัน</th><th style="width:110px">วันที่</th><th>รายละเอียดการเปลี่ยนแปลง</th><th style="width:90px">สถานะ</th></tr></thead>
+  <tbody>
+    <tr><td>1.0</td><td>มี.ค. 2569</td><td>ฉบับร่างแรก</td><td><span class="tag-pending">เก่า</span></td></tr>
+    <tr><td>2.0</td><td>16 พ.ค. 2569</td><td>เขียนใหม่ทั้งฉบับ อ้างอิง Business Rules v2.2 รวมรายงานทุกโมดูล เพิ่มแดชบอร์ดผู้บริหาร และระบบแจ้งเตือนเข้าเกณฑ์ เพิ่ม UC ครบ 9 รายการ</td><td><span class="tag-confirmed">ปัจจุบัน</span></td></tr>
+  </tbody>
+</table>
+
+<h2>1.2 ผู้อนุมัติเอกสาร</h2>
+<table>
+  <thead><tr><th style="width:240px">บทบาท</th><th>ชื่อ-นามสกุล</th><th style="width:140px">วันที่อนุมัติ</th><th style="width:140px">ลายเซ็น</th></tr></thead>
+  <tbody>
+    <tr><td><strong>ผู้บริหาร (YSC)</strong></td><td>____________________</td><td>____________</td><td>____________</td></tr>
+    <tr><td><strong>หัวหน้าฝ่ายไอที (YSC)</strong></td><td>____________________</td><td>____________</td><td>____________</td></tr>
+    <tr><td><strong>ผู้จัดการโครงการ (Adeptio)</strong></td><td>____________________</td><td>____________</td><td>____________</td></tr>
+  </tbody>
+</table>
+
+<h1>2. วัตถุประสงค์เชิงธุรกิจ</h1>
+<p>ระบบรายงานเป็นเครื่องมือของ<strong>ผู้บริหารและหัวหน้างาน</strong>ในการดูข้อมูลและตัดสินใจ ครอบคลุมข้อมูลจากทุกโมดูล (OMS, CRM, PRD, WMS, Promotion) แสดงเป็นแดชบอร์ดและรายงานเชิงปฏิบัติการ พร้อมการส่งออกและแจ้งเตือนเมื่อตัวเลขเข้าเกณฑ์ที่กำหนด</p>
+
+<table>
+  <thead><tr><th style="width:80px">รหัส</th><th>เป้าหมายธุรกิจ</th><th style="width:180px">ตัวชี้วัด</th></tr></thead>
+  <tbody>
+    <tr><td><strong>BG-RPT-1</strong></td><td>ผู้บริหารเห็นภาพรวมธุรกิจในที่เดียว</td><td>มีแดชบอร์ดที่เห็นยอดขาย, สต็อก, ลูกค้า, แคมเปญ ครบ</td></tr>
+    <tr><td><strong>BG-RPT-2</strong></td><td>หัวหน้างานเข้าถึงรายงานที่ต้องการเฉพาะส่วน</td><td>รายงานครบทุกโมดูล + RBAC</td></tr>
+    <tr><td><strong>BG-RPT-3</strong></td><td>ลดเวลาการทำรายงานรายเดือน</td><td>เวลาทำรายงาน ลดลง 80%</td></tr>
+    <tr><td><strong>BG-RPT-4</strong></td><td>แจ้งเตือนทันทีเมื่อมีปัญหา</td><td>แจ้งเตือนภายใน 5 นาทีจากเหตุการณ์</td></tr>
+  </tbody>
+</table>
+
+<h1>3. ขอบเขตของงาน</h1>
+<h2>3.1 อยู่ในขอบเขต (In Scope)</h2>
+<ul>
+  <li>แดชบอร์ดผู้บริหาร (Executive Dashboard)</li>
+  <li>รายงานเชิงปฏิบัติการครบทุกโมดูล: OMS, CRM, PRD, WMS, Promotion, POS</li>
+  <li>การกรองข้อมูลตามช่วงเวลา / ช่องทาง / สาขา / สินค้า</li>
+  <li>การส่งออกเป็น Excel / PDF / CSV</li>
+  <li>การตั้งการแจ้งเตือนเมื่อค่าเข้าเกณฑ์</li>
+  <li>การสร้างรายงานกำหนดเอง (Custom Report)</li>
+  <li>การส่งรายงานอัตโนมัติทางอีเมลตามกำหนด</li>
+  <li>การจัดการสิทธิ์การเข้าถึงรายงาน</li>
+</ul>
+
+<h2>3.2 ไม่อยู่ในขอบเขต (Out of Scope)</h2>
+<ul>
+  <li>รายงานทางบัญชี / ภาษีจาก ConX (ใช้ระบบ ConX เอง)</li>
+  <li>รายงานวิเคราะห์เชิงลึก (Predictive Analytics) ทำในเฟสต่อไป</li>
+</ul>
+
+<h1>4. ผู้มีส่วนได้ส่วนเสีย</h1>
+<table>
+  <thead><tr><th style="width:200px">บทบาท</th><th>หน้าที่</th><th style="width:140px">สิทธิ์</th></tr></thead>
+  <tbody>
+    <tr><td><strong>ผู้บริหาร</strong></td><td>ดูแดชบอร์ดและรายงานภาพรวม</td><td>ทั่วทั้งระบบ</td></tr>
+    <tr><td><strong>หัวหน้างานแต่ละฝ่าย</strong></td><td>ดูรายงานเฉพาะฝ่ายของตน</td><td>เฉพาะโมดูล</td></tr>
+    <tr><td><strong>ฝ่ายการตลาด</strong></td><td>ดูรายงานแคมเปญและพฤติกรรมลูกค้า</td><td>การตลาด</td></tr>
+    <tr><td><strong>ฝ่ายการเงิน</strong></td><td>ดูรายงานวงเงินเครดิตและยอดค้างชำระ</td><td>การเงิน</td></tr>
+    <tr><td><strong>หัวหน้าคลัง</strong></td><td>ดูรายงานสต็อกและประสิทธิภาพคลัง</td><td>คลัง</td></tr>
+  </tbody>
+</table>
+
+<h1>5. สถานะปัจจุบัน (As-Is)</h1>
+<ul>
+  <li><strong>รายงานทำโดยทีม IT</strong> ฝ่ายต่างๆ ต้องร้องขอ</li>
+  <li><strong>ใช้ Excel ด้วยมือ</strong> ดึงข้อมูลจาก ConX แล้วทำ Pivot Table</li>
+  <li><strong>ไม่มีแดชบอร์ดเวลาจริง</strong> ดูเป็นรายงานสรุปทุกสิ้นเดือน</li>
+  <li><strong>ไม่มีการแจ้งเตือนอัตโนมัติ</strong></li>
+</ul>
+
+<h1>6. กระบวนการในอนาคต (To-Be)</h1>
+<ul>
+  <li><strong>แดชบอร์ดเวลาจริง</strong> ทุกฝ่ายเข้าถึงเอง</li>
+  <li><strong>รายงานสำเร็จรูป</strong> ครอบคลุมทุกโมดูล</li>
+  <li><strong>การส่งออกในรูปแบบต่างๆ</strong> Excel / PDF / CSV</li>
+  <li><strong>การแจ้งเตือนเมื่อค่าผิดปกติ</strong></li>
+  <li><strong>การส่งรายงานอัตโนมัติ</strong> รายวัน / สัปดาห์ / เดือน ตามที่ผู้ใช้ต้องการ</li>
+</ul>
+
+<h1>7. ข้อกำหนดเชิงหน้าที่ — กรณีการใช้งาน (Use Cases)</h1>
+
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-RPT-001</span><span class="uc-title">ดูแดชบอร์ดผู้บริหาร</span></div>
+  <div class="uc-body">
+    <div class="uc-section"><div class="uc-section-label">จุดประสงค์</div><p style="margin:0">ผู้บริหารเปิดดูแดชบอร์ดที่รวมข้อมูลธุรกิจครบในที่เดียว</p></div>
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>ผู้บริหารเข้า <span class="screen-ref">หน้าจอแดชบอร์ดผู้บริหาร</span></li>
+        <li>ระบบแสดง KPI หลัก: ยอดขายวันนี้, สั่งซื้อทั้งหมด, ลูกค้าใหม่, สต็อก สีแดง, แคมเปญที่กำลังจะหมด</li>
+        <li>กราฟแสดงแนวโน้มยอดขายย้อนหลัง 30 / 90 วัน</li>
+        <li>ผู้บริหารสามารถ Drill-down เข้าดูรายละเอียดแต่ละ KPI</li>
+      </ol>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-RPT-001-01:</strong> แดชบอร์ดอัปเดตข้อมูลทุก 15 นาที</div>
+      <div class="uc-ac"><strong>AC-RPT-001-02:</strong> รองรับการดูบน Tablet และคอมพิวเตอร์</div>
+    </div>
+  </div>
+</div>
+
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-RPT-002</span><span class="uc-title">ดูรายงานยอดขายรายวัน / รายเดือน</span></div>
+  <div class="uc-body">
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>ผู้ใช้เข้า <span class="screen-ref">หน้าจอรายงานยอดขาย</span></li>
+        <li>เลือกช่วงเวลา (วัน / สัปดาห์ / เดือน / ปี)</li>
+        <li>เลือกช่องทาง (ทุกช่อง / เว็บ / CC / POS / สาขา)</li>
+        <li>ระบบแสดงตาราง + กราฟ พร้อม Top สินค้าและลูกค้า</li>
+        <li>ผู้ใช้สามารถส่งออกได้ตามต้องการ</li>
+      </ol>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-RPT-002-01:</strong> ตัวเลขยอดขายตรงกับ ConX ทุก ๆ วัน</div>
+    </div>
+  </div>
+</div>
+
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-RPT-003</span><span class="uc-title">ดูรายงานสต็อกและการเคลื่อนไหว</span></div>
+  <div class="uc-body">
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>หัวหน้าคลังเปิด <span class="screen-ref">หน้าจอรายงานสต็อก</span></li>
+        <li>เลือกคลัง / ประเภทสินค้า / สี (ขาว/เหลือง/ฟ้า/แดง)</li>
+        <li>ระบบแสดงสต็อกคงเหลือ การรับ-จ่ายในช่วงเวลา ปริมาณการเคลื่อนไหว</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-RPT-004</span><span class="uc-title">ดูรายงานลูกค้าและสมาชิก</span></div>
+  <div class="uc-body">
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>ฝ่ายการตลาดเปิด <span class="screen-ref">หน้าจอรายงานลูกค้า</span></li>
+        <li>ดูรายงาน: ลูกค้าใหม่, การเลื่อน/ลดระดับ, คะแนนสะสมรวม, ลูกค้าที่กลับมาซื้อ</li>
+        <li>ดูยอดซื้อเฉลี่ยตามระดับสมาชิก</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-RPT-005</span><span class="uc-title">ดูรายงานประสิทธิภาพแคมเปญ</span></div>
+  <div class="uc-body">
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>ฝ่ายการตลาดเปิด <span class="screen-ref">หน้าจอรายงานแคมเปญ</span></li>
+        <li>เลือกแคมเปญที่ต้องการ</li>
+        <li>ระบบแสดง ROI, ยอดขาย, จำนวนลูกค้า, การใช้คูปอง, ส่วนลดรวม</li>
+        <li>เปรียบเทียบหลายแคมเปญพร้อมกัน</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-RPT-006</span><span class="uc-title">ดูรายงานสำหรับ Contact Center</span></div>
+  <div class="uc-body">
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>หัวหน้า Contact Center เปิด <span class="screen-ref">หน้าจอรายงาน CC</span></li>
+        <li>ระบบแสดง: จำนวนคำสั่งซื้อต่อพนักงาน CC, เวลาให้บริการเฉลี่ย, อัตรา Closure</li>
+        <li>เปรียบเทียบประสิทธิภาพระหว่างพนักงาน</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-RPT-007</span><span class="uc-title">ส่งออกรายงานเป็น Excel / PDF</span></div>
+  <div class="uc-body">
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>ผู้ใช้เปิดรายงานที่ต้องการ</li>
+        <li>กดปุ่ม "ส่งออก"</li>
+        <li>เลือกรูปแบบ Excel / PDF / CSV</li>
+        <li>ระบบดาวน์โหลดไฟล์</li>
+      </ol>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-RPT-007-01:</strong> ไฟล์มีหัวเอกสารและท้ายเอกสารตาม Brand</div>
+    </div>
+  </div>
+</div>
+
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-RPT-008</span><span class="uc-title">ตั้งการแจ้งเตือนเมื่อค่าเข้าเกณฑ์</span></div>
+  <div class="uc-body">
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>ผู้ใช้กด "ตั้งแจ้งเตือน" ในแต่ละรายงาน</li>
+        <li>กำหนดเงื่อนไข (เช่น สต็อก ≤ 100 / ยอดขาย ลดลง 30%)</li>
+        <li>เลือกช่องทางแจ้ง (อีเมล / LINE)</li>
+        <li>ระบบส่งแจ้งเตือนเมื่อเงื่อนไขเกิด ตาม <span class="br-ref">NTF-05, NTF-06</span></li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-RPT-009</span><span class="uc-title">สร้างรายงานกำหนดเอง (Custom Report)</span></div>
+  <div class="uc-body">
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>ผู้ใช้กด "สร้างรายงานใหม่"</li>
+        <li>เลือกแหล่งข้อมูล: คำสั่งซื้อ / ลูกค้า / สินค้า / สต็อก</li>
+        <li>เลือกฟิลด์ที่ต้องการแสดง</li>
+        <li>กำหนดเงื่อนไขการกรอง</li>
+        <li>กำหนดการแสดงผล (ตาราง / กราฟ / Pivot)</li>
+        <li>บันทึก รายงานเข้าคลังรายงานของผู้ใช้</li>
+        <li>กำหนดให้ส่งออกอัตโนมัติทางอีเมล ตามรอบเวลา</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<h1>8. การออกแบบประสบการณ์ผู้ใช้ (Screen Inventory)</h1>
+<table>
+  <thead><tr><th style="width:140px">รหัสหน้าจอ</th><th>ชื่อหน้าจอ</th><th>หน้าที่หลัก</th></tr></thead>
+  <tbody>
+    <tr><td><strong>SCR-RPT-001</strong></td><td>หน้าจอแดชบอร์ดผู้บริหาร</td><td>KPI หลักและภาพรวมธุรกิจ</td></tr>
+    <tr><td><strong>SCR-RPT-002</strong></td><td>หน้าจอรายงานยอดขาย</td><td>รายงานยอดขายตามช่วงเวลาและช่องทาง</td></tr>
+    <tr><td><strong>SCR-RPT-003</strong></td><td>หน้าจอรายงานสต็อก</td><td>สต็อกคงเหลือและการเคลื่อนไหว</td></tr>
+    <tr><td><strong>SCR-RPT-004</strong></td><td>หน้าจอรายงานลูกค้า</td><td>ลูกค้าใหม่ การเลื่อน/ลดระดับ คะแนน</td></tr>
+    <tr><td><strong>SCR-RPT-005</strong></td><td>หน้าจอรายงานแคมเปญ</td><td>ประสิทธิภาพและ ROI</td></tr>
+    <tr><td><strong>SCR-RPT-006</strong></td><td>หน้าจอรายงาน CC</td><td>ประสิทธิภาพ Contact Center</td></tr>
+    <tr><td><strong>SCR-RPT-007</strong></td><td>หน้าจอสร้างรายงานกำหนดเอง</td><td>สร้างรายงานตามต้องการ</td></tr>
+    <tr><td><strong>SCR-RPT-008</strong></td><td>หน้าจอตั้งแจ้งเตือน</td><td>กำหนดเงื่อนไขและช่องทางการแจ้ง</td></tr>
+  </tbody>
+</table>
+
+<h1>9. กฎเกณฑ์เชิงธุรกิจ</h1>
+<table>
+  <thead><tr><th style="width:130px">รหัส</th><th>กฎเกณฑ์</th></tr></thead>
+  <tbody>
+    <tr><td><span class="br-ref">NTF-05</span></td><td>การแจ้งเตือนพนักงาน (Reorder Point, BG Expire, Point Expire)</td></tr>
+    <tr><td><span class="br-ref">NTF-06</span></td><td>การแจ้งเตือนหัวหน้างาน (Supervisor Alert)</td></tr>
+    <tr><td>-</td><td>การคำนวณ KPI ทุกตัวต้องสอดคล้องกับกฎที่กำหนดในแต่ละโมดูล</td></tr>
+  </tbody>
+</table>
+
+<h1>10. การเชื่อมต่อระบบภายนอก</h1>
+<table>
+  <thead><tr><th style="width:140px">ระบบ</th><th>ข้อมูล</th><th style="width:120px">ทิศทาง</th></tr></thead>
+  <tbody>
+    <tr><td><strong>OMS / CRM / PRD / WMS / Promotion</strong></td><td>ข้อมูลปฏิบัติการสำหรับสร้างรายงาน</td><td>โมดูล → Reporting</td></tr>
+    <tr><td><strong>ConX ERP</strong></td><td>ข้อมูลทางบัญชีและการเงิน</td><td>ConX → Reporting</td></tr>
+    <tr><td><strong>ระบบส่งอีเมล / LINE</strong></td><td>การส่งรายงานอัตโนมัติและการแจ้งเตือน</td><td>Reporting → ผู้ใช้</td></tr>
+  </tbody>
+</table>
+
+<h1>11. การออกแบบข้อมูลและข้อมูลหลัก</h1>
+<table>
+  <thead><tr><th style="width:160px">หน่วยข้อมูล</th><th>คำอธิบาย</th><th style="width:160px">คีย์หลัก</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Report Template</strong></td><td>เทมเพลตรายงานสำเร็จรูป</td><td>Template ID</td></tr>
+    <tr><td><strong>Custom Report</strong></td><td>รายงานที่ผู้ใช้สร้างเอง</td><td>Report ID</td></tr>
+    <tr><td><strong>Alert Rule</strong></td><td>กฎและเงื่อนไขการแจ้งเตือน</td><td>Alert ID</td></tr>
+    <tr><td><strong>Schedule</strong></td><td>การส่งรายงานอัตโนมัติตามกำหนด</td><td>Schedule ID</td></tr>
+    <tr><td><strong>Data Warehouse</strong></td><td>ข้อมูลรวมจากทุกโมดูลสำหรับรายงาน</td><td>(หลายตาราง)</td></tr>
+  </tbody>
+</table>
+
+<h1>12. ความปลอดภัยและสิทธิ์การเข้าถึง</h1>
+<table>
+  <thead><tr><th style="width:200px">บทบาท</th><th>เข้าถึงรายงาน</th></tr></thead>
+  <tbody>
+    <tr><td>ผู้บริหาร</td><td>ทุกโมดูล + แดชบอร์ดผู้บริหาร</td></tr>
+    <tr><td>หัวหน้างานแต่ละฝ่าย</td><td>เฉพาะโมดูลของตน</td></tr>
+    <tr><td>พนักงานปฏิบัติการ</td><td>เฉพาะรายงานที่ได้รับสิทธิ์</td></tr>
+  </tbody>
+</table>
+
+<h1>13. ข้อกำหนดเชิงคุณภาพ (NFR)</h1>
+<table>
+  <thead><tr><th style="width:200px">หัวข้อ</th><th>เกณฑ์</th></tr></thead>
+  <tbody>
+    <tr><td><strong>เวลาตอบสนอง</strong></td><td>โหลดรายงานปกติ ≤ 5 วินาที / รายงานใหญ่ ≤ 30 วินาที</td></tr>
+    <tr><td><strong>ความถี่อัปเดต</strong></td><td>แดชบอร์ดรีเฟรชทุก 15 นาที / รายงานปฏิบัติการเป็นเวลาจริง</td></tr>
+    <tr><td><strong>การส่งออก</strong></td><td>Excel ≤ 100,000 แถว / PDF ≤ 1,000 หน้า</td></tr>
+    <tr><td><strong>การเก็บข้อมูล</strong></td><td>ย้อนหลัง ≥ 3 ปี</td></tr>
+  </tbody>
+</table>
+
+<h1>14. รายงานและแดชบอร์ดที่ระบบรองรับ</h1>
+<table>
+  <thead><tr><th style="width:140px">หมวด</th><th>รายงาน</th></tr></thead>
+  <tbody>
+    <tr><td><strong>ยอดขาย</strong></td><td>รายงานยอดขายรายวัน/สัปดาห์/เดือน, Top สินค้า, Top ลูกค้า, ยอดตามช่องทาง/สาขา</td></tr>
+    <tr><td><strong>คำสั่งซื้อ</strong></td><td>คำสั่งซื้อตามสถานะ, Auto-cancel, การคืน/CN-DN, สลิปรอตรวจ</td></tr>
+    <tr><td><strong>สินค้า</strong></td><td>สินค้าที่เปลี่ยนสถานะ, ราคาที่จะเปลี่ยน, สินค้าไม่เคลื่อนไหว, สีสถานะคลัง 4 สี</td></tr>
+    <tr><td><strong>คลังสินค้า</strong></td><td>สต็อกคงเหลือ, การเคลื่อนไหว, ประสิทธิภาพ Pick/Pack, การตรวจนับ</td></tr>
+    <tr><td><strong>ลูกค้า</strong></td><td>ลูกค้าใหม่, การเลื่อน/ลดระดับ, คะแนนสะสม, วงเงินเครดิตที่ใช้</td></tr>
+    <tr><td><strong>แคมเปญ</strong></td><td>ประสิทธิภาพแคมเปญ, ROI, การใช้คูปอง, Cost of Discount</td></tr>
+    <tr><td><strong>Contact Center</strong></td><td>คำสั่งซื้อต่อพนักงาน, เวลาให้บริการ, อัตรา Closure</td></tr>
+    <tr><td><strong>POS / หน้าร้าน</strong></td><td>ยอดขาย POS ต่อสาขา/แคชเชียร์, การยกเลิก, การคืน</td></tr>
+  </tbody>
+</table>
+
+<h1>15. ข้อกำหนดการโอนย้ายข้อมูล</h1>
+<ul>
+  <li>ข้อมูลย้อนหลังจากระบบเก่าและ ConX โอนเข้า Data Warehouse</li>
+  <li>ตรวจสอบความถูกต้องของยอดขายและสต็อกย้อนหลัง ≥ 3 ปี</li>
+</ul>
+
+<h1>16. สมมติฐานและข้อจำกัด</h1>
+<ul>
+  <li>มี Data Warehouse แยกจาก Production เพื่อไม่กระทบประสิทธิภาพ</li>
+  <li>การเปรียบเทียบกับข้อมูลก่อน Go-live อาจไม่สมบูรณ์</li>
+</ul>
+
+<h1>17. เกณฑ์การยอมรับผลงาน</h1>
+<table>
+  <thead><tr><th style="width:100px">รหัส</th><th>เกณฑ์</th><th style="width:120px">UC อ้างอิง</th></tr></thead>
+  <tbody>
+    <tr><td><strong>AC-RPT-G-01</strong></td><td>แดชบอร์ดและรายงานครบทุกโมดูล</td><td>UC-RPT-001 ถึง 006</td></tr>
+    <tr><td><strong>AC-RPT-G-02</strong></td><td>ส่งออกได้ครบทุกรูปแบบ</td><td>UC-RPT-007</td></tr>
+    <tr><td><strong>AC-RPT-G-03</strong></td><td>แจ้งเตือนทำงานถูกต้อง</td><td>UC-RPT-008</td></tr>
+    <tr><td><strong>AC-RPT-G-04</strong></td><td>สร้างรายงานกำหนดเองได้</td><td>UC-RPT-009</td></tr>
+  </tbody>
+</table>
+
+<h1>18. ประเด็นเปิดและความเสี่ยง</h1>
+<table>
+  <thead><tr><th style="width:100px">รหัส</th><th>ประเด็น / ความเสี่ยง</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Q-RPT-001</strong></td><td>KPI หลักของแดชบอร์ดผู้บริหาร <span class="tag-pending">รอผู้บริหารยืนยัน</span></td></tr>
+    <tr><td><strong>Q-RPT-002</strong></td><td>เกณฑ์การแจ้งเตือนแต่ละโมดูล รอแต่ละฝ่ายระบุ</td></tr>
+    <tr><td><strong>R-RPT-001</strong></td><td>ความเสี่ยง: Data Warehouse ไม่ตรงกับ Production เนื่องจากดีเลย์การ Sync</td></tr>
+  </tbody>
+</table>
+
+</div>
+</body>
+</html>

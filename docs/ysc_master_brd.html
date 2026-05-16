@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>YSC Master BRD — เอกสารหลักโครงการ v2.0</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#F3F4F6;font-family:'Sarabun',Tahoma,sans-serif;color:#1E293B;padding:0 0 80px;line-height:1.65}
+.toolbar{position:sticky;top:0;z-index:200;background:#1E3A5F;display:flex;align-items:center;justify-content:space-between;padding:9px 22px;box-shadow:0 2px 12px rgba(0,0,0,.25)}
+.toolbar-title{color:#93C5FD;font-size:13px;font-weight:600;letter-spacing:.04em}
+.toolbar a.home{color:#93C5FD;text-decoration:none;font-size:13px;font-weight:600;padding:4px 10px;border-radius:5px}
+.toolbar a.home:hover{background:rgba(255,255,255,.1)}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:6px;font-family:'Sarabun',sans-serif;font-size:12.5px;font-weight:600;cursor:pointer;border:none;background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.2)}
+.btn:hover{background:rgba(255,255,255,.2)}
+#doc{max-width:920px;margin:36px auto;background:#fff;padding:64px 72px;box-shadow:0 6px 28px rgba(0,0,0,.12);border-radius:6px}
+.cover{background:#1E3A5F;color:#fff;margin:-64px -72px 36px;padding:64px 72px 48px;border-radius:6px 6px 0 0}
+.cover .tag{display:inline-block;background:#2563EB;font-size:11px;font-weight:700;letter-spacing:.1em;padding:5px 14px;border-radius:4px;margin-bottom:24px}
+.cover h1{font-size:32px;font-weight:700;line-height:1.25;margin-bottom:8px;color:#fff;border:none;padding:0}
+.cover .sub{font-size:16px;color:#93C5FD;font-weight:300;margin-bottom:32px}
+.cover .info-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid rgba(255,255,255,.15);border-radius:8px;overflow:hidden}
+.cover .info-cell{padding:14px 20px;border-bottom:1px solid rgba(255,255,255,.1);border-right:1px solid rgba(255,255,255,.1)}
+.cover .info-cell:nth-child(2n){border-right:none}
+.cover .info-cell:nth-last-child(-n+2){border-bottom:none}
+.cover .info-label{font-size:10px;color:#93C5FD;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
+.cover .info-value{font-size:13px;color:#fff;font-weight:600}
+h1{font-size:24px;color:#1E3A5F;margin:42px 0 14px;font-weight:700;padding-bottom:8px;border-bottom:3px solid #1E3A5F}
+h2{font-size:18px;color:#1E3A5F;margin:30px 0 12px;font-weight:700}
+h3{font-size:15px;color:#2563EB;margin:22px 0 10px;font-weight:700}
+p{margin-bottom:12px;font-size:13.5px}
+ul,ol{margin:8px 0 14px 22px;font-size:13.5px}
+li{margin-bottom:5px;line-height:1.7}
+table{width:100%;border-collapse:collapse;margin:14px 0 22px;font-size:12.5px}
+thead th{background:#1E3A5F;color:#fff;padding:10px 12px;text-align:left;font-weight:600;border:1px solid #1E3A5F}
+tbody td{padding:9px 12px;border:1px solid #D1D5DB;vertical-align:top;line-height:1.6}
+tbody tr:nth-child(even) td{background:#F9FAFB}
+td strong{color:#1E3A5F}
+.callout{border-left:4px solid #2563EB;background:#EFF6FF;padding:14px 18px;margin:14px 0;border-radius:0 6px 6px 0}
+.callout strong{color:#1E3A5F}
+.callout-amber{border-left-color:#F59E0B;background:#FFFBEB}
+.callout-amber strong{color:#92400E}
+.callout-green{border-left-color:#10B981;background:#ECFDF5}
+.callout-green strong{color:#065F46}
+.toc{background:#F8FAFC;border:1px solid #E5E7EB;border-radius:8px;padding:20px 28px;margin:20px 0}
+.toc ol{list-style:none;margin:0;padding:0;counter-reset:toc;font-size:13px}
+.toc ol > li{counter-increment:toc;padding:4px 0;border-bottom:1px dashed #E5E7EB}
+.toc ol > li::before{content:counter(toc) ". ";font-weight:700;color:#1E3A5F;margin-right:6px}
+.module-card{display:flex;gap:16px;align-items:flex-start;border:1px solid #E5E7EB;border-radius:10px;padding:18px 22px;margin:10px 0;background:#fff}
+.module-card .num{font-size:22px;flex-shrink:0;width:44px;height:44px;background:#1E3A5F;color:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700}
+.module-card .body{flex:1}
+.module-card .title{font-size:14px;font-weight:700;color:#1E3A5F;margin-bottom:4px}
+.module-card .desc{font-size:12.5px;color:#374151;margin-bottom:6px;line-height:1.6}
+.module-card .meta{font-size:11.5px;color:#6B7280}
+.module-card .link{font-size:12px;color:#2563EB;font-weight:700;text-decoration:none}
+@media print{body{background:#fff}.toolbar{display:none}#doc{max-width:none;margin:0;box-shadow:none;padding:24px 40px}.cover{margin:-24px -40px 24px;padding:50px 40px 40px}h1{page-break-before:always}h1:first-of-type{page-break-before:auto}table,.module-card{page-break-inside:avoid}}
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <div style="display:flex;align-items:center;gap:14px">
+    <a href="index.html" class="home">สารบัญ</a>
+    <span style="color:rgba(255,255,255,.25)">|</span>
+    <span class="toolbar-title">YSC Master BRD — เอกสารหลักโครงการ v2.0</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:8px"><button class="btn" onclick="window.print()">พิมพ์ / PDF</button></div>
+</div>
+
+<div id="doc">
+
+<div class="cover">
+  <div class="tag">เอกสารหลักโครงการ · UMBRELLA BRD</div>
+  <h1>YSC Digital Platform<br>&amp; Backoffice System</h1>
+  <div class="sub">เอกสารข้อกำหนดและขอบเขตโครงการ ฉบับรวมทุกระบบ</div>
+  <div class="info-grid">
+    <div class="info-cell"><div class="info-label">เจ้าของโครงการ</div><div class="info-value">บริษัท ยงเจริญศูนย์เครื่องเขียน จำกัด</div></div>
+    <div class="info-cell"><div class="info-label">ผู้พัฒนาระบบ</div><div class="info-value">บริษัท อะเดพทิโอ จำกัด</div></div>
+    <div class="info-cell"><div class="info-label">ขอบเขตเอกสาร</div><div class="info-value">ภาพรวม + 7 โมดูลหลังบ้าน + Storefront + POS</div></div>
+    <div class="info-cell"><div class="info-label">เวอร์ชัน / วันที่</div><div class="info-value">v2.0 พฤษภาคม 2569</div></div>
+    <div class="info-cell"><div class="info-label">ระบบ ERP ที่เชื่อม</div><div class="info-value">ConX ERP</div></div>
+    <div class="info-cell"><div class="info-label">กำหนดส่งมอบ</div><div class="info-value">ตุลาคม 2569</div></div>
+  </div>
+</div>
+
+<div class="callout callout-green">
+  <strong>วัตถุประสงค์ของเอกสาร</strong>
+  <p style="margin-top:6px;margin-bottom:0;font-size:13px">เอกสารฉบับนี้เป็น<strong>เอกสารหลักโครงการ (Master / Umbrella BRD)</strong> ของยงเจริญศูนย์เครื่องเขียน ใช้เป็นจุดศูนย์กลางในการลิงก์ไปยังเอกสารโมดูลย่อยและเอกสารแม่บทอื่นๆ ของโครงการ รวมถึงระบุภาพรวม สถาปัตยกรรม ผู้มีส่วนได้ส่วนเสีย ขอบเขตและกำหนดส่งมอบ</p>
+</div>
+
+<h2 style="margin-top:32px">สารบัญ</h2>
+<div class="toc">
+  <ol>
+    <li>ข้อมูลเอกสาร</li>
+    <li>บทสรุปผู้บริหาร</li>
+    <li>ภาพรวมโครงการ</li>
+    <li>เอกสารโมดูลย่อย (Backoffice)</li>
+    <li>สถาปัตยกรรมระบบ</li>
+    <li>ผู้มีส่วนได้ส่วนเสีย</li>
+    <li>เป้าหมายธุรกิจและตัวชี้วัด</li>
+    <li>มาตรฐานกลางและกฎเกณฑ์ร่วม</li>
+    <li>กำหนดส่งมอบและขั้นตอน</li>
+    <li>ความเสี่ยงและสมมติฐาน</li>
+  </ol>
+</div>
+
+<h1>1. ข้อมูลเอกสาร</h1>
+<h2>1.1 ประวัติการแก้ไข</h2>
+<table>
+  <thead><tr><th style="width:80px">เวอร์ชัน</th><th style="width:110px">วันที่</th><th>รายละเอียดการเปลี่ยนแปลง</th><th style="width:90px">สถานะ</th></tr></thead>
+  <tbody>
+    <tr><td>0.1</td><td>มี.ค. 2569</td><td>ฉบับร่างแรก</td><td>เก่า</td></tr>
+    <tr><td>2.0</td><td>16 พ.ค. 2569</td><td>เขียนใหม่ทั้งฉบับ เป็น Umbrella ที่ลิงก์ไปยังโมดูลย่อยทั้ง 7 + เอกสารแม่บทกฎเกณฑ์ v2.2 และ MoM Summary</td><td>ปัจจุบัน</td></tr>
+  </tbody>
+</table>
+
+<h2>1.2 ผู้อนุมัติเอกสาร</h2>
+<table>
+  <thead><tr><th style="width:280px">บทบาท</th><th>ชื่อ-นามสกุล</th><th style="width:140px">วันที่อนุมัติ</th><th style="width:140px">ลายเซ็น</th></tr></thead>
+  <tbody>
+    <tr><td><strong>ผู้อนุมัติโครงการ (YSC)</strong></td><td>____________________</td><td>____________</td><td>____________</td></tr>
+    <tr><td><strong>เจ้าของผลิตภัณฑ์ (YSC)</strong></td><td>____________________</td><td>____________</td><td>____________</td></tr>
+    <tr><td><strong>ผู้จัดการฝ่ายไอที (YSC)</strong></td><td>____________________</td><td>____________</td><td>____________</td></tr>
+    <tr><td><strong>ผู้จัดการโครงการ (Adeptio)</strong></td><td>____________________</td><td>____________</td><td>____________</td></tr>
+    <tr><td><strong>หัวหน้าสถาปนิกระบบ (Adeptio)</strong></td><td>____________________</td><td>____________</td><td>____________</td></tr>
+  </tbody>
+</table>
+
+<h1>2. บทสรุปผู้บริหาร</h1>
+<p>โครงการ <strong>YSC Digital Platform &amp; Backoffice System</strong> เป็นการพัฒนาระบบหลังบ้านและช่องทางการขายดิจิทัลของยงเจริญศูนย์เครื่องเขียน ที่จะทดแทนระบบเดิมและขยายช่องทางใหม่ ครอบคลุม:</p>
+<ul>
+  <li><strong>ระบบหลังบ้าน (Backoffice)</strong> 7 โมดูล: Product, Customer, Order, Warehouse, Promotion, Content, Reporting</li>
+  <li><strong>เว็บไซต์ (Storefront)</strong> ลูกค้าสั่งซื้อด้วยตนเอง</li>
+  <li><strong>POS (Point of Sale)</strong> ระบบขายหน้าร้าน</li>
+  <li><strong>แอป Handheld</strong> สำหรับพนักงานคลังสินค้า</li>
+  <li><strong>การเชื่อมต่อกับ ConX ERP</strong> ที่เป็นระบบหลังบ้านเดิม</li>
+</ul>
+<p>เป้าหมายหลักคือการ<strong>รวมระบบ</strong> ลดการทำงานซ้ำซ้อน เพิ่มความเร็วในการให้บริการลูกค้า และสร้างฐานข้อมูลเดียวสำหรับทุกช่องทาง</p>
+
+<h1>3. ภาพรวมโครงการ</h1>
+<h2>3.1 ที่มาและปัญหาเดิม</h2>
+<ul>
+  <li>ระบบ ConX และเว็บไซต์เก่าแยกฐานข้อมูล ทำให้ข้อมูลซ้ำซ้อน</li>
+  <li>ไม่มีระบบโปรโมชั่นและคูปองอย่างเป็นทางการ</li>
+  <li>การจัดการคลังใช้กระดาษและสมุดบันทึก</li>
+  <li>ไม่มีแดชบอร์ดผู้บริหาร</li>
+  <li>การให้บริการ Contact Center ขาดเครื่องมือรวมข้อมูลลูกค้า</li>
+</ul>
+
+<h2>3.2 ขอบเขตโครงการ</h2>
+<table>
+  <thead><tr><th style="width:200px">ส่วนประกอบ</th><th>คำอธิบาย</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Backoffice 7 โมดูล</strong></td><td>Product, Customer, Order, Warehouse, Promotion, Content, Reporting</td></tr>
+    <tr><td><strong>Storefront เว็บไซต์</strong></td><td>หน้าเว็บไซต์สำหรับลูกค้าสมัครและสั่งซื้อ</td></tr>
+    <tr><td><strong>POS หน้าร้าน</strong></td><td>ระบบขายหน้าร้าน เชื่อมกับสต็อกคลังหน้าร้าน</td></tr>
+    <tr><td><strong>แอป Handheld คลัง</strong></td><td>สำหรับพนักงาน 4 บทบาท: Picker / Packer / Logistic / PC</td></tr>
+    <tr><td><strong>การเชื่อมต่อ ConX</strong></td><td>เชื่อมข้อมูลสินค้า ลูกค้า คำสั่งซื้อ สต็อก ใบกำกับภาษี</td></tr>
+  </tbody>
+</table>
+
+<h2>3.3 เอกสารชุดโครงการ</h2>
+<table>
+  <thead><tr><th style="width:240px">เอกสาร</th><th>เนื้อหา</th></tr></thead>
+  <tbody>
+    <tr><td><strong>ysc_master_brd.html (เล่มนี้)</strong></td><td>เอกสารหลัก ภาพรวม ลิงก์ไปโมดูลย่อย</td></tr>
+    <tr><td><strong>ysc_business_rules.html v2.2</strong></td><td>เอกสารแม่บทรวมกฎเกณฑ์เชิงธุรกิจ 22 หมวด + 45 Decisions</td></tr>
+    <tr><td><strong>ysc_mom_summary.html</strong></td><td>สรุปการประชุมทั้ง 7 ครั้ง (ม.ค.-เม.ย. 2569)</td></tr>
+    <tr><td><strong>ysc_prd_brd.html v2.0</strong></td><td>ระบบจัดการสินค้า (Product) - 10 UC</td></tr>
+    <tr><td><strong>ysc_crm_brd.html v2.0</strong></td><td>ระบบลูกค้าและสมาชิก (CRM) - 11 UC</td></tr>
+    <tr><td><strong>ysc_oms_brd.html v2.0</strong></td><td>ระบบจัดการคำสั่งซื้อ (OMS) - 14 UC</td></tr>
+    <tr><td><strong>ysc_wms_brd.html v2.0</strong></td><td>ระบบบริหารคลังสินค้า (WMS) - 12 UC</td></tr>
+    <tr><td><strong>ysc_promotion_brd.html v2.0</strong></td><td>ระบบจัดการโปรโมชั่น (Promotion) - 8 UC</td></tr>
+    <tr><td><strong>ysc_cms_brd.html v2.0</strong></td><td>ระบบจัดการเนื้อหา (CMS) - 7 UC</td></tr>
+    <tr><td><strong>ysc_reporting_brd.html v2.0</strong></td><td>ระบบรายงานและแดชบอร์ด - 9 UC</td></tr>
+  </tbody>
+</table>
+
+<h1>4. เอกสารโมดูลย่อย (Backoffice)</h1>
+<p>โครงการประกอบด้วย 7 โมดูลหลังบ้าน รายละเอียดของแต่ละโมดูลอยู่ในเอกสารย่อย</p>
+
+<div class="module-card">
+  <div class="num">1</div>
+  <div class="body">
+    <div class="title">ระบบจัดการข้อมูลสินค้า (Product Management)</div>
+    <div class="desc">ฐานข้อมูลสินค้า 14 ประเภท การกำหนดราคา Effective Date การจัดการบาร์โค้ด (Multi-Barcode) สีสถานะคลัง 4 สี Activity Log ทุกการแก้ไข</div>
+    <div class="meta">10 Use Cases · 11 Business Rules (PRD-01 ถึง PRD-11) · <a href="ysc_prd_brd.html" class="link">เปิดเอกสาร →</a></div>
+  </div>
+</div>
+
+<div class="module-card">
+  <div class="num">2</div>
+  <div class="body">
+    <div class="title">ระบบลูกค้าและสมาชิก (Customer Management)</div>
+    <div class="desc">ลูกค้า 2 ประเภท (บุคคลธรรมดา/นิติบุคคล) ระดับสมาชิก 7 ระดับ ระดับราคา P1-P5 คะแนนสะสม วงเงินเครดิตและการอนุมัติ 2 ระดับ</div>
+    <div class="meta">11 Use Cases · อ้างอิงหมวด 1, 5, 10 · <a href="ysc_crm_brd.html" class="link">เปิดเอกสาร →</a></div>
+  </div>
+</div>
+
+<div class="module-card">
+  <div class="num">3</div>
+  <div class="body">
+    <div class="title">ระบบจัดการคำสั่งซื้อ (Order Management)</div>
+    <div class="desc">คำสั่งซื้อจาก 3 ช่องทาง (เว็บ/CC/POS) การชำระเงิน 4 วิธี Admin ตรวจสลิป Auto-cancel 24 ชั่วโมง การยกเลิก/คืน/CN-DN ใบกำกับภาษี Y/N/M/A</div>
+    <div class="meta">14 Use Cases · อ้างอิงหมวด 2, 4, 6, 12, 13, 19 · <a href="ysc_oms_brd.html" class="link">เปิดเอกสาร →</a></div>
+  </div>
+</div>
+
+<div class="module-card">
+  <div class="num">4</div>
+  <div class="body">
+    <div class="title">ระบบบริหารคลังสินค้า (Warehouse Management)</div>
+    <div class="desc">5 คลัง 4 บทบาทพนักงาน (Picker/Packer/Logistic/PC) แอป Handheld การหยิบและบรรจุจากคลังออนไลน์ การย้ายและตรวจนับสต็อก</div>
+    <div class="meta">12 Use Cases · อ้างอิงหมวด 3, 9, 14, 20 · <a href="ysc_wms_brd.html" class="link">เปิดเอกสาร →</a></div>
+  </div>
+</div>
+
+<div class="module-card">
+  <div class="num">5</div>
+  <div class="body">
+    <div class="title">ระบบจัดการโปรโมชั่น (Promotion Engine)</div>
+    <div class="desc">แคมเปญส่วนลด คูปอง ของแถม โปรโมชั่นตามระดับสมาชิก คำนวณส่วนลดอัตโนมัติทุกช่องทาง รายงานประสิทธิภาพ</div>
+    <div class="meta">8 Use Cases · อ้างอิงหมวด 11 (PR-01 ถึง PR-07) · <a href="ysc_promotion_brd.html" class="link">เปิดเอกสาร →</a></div>
+  </div>
+</div>
+
+<div class="module-card">
+  <div class="num">6</div>
+  <div class="body">
+    <div class="title">ระบบจัดการเนื้อหา (Content Management)</div>
+    <div class="desc">Banner หน้าเว็บไซต์ ข่าวสารและกิจกรรม Landing Page เมนู FAQ นโยบาย และ Pop-up โปรโมชั่น</div>
+    <div class="meta">7 Use Cases · อ้างอิง P-14, PRD-11 · <a href="ysc_cms_brd.html" class="link">เปิดเอกสาร →</a></div>
+  </div>
+</div>
+
+<div class="module-card">
+  <div class="num">7</div>
+  <div class="body">
+    <div class="title">ระบบรายงานและแดชบอร์ด (Reporting &amp; Analytics)</div>
+    <div class="desc">แดชบอร์ดผู้บริหาร รายงานเชิงปฏิบัติการทุกโมดูล ส่งออก Excel/PDF การแจ้งเตือนเมื่อค่าเข้าเกณฑ์ Custom Report</div>
+    <div class="meta">9 Use Cases · ครอบคลุมข้อมูลจากทุกโมดูล · <a href="ysc_reporting_brd.html" class="link">เปิดเอกสาร →</a></div>
+  </div>
+</div>
+
+<h1>5. สถาปัตยกรรมระบบ</h1>
+<h2>5.1 สถาปัตยกรรมระดับสูง</h2>
+<p>ระบบใหม่ของยงเจริญฯ ใช้สถาปัตยกรรมแบบ <strong>Multi-tier</strong> ประกอบด้วย:</p>
+<ul>
+  <li><strong>ชั้นการนำเสนอ (Presentation Layer)</strong>
+    <ul style="margin-top:4px;margin-left:18px">
+      <li>เว็บไซต์ Storefront (ลูกค้าใช้)</li>
+      <li>Backoffice เว็บ (พนักงาน YSC ใช้)</li>
+      <li>POS หน้าร้าน</li>
+      <li>แอป Handheld คลัง</li>
+    </ul>
+  </li>
+  <li><strong>ชั้นบริการธุรกิจ (BFF - Backend for Frontend)</strong> 5 ส่วน ตามฟังก์ชัน</li>
+  <li><strong>ชั้นข้อมูล (Data Layer)</strong> ฐานข้อมูลภายในและการเชื่อมต่อกับ ConX</li>
+  <li><strong>การเชื่อมต่อภายนอก (Integration)</strong> Payment Gateway, ระบบส่งอีเมล, LINE, Carrier 200+ ราย</li>
+</ul>
+
+<h2>5.2 หลักการออกแบบ</h2>
+<ul>
+  <li><strong>ConX เป็นแหล่งข้อมูลหลักทางบัญชี</strong> ระบบใหม่ส่งคำสั่งซื้อให้ ConX และรับการยืนยัน</li>
+  <li><strong>ระบบใหม่เป็นแหล่งข้อมูลหลักของลูกค้าและสินค้า</strong> ส่งต่อให้ ConX</li>
+  <li><strong>เวลาจริง (Real-time)</strong> ทุกการเปลี่ยนแปลงสะท้อนทุกช่องทางทันที</li>
+  <li><strong>RBAC ทุกระดับ</strong> ผู้ใช้แต่ละบทบาทเห็นเฉพาะข้อมูลที่ต้องเห็น</li>
+  <li><strong>Activity Log</strong> ครอบคลุมทุกการเปลี่ยนแปลงข้อมูลสำคัญ</li>
+</ul>
+
+<h1>6. ผู้มีส่วนได้ส่วนเสีย</h1>
+<table>
+  <thead><tr><th style="width:200px">บทบาท</th><th>การมีส่วนร่วม</th></tr></thead>
+  <tbody>
+    <tr><td><strong>เจ้าของโครงการ (YSC)</strong></td><td>ตัดสินใจขั้นสุดท้าย</td></tr>
+    <tr><td><strong>เจ้าของผลิตภัณฑ์ (YSC)</strong></td><td>กำหนดความต้องการเชิงธุรกิจ</td></tr>
+    <tr><td><strong>หัวหน้าฝ่ายต่างๆ (YSC)</strong></td><td>การตลาด / ขาย / คลัง / การเงิน / Contact Center</td></tr>
+    <tr><td><strong>ลูกค้า</strong></td><td>ผู้ใช้งานหลักของเว็บไซต์และ POS</td></tr>
+    <tr><td><strong>พนักงาน YSC</strong></td><td>ผู้ใช้งานหลักของ Backoffice และแอป Handheld</td></tr>
+    <tr><td><strong>ผู้จัดการโครงการ (Adeptio)</strong></td><td>บริหารโครงการและการประสานงาน</td></tr>
+    <tr><td><strong>ทีมพัฒนา (Adeptio)</strong></td><td>สถาปนิก, นักพัฒนา, UX/UI, QA</td></tr>
+    <tr><td><strong>ทีม ConX</strong></td><td>ปรับและเชื่อมต่อ ConX กับระบบใหม่</td></tr>
+  </tbody>
+</table>
+
+<h1>7. เป้าหมายธุรกิจและตัวชี้วัด</h1>
+<table>
+  <thead><tr><th style="width:80px">รหัส</th><th>เป้าหมายธุรกิจ</th><th style="width:180px">ตัวชี้วัด (KPI)</th></tr></thead>
+  <tbody>
+    <tr><td><strong>BG-1</strong></td><td>ระบบเดียวสำหรับทุกช่องทาง</td><td>ข้อมูลตรงกัน 99.5% ทุกระบบ</td></tr>
+    <tr><td><strong>BG-2</strong></td><td>ลดเวลาให้บริการลูกค้าผ่าน Contact Center</td><td>เวลาต่อสาย ลดลง 20%</td></tr>
+    <tr><td><strong>BG-3</strong></td><td>เพิ่มยอดขายผ่านช่องทางออนไลน์</td><td>ยอดขายเว็บไซต์ เพิ่มขึ้น ≥ 30% ในปีแรก</td></tr>
+    <tr><td><strong>BG-4</strong></td><td>ลดอัตราการสั่งซื้อผิดและสินค้าหายระหว่างหยิบ</td><td>Error ≤ 0.5%</td></tr>
+    <tr><td><strong>BG-5</strong></td><td>มีรายงานครบครันสำหรับผู้บริหาร</td><td>มีแดชบอร์ดและรายงานทุกโมดูล</td></tr>
+    <tr><td><strong>BG-6</strong></td><td>Go-live ตามกำหนด</td><td>ส่งมอบเดือนตุลาคม 2569</td></tr>
+  </tbody>
+</table>
+
+<h1>8. มาตรฐานกลางและกฎเกณฑ์ร่วม</h1>
+<p>กฎเกณฑ์เชิงธุรกิจฉบับเต็มอยู่ในเอกสารแม่บท <strong><a href="ysc_business_rules.html">ysc_business_rules.html v2.2</a></strong> ครอบคลุม 22 หมวด</p>
+<table>
+  <thead><tr><th style="width:90px">หมวด</th><th>หัวข้อ</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>การสมัครสมาชิกและการเข้าสู่ระบบ (AUTH)</td></tr>
+    <tr><td>2</td><td>ประเภทของคำสั่งซื้อ</td></tr>
+    <tr><td>3</td><td>สต็อกและคลังสินค้า (S)</td></tr>
+    <tr><td>4</td><td>ขั้นตอนการชำระเงิน (P)</td></tr>
+    <tr><td>5</td><td>วงเงินเครดิตสำหรับลูกค้านิติบุคคล (C)</td></tr>
+    <tr><td>6</td><td>กระบวนการกรณีลูกค้าใช้เงินเกินวงเงิน</td></tr>
+    <tr><td>7</td><td>ใบเสนอราคา (Q)</td></tr>
+    <tr><td>8</td><td>การสั่งซื้อซ้ำ (RO)</td></tr>
+    <tr><td>9</td><td>การรับสินค้าด้วยตนเอง (SP)</td></tr>
+    <tr><td>10</td><td>ระดับสมาชิก ระดับราคา และคะแนนสะสม (PT)</td></tr>
+    <tr><td>11</td><td>ระบบจัดการโปรโมชั่น (PR)</td></tr>
+    <tr><td>12</td><td>ใบกำกับและภาษีมูลค่าเพิ่ม (INV)</td></tr>
+    <tr><td>13</td><td>วงจรชีวิตของคำสั่งซื้อ (SO)</td></tr>
+    <tr><td>14</td><td>การหยิบและบรรจุสินค้า (WH)</td></tr>
+    <tr><td>15</td><td>การเชื่อมต่อกับระบบ ConX ERP (INT)</td></tr>
+    <tr><td>16</td><td>ช่องทางการขาย (CH)</td></tr>
+    <tr><td>17</td><td>การให้บริการลูกค้าโดย Contact Center (CC)</td></tr>
+    <tr><td>18</td><td>ข้อมูลหลักของสินค้า (PRD)</td></tr>
+    <tr><td>19</td><td>การยกเลิก คืนสินค้า CN-DN (RTN)</td></tr>
+    <tr><td>20</td><td>การจัดส่งและบริษัทขนส่ง (SHP)</td></tr>
+    <tr><td>21</td><td>ธนาคารและระบบแจ้งเตือน (BNK / NTF)</td></tr>
+    <tr><td>22</td><td>รายการที่รอการยืนยัน (P-01 ถึง P-15)</td></tr>
+    <tr><td>23</td><td>บันทึกการตัดสินใจ (D-001 ถึง D-045)</td></tr>
+  </tbody>
+</table>
+
+<h1>9. กำหนดส่งมอบและขั้นตอน</h1>
+<table>
+  <thead><tr><th style="width:120px">เป้าหมาย</th><th>วันที่</th><th>เนื้อหา</th></tr></thead>
+  <tbody>
+    <tr><td><strong>M-1</strong></td><td>มี.ค. 2569</td><td>ฉบับร่างเอกสาร BRD ทุกโมดูล</td></tr>
+    <tr><td><strong>M-2</strong></td><td>พ.ค. 2569</td><td>ปรับเอกสารตาม MoM 7 ครั้ง และ Decisions ทั้ง 45 รายการ</td></tr>
+    <tr><td><strong>M-3</strong></td><td>มิ.ย.-ก.ค. 2569</td><td>ออกแบบและ Mockup หน้าจอครบทุกโมดูล</td></tr>
+    <tr><td><strong>M-4</strong></td><td>ส.ค. 2569</td><td>พัฒนาและทดสอบภายใน</td></tr>
+    <tr><td><strong>M-5</strong></td><td>ก.ย. 2569</td><td>SIT (System Integration Test) และ UAT (User Acceptance Test)</td></tr>
+    <tr><td><strong>M-6 (Go-live)</strong></td><td>ต.ค. 2569</td><td>ระบบขึ้นใช้งานจริง</td></tr>
+  </tbody>
+</table>
+
+<h1>10. ความเสี่ยงและสมมติฐาน</h1>
+<h2>10.1 ความเสี่ยง</h2>
+<table>
+  <thead><tr><th style="width:90px">รหัส</th><th>ความเสี่ยง</th><th style="width:120px">ผลกระทบ</th></tr></thead>
+  <tbody>
+    <tr><td><strong>R-1</strong></td><td>การเชื่อม ConX อาจไม่ครบหรือไม่ตรงเวลา</td><td>สูง</td></tr>
+    <tr><td><strong>R-2</strong></td><td>การโอนข้อมูลเดิมมีความขัดแย้ง</td><td>กลาง</td></tr>
+    <tr><td><strong>R-3</strong></td><td>ผู้ใช้งานต้องเรียนรู้ระบบใหม่</td><td>กลาง</td></tr>
+    <tr><td><strong>R-4</strong></td><td>ประเด็นเปิด (P-01 ถึง P-15) ยังรอการยืนยันก่อน Go-live</td><td>สูง</td></tr>
+    <tr><td><strong>R-5</strong></td><td>การเปลี่ยนแปลงระเบียบของ ConX กระทบการเชื่อมต่อ</td><td>สูง</td></tr>
+  </tbody>
+</table>
+
+<h2>10.2 สมมติฐาน</h2>
+<ul>
+  <li>ผู้มีส่วนได้ส่วนเสียทุกฝ่ายมีเวลาเข้าร่วม Workshop และทบทวนเอกสาร</li>
+  <li>ConX มีความพร้อมในการเชื่อมต่อระบบใหม่</li>
+  <li>การอบรมผู้ใช้งานทำได้ก่อน Go-live</li>
+  <li>โครงสร้างพื้นฐาน (เครื่อง Handheld, Wi-Fi, เครื่องพิมพ์) พร้อมใช้งาน</li>
+</ul>
+
+<div class="callout">
+  <strong>หมายเหตุ:</strong> เอกสารฉบับนี้เป็น Umbrella ที่ลิงก์ไปยังเอกสารโมดูลย่อย เนื้อหารายละเอียดของแต่ละโมดูลอยู่ในเอกสารของโมดูลนั้นๆ
+</div>
+
+</div>
+</body>
+</html>

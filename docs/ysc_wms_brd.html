@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>YSC WMS BRD — ระบบบริหารคลังสินค้า (Warehouse Management) v2.0</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#F3F4F6;font-family:'Sarabun',Tahoma,sans-serif;color:#1E293B;padding:0 0 80px;line-height:1.65}
+.toolbar{position:sticky;top:0;z-index:200;background:#1E3A5F;display:flex;align-items:center;justify-content:space-between;padding:9px 22px;box-shadow:0 2px 12px rgba(0,0,0,.25)}
+.toolbar-title{color:#93C5FD;font-size:13px;font-weight:600;letter-spacing:.04em}
+.toolbar a.home{color:#93C5FD;text-decoration:none;font-size:13px;font-weight:600;padding:4px 10px;border-radius:5px}
+.toolbar a.home:hover{background:rgba(255,255,255,.1)}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:6px;font-family:'Sarabun',sans-serif;font-size:12.5px;font-weight:600;cursor:pointer;border:none;background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.2)}
+.btn:hover{background:rgba(255,255,255,.2)}
+#doc{max-width:920px;margin:36px auto;background:#fff;padding:64px 72px;box-shadow:0 6px 28px rgba(0,0,0,.12);border-radius:6px}
+.cover{background:#1E3A5F;color:#fff;margin:-64px -72px 36px;padding:64px 72px 48px;border-radius:6px 6px 0 0}
+.cover .tag{display:inline-block;background:#2563EB;font-size:11px;font-weight:700;letter-spacing:.1em;padding:5px 14px;border-radius:4px;margin-bottom:24px}
+.cover h1{font-size:32px;font-weight:700;line-height:1.25;margin-bottom:8px;color:#fff;border:none;padding:0}
+.cover .sub{font-size:16px;color:#93C5FD;font-weight:300;margin-bottom:32px}
+.cover .info-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid rgba(255,255,255,.15);border-radius:8px;overflow:hidden}
+.cover .info-cell{padding:14px 20px;border-bottom:1px solid rgba(255,255,255,.1);border-right:1px solid rgba(255,255,255,.1)}
+.cover .info-cell:nth-child(2n){border-right:none}
+.cover .info-cell:nth-last-child(-n+2){border-bottom:none}
+.cover .info-label{font-size:10px;color:#93C5FD;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
+.cover .info-value{font-size:13px;color:#fff;font-weight:600}
+h1{font-size:24px;color:#1E3A5F;margin:42px 0 14px;font-weight:700;padding-bottom:8px;border-bottom:3px solid #1E3A5F}
+h2{font-size:18px;color:#1E3A5F;margin:30px 0 12px;font-weight:700}
+h3{font-size:15px;color:#2563EB;margin:22px 0 10px;font-weight:700}
+p{margin-bottom:12px;font-size:13.5px}
+ul,ol{margin:8px 0 14px 22px;font-size:13.5px}
+li{margin-bottom:5px;line-height:1.7}
+table{width:100%;border-collapse:collapse;margin:14px 0 22px;font-size:12.5px}
+thead th{background:#1E3A5F;color:#fff;padding:10px 12px;text-align:left;font-weight:600;border:1px solid #1E3A5F}
+tbody td{padding:9px 12px;border:1px solid #D1D5DB;vertical-align:top;line-height:1.6}
+tbody tr:nth-child(even) td{background:#F9FAFB}
+td strong{color:#1E3A5F}
+.callout{border-left:4px solid #2563EB;background:#EFF6FF;padding:14px 18px;margin:14px 0;border-radius:0 6px 6px 0}
+.callout strong{color:#1E3A5F}
+.callout-amber{border-left-color:#F59E0B;background:#FFFBEB}
+.callout-amber strong{color:#92400E}
+.callout-green{border-left-color:#10B981;background:#ECFDF5}
+.callout-green strong{color:#065F46}
+.toc{background:#F8FAFC;border:1px solid #E5E7EB;border-radius:8px;padding:20px 28px;margin:20px 0}
+.toc ol{list-style:none;margin:0;padding:0;counter-reset:toc;font-size:13px}
+.toc ol > li{counter-increment:toc;padding:4px 0;border-bottom:1px dashed #E5E7EB}
+.toc ol > li::before{content:counter(toc) ". ";font-weight:700;color:#1E3A5F;margin-right:6px}
+.toc ol ol{margin:4px 0 4px 24px;font-size:12px;color:#6B7280;counter-reset:sub}
+.toc ol ol li{counter-increment:sub;padding:1px 0;border:none}
+.toc ol ol li::before{content:counter(toc) "." counter(sub) " ";color:#6B7280;font-weight:600;margin-right:4px}
+.screen-ref{display:inline-block;background:#F3F4F6;border:1px solid #D1D5DB;color:#374151;font-size:11.5px;padding:1px 8px;border-radius:4px;font-weight:600}
+.br-ref{display:inline-block;background:#FFFBEB;border:1px solid #FDE68A;color:#92400E;font-size:11px;padding:1px 7px;border-radius:4px;font-weight:600;font-family:'Sarabun',monospace}
+.use-case{border:1px solid #E5E7EB;border-radius:10px;margin:18px 0;background:#fff;overflow:hidden}
+.uc-header{background:#1E3A5F;color:#fff;padding:12px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.uc-header .uc-num{font-size:13px;font-weight:700;letter-spacing:.04em}
+.uc-header .uc-title{font-size:14px;font-weight:600;flex:1}
+.uc-body{padding:16px 22px}
+.uc-section{margin:12px 0}
+.uc-section-label{font-size:11.5px;font-weight:700;color:#1E3A5F;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+.uc-flow{counter-reset:flow;list-style:none;margin-left:0}
+.uc-flow > li{counter-increment:flow;position:relative;padding:5px 0 5px 32px;font-size:13px}
+.uc-flow > li::before{content:counter(flow);position:absolute;left:0;top:5px;width:22px;height:22px;background:#2563EB;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700}
+.uc-alt{background:#FFFBEB;border-left:3px solid #F59E0B;padding:8px 14px;margin:6px 0;border-radius:0 6px 6px 0;font-size:12.5px}
+.uc-exc{background:#FEF2F2;border-left:3px solid #E11D48;padding:8px 14px;margin:6px 0;border-radius:0 6px 6px 0;font-size:12.5px}
+.uc-ac{background:#ECFDF5;border:1px solid #A7F3D0;border-radius:6px;padding:10px 14px;margin:4px 0;font-size:12.5px}
+.uc-ac strong{color:#065F46}
+.tag-confirmed{display:inline-block;background:#DCFCE7;color:#166534;font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:10px}
+.tag-pending{display:inline-block;background:#FEF3C7;color:#92400E;font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:10px}
+@media print{body{background:#fff}.toolbar{display:none}#doc{max-width:none;margin:0;box-shadow:none;padding:24px 40px}.cover{margin:-24px -40px 24px;padding:50px 40px 40px}h1{page-break-before:always}h1:first-of-type{page-break-before:auto}table,.use-case{page-break-inside:avoid}}
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <div style="display:flex;align-items:center;gap:14px">
+    <a href="index.html" class="home">สารบัญ</a>
+    <span style="color:rgba(255,255,255,.25)">|</span>
+    <span class="toolbar-title">YSC WMS BRD — ระบบบริหารคลังสินค้า v2.0</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:8px"><button class="btn" onclick="window.print()">พิมพ์ / PDF</button></div>
+</div>
+
+<div id="doc">
+
+<div class="cover">
+  <div class="tag">เอกสารโมดูล · BACKOFFICE · WMS</div>
+  <h1>ระบบบริหารคลังสินค้า<br>(Warehouse Management)</h1>
+  <div class="sub">เอกสารข้อกำหนดเชิงธุรกิจ โมดูลย่อยที่ 4 ของระบบหลังบ้าน</div>
+  <div class="info-grid">
+    <div class="info-cell"><div class="info-label">รหัสโมดูล</div><div class="info-value">WMS (Warehouse)</div></div>
+    <div class="info-cell"><div class="info-label">เวอร์ชัน / วันที่</div><div class="info-value">v2.0 พฤษภาคม 2569</div></div>
+    <div class="info-cell"><div class="info-label">เจ้าของโครงการ</div><div class="info-value">บริษัท ยงเจริญศูนย์เครื่องเขียน จำกัด</div></div>
+    <div class="info-cell"><div class="info-label">ผู้พัฒนาระบบ</div><div class="info-value">บริษัท อะเดพทิโอ จำกัด</div></div>
+    <div class="info-cell"><div class="info-label">ส่วนประกอบ</div><div class="info-value">Backoffice WMS + แอป Handheld</div></div>
+    <div class="info-cell"><div class="info-label">อ้างอิงเอกสารแม่บท</div><div class="info-value">ysc_business_rules.html v2.2</div></div>
+  </div>
+</div>
+
+<div class="callout callout-green">
+  <strong>วัตถุประสงค์ของเอกสาร</strong>
+  <p style="margin-top:6px;margin-bottom:0;font-size:13px">เอกสารฉบับนี้ระบุข้อกำหนดของ<strong>ระบบบริหารคลังสินค้า (WMS)</strong> ของยงเจริญฯ ครอบคลุม Backoffice (จัดการคลัง, สต็อก, การเคลื่อนไหว) และแอป Handheld สำหรับ 4 บทบาท (Picker / Packer / Logistic / PC) การหยิบและบรรจุสินค้าจากคลังออนไลน์ การจัดการ 5 คลัง (ออนไลน์ / หน้าร้าน / พักรอ / พิเศษ / Reward) กฎอ้างอิงจาก <strong>ysc_business_rules.html v2.2 หมวด 3, 9, 14, 20</strong></p>
+</div>
+
+<h2 style="margin-top:32px">สารบัญ</h2>
+<div class="toc">
+  <ol>
+    <li>ข้อมูลเอกสารและการอนุมัติ</li>
+    <li>วัตถุประสงค์เชิงธุรกิจ</li>
+    <li>ขอบเขตของงาน (In / Out of Scope)</li>
+    <li>ผู้มีส่วนได้ส่วนเสียและบทบาทผู้ใช้งาน</li>
+    <li>สถานะปัจจุบัน (As-Is)</li>
+    <li>กระบวนการในอนาคต (To-Be)</li>
+    <li>ข้อกำหนดเชิงหน้าที่ — กรณีการใช้งาน (Use Cases)
+      <ol>
+        <li>UC-WMS-001 รับสินค้าเข้าคลัง (Stock In)</li>
+        <li>UC-WMS-002 Picker หยิบสินค้าตามใบงาน</li>
+        <li>UC-WMS-003 Packer บรรจุและตรวจสอบสินค้า</li>
+        <li>UC-WMS-004 Logistic จัดส่งและพิมพ์ใบจ่ายงาน</li>
+        <li>UC-WMS-005 PC (Pack Checker) ตรวจสอบงานบรรจุ</li>
+        <li>UC-WMS-006 ย้ายสต็อกระหว่างคลัง</li>
+        <li>UC-WMS-007 ปรับยอดสต็อก (Stock Adjustment)</li>
+        <li>UC-WMS-008 ตรวจนับสต็อก (Stock Counting)</li>
+        <li>UC-WMS-009 จัดการพื้นที่จัดเก็บ (Location)</li>
+        <li>UC-WMS-010 รับและจัดเก็บสินค้าคืน (Return)</li>
+        <li>UC-WMS-011 รายงานสีสถานะคลัง</li>
+        <li>UC-WMS-012 จัดการสินค้ารอลูกค้ามารับ (Self-Pickup)</li>
+      </ol>
+    </li>
+    <li>การออกแบบประสบการณ์ผู้ใช้ (Screen Inventory)</li>
+    <li>กฎเกณฑ์เชิงธุรกิจ — อ้างอิงเอกสารแม่บท</li>
+    <li>การเชื่อมต่อระบบภายนอก (Integration)</li>
+    <li>การออกแบบข้อมูลและข้อมูลหลัก (Data &amp; Master)</li>
+    <li>ความปลอดภัยและสิทธิ์การเข้าถึง (Security &amp; RBAC)</li>
+    <li>ข้อกำหนดเชิงคุณภาพ (NFR)</li>
+    <li>รายงานและแดชบอร์ดที่เกี่ยวข้อง</li>
+    <li>ข้อกำหนดการโอนย้ายข้อมูล (Migration)</li>
+    <li>สมมติฐานและข้อจำกัด</li>
+    <li>เกณฑ์การยอมรับผลงาน (Acceptance Criteria)</li>
+    <li>ประเด็นเปิดและความเสี่ยง</li>
+  </ol>
+</div>
+
+<h2 style="margin-top:36px">สรุปกรณีการใช้งาน (Use Case Catalog)</h2>
+<p style="font-size:13px;color:#475569">ตารางสรุปกรณีการใช้งานทั้ง 12 รายการของระบบบริหารคลังสินค้า ครอบคลุม 4 บทบาทพนักงาน (Picker/Packer/Logistic/PC) และการจัดการสต็อก รายละเอียดเต็มอยู่ในหัวข้อที่ 7</p>
+<table>
+  <thead>
+    <tr>
+      <th style="width:46px">#</th>
+      <th style="width:118px">รหัส</th>
+      <th>ชื่อกรณีการใช้งาน</th>
+      <th style="width:160px">ผู้ใช้งานหลัก</th>
+      <th style="width:180px">กฎที่เกี่ยวข้อง</th>
+      <th style="width:90px">สถานะ</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>1</td><td><strong>UC-WMS-001</strong></td><td>รับสินค้าเข้าคลัง (Stock In)</td><td>พนักงานคลัง</td><td><span class="br-ref">S-01</span></td><td><span class="tag-confirmed">ยืนยัน</span></td></tr>
+    <tr><td>2</td><td><strong>UC-WMS-002</strong></td><td>Picker หยิบสินค้าตามใบงาน</td><td>Picker</td><td><span class="br-ref">WH-01</span> <span class="br-ref">WH-13</span> <span class="br-ref">SHP-10</span></td><td><span class="tag-confirmed">ยืนยัน</span></td></tr>
+    <tr><td>3</td><td><strong>UC-WMS-003</strong></td><td>Packer บรรจุและตรวจสอบสินค้า</td><td>Packer</td><td><span class="br-ref">SHP-06</span></td><td><span class="tag-confirmed">ยืนยัน</span></td></tr>
+    <tr><td>4</td><td><strong>UC-WMS-004</strong></td><td>Logistic จัดส่งและพิมพ์ใบจ่ายงาน</td><td>Logistic</td><td><span class="br-ref">SHP-02</span> <span class="br-ref">SHP-03</span> <span class="br-ref">NTF-01</span></td><td><span class="tag-confirmed">ยืนยัน</span></td></tr>
+    <tr><td>5</td><td><strong>UC-WMS-005</strong></td><td>PC (Pack Checker) ตรวจสอบงานบรรจุ</td><td>PC</td><td>—</td><td><span class="tag-confirmed">ยืนยัน</span></td></tr>
+    <tr><td>6</td><td><strong>UC-WMS-006</strong></td><td>ย้ายสต็อกระหว่างคลัง</td><td>หัวหน้าคลัง + พนักงานคลัง</td><td><span class="br-ref">S-01</span></td><td><span class="tag-confirmed">ยืนยัน</span></td></tr>
+    <tr><td>7</td><td><strong>UC-WMS-007</strong></td><td>ปรับยอดสต็อก (Stock Adjustment)</td><td>WMS Admin + หัวหน้าคลัง</td><td>—</td><td><span class="tag-confirmed">ยืนยัน</span></td></tr>
+    <tr><td>8</td><td><strong>UC-WMS-008</strong></td><td>ตรวจนับสต็อก (Stock Counting)</td><td>หัวหน้าคลัง + พนักงานคลัง</td><td>—</td><td><span class="tag-confirmed">ยืนยัน</span></td></tr>
+    <tr><td>9</td><td><strong>UC-WMS-009</strong></td><td>จัดการพื้นที่จัดเก็บ (Location)</td><td>WMS Admin</td><td>—</td><td><span class="tag-confirmed">ยืนยัน</span></td></tr>
+    <tr><td>10</td><td><strong>UC-WMS-010</strong></td><td>รับและจัดเก็บสินค้าคืน (Return)</td><td>พนักงานคลัง</td><td><span class="br-ref">RTN-07</span> <span class="br-ref">RTN-09</span></td><td><span class="tag-confirmed">ยืนยัน</span></td></tr>
+    <tr><td>11</td><td><strong>UC-WMS-011</strong></td><td>รายงานสีสถานะคลัง</td><td>หัวหน้าคลัง</td><td><span class="br-ref">PRD-05</span> <span class="br-ref">NTF-05</span></td><td><span class="tag-confirmed">ยืนยัน</span></td></tr>
+    <tr><td>12</td><td><strong>UC-WMS-012</strong></td><td>จัดการสินค้ารอลูกค้ามารับ (Self-Pickup)</td><td>พนักงานคลัง + พนักงานหน้าร้าน</td><td><span class="br-ref">SHP-08</span> <span class="br-ref">SHP-09</span></td><td><span class="tag-confirmed">ยืนยัน</span></td></tr>
+  </tbody>
+</table>
+
+<h1>1. ข้อมูลเอกสารและการอนุมัติ</h1>
+<h2>1.1 ประวัติการแก้ไข</h2>
+<table>
+  <thead><tr><th style="width:80px">เวอร์ชัน</th><th style="width:110px">วันที่</th><th>รายละเอียดการเปลี่ยนแปลง</th><th style="width:90px">สถานะ</th></tr></thead>
+  <tbody>
+    <tr><td>1.0</td><td>มี.ค. 2569</td><td>ฉบับร่างแรก</td><td><span class="tag-pending">เก่า</span></td></tr>
+    <tr><td>2.0</td><td>16 พ.ค. 2569</td><td>เขียนใหม่ทั้งฉบับ อ้างอิง Business Rules v2.2 ขยายขอบเขต Pick/Pack ครบ 4 บทบาท (Picker/Packer/Logistic/PC) ระบุชัดเจน Pick จากคลังออนไลน์เท่านั้น 5 คลัง สีสถานะ 4 สี (PRD-05) เพิ่ม UC ครบ 12 รายการ</td><td><span class="tag-confirmed">ปัจจุบัน</span></td></tr>
+  </tbody>
+</table>
+
+<h2>1.2 ผู้อนุมัติเอกสาร</h2>
+<table>
+  <thead><tr><th style="width:240px">บทบาท</th><th>ชื่อ-นามสกุล</th><th style="width:140px">วันที่อนุมัติ</th><th style="width:140px">ลายเซ็น</th></tr></thead>
+  <tbody>
+    <tr><td><strong>เจ้าของผลิตภัณฑ์ (YSC)</strong></td><td>____________________</td><td>____________</td><td>____________</td></tr>
+    <tr><td><strong>หัวหน้าคลังสินค้า (YSC)</strong></td><td>____________________</td><td>____________</td><td>____________</td></tr>
+    <tr><td><strong>หัวหน้าฝ่ายขนส่ง (YSC)</strong></td><td>____________________</td><td>____________</td><td>____________</td></tr>
+    <tr><td><strong>ผู้จัดการโครงการ (Adeptio)</strong></td><td>____________________</td><td>____________</td><td>____________</td></tr>
+  </tbody>
+</table>
+
+<h1>2. วัตถุประสงค์เชิงธุรกิจ</h1>
+<p>ระบบบริหารคลังสินค้าครอบคลุม<strong>5 คลัง</strong>: คลังออนไลน์ (3 ชั้น: 2/3/4), คลังหน้าร้าน, คลังพักรอ, คลังพิเศษ และคลัง Reward รองรับการทำงานของพนักงานคลัง 4 บทบาท: <strong>Picker</strong> (หยิบสินค้า), <strong>Packer</strong> (บรรจุ), <strong>Logistic</strong> (จัดส่ง) และ <strong>PC — Pack Checker</strong> (ตรวจสอบ) — Pick ทำได้เฉพาะจากคลังออนไลน์เท่านั้น</p>
+
+<table>
+  <thead><tr><th style="width:80px">รหัส</th><th>เป้าหมายธุรกิจ</th><th style="width:180px">ตัวชี้วัด</th></tr></thead>
+  <tbody>
+    <tr><td><strong>BG-WMS-1</strong></td><td>ลดเวลาในการหยิบและบรรจุสินค้าต่อใบงาน</td><td>เวลาเฉลี่ย Pick + Pack ≤ 20 นาที</td></tr>
+    <tr><td><strong>BG-WMS-2</strong></td><td>ลดอัตราการบรรจุสินค้าผิด</td><td>อัตรา Error ลดลง ≥ 70% เทียบกับระบบเดิม</td></tr>
+    <tr><td><strong>BG-WMS-3</strong></td><td>ติดตามสต็อกแบบเวลาจริงและตรงกับ ConX</td><td>ความตรงกันของสต็อก 99.5%</td></tr>
+    <tr><td><strong>BG-WMS-4</strong></td><td>รองรับการทำงานหลายบทบาทบนแอป Handheld เดียวกัน</td><td>ใช้งานได้ครบ 4 บทบาท</td></tr>
+    <tr><td><strong>BG-WMS-5</strong></td><td>มีการตรวจสอบ 2 ระดับ (Packer → PC) เพื่อความถูกต้อง</td><td>การจัดส่งผิด ≤ 0.5%</td></tr>
+  </tbody>
+</table>
+
+<h1>3. ขอบเขตของงาน (In / Out of Scope)</h1>
+<h2>3.1 อยู่ในขอบเขต (In Scope)</h2>
+<ul>
+  <li>การจัดการ 5 คลัง: ออนไลน์ / หน้าร้าน / พักรอ / พิเศษ / Reward ตาม <span class="br-ref">S-01 ถึง S-08</span></li>
+  <li>การหยิบและบรรจุสินค้า (Pick / Pack) จากคลังออนไลน์เท่านั้น ตาม <span class="br-ref">WH-01 ถึง WH-20</span></li>
+  <li>4 บทบาทพนักงานคลังบนแอป Handheld: Picker / Packer / Logistic / PC</li>
+  <li>การรับสินค้าเข้าคลัง (Stock In) จากผู้ผลิต</li>
+  <li>การย้ายสต็อกระหว่างคลัง</li>
+  <li>การปรับยอดสต็อกและการตรวจนับ</li>
+  <li>การจัดการพื้นที่จัดเก็บ (Location)</li>
+  <li>การรับสินค้าคืนเข้าคลัง</li>
+  <li>การจัดเก็บสินค้ารอลูกค้ามารับ (Self-Pickup ในคลังพักรอ)</li>
+  <li>สีสถานะของคลัง 4 สี (ขาว/เหลือง/ฟ้า/แดง) ตาม <span class="br-ref">PRD-05</span></li>
+</ul>
+
+<h2>3.2 ไม่อยู่ในขอบเขต (Out of Scope)</h2>
+<ul>
+  <li>การจัดการคำสั่งซื้อ ดูเอกสาร OMS BRD</li>
+  <li>การจัดซื้อจัดจ้าง (PR / PO) เป็นความรับผิดชอบของ ConX</li>
+  <li>การเพิ่มลดสินค้าหลัก ดูเอกสาร PRD BRD</li>
+</ul>
+
+<h1>4. ผู้มีส่วนได้ส่วนเสียและบทบาทผู้ใช้งาน</h1>
+<table>
+  <thead><tr><th style="width:160px">บทบาท</th><th>หน้าที่ในระบบคลัง</th><th style="width:140px">เครื่องมือ</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Picker (พนักงานหยิบสินค้า)</strong></td><td>รับใบงานหยิบจากแอป เดินไปคลังออนไลน์ สแกนบาร์โค้ดเพื่อยืนยัน</td><td>แอป Handheld</td></tr>
+    <tr><td><strong>Packer (พนักงานบรรจุ)</strong></td><td>รับสินค้าที่หยิบมา ตรวจสอบเทียบกับใบงาน บรรจุลงกล่อง</td><td>แอป Handheld + เครื่องชั่ง</td></tr>
+    <tr><td><strong>Logistic (พนักงานขนส่ง)</strong></td><td>รับกล่องที่บรรจุแล้ว สแกน พิมพ์ใบจ่ายงาน นำขึ้นรถขนส่ง</td><td>แอป Handheld + เครื่องพิมพ์ป้าย</td></tr>
+    <tr><td><strong>PC — Pack Checker</strong></td><td>สุ่มตรวจสอบงานบรรจุก่อนปิดงาน</td><td>แอป Handheld</td></tr>
+    <tr><td><strong>หัวหน้าคลัง</strong></td><td>มอบหมายงาน ตรวจดูภาพรวม จัดการปัญหา</td><td>Backoffice เว็บ</td></tr>
+    <tr><td><strong>ผู้ดูแลคลัง (WMS Admin)</strong></td><td>ปรับยอด ตรวจนับ จัดการ Location</td><td>Backoffice เว็บ</td></tr>
+    <tr><td><strong>ระบบ ConX ERP</strong></td><td>แลกเปลี่ยนข้อมูลสต็อก, การเคลื่อนไหว, การรับ-จ่าย</td><td>API</td></tr>
+  </tbody>
+</table>
+
+<h1>5. สถานะปัจจุบัน (As-Is)</h1>
+<ul>
+  <li><strong>การหยิบสินค้าใช้กระดาษ</strong> Picker ถือใบงานเดินไปที่คลัง อาจหยิบผิด</li>
+  <li><strong>ไม่มีระบบสแกนยืนยัน</strong> ตรวจด้วยตา</li>
+  <li><strong>สต็อกใน ConX และของจริงไม่ตรงกัน</strong> ต้องตรวจนับเป็นรอบ</li>
+  <li><strong>การจัดส่งใช้สมุดบันทึก</strong> ไม่มี Tracking</li>
+  <li><strong>ไม่มีการแบ่งบทบาท</strong> พนักงานคลังคนเดียวกันทำทั้ง Pick + Pack + จัดส่ง</li>
+</ul>
+
+<h1>6. กระบวนการในอนาคต (To-Be)</h1>
+<ul>
+  <li><strong>แอป Handheld สำหรับทุกบทบาท</strong> รับใบงานและสแกนยืนยัน</li>
+  <li><strong>แบ่งบทบาทชัดเจน 4 บทบาท</strong> มีการตรวจสอบโดย PC</li>
+  <li><strong>สต็อกตรงกับ ConX แบบเวลาจริง</strong> ทุกการเคลื่อนไหวอัปเดตทันที</li>
+  <li><strong>สีสถานะคลัง 4 สี</strong> เห็นได้ทันทีในแอปและ Backoffice</li>
+  <li><strong>Pick เฉพาะคลังออนไลน์</strong> สินค้าจากคลังหน้าร้านขายผ่าน POS เท่านั้น</li>
+</ul>
+
+<h1>7. ข้อกำหนดเชิงหน้าที่ — กรณีการใช้งาน (Use Cases)</h1>
+
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-WMS-001</span><span class="uc-title">รับสินค้าเข้าคลัง (Stock In)</span></div>
+  <div class="uc-body">
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>พนักงานคลังเปิดแอป Handheld และเลือก "รับสินค้าเข้า"</li>
+        <li>สแกนเอกสารใบรับ (จาก PO ที่ ConX ออก)</li>
+        <li>สแกนสินค้าทีละชิ้น ระบบแสดงจำนวนเทียบกับใบรับ</li>
+        <li>กรณีจำนวนตรง: พนักงานเลือก Location ที่จะวางสินค้า</li>
+        <li>กรณีไม่ตรง: พนักงานบันทึกหมายเหตุและส่งให้หัวหน้าตรวจ</li>
+        <li>เมื่อยืนยัน ระบบเพิ่มสต็อกในระบบและส่งไปยัง ConX</li>
+      </ol>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-WMS-001-01:</strong> สต็อกที่รับเข้าตรงกับ ConX ภายใน 1 นาที</div>
+      <div class="uc-ac"><strong>AC-WMS-001-02:</strong> รองรับการรับสินค้าเข้าหลาย Location ในใบเดียวกัน</div>
+    </div>
+  </div>
+</div>
+
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-WMS-002</span><span class="uc-title">Picker หยิบสินค้าตามใบงาน</span></div>
+  <div class="uc-body">
+    <div class="uc-section"><div class="uc-section-label">จุดประสงค์</div><p style="margin:0">Picker รับใบงานและหยิบสินค้าจากคลังออนไลน์ตามจำนวนที่ระบุ</p></div>
+    <div class="uc-section"><div class="uc-section-label">เงื่อนไขก่อนเริ่มต้น</div><p style="margin:0">มีคำสั่งซื้อที่ชำระเงินแล้วและ ConX ยืนยันการชำระ ตาม <span class="br-ref">SHP-10</span></p></div>
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>Picker เข้าแอป Handheld กด "รับงาน Pick"</li>
+        <li>ระบบมอบหมายใบงานให้ Picker (สูงสุด 99 รายการต่อใบ <span class="tag-pending">P-10</span>)</li>
+        <li>แอปแสดงรายการสินค้า Location และจำนวนที่ต้องหยิบ</li>
+        <li>Picker เดินไปคลังออนไลน์ (ชั้น 2/3/4)</li>
+        <li>Picker สแกนบาร์โค้ดสินค้าทีละชิ้น</li>
+        <li>หากบาร์โค้ดไม่ตรงกับใบงาน แอปเตือนทันที</li>
+        <li>หยิบครบทุกรายการ Picker กด "ส่งให้ Packer"</li>
+      </ol>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-WMS-002-01:</strong> Pick หยิบจากคลังออนไลน์เท่านั้น ตาม <span class="br-ref">WH-13</span></div>
+      <div class="uc-ac"><strong>AC-WMS-002-02:</strong> สูงสุด 99 รายการต่อใบงาน ตาม <span class="br-ref">WH-01</span></div>
+      <div class="uc-ac"><strong>AC-WMS-002-03:</strong> ระบบบันทึก Picker, เวลาเริ่ม, เวลาเสร็จ</div>
+    </div>
+  </div>
+</div>
+
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-WMS-003</span><span class="uc-title">Packer บรรจุและตรวจสอบสินค้า</span></div>
+  <div class="uc-body">
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>Packer รับกล่องสินค้าที่ Picker ส่งมา</li>
+        <li>Packer เข้าแอป Handheld สแกนใบงาน</li>
+        <li>Packer สแกนสินค้าทีละชิ้นเพื่อตรวจสอบครบ</li>
+        <li>กรณีพบของหาย / เกิน: บันทึกหมายเหตุ ส่งกลับให้ Picker</li>
+        <li>กรณีครบ: Packer ห่อบรรจุภัณฑ์ตามกฎ (Fragile Fee ตาม <span class="br-ref">SHP-06</span>)</li>
+        <li>Packer พิมพ์ใบจ่ายงาน (Delivery Note) จากแอป</li>
+        <li>ส่งกล่องให้ Logistic</li>
+      </ol>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-WMS-003-01:</strong> Packer สแกนได้ครบทุกชิ้นก่อนปิดงาน</div>
+      <div class="uc-ac"><strong>AC-WMS-003-02:</strong> สินค้า Fragile บันทึกจำนวนชิ้นเพื่อคิดค่าบรรจุ 5-10 บาทต่อชิ้น</div>
+    </div>
+  </div>
+</div>
+
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-WMS-004</span><span class="uc-title">Logistic จัดส่งและพิมพ์ใบจ่ายงาน</span></div>
+  <div class="uc-body">
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>Logistic รับกล่องที่ Packer ส่งมา</li>
+        <li>Logistic เปิดแอป เลือก "งานจัดส่ง"</li>
+        <li>แอปแสดงรายการกล่องที่พร้อมส่งและสายขนส่ง (สาย A/B/C/ทั่วประเทศ หรือ Carrier ภายนอก ตาม <span class="br-ref">SHP-02, SHP-03</span>)</li>
+        <li>Logistic สแกนกล่องเพื่อยืนยัน</li>
+        <li>ระบบพิมพ์ป้ายและใบจ่ายงาน</li>
+        <li>Logistic นำกล่องขึ้นรถ และอัปเดตสถานะเป็น "จัดส่งแล้ว"</li>
+        <li>ระบบส่งอีเมลแจ้งลูกค้า ตาม <span class="br-ref">NTF-01</span></li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-WMS-005</span><span class="uc-title">PC (Pack Checker) ตรวจสอบงานบรรจุ</span></div>
+  <div class="uc-body">
+    <div class="uc-section"><div class="uc-section-label">จุดประสงค์</div><p style="margin:0">PC สุ่มตรวจสอบงานบรรจุของ Packer เพื่อให้แน่ใจในความถูกต้อง</p></div>
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>ระบบสุ่มเลือกงานบรรจุประมาณ 10% ส่งให้ PC ตรวจ</li>
+        <li>PC เปิดกล่องและสแกนสินค้าทีละชิ้น</li>
+        <li>กรณีถูกต้อง: PC กด "ผ่าน" ส่งกลับให้ Logistic</li>
+        <li>กรณีไม่ถูกต้อง: PC บันทึกข้อผิดพลาด และส่งกลับให้ Packer แก้ไข</li>
+        <li>ระบบบันทึกผลการตรวจสำหรับการประเมินผลงาน</li>
+      </ol>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-WMS-005-01:</strong> รายงานความผิดพลาดต่อ Packer ส่งให้หัวหน้างานทุกสัปดาห์</div>
+    </div>
+  </div>
+</div>
+
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-WMS-006</span><span class="uc-title">ย้ายสต็อกระหว่างคลัง</span></div>
+  <div class="uc-body">
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>หัวหน้าคลังสร้างใบงาน "ย้ายสต็อก" บน Backoffice</li>
+        <li>กำหนดคลังต้นทาง คลังปลายทาง สินค้า จำนวน</li>
+        <li>มอบหมายให้พนักงานคลัง</li>
+        <li>พนักงานสแกนสินค้าออกจากคลังต้นทาง</li>
+        <li>พนักงานสแกนเข้าคลังปลายทาง</li>
+        <li>ระบบอัปเดตสต็อกของทั้ง 2 คลังและส่งไปยัง ConX</li>
+      </ol>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-WMS-006-01:</strong> สต็อกระหว่าง 2 คลังถูกต้องก่อนและหลังย้าย</div>
+    </div>
+  </div>
+</div>
+
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-WMS-007</span><span class="uc-title">ปรับยอดสต็อก (Stock Adjustment)</span></div>
+  <div class="uc-body">
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>ผู้ดูแลคลังสร้างใบปรับยอด ระบุสินค้า จำนวนเดิม จำนวนใหม่ เหตุผล</li>
+        <li>หัวหน้าคลังอนุมัติ</li>
+        <li>ระบบอัปเดตสต็อกและบันทึก Activity Log</li>
+        <li>ส่งข้อมูลไปยัง ConX</li>
+      </ol>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-WMS-007-01:</strong> ทุกการปรับต้องผ่านการอนุมัติ 2 ระดับ</div>
+    </div>
+  </div>
+</div>
+
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-WMS-008</span><span class="uc-title">ตรวจนับสต็อก (Stock Counting)</span></div>
+  <div class="uc-body">
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>หัวหน้าคลังกำหนดรอบการตรวจนับ (Cycle Count / Full Count)</li>
+        <li>มอบหมายพนักงาน คลัง / ชั้น / Location</li>
+        <li>พนักงานนับและสแกนผ่านแอป Handheld</li>
+        <li>ระบบเทียบกับยอดในระบบ แสดงผลต่าง</li>
+        <li>หัวหน้าตรวจสอบและสร้างใบปรับยอดตามผลที่ได้</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-WMS-009</span><span class="uc-title">จัดการพื้นที่จัดเก็บ (Location)</span></div>
+  <div class="uc-body">
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>ผู้ดูแลคลังเข้า Backoffice ที่ <span class="screen-ref">หน้าจอจัดการ Location</span></li>
+        <li>สร้าง / แก้ไข / ลบ Location (รหัสชั้น แถว ช่อง)</li>
+        <li>กำหนดประเภทสินค้าที่ Location รองรับ</li>
+        <li>พิมพ์ป้าย QR Code สำหรับติด Location</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-WMS-010</span><span class="uc-title">รับและจัดเก็บสินค้าคืน (Return)</span></div>
+  <div class="uc-body">
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>พนักงานคลังเปิดแอป สแกนรหัสคำสั่งซื้อที่คืน</li>
+        <li>แอปแสดงสินค้าและจำนวนที่ต้องคืน</li>
+        <li>พนักงานสแกนสินค้าทีละชิ้นเพื่อตรวจสอบสภาพ</li>
+        <li>กรณีดี: คืนกลับคลังเดิม ตาม <span class="br-ref">RTN-09</span></li>
+        <li>กรณีชำรุด: เก็บในคลังพิเศษเพื่อพิจารณา</li>
+        <li>ระบบส่งสัญญาณให้ OMS ออก CN ตาม <span class="br-ref">RTN-07</span></li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-WMS-011</span><span class="uc-title">รายงานสีสถานะคลัง</span></div>
+  <div class="uc-body">
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>หัวหน้าคลังเปิด <span class="screen-ref">หน้าจอสรุปสต็อก</span></li>
+        <li>ระบบแสดงสินค้าทั้งหมดพร้อมสีตาม 4 สีของสถานะคลัง:
+          <ul style="margin:6px 0 0 18px">
+            <li><strong>ขาว:</strong> ปกติ</li>
+            <li><strong>เหลือง:</strong> ใกล้ครบสต็อกขั้นต่ำ</li>
+            <li><strong>ฟ้า:</strong> เกินสต็อกสูงสุด</li>
+            <li><strong>แดง:</strong> หมด/ระงับ</li>
+          </ul>
+        </li>
+        <li>หัวหน้ากรองตามสีเพื่อดำเนินการเติมหรือลดสต็อก</li>
+      </ol>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-WMS-011-01:</strong> 4 สีสถานะอ้างอิงตาม <span class="br-ref">PRD-05</span></div>
+      <div class="uc-ac"><strong>AC-WMS-011-02:</strong> ระบบส่ง Email แจ้งเตือนเมื่อสีเหลือง / แดง ตาม <span class="br-ref">NTF-05</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="use-case">
+  <div class="uc-header"><span class="uc-num">UC-WMS-012</span><span class="uc-title">จัดการสินค้ารอลูกค้ามารับ (Self-Pickup)</span></div>
+  <div class="uc-body">
+    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>เมื่อลูกค้าสั่งซื้อแบบ Self-Pickup ระบบสร้างใบงาน Pick</li>
+        <li>Picker หยิบสินค้าและส่งให้ Packer</li>
+        <li>Packer บรรจุและส่งไปคลังพักรอ พร้อมแท็ก "Self-Pickup" และวันเวลานัด</li>
+        <li>เมื่อลูกค้ามาถึง พนักงานหน้าร้านสแกนรหัสคำสั่งซื้อ</li>
+        <li>ระบบยืนยันและออกเอกสารส่งของให้ลูกค้าเซ็น</li>
+      </ol>
+    </div>
+    <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-WMS-012-01:</strong> สินค้ารอลูกค้าเก็บในคลังพักรอ ตาม <span class="br-ref">SHP-08</span></div>
+      <div class="uc-ac"><strong>AC-WMS-012-02:</strong> ลูกค้าเลือกเวลานัดได้ไม่เร็วกว่า 12 ชั่วโมง ตาม <span class="br-ref">SHP-09</span></div>
+    </div>
+  </div>
+</div>
+
+<h1>8. การออกแบบประสบการณ์ผู้ใช้ (Screen Inventory)</h1>
+<table>
+  <thead><tr><th style="width:140px">รหัสหน้าจอ</th><th>ชื่อหน้าจอ</th><th>หน้าที่หลัก</th></tr></thead>
+  <tbody>
+    <tr><td><strong>SCR-WMS-001</strong></td><td>หน้าจอสรุปสต็อก (Backoffice)</td><td>ดูสต็อกตามคลัง / สี / ประเภท</td></tr>
+    <tr><td><strong>SCR-WMS-002</strong></td><td>หน้าจอจัดการ Location</td><td>สร้าง แก้ไข ลบ Location</td></tr>
+    <tr><td><strong>SCR-WMS-003</strong></td><td>หน้าจอใบงานคลัง</td><td>สร้าง / มอบหมาย / ตรวจสอบใบงาน</td></tr>
+    <tr><td><strong>SCR-WMS-004</strong></td><td>หน้าจอตรวจนับสต็อก</td><td>ตรวจนับและเทียบกับระบบ</td></tr>
+    <tr><td><strong>SCR-WMS-005</strong></td><td>หน้าจอแอป Handheld - Pick</td><td>Picker ใช้รับและทำงาน Pick</td></tr>
+    <tr><td><strong>SCR-WMS-006</strong></td><td>หน้าจอแอป Handheld - Pack</td><td>Packer ใช้บรรจุและตรวจสอบ</td></tr>
+    <tr><td><strong>SCR-WMS-007</strong></td><td>หน้าจอแอป Handheld - Logistic</td><td>Logistic ใช้จ่ายงานและจัดส่ง</td></tr>
+    <tr><td><strong>SCR-WMS-008</strong></td><td>หน้าจอแอป Handheld - PC</td><td>PC สุ่มตรวจสอบงาน Pack</td></tr>
+  </tbody>
+</table>
+
+<h1>9. กฎเกณฑ์เชิงธุรกิจ — อ้างอิงเอกสารแม่บท</h1>
+<div class="callout"><strong>หมายเหตุ:</strong> กฎฉบับเต็มอยู่ใน <a href="ysc_business_rules.html" style="color:#1E3A5F;font-weight:700">ysc_business_rules.html หมวด 3, 9, 14, 18, 20</a></div>
+<table>
+  <thead><tr><th style="width:130px">รหัส</th><th>กฎเกณฑ์</th></tr></thead>
+  <tbody>
+    <tr><td><span class="br-ref">S-01 ถึง S-08</span></td><td>สต็อกและคลังสินค้า 5 คลัง</td></tr>
+    <tr><td><span class="br-ref">WH-01 ถึง WH-20</span></td><td>การหยิบและบรรจุสินค้า (Pick / Pack) — 4 บทบาท</td></tr>
+    <tr><td><span class="br-ref">PRD-05</span></td><td>สีสถานะคลัง 4 สี</td></tr>
+    <tr><td><span class="br-ref">SP-01 ถึง SP-03</span></td><td>การรับสินค้าด้วยตนเอง (Self-Pickup)</td></tr>
+    <tr><td><span class="br-ref">SHP-06</span></td><td>ค่าธรรมเนียมสินค้าแตกง่าย</td></tr>
+    <tr><td><span class="br-ref">SHP-08, SHP-09</span></td><td>Self-Pickup ช่วงเวลานัดและ 12 ชั่วโมงขั้นต่ำ</td></tr>
+    <tr><td><span class="br-ref">SHP-10</span></td><td>ไม่จัดส่งจนกว่า ConX ยืนยันการชำระ</td></tr>
+    <tr><td><span class="br-ref">SHP-11</span></td><td>Partial Delivery</td></tr>
+    <tr><td><span class="br-ref">RTN-09</span></td><td>การคืนสต็อก</td></tr>
+    <tr><td><span class="br-ref">NTF-05</span></td><td>แจ้งเตือนสีเหลือง / แดง</td></tr>
+  </tbody>
+</table>
+
+<h1>10. การเชื่อมต่อระบบภายนอก (Integration)</h1>
+<table>
+  <thead><tr><th style="width:140px">ระบบ</th><th>ข้อมูล</th><th style="width:120px">ทิศทาง</th></tr></thead>
+  <tbody>
+    <tr><td><strong>ConX ERP</strong></td><td>สต็อก, การรับ-จ่าย, การปรับยอด, การย้าย</td><td>2 ทาง</td></tr>
+    <tr><td><strong>OMS</strong></td><td>คำสั่งซื้อที่ชำระแล้วเพื่อสร้างใบงาน Pick</td><td>OMS → WMS</td></tr>
+    <tr><td><strong>ระบบขนส่งภายใน</strong></td><td>กล่องที่ Packer บรรจุพร้อมสายขนส่ง</td><td>WMS → ขนส่ง</td></tr>
+    <tr><td><strong>เครื่องชั่งและเครื่องพิมพ์</strong></td><td>น้ำหนัก, ใบจ่ายงาน, ป้ายติดกล่อง</td><td>2 ทาง</td></tr>
+  </tbody>
+</table>
+
+<h1>11. การออกแบบข้อมูลและข้อมูลหลัก (Data &amp; Master)</h1>
+<table>
+  <thead><tr><th style="width:160px">หน่วยข้อมูล</th><th>คำอธิบาย</th><th style="width:160px">คีย์หลัก</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Warehouse</strong></td><td>คลัง 5 คลัง</td><td>Warehouse Code</td></tr>
+    <tr><td><strong>Location</strong></td><td>พื้นที่จัดเก็บภายในคลัง (ชั้น/แถว/ช่อง)</td><td>Location Code</td></tr>
+    <tr><td><strong>Stock</strong></td><td>จำนวนสินค้าใน Location 1 ตำแหน่ง</td><td>SKU + Location</td></tr>
+    <tr><td><strong>Pick List</strong></td><td>ใบงานหยิบสินค้า</td><td>Pick List ID</td></tr>
+    <tr><td><strong>Pack List</strong></td><td>ใบงานบรรจุ</td><td>Pack List ID</td></tr>
+    <tr><td><strong>Shipment</strong></td><td>การจัดส่ง 1 ครั้ง</td><td>Shipment ID</td></tr>
+    <tr><td><strong>Stock Movement</strong></td><td>ประวัติการเคลื่อนไหวสต็อก (In/Out/Adjust/Transfer)</td><td>Movement ID + Timestamp</td></tr>
+    <tr><td><strong>Cycle Count</strong></td><td>การตรวจนับสต็อกในรอบ</td><td>Count ID</td></tr>
+  </tbody>
+</table>
+
+<h1>12. ความปลอดภัยและสิทธิ์การเข้าถึง (Security &amp; RBAC)</h1>
+<table>
+  <thead><tr><th style="width:200px">บทบาท</th><th>Pick</th><th>Pack</th><th>จัดส่ง</th><th>ปรับยอด</th><th>ตรวจนับ</th></tr></thead>
+  <tbody>
+    <tr><td>Picker</td><td>ทำได้</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+    <tr><td>Packer</td><td>-</td><td>ทำได้</td><td>-</td><td>-</td><td>-</td></tr>
+    <tr><td>Logistic</td><td>-</td><td>-</td><td>ทำได้</td><td>-</td><td>-</td></tr>
+    <tr><td>PC</td><td>-</td><td>ตรวจสอบ</td><td>-</td><td>-</td><td>-</td></tr>
+    <tr><td>หัวหน้าคลัง</td><td>มอบหมาย</td><td>มอบหมาย</td><td>มอบหมาย</td><td>อนุมัติ</td><td>กำหนด</td></tr>
+    <tr><td>WMS Admin</td><td>-</td><td>-</td><td>-</td><td>ทำได้</td><td>ทำได้</td></tr>
+  </tbody>
+</table>
+
+<h1>13. ข้อกำหนดเชิงคุณภาพ (NFR)</h1>
+<table>
+  <thead><tr><th style="width:200px">หัวข้อ</th><th>เกณฑ์</th></tr></thead>
+  <tbody>
+    <tr><td><strong>เวลาตอบสนอง Handheld</strong></td><td>สแกนแล้วตอบสนอง ≤ 1 วินาที</td></tr>
+    <tr><td><strong>ความพร้อม</strong></td><td>99.5% ในช่วงเวลาทำการ</td></tr>
+    <tr><td><strong>Offline Mode</strong></td><td>แอป Handheld ทำงาน Offline ได้ระดับหนึ่ง Sync กลับเมื่อ Online</td></tr>
+    <tr><td><strong>การรองรับ</strong></td><td>≥ 200 แอป Handheld พร้อมกัน</td></tr>
+  </tbody>
+</table>
+
+<h1>14. รายงานและแดชบอร์ดที่เกี่ยวข้อง</h1>
+<ul>
+  <li><strong>รายงานสต็อกคงเหลือ</strong> ตามคลัง / สี / ประเภท</li>
+  <li><strong>รายงานการเคลื่อนไหวสต็อก</strong> รายวัน รายเดือน</li>
+  <li><strong>รายงานประสิทธิภาพพนักงาน</strong> Pick/Pack/Ship ต่อชั่วโมง</li>
+  <li><strong>รายงานความผิดพลาด</strong> จาก PC ตรวจสอบ</li>
+  <li><strong>รายงาน Stock In รับเข้า</strong> เปรียบเทียบ PO</li>
+</ul>
+
+<h1>15. ข้อกำหนดการโอนย้ายข้อมูล (Migration)</h1>
+<ul>
+  <li>นำเข้าสต็อกปัจจุบันจาก ConX ครบทุกคลังและ Location</li>
+  <li>เปรียบเทียบและตรวจสอบ Data Quality ก่อน Go-live</li>
+  <li>Stock Movement ย้อนหลังไม่ต้องโอนเข้า ConX ยังเป็นแหล่งอ้างอิง</li>
+</ul>
+
+<h1>16. สมมติฐานและข้อจำกัด</h1>
+<ul>
+  <li>อุปกรณ์ Handheld และเครื่องพิมพ์มีให้พนักงานครบ</li>
+  <li>Wi-Fi ครอบคลุมทุกพื้นที่ในคลังออนไลน์</li>
+  <li>มีพนักงาน PC ครบทุกกะการทำงาน</li>
+</ul>
+
+<h1>17. เกณฑ์การยอมรับผลงาน (Acceptance Criteria)</h1>
+<table>
+  <thead><tr><th style="width:100px">รหัส</th><th>เกณฑ์</th><th style="width:120px">UC อ้างอิง</th></tr></thead>
+  <tbody>
+    <tr><td><strong>AC-WMS-G-01</strong></td><td>4 บทบาททำงานได้ครบตามขั้นตอน</td><td>UC-WMS-002 ถึง 005</td></tr>
+    <tr><td><strong>AC-WMS-G-02</strong></td><td>สต็อกตรงกับ ConX ภายใน 1 นาที</td><td>UC-WMS-001, 006, 007</td></tr>
+    <tr><td><strong>AC-WMS-G-03</strong></td><td>Pick จากคลังออนไลน์เท่านั้น</td><td>UC-WMS-002</td></tr>
+    <tr><td><strong>AC-WMS-G-04</strong></td><td>สีสถานะคลัง 4 สีแสดงถูกต้อง</td><td>UC-WMS-011</td></tr>
+    <tr><td><strong>AC-WMS-G-05</strong></td><td>Self-Pickup เก็บในคลังพักรอและจัดการตามนัด</td><td>UC-WMS-012</td></tr>
+  </tbody>
+</table>
+
+<h1>18. ประเด็นเปิดและความเสี่ยง</h1>
+<table>
+  <thead><tr><th style="width:100px">รหัส</th><th>ประเด็น / ความเสี่ยง</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Q-WMS-001</strong></td><td>เหตุผลที่งานหยิบ 1 ใบ บรรจุได้สูงสุด 99 รายการ <span class="tag-pending">P-10</span></td></tr>
+    <tr><td><strong>Q-WMS-002</strong></td><td>เกณฑ์การสุ่มของ PC (10% หรือเงื่อนไขอื่น)</td></tr>
+    <tr><td><strong>Q-WMS-003</strong></td><td>เกณฑ์สต็อกขั้นต่ำ / สูงสุด เพื่อตัดสีเหลือง / ฟ้า / แดง</td></tr>
+    <tr><td><strong>R-WMS-001</strong></td><td>ความเสี่ยง: Wi-Fi ในคลังหลุด ทำให้แอป Handheld หยุดทำงาน</td></tr>
+    <tr><td><strong>R-WMS-002</strong></td><td>ความเสี่ยง: การโอนข้อมูลสต็อกจาก ConX อาจไม่ตรงในช่วง Go-live</td></tr>
+  </tbody>
+</table>
+
+</div>
+</body>
+</html>
