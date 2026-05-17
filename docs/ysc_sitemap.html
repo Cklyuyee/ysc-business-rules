@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Documentation Sitemap — YSC Digital Platform · by Adeptio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FFFFFF;--bg-soft:#FAFAFA;--bg-card:#FFFFFF;
+  --ink:#0A0A0A;--ink-2:#2B2B2B;--ink-3:#525252;--ink-4:#8A8A8A;
+  --line:#EDEDED;--line-2:#E5E5E5;
+  --teal:#14E4C7;--blue:#3B82F6;--purple:#8B5CF6;--pink:#EC4899;--coral:#FB7185;
+  --gradient:linear-gradient(90deg,#14E4C7 0%,#3B82F6 30%,#8B5CF6 55%,#EC4899 80%,#FB7185 100%);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);font-family:'Plus Jakarta Sans','Sarabun',Tahoma,sans-serif;color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+:lang(th),.th{font-family:'Sarabun','Plus Jakarta Sans',sans-serif}
+
+.nav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--line)}
+.nav-inner{max-width:1280px;margin:0 auto;padding:14px 32px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-brand img{height:30px;width:auto}
+.nav-brand .sep{width:1px;height:22px;background:var(--line-2);margin:0 4px}
+.nav-brand .doc-label{font-size:13.5px;font-weight:600;color:var(--ink-2)}
+.nav-brand .doc-label .accent{background:var(--gradient);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:700}
+.nav-links{display:flex;gap:6px;align-items:center}
+.nav-link{font-size:13px;font-weight:600;color:var(--ink-3);text-decoration:none;padding:8px 14px;border-radius:8px;transition:.15s}
+.nav-link:hover{color:var(--ink);background:var(--bg-soft)}
+.nav-cta{font-size:13px;font-weight:700;color:#fff;background:var(--ink);padding:9px 18px;border-radius:999px;text-decoration:none;transition:.2s}
+.nav-cta:hover{background:#000;transform:translateY(-1px)}
+
+.hero{padding:60px 32px 40px;position:relative;overflow:hidden}
+.hero-inner{max-width:1280px;margin:0 auto}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;padding:6px 14px 6px 8px;background:#F4F4F4;border:1px solid var(--line);border-radius:999px;font-size:12px;font-weight:600;color:var(--ink-2);margin-bottom:18px}
+.hero-eyebrow .dot{width:18px;height:18px;border-radius:50%;background:var(--gradient)}
+.hero h1{font-size:clamp(36px,5.5vw,64px);font-weight:800;letter-spacing:-.03em;line-height:1.1;margin-bottom:14px}
+.hero h1 .gradient{background:var(--gradient);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p.lead{font-size:16px;color:var(--ink-3);max-width:680px}
+
+.summary{max-width:1280px;margin:0 auto;padding:0 32px 30px}
+.summary-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;background:var(--ink);border-radius:20px;padding:32px;color:#fff}
+.s-item{display:flex;flex-direction:column;gap:4px}
+.s-v{font-size:36px;font-weight:800;background:var(--gradient);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1}
+.s-l{font-size:12.5px;font-weight:600;color:#A8A8A8}
+
+.section{max-width:1280px;margin:0 auto;padding:50px 32px}
+.section-head{display:flex;align-items:center;gap:18px;margin-bottom:28px}
+.section-num{background:var(--ink);color:#fff;width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:20px;flex-shrink:0}
+.section-title h2{font-size:clamp(24px,3vw,32px);font-weight:800;letter-spacing:-.02em;line-height:1.2;color:var(--ink)}
+.section-title .sub{font-size:14px;color:var(--ink-3);margin-top:3px}
+
+/* Overview Section */
+.overview-section{background:linear-gradient(135deg,#FAFAFA 0%,#F0F4FF 100%);border:1.5px solid var(--line);border-radius:20px;padding:24px;margin-bottom:32px;display:grid;grid-template-columns:320px 1fr;gap:24px;align-items:center}
+.overview-image{position:relative;cursor:pointer;border-radius:14px;overflow:hidden;background:#fff;border:1px solid var(--line);min-height:220px;display:flex;align-items:center;justify-content:center;transition:.2s}
+.overview-image:hover{box-shadow:0 8px 24px rgba(0,0,0,.08)}
+.overview-image img{display:block;width:100%;height:auto;max-height:320px;object-fit:contain}
+.overview-image .upload-overlay{position:absolute;inset:0;background:rgba(10,10,10,.92);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;transition:.2s;pointer-events:none;text-align:center;padding:18px}
+.overview-image:hover .upload-overlay{opacity:1}
+.overview-image.no-image{background:#fff;border:2px dashed #C7D2FE}
+.overview-image.no-image .upload-overlay{position:relative;opacity:1;background:transparent;color:var(--ink-2)}
+.overview-image.no-image img{display:none}
+.upload-icon-large{font-size:34px;font-weight:800;color:var(--ink);background:var(--gradient);-webkit-background-clip:text;background-clip:text;color:transparent;border:3px solid currentColor;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:10px;line-height:1}
+.overview-image:hover .upload-icon-large{color:#fff;background:none;-webkit-background-clip:initial;background-clip:initial;border-color:#fff}
+.upload-text-overview{font-size:13.5px;font-weight:700;margin-bottom:2px}
+.upload-filename-overview{font-size:11px;font-family:'Sarabun',monospace;padding:3px 10px;border-radius:6px;margin-top:4px;background:#fff;color:var(--ink);border:1px solid var(--line)}
+.overview-image:hover .upload-filename-overview{background:rgba(255,255,255,.2);color:#fff;border-color:rgba(255,255,255,.3)}
+.overview-image.uploaded::after{content:'อัพโหลดแล้ว';position:absolute;top:10px;right:10px;background:var(--ink);color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;font-family:'Sarabun',sans-serif}
+.overview-info h3{font-size:20px;font-weight:800;letter-spacing:-.02em;margin-bottom:8px;color:var(--ink)}
+.overview-info p{font-size:14px;color:var(--ink-3);margin-bottom:12px;line-height:1.6}
+.meta-pill{display:inline-block;font-size:11.5px;background:#fff;border:1px solid var(--line);color:var(--ink-2);padding:5px 12px;border-radius:999px;font-weight:600;margin-right:6px;margin-top:4px}
+
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.card{background:#fff;border:1.5px solid var(--line);border-radius:16px;padding:22px;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:10px;position:relative;overflow:hidden;transition:.2s}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gradient);opacity:0;transition:.2s}
+.card:hover{transform:translateY(-2px);border-color:transparent;box-shadow:0 16px 36px -8px rgba(0,0,0,.1)}
+.card:hover::before{opacity:1}
+.card-row{display:flex;align-items:center;gap:12px}
+.card-num{background:var(--bg-soft);color:var(--ink);width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;flex-shrink:0}
+.card.master .card-num{background:var(--ink);color:#fff}
+.card.featured .card-num{background:var(--gradient);color:#fff}
+.card .title{font-size:15px;font-weight:700;color:var(--ink);line-height:1.3}
+.card .sub{font-size:11.5px;color:var(--ink-4);margin-top:2px}
+.card .stats{display:flex;gap:14px;font-size:11.5px;color:var(--ink-3);padding-top:10px;border-top:1px solid var(--line)}
+.card .stats b{color:var(--ink)}
+.card .link{color:var(--ink);font-size:12px;font-weight:700;margin-top:auto;padding-top:6px}
+
+.cards-master{grid-template-columns:repeat(3,1fr)}
+.cards-channel{grid-template-columns:1fr}
+
+.footer{background:var(--ink);color:#fff;margin-top:60px;padding:60px 32px 40px}
+.footer-inner{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr;gap:48px;align-items:start}
+.footer-brand img{height:32px;filter:invert(1);margin-bottom:16px}
+.footer-brand p{font-size:13.5px;color:#A8A8A8;line-height:1.7;max-width:480px}
+.footer-col h4{font-size:11.5px;font-weight:700;color:#A8A8A8;text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px}
+.footer-col a{display:block;font-size:13.5px;color:#fff;text-decoration:none;padding:4px 0}
+.footer-col a:hover{color:var(--teal)}
+.footer-bottom{max-width:1280px;margin:48px auto 0;padding-top:28px;border-top:1px solid #2A2A2A;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;font-size:12.5px;color:#A8A8A8}
+.footer-bottom .gradient-bar{width:48px;height:6px;border-radius:999px;background:var(--gradient);display:inline-block;vertical-align:middle;margin-right:8px}
+
+/* Upload Toolbar */
+#upload-toolbar{position:fixed;bottom:24px;right:24px;background:var(--ink);color:#fff;padding:16px 18px;border-radius:18px;box-shadow:0 12px 32px rgba(0,0,0,.2);z-index:1000;font-family:'Plus Jakarta Sans',sans-serif;display:flex;flex-direction:column;gap:10px;min-width:260px;border:1px solid #2A2A2A}
+#upload-toolbar .ut-header{display:flex;justify-content:space-between;align-items:center;font-size:11.5px;color:#A8A8A8;font-weight:700;text-transform:uppercase;letter-spacing:.08em}
+#upload-toolbar .ut-stats{font-size:13.5px;font-weight:700;color:#fff}
+#upload-toolbar .ut-stats b{background:var(--gradient);-webkit-background-clip:text;background-clip:text;color:transparent;font-size:16px}
+#upload-toolbar button{background:#fff;color:var(--ink);border:none;padding:10px 14px;border-radius:999px;cursor:pointer;font-weight:700;font-size:12.5px;font-family:'Plus Jakarta Sans','Sarabun',sans-serif}
+#upload-toolbar button:hover{background:#F4F4F4}
+#upload-toolbar button.danger{background:transparent;color:#FCA5A5;border:1px solid #2A2A2A;padding:6px 12px;font-size:11px}
+#upload-toolbar button.danger:hover{background:rgba(239,68,68,.15)}
+#upload-toolbar.collapsed{padding:10px 14px;min-width:auto}
+#upload-toolbar.collapsed .ut-body{display:none}
+#upload-toolbar .toggle{cursor:pointer;font-size:14px;background:transparent;padding:0;border:none;color:#A8A8A8}
+
+@media (max-width:900px){
+  .nav-inner,.section,.summary,.footer-inner,.footer-bottom{padding-left:22px;padding-right:22px}
+  .nav-brand .doc-label{display:none}
+  .summary-grid{grid-template-columns:repeat(2,1fr);padding:24px;gap:24px}
+  .s-v{font-size:30px}
+  .overview-section{grid-template-columns:1fr}
+  .cards-master{grid-template-columns:1fr}
+  .footer-inner{grid-template-columns:1fr;gap:32px}
+}
+@media print{.nav,#upload-toolbar{display:none}.footer{background:#fff;color:var(--ink)}.footer-brand img{filter:none}.overview-image .upload-overlay{display:none}}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand">
+      <img src="assets/adeptio_logo.png" alt="Adeptio">
+      <span class="sep"></span>
+      <span class="doc-label th">Documentation <span class="accent">Center</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html" class="nav-link th">หน้าแรก</a>
+      <a href="ysc_master_brd.html" class="nav-link th">Master</a>
+      <a href="ysc_business_rules.html" class="nav-link th">Business Rules</a>
+      <a href="ysc_sitemap.html" class="nav-cta th">Sitemap</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow th"><span class="dot"></span> Documentation Sitemap</div>
+    <h1 class="th">แผนผัง<span class="gradient">เอกสารทั้งหมด</span></h1>
+    <p class="lead th">ภาพรวมโครงสร้างเอกสารโครงการ — Master, Backoffice 7 โมดูล, Storefront, POS พร้อมรูปรวมของแต่ละระบบ</p>
+  </div>
+</section>
+
+<div class="summary">
+  <div class="summary-grid">
+    <div class="s-item"><div class="s-v">22</div><div class="s-l th">หมวด Business Rules</div></div>
+    <div class="s-item"><div class="s-v">45</div><div class="s-l th">Decision Records</div></div>
+    <div class="s-item"><div class="s-v">116</div><div class="s-l th">Use Cases รวม</div></div>
+    <div class="s-item"><div class="s-v">9</div><div class="s-l th">เอกสารโมดูล</div></div>
+  </div>
+</div>
+
+<!-- 1. Master -->
+<section class="section">
+  <div class="section-head">
+    <div class="section-num">1</div>
+    <div class="section-title">
+      <h2 class="th">เอกสารหลัก</h2>
+      <div class="sub th">เอกสารแม่บทที่ทุกโมดูลอ้างอิง</div>
+    </div>
+  </div>
+  <div class="cards cards-master">
+    <a href="ysc_master_brd.html" class="card master">
+      <div class="card-row"><div class="card-num">M</div><div><div class="title th">YSC Master BRD</div><div class="sub">v2.0 · Umbrella Doc</div></div></div>
+      <div class="stats"><span>ลิงก์ <b>9</b> โมดูล</span></div>
+      <div class="link">เปิดอ่าน →</div>
+    </a>
+    <a href="ysc_business_rules.html" class="card master">
+      <div class="card-row"><div class="card-num">R</div><div><div class="title th">Business Rules</div><div class="sub">v2.2 · 22 หมวด</div></div></div>
+      <div class="stats"><span><b>22</b> หมวด</span><span><b>45</b> Decisions</span></div>
+      <div class="link">เปิดอ่าน →</div>
+    </a>
+    <a href="ysc_mom_summary.html" class="card master">
+      <div class="card-row"><div class="card-num">N</div><div><div class="title th">MoM Summary</div><div class="sub">7 ครั้ง</div></div></div>
+      <div class="stats"><span>ม.ค. – เม.ย. 2569</span></div>
+      <div class="link">เปิดอ่าน →</div>
+    </a>
+  </div>
+</section>
+
+<!-- 2. Backoffice -->
+<section class="section">
+  <div class="section-head">
+    <div class="section-num">2</div>
+    <div class="section-title">
+      <h2 class="th">ระบบหลังบ้าน 7 โมดูล</h2>
+      <div class="sub th">ระบบสำหรับพนักงาน YSC จัดการข้อมูลและกระบวนการ</div>
+    </div>
+  </div>
+
+  <div class="overview-section">
+    <div class="overview-image" data-slot="overview_backoffice">
+      <img src="ysc_screens/overview_backoffice.png" alt="Backoffice Overview">
+    </div>
+    <div class="overview-info">
+      <h3 class="th">รูปรวมระบบ Backoffice</h3>
+      <p class="th">ภาพรวมของระบบหลังบ้าน — แสดงเมนูหลัก หน้า Dashboard และการทำงานของพนักงานในทุกโมดูล</p>
+      <span class="meta-pill">7 โมดูล</span>
+      <span class="meta-pill">71 Use Cases</span>
+      <span class="meta-pill">คลิกเพื่ออัพโหลด</span>
+    </div>
+  </div>
+
+  <div class="cards">
+    <a href="ysc_prd_brd.html" class="card">
+      <div class="card-row"><div class="card-num">1</div><div><div class="title th">Product Management</div><div class="sub">PRD · จัดการสินค้า</div></div></div>
+      <div class="stats"><span><b>10</b> UC</span><span><b>11</b> Rules</span></div>
+      <div class="link">เปิดอ่าน →</div>
+    </a>
+    <a href="ysc_crm_brd.html" class="card">
+      <div class="card-row"><div class="card-num">2</div><div><div class="title th">Customer Management</div><div class="sub">CRM · ลูกค้าและสมาชิก</div></div></div>
+      <div class="stats"><span><b>11</b> UC</span><span>7 Tiers</span></div>
+      <div class="link">เปิดอ่าน →</div>
+    </a>
+    <a href="ysc_oms_brd.html" class="card">
+      <div class="card-row"><div class="card-num">3</div><div><div class="title th">Order Management</div><div class="sub">OMS · คำสั่งซื้อ 3 ช่องทาง</div></div></div>
+      <div class="stats"><span><b>14</b> UC</span><span>4 Payment</span></div>
+      <div class="link">เปิดอ่าน →</div>
+    </a>
+    <a href="ysc_wms_brd.html" class="card">
+      <div class="card-row"><div class="card-num">4</div><div><div class="title th">Warehouse Management</div><div class="sub">WMS · 5 คลัง + Handheld</div></div></div>
+      <div class="stats"><span><b>12</b> UC</span><span>4 Roles</span></div>
+      <div class="link">เปิดอ่าน →</div>
+    </a>
+    <a href="ysc_promotion_brd.html" class="card">
+      <div class="card-row"><div class="card-num">5</div><div><div class="title th">Promotion Engine</div><div class="sub">แคมเปญ + คูปอง</div></div></div>
+      <div class="stats"><span><b>8</b> UC</span><span>PR-01..07</span></div>
+      <div class="link">เปิดอ่าน →</div>
+    </a>
+    <a href="ysc_cms_brd.html" class="card">
+      <div class="card-row"><div class="card-num">6</div><div><div class="title th">Content Management</div><div class="sub">CMS · Banner FAQ Pop-up</div></div></div>
+      <div class="stats"><span><b>7</b> UC</span><span>P-14</span></div>
+      <div class="link">เปิดอ่าน →</div>
+    </a>
+    <a href="ysc_reporting_brd.html" class="card">
+      <div class="card-row"><div class="card-num">7</div><div><div class="title th">Reporting &amp; Analytics</div><div class="sub">แดชบอร์ด + Custom Report</div></div></div>
+      <div class="stats"><span><b>9</b> UC</span><span>Exports + Alerts</span></div>
+      <div class="link">เปิดอ่าน →</div>
+    </a>
+  </div>
+</section>
+
+<!-- 3. Storefront -->
+<section class="section">
+  <div class="section-head">
+    <div class="section-num">3</div>
+    <div class="section-title">
+      <h2 class="th">เว็บไซต์สำหรับลูกค้า (Storefront)</h2>
+      <div class="sub th">E-Commerce สำหรับลูกค้าทั่วไปและนิติบุคคล</div>
+    </div>
+  </div>
+
+  <div class="overview-section">
+    <div class="overview-image" data-slot="overview_storefront">
+      <img src="ysc_screens/overview_storefront.png" alt="Storefront Overview">
+    </div>
+    <div class="overview-info">
+      <h3 class="th">รูปรวมเว็บไซต์ลูกค้า</h3>
+      <p class="th">ภาพรวมหน้าเว็บไซต์หลัก — Hero Banner, สินค้ามาใหม่, โปรโมชั่น, แบรนด์ยอดนิยม รองรับทั้ง Desktop และ Mobile</p>
+      <span class="meta-pill">8 Sections</span>
+      <span class="meta-pill">32 Use Cases</span>
+      <span class="meta-pill">Responsive</span>
+    </div>
+  </div>
+
+  <div class="cards cards-channel">
+    <a href="ysc_storefront_brd.html" class="card featured">
+      <div class="card-row"><div class="card-num">W</div><div><div class="title th">Storefront BRD v2.0 — เอกสารฉบับเต็ม</div><div class="sub">8 Sections: Browse, Product/Cart, Checkout, Auth, My Account, Loyalty, Info, Mobile</div></div></div>
+      <div class="stats"><span><b>32</b> UC</span><span><b>30+</b> หน้าจอ</span><span>Figma Mockup</span><span>Upload ได้</span></div>
+      <div class="link">เปิดอ่าน →</div>
+    </a>
+  </div>
+</section>
+
+<!-- 4. POS -->
+<section class="section">
+  <div class="section-head">
+    <div class="section-num">4</div>
+    <div class="section-title">
+      <h2 class="th">ระบบขายหน้าร้าน (POS)</h2>
+      <div class="sub th">ระบบสำหรับพนักงานแคชเชียร์ที่สาขา</div>
+    </div>
+  </div>
+
+  <div class="overview-section">
+    <div class="overview-image" data-slot="overview_pos">
+      <img src="ysc_screens/overview_pos.png" alt="POS Overview">
+    </div>
+    <div class="overview-info">
+      <h3 class="th">รูปรวมระบบ POS</h3>
+      <p class="th">ภาพรวมหน้าจอขายหน้าร้าน — Top Bar, Header สำหรับสแกนสินค้า, ตารางตะกร้า, Totals Bar และ Right Rail (Member/Promo/Coupons/Pickup)</p>
+      <span class="meta-pill">5 ส่วน Layout</span>
+      <span class="meta-pill">13 Use Cases</span>
+      <span class="meta-pill">14 State Variants</span>
+    </div>
+  </div>
+
+  <div class="cards cards-channel">
+    <a href="ysc_pos_brd.html" class="card featured">
+      <div class="card-row"><div class="card-num">P</div><div><div class="title th">POS BRD — เอกสารฉบับเต็ม</div><div class="sub">Login, ค้นหาลูกค้า, สแกนสินค้า, โปรโมชั่น, ชำระเงิน 4 วิธี, Customer Display, Offline Mode</div></div></div>
+      <div class="stats"><span><b>13</b> UC</span><span><b>17</b> หน้าจอ</span><span>Figma Mockup</span><span>Upload ได้</span></div>
+      <div class="link">เปิดอ่าน →</div>
+    </a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="assets/adeptio_logo.png" alt="Adeptio">
+      <p class="th">Empowering Digital Futures — Transforming businesses through strategic technology partnership พัฒนาและส่งมอบโดย Adeptio สำหรับยงเจริญศูนย์เครื่องเขียน</p>
+    </div>
+    <div class="footer-col">
+      <h4>เอกสารหลัก</h4>
+      <a href="index.html" class="th">หน้าแรก</a>
+      <a href="ysc_master_brd.html" class="th">Master BRD</a>
+      <a href="ysc_business_rules.html" class="th">Business Rules</a>
+      <a href="ysc_mom_summary.html" class="th">MoM Summary</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div>© 2026 Adeptio · All Rights Reserved</div>
+    <div><span class="gradient-bar"></span><span>YSC Documentation Sitemap</span></div>
+  </div>
+</footer>
+
+<!-- Upload Toolbar -->
+<div id="upload-toolbar">
+  <div class="ut-header">
+    <span class="th">การจัดการรูปรวม</span>
+    <button class="toggle" id="ut-toggle">─</button>
+  </div>
+  <div class="ut-body">
+    <div class="ut-stats th">อัพโหลดแล้ว <b id="ut-count">0</b> / <span id="ut-total">0</span> รูป</div>
+    <div style="font-size:11.5px;color:#A8A8A8;line-height:1.5" class="th">คลิกที่กรอบรูปรวมของแต่ละระบบเพื่ออัพโหลด Screenshot ระบบจะดาวน์โหลดไฟล์ให้อัตโนมัติเพื่อนำไปวางใน <code style="background:rgba(255,255,255,.1);padding:2px 6px;border-radius:4px">docs/ysc_screens/</code></div>
+    <button id="ut-export" class="th">ดาวน์โหลดรูปทั้งหมดอีกครั้ง</button>
+    <button id="ut-clear" class="danger th">ล้างรูปที่อัพโหลดในเครื่อง</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  const STORAGE_PREFIX = 'ysc_screen_';
+  const figs = document.querySelectorAll('.overview-image[data-slot]');
+  let totalSlots = 0, uploadedSlots = 0;
+  figs.forEach(fig => {
+    const slotName = fig.dataset.slot;
+    const img = fig.querySelector('img');
+    totalSlots++;
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'image/png,image/jpeg,image/webp';
+    input.style.display = 'none';
+    fig.appendChild(input);
+    const overlay = document.createElement('div');
+    overlay.className = 'upload-overlay';
+    overlay.innerHTML = '<div class="upload-icon-large">+</div><div class="upload-text-overview">คลิกเพื่ออัพโหลด</div><div class="upload-filename-overview">' + slotName + '.png</div>';
+    fig.insertBefore(overlay, fig.firstChild);
+    const saved = localStorage.getItem(STORAGE_PREFIX + slotName);
+    if (saved) { img.src = saved; fig.classList.add('uploaded'); uploadedSlots++; }
+    img.addEventListener('error', () => { if (!fig.classList.contains('uploaded')) fig.classList.add('no-image'); });
+    if (img.complete && img.naturalWidth === 0 && !fig.classList.contains('uploaded')) fig.classList.add('no-image');
+    fig.addEventListener('click', (e) => { if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return; input.click(); });
+    input.addEventListener('change', (e) => {
+      const file = e.target.files[0]; if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (ev) => {
+        const dataUrl = ev.target.result;
+        img.src = dataUrl; img.style.display = 'block';
+        try { localStorage.setItem(STORAGE_PREFIX + slotName, dataUrl); }
+        catch (err) { alert('ไม่สามารถบันทึกใน Browser ได้ (อาจเกิน Quota) แต่จะดาวน์โหลดไฟล์ให้'); }
+        if (!fig.classList.contains('uploaded')) { fig.classList.add('uploaded'); fig.classList.remove('no-image'); uploadedSlots++; updateCount(); }
+        const ext = file.type === 'image/jpeg' ? 'jpg' : file.type === 'image/webp' ? 'webp' : 'png';
+        const a = document.createElement('a'); a.href = dataUrl; a.download = slotName + '.' + ext;
+        document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      };
+      reader.readAsDataURL(file);
+    });
+  });
+  function updateCount() { document.getElementById('ut-count').textContent = uploadedSlots; document.getElementById('ut-total').textContent = totalSlots; }
+  updateCount();
+  document.getElementById('ut-export').addEventListener('click', () => {
+    let n = 0;
+    figs.forEach(fig => {
+      const name = fig.dataset.slot;
+      const saved = localStorage.getItem(STORAGE_PREFIX + name);
+      if (saved) { const a = document.createElement('a'); a.href = saved; a.download = name + '.png'; document.body.appendChild(a); a.click(); document.body.removeChild(a); n++; }
+    });
+    if (n === 0) alert('ยังไม่มีรูปที่อัพโหลด');
+  });
+  document.getElementById('ut-clear').addEventListener('click', () => {
+    if (!confirm('ลบรูปทั้งหมดที่อัพโหลดในเครื่องนี้?')) return;
+    figs.forEach(fig => localStorage.removeItem(STORAGE_PREFIX + fig.dataset.slot));
+    location.reload();
+  });
+  document.getElementById('ut-toggle').addEventListener('click', (e) => {
+    e.stopPropagation();
+    const tb = document.getElementById('upload-toolbar');
+    tb.classList.toggle('collapsed');
+    e.target.textContent = tb.classList.contains('collapsed') ? '+' : '─';
+  });
+})();
+</script>
+
+</body>
+</html>
