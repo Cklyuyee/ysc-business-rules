@@ -220,7 +220,7 @@ td strong{color:#0A0A0A}
     <tr><td>7</td><td><strong>UC-OMS-007</strong></td><td>ลูกค้าขอใบเสนอราคา</td><td>ลูกค้า</td><td><span class="br-ref">Q-01</span> <span class="br-ref">Q-04</span></td><td><span class="tag-confirmed">ยืนยัน</span></td></tr>
     <tr><td>8</td><td><strong>UC-OMS-008</strong></td><td>ลูกค้าสั่งซื้อสินค้าล่วงหน้า (Pre-Order)</td><td>ลูกค้า</td><td>—</td><td><span class="tag-pending">รอยืนยัน P-01</span></td></tr>
     <tr><td>9</td><td><strong>UC-OMS-009</strong></td><td>ลูกค้าสั่งซื้อซ้ำ (Re-order)</td><td>ลูกค้า</td><td><span class="br-ref">RO-01</span> <span class="br-ref">RO-03</span></td><td><span class="tag-confirmed">ยืนยัน</span></td></tr>
-    <tr><td>10</td><td><strong>UC-OMS-010</strong></td><td>ออกใบกำกับภาษี</td><td>ระบบ + ConX</td><td><span class="br-ref">INV-04</span></td><td><span class="tag-pending">รอยืนยัน P-05</span></td></tr>
+    <tr><td>10</td><td><strong>UC-OMS-010</strong></td><td>ออกเอกสารประกอบคำสั่งซื้อตามประเภทลูกค้า</td><td>ระบบ + ConX</td><td><span class="br-ref">INV-01</span> <span class="br-ref">INV-04</span> <span class="br-ref">INV-05</span></td><td><span class="tag-confirmed">ยืนยัน</span></td></tr>
     <tr><td>11</td><td><strong>UC-OMS-011</strong></td><td>ยกเลิกคำสั่งซื้อ</td><td>ลูกค้า / พนักงาน CC / หัวหน้างาน</td><td><span class="br-ref">RTN-01</span> <span class="br-ref">RTN-02</span> <span class="br-ref">RTN-10</span></td><td><span class="tag-confirmed">ยืนยัน</span></td></tr>
     <tr><td>12</td><td><strong>UC-OMS-012</strong></td><td>คืนสินค้าและออกใบลดหนี้ (CN)</td><td>พนักงาน CC + ฝ่ายบัญชี</td><td><span class="br-ref">RTN-04</span> <span class="br-ref">RTN-05</span> <span class="br-ref">RTN-07</span></td><td><span class="tag-confirmed">ยืนยัน</span></td></tr>
     <tr><td>13</td><td><strong>UC-OMS-013</strong></td><td>ดูสถานะคำสั่งซื้อ</td><td>ลูกค้า / พนักงาน CC</td><td><span class="br-ref">SO-01</span> <span class="br-ref">SO-06</span></td><td><span class="tag-confirmed">ยืนยัน</span></td></tr>
@@ -553,23 +553,94 @@ td strong{color:#0A0A0A}
 </div>
 
 <div class="use-case">
-  <div class="uc-header"><span class="uc-num">UC-OMS-010</span><span class="uc-title">ออกใบกำกับภาษี</span></div>
+  <div class="uc-header"><span class="uc-num">UC-OMS-010</span><span class="uc-title">ออกเอกสารประกอบคำสั่งซื้อตามประเภทลูกค้า</span></div>
   <div class="uc-body">
-      <div class="screen-figure">
-        <img src="ysc_screens/oms_uc010.png" alt="UC-OMS-010">
-        <div class="screen-caption"><span>หน้าจอสำหรับ UC-OMS-010</span><span class="ref">oms_uc010.png</span></div>
-      </div>
+    <div class="screen-figure">
+      <img src="ysc_screens/oms_uc010.png" alt="UC-OMS-010">
+      <div class="screen-caption"><span>หน้าจอสำหรับ UC-OMS-010</span><span class="ref">oms_uc010.png</span></div>
+    </div>
+    <div class="uc-section">
+      <div class="uc-section-label">docType และเอกสารที่ออก</div>
+      <p style="font-size:13px;color:#374151;margin-bottom:10px">ระบบ ConX เก็บ <strong>docType</strong> ในข้อมูลหลักของลูกค้า (Customer Master) เพื่อกำหนดรูปแบบเอกสารที่ต้องออกในแต่ละคำสั่งซื้อ</p>
+      <table>
+        <thead>
+          <tr>
+            <th>docType</th>
+            <th>ลักษณะลูกค้า</th>
+            <th>สินค้า V (มี VAT 7%)</th>
+            <th>สินค้า I (ยกเว้น VAT)</th>
+            <th>ใบเตรียมสินค้า</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Y</strong></td>
+            <td>ลูกค้า VAT — ใบกำกับรวม 1 ใบ</td>
+            <td>IV (ใบกำกับภาษี)</td>
+            <td>รวมใน IV ใบเดียวกัน</td>
+            <td>1 ใบ</td>
+          </tr>
+          <tr>
+            <td><strong>N</strong></td>
+            <td>ลูกค้าทั่วไป — ไม่ขอใบกำกับภาษี</td>
+            <td colspan="2" style="text-align:center">IN (ใบส่งสินค้า) — ออกใบเดียวรวมทุกรายการ</td>
+            <td>1 ใบ</td>
+          </tr>
+          <tr>
+            <td><strong>M</strong></td>
+            <td>ลูกค้า VAT — แยกเอกสารตามประเภทสินค้า</td>
+            <td>IV (เฉพาะสินค้า V)</td>
+            <td>IVN (เฉพาะสินค้า I)</td>
+            <td>2 ใบ <span class="br-ref">INV-05</span></td>
+          </tr>
+          <tr>
+            <td><strong>A</strong></td>
+            <td>ลูกค้า VAT — ใบกำกับอย่างย่อ / กรณีพิเศษ</td>
+            <td>IV (เฉพาะสินค้า V)</td>
+            <td>IVN (เฉพาะสินค้า I)</td>
+            <td>2 ใบ <span class="br-ref">INV-05</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="uc-section">
+      <div class="uc-section-label">ประเภทสินค้า V / I</div>
+      <ul style="font-size:13px;margin:4px 0 0 18px;line-height:1.8">
+        <li><strong>V (VATable)</strong> — สินค้าที่ต้องเสีย VAT 7% → ConX ออกเป็น IV (Invoice / ใบกำกับภาษี)</li>
+        <li><strong>I (VAT-exempt)</strong> — สินค้าที่ได้รับการยกเว้น VAT → ConX ออกเป็น IVN หรือรวมใน IV ตาม docType</li>
+      </ul>
+    </div>
+    <div class="uc-section">
+      <div class="uc-section-label">รหัสเอกสาร ConX</div>
+      <table>
+        <thead>
+          <tr><th>รหัส</th><th>ชื่อเอกสาร</th><th>หมายเหตุ</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>ใบเตรียมสินค้า</strong></td><td>Picking Slip</td><td>ออกจาก OMS → ส่งเข้าคิว Pack Station — แสดงราคาสินค้า <span class="br-ref">WH-05</span></td></tr>
+          <tr><td><strong>IV</strong></td><td>Invoice / ใบกำกับภาษี</td><td>ออกจาก ConX — สินค้า V (มี VAT)</td></tr>
+          <tr><td><strong>IVN</strong></td><td>Invoice Note / ใบส่งสินค้า</td><td>ออกจาก ConX — สินค้า I (ยกเว้น VAT)</td></tr>
+          <tr><td><strong>ใบวางบิล</strong></td><td>Billing Note</td><td>ออกหลัง IV/IVN สำหรับลูกค้าเครดิต</td></tr>
+          <tr><td><strong>RV</strong></td><td>Receipt Voucher / ใบรับเงิน</td><td>ออกเมื่อลูกค้าชำระเงิน</td></tr>
+          <tr><td><strong>RVN</strong></td><td>Receipt Voucher Note</td><td>ออกคู่กับ RV กรณี docType M / A</td></tr>
+        </tbody>
+      </table>
+    </div>
     <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
       <ol class="uc-flow">
-        <li>ระบบตรวจสอบประเภทใบกำกับที่ลูกค้าเลือก (Y / N / M / A)</li>
-        <li>ระบบส่งคำขอออกใบกำกับไปยัง ConX</li>
-        <li>ConX ออกใบกำกับและส่งกลับ</li>
-        <li>ระบบส่งใบกำกับเป็น PDF ไปอีเมลลูกค้า</li>
+        <li>SO ยืนยันแล้ว — ระบบอ่าน <strong>docType</strong> จากข้อมูลลูกค้าใน ConX</li>
+        <li>ระบบออก <strong>ใบเตรียมสินค้า</strong> (1 หรือ 2 ใบ ตาม docType) → ส่งเข้าคิวพิมพ์ที่ <strong>Pack Station</strong> <span class="br-ref">WH-05</span></li>
+        <li>พนักงานคลังหยิบและบรรจุสินค้าผ่าน Handheld → สแกนยืนยัน → ระบบแจ้ง ConX ให้ออกเอกสาร</li>
+        <li>ConX ออก <strong>IV</strong> (สินค้า V) และ/หรือ <strong>IVN</strong> (สินค้า I) ตาม docType → ระบบรับเอกสารกลับ <span class="br-ref">INV-04</span></li>
+        <li>ระบบออก <strong>ใบวางบิล</strong> (กรณีลูกค้าเครดิต)</li>
+        <li>เมื่อลูกค้าชำระเงิน → ConX ออก <strong>RV / RVN</strong></li>
       </ol>
     </div>
     <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
-      <div class="uc-ac"><strong>AC-OMS-010-01:</strong> ประเภทใบกำกับ Y / N / M / A และเงื่อนไข <span class="tag-pending">รอยืนยัน P-05</span></div>
-      <div class="uc-ac"><strong>AC-OMS-010-02:</strong> ใบกำกับ EV / EN กรณีแยก 2 ใบ <span class="tag-pending">P-06</span></div>
+      <div class="uc-ac"><strong>AC-OMS-010-01:</strong> ระบบอ่าน docType (Y / N / M / A) จาก ConX และออกเอกสารถูกต้องตามตารางด้านบน <span class="tag-confirmed">ยืนยัน</span> <span class="br-ref">INV-04</span></div>
+      <div class="uc-ac"><strong>AC-OMS-010-02:</strong> docType M หรือ A → ระบบออกใบเตรียมสินค้า 2 ใบ และ ConX ออก IV + IVN แยกกัน <span class="tag-confirmed">ยืนยัน</span> <span class="br-ref">INV-05</span></div>
+      <div class="uc-ac"><strong>AC-OMS-010-03:</strong> ใบเตรียมสินค้าแสดงราคาสินค้า <span class="tag-confirmed">ยืนยัน</span> <span class="br-ref">WH-05</span></div>
+      <div class="uc-ac"><strong>AC-OMS-010-04:</strong> การพิมพ์เอกสารจาก Handheld ส่งผ่านคิว Pack Station เสมอ — ไม่สามารถสั่งพิมพ์โดยตรงจาก Handheld ได้ <span class="tag-confirmed">ยืนยัน</span> <span class="br-ref">WH-21</span></div>
     </div>
   </div>
 </div>
