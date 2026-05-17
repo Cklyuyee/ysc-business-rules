@@ -218,7 +218,7 @@ td strong{color:#0A0A0A}
     <tr><td>5</td><td><strong>UC-OMS-005</strong></td><td>ชำระเงินด้วยวงเงินเครดิต</td><td>ลูกค้านิติบุคคล</td><td><span class="br-ref">C-01</span> <span class="br-ref">P-03</span></td><td><span class="tag-confirmed">ยืนยัน</span></td></tr>
     <tr><td>6</td><td><strong>UC-OMS-006</strong></td><td>Admin ตรวจสอบสลิปการโอน</td><td>Admin ตรวจสลิป</td><td><span class="br-ref">P-01</span></td><td><span class="tag-confirmed">ยืนยัน</span></td></tr>
     <tr><td>7</td><td><strong>UC-OMS-007</strong></td><td>ลูกค้าขอใบเสนอราคา</td><td>ลูกค้า</td><td><span class="br-ref">Q-01</span> <span class="br-ref">Q-04</span></td><td><span class="tag-confirmed">ยืนยัน</span></td></tr>
-    <tr><td>8</td><td><strong>UC-OMS-008</strong></td><td>ลูกค้าสั่งซื้อสินค้าล่วงหน้า (Pre-Order)</td><td>ลูกค้า</td><td>—</td><td><span class="tag-pending">รอยืนยัน P-01</span></td></tr>
+    <tr><td>8</td><td><strong>UC-OMS-008</strong></td><td>ลูกค้าสั่งซื้อสินค้าล่วงหน้า (Pre-Order)</td><td>ลูกค้า</td><td><span class="br-ref">S-06</span></td><td><span class="tag-confirmed">ยืนยัน</span></td></tr>
     <tr><td>9</td><td><strong>UC-OMS-009</strong></td><td>ลูกค้าสั่งซื้อซ้ำ (Re-order)</td><td>ลูกค้า</td><td><span class="br-ref">RO-01</span> <span class="br-ref">RO-03</span></td><td><span class="tag-confirmed">ยืนยัน</span></td></tr>
     <tr><td>10</td><td><strong>UC-OMS-010</strong></td><td>ออกเอกสารประกอบคำสั่งซื้อตามประเภทลูกค้า</td><td>ระบบ + ConX</td><td><span class="br-ref">INV-01</span> <span class="br-ref">INV-04</span> <span class="br-ref">INV-05</span></td><td><span class="tag-confirmed">ยืนยัน</span></td></tr>
     <tr><td>11</td><td><strong>UC-OMS-011</strong></td><td>ยกเลิกคำสั่งซื้อ</td><td>ลูกค้า / พนักงาน CC / หัวหน้างาน</td><td><span class="br-ref">RTN-01</span> <span class="br-ref">RTN-02</span> <span class="br-ref">RTN-10</span></td><td><span class="tag-confirmed">ยืนยัน</span></td></tr>
@@ -524,7 +524,7 @@ td strong{color:#0A0A0A}
     <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
       <div class="uc-ac"><strong>AC-OMS-008-01:</strong> Pre-Order ชำระ 100% ไม่มีลดราคา</div>
       <div class="uc-ac"><strong>AC-OMS-008-02:</strong> ลูกค้าได้คะแนนสะสมจากการสั่งซื้อล่วงหน้า</div>
-      <div class="uc-ac"><strong>AC-OMS-008-03:</strong> เปอร์เซ็นต์เงินมัดจำสำหรับ Pre-Order <span class="tag-pending">รอยืนยัน P-01</span></div>
+      <div class="uc-ac"><strong>AC-OMS-008-03:</strong> เงินมัดจำ Pre-Order = <strong>100%</strong> ของมูลค่าสินค้า ชำระเต็มจำนวนก่อนสินค้าเข้าคลัง <span class="tag-confirmed">ยืนยัน</span></div>
     </div>
   </div>
 </div>
@@ -870,10 +870,10 @@ td strong{color:#0A0A0A}
 <table>
   <thead><tr><th style="width:100px">รหัส</th><th>ประเด็น / ความเสี่ยง</th></tr></thead>
   <tbody>
-    <tr><td><strong>Q-OMS-001</strong></td><td>เปอร์เซ็นต์เงินมัดจำสำหรับ Pre-Order <span class="tag-pending">P-01</span></td></tr>
+    <tr><td><strong>Q-OMS-001</strong></td><td>เงินมัดจำ Pre-Order = <strong>100%</strong> — ยืนยันแล้ว <span class="tag-confirmed">✓</span></td></tr>
     <tr><td><strong>Q-OMS-002</strong></td><td>ตารางอำนาจการอนุมัติเครดิตของแต่ละตำแหน่ง <span class="tag-pending">P-02</span></td></tr>
-    <tr><td><strong>Q-OMS-003</strong></td><td>ประเภทใบกำกับ Y / N / M / A และเงื่อนไข <span class="tag-pending">P-05</span></td></tr>
-    <tr><td><strong>Q-OMS-004</strong></td><td>ใบกำกับ EV / EN กรณีออก 2 ใบ <span class="tag-pending">P-06</span></td></tr>
+    <tr><td><strong>Q-OMS-003</strong></td><td>docType Y / N / M / A และรูปแบบเอกสาร — ยืนยันแล้ว ดู INV-04 <span class="tag-confirmed">✓</span></td></tr>
+    <tr><td><strong>Q-OMS-004</strong></td><td>IV / IVN กรณี docType M / A ออก 2 ใบ — ยืนยันแล้ว ดู INV-05 <span class="tag-confirmed">✓</span></td></tr>
     <tr><td><strong>Q-OMS-005</strong></td><td>ขั้นตอนยืนยันคำสั่งซื้อที่พนักงาน CC สร้างให้ <span class="tag-pending">P-09</span></td></tr>
     <tr><td><strong>Q-OMS-006</strong></td><td>การแสดงเครื่องหมายราคาเพิ่มขึ้น (*) <span class="tag-pending">P-12</span></td></tr>
     <tr><td><strong>R-OMS-001</strong></td><td>ความเสี่ยง: ConX ล่ม ทำให้คำสั่งซื้อค้าง</td></tr>
