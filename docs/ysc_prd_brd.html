@@ -1,45 +1,57 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="th">
 <head>
 <meta charset="UTF-8">
 <title>YSC PRD BRD — ระบบจัดการข้อมูลสินค้า (Product Management) v2.0</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
+:root{
+  --bg:#FFFFFF;
+  --bg-soft:#FAFAFA;
+  --ink:#0A0A0A;
+  --ink-2:#2B2B2B;
+  --ink-3:#525252;
+  --ink-4:#8A8A8A;
+  --line:#EDEDED;
+  --line-2:#E5E5E5;
+  --teal:#14E4C7;
+  --blue:#3B82F6;
+  --purple:#8B5CF6;
+  --pink:#EC4899;
+  --gradient:linear-gradient(90deg,#14E4C7 0%,#3B82F6 30%,#8B5CF6 55%,#EC4899 80%,#FB7185 100%);
+}
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:#F3F4F6;font-family:'Sarabun',Tahoma,sans-serif;color:#1E293B;padding:0 0 80px;line-height:1.65}
-.toolbar{position:sticky;top:0;z-index:200;background:#1E3A5F;display:flex;align-items:center;justify-content:space-between;padding:9px 22px;box-shadow:0 2px 12px rgba(0,0,0,.25)}
-.toolbar-title{color:#93C5FD;font-size:13px;font-weight:600;letter-spacing:.04em}
-.toolbar a.home{color:#93C5FD;text-decoration:none;font-size:13px;font-weight:600;padding:4px 10px;border-radius:5px}
-.toolbar a.home:hover{background:rgba(255,255,255,.1)}
-.btn{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:6px;font-family:'Sarabun',sans-serif;font-size:12.5px;font-weight:600;cursor:pointer;border:none;background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.2)}
+body{background:#FAFAFA;font-family:'Plus Jakarta Sans','Sarabun',Tahoma,sans-serif;color:#0A0A0A;padding:0 0 80px;line-height:1.65}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:6px;font-family:'Plus Jakarta Sans','Sarabun',sans-serif;font-size:12.5px;font-weight:600;cursor:pointer;border:none;background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.2)}
 .btn:hover{background:rgba(255,255,255,.2)}
-.btn-pri{background:#2563EB;border-color:#2563EB}
+.btn-pri{background:#3B82F6;border-color:#3B82F6}
 #doc{max-width:920px;margin:36px auto;background:#fff;padding:64px 72px;box-shadow:0 6px 28px rgba(0,0,0,.12);border-radius:6px}
-.cover{background:#1E3A5F;color:#fff;margin:-64px -72px 36px;padding:64px 72px 48px;border-radius:6px 6px 0 0}
-.cover .tag{display:inline-block;background:#2563EB;font-size:11px;font-weight:700;letter-spacing:.1em;padding:5px 14px;border-radius:4px;margin-bottom:24px}
+.cover{background:#0A0A0A;color:#fff;margin:-64px -72px 36px;padding:64px 72px 48px;border-radius:6px 6px 0 0}
+.cover .tag{display:inline-block;background:linear-gradient(90deg,#14E4C7,#3B82F6);font-size:11px;font-weight:700;letter-spacing:.1em;padding:5px 14px;border-radius:4px;margin-bottom:24px}
 .cover h1{font-size:32px;font-weight:700;line-height:1.25;margin-bottom:8px;color:#fff;border:none;padding:0}
-.cover .sub{font-size:16px;color:#93C5FD;font-weight:300;margin-bottom:32px}
+.cover .sub{font-size:16px;color:rgba(255,255,255,0.65);font-weight:300;margin-bottom:32px}
 .cover .info-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid rgba(255,255,255,.15);border-radius:8px;overflow:hidden}
 .cover .info-cell{padding:14px 20px;border-bottom:1px solid rgba(255,255,255,.1);border-right:1px solid rgba(255,255,255,.1)}
 .cover .info-cell:nth-child(2n){border-right:none}
 .cover .info-cell:nth-last-child(-n+2){border-bottom:none}
-.cover .info-label{font-size:10px;color:#93C5FD;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
+.cover .info-label{font-size:10px;color:rgba(255,255,255,0.65);font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
 .cover .info-value{font-size:13px;color:#fff;font-weight:600}
-h1{font-size:24px;color:#1E3A5F;margin:42px 0 14px;font-weight:700;padding-bottom:8px;border-bottom:3px solid #1E3A5F}
-h2{font-size:18px;color:#1E3A5F;margin:30px 0 12px;font-weight:700}
-h3{font-size:15px;color:#2563EB;margin:22px 0 10px;font-weight:700}
+h1{font-size:24px;color:#0A0A0A;margin:42px 0 14px;font-weight:700;padding-bottom:8px;border-bottom:3px solid transparent;border-image:linear-gradient(90deg,#14E4C7,#3B82F6,#8B5CF6,#EC4899) 1}
+h2{font-size:18px;color:#0A0A0A;margin:30px 0 12px;font-weight:700}
+h3{font-size:15px;color:#3B82F6;margin:22px 0 10px;font-weight:700}
 h4{font-size:13.5px;color:#374151;margin:16px 0 8px;font-weight:700}
 p{margin-bottom:12px;font-size:13.5px}
 ul,ol{margin:8px 0 14px 22px;font-size:13.5px}
 li{margin-bottom:5px;line-height:1.7}
 table{width:100%;border-collapse:collapse;margin:14px 0 22px;font-size:12.5px}
-thead th{background:#1E3A5F;color:#fff;padding:10px 12px;text-align:left;font-weight:600;border:1px solid #1E3A5F}
+thead th{background:#0A0A0A;color:#fff;padding:10px 12px;text-align:left;font-weight:600;border:1px solid #0A0A0A}
 tbody td{padding:9px 12px;border:1px solid #D1D5DB;vertical-align:top;line-height:1.6}
 tbody tr:nth-child(even) td{background:#F9FAFB}
-td strong{color:#1E3A5F}
-.callout{border-left:4px solid #2563EB;background:#EFF6FF;padding:14px 18px;margin:14px 0;border-radius:0 6px 6px 0}
-.callout strong{color:#1E3A5F}
+td strong{color:#0A0A0A}
+.callout{border-left:4px solid #3B82F6;background:#EFF6FF;padding:14px 18px;margin:14px 0;border-radius:0 6px 6px 0}
+.callout strong{color:#0A0A0A}
 .callout-amber{border-left-color:#F59E0B;background:#FFFBEB}
 .callout-amber strong{color:#92400E}
 .callout-green{border-left-color:#10B981;background:#ECFDF5}
@@ -47,24 +59,24 @@ td strong{color:#1E3A5F}
 .toc{background:#F8FAFC;border:1px solid #E5E7EB;border-radius:8px;padding:20px 28px;margin:20px 0}
 .toc ol{list-style:none;margin:0;padding:0;counter-reset:toc;font-size:13px}
 .toc ol > li{counter-increment:toc;padding:4px 0;border-bottom:1px dashed #E5E7EB}
-.toc ol > li::before{content:counter(toc) ". ";font-weight:700;color:#1E3A5F;margin-right:6px}
+.toc ol > li::before{content:counter(toc) ". ";font-weight:700;color:#0A0A0A;margin-right:6px}
 .toc ol ol{margin:4px 0 4px 24px;font-size:12px;color:#6B7280;counter-reset:sub}
 .toc ol ol li{counter-increment:sub;padding:1px 0;border:none}
 .toc ol ol li::before{content:counter(toc) "." counter(sub) " ";color:#6B7280;font-weight:600;margin-right:4px}
-.rule-id{display:inline-block;background:#1E3A5F;color:#fff;font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:4px;font-family:'Sarabun',monospace;letter-spacing:.02em}
-.uc-id{display:inline-block;background:#2563EB;color:#fff;font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:4px;font-family:'Sarabun',monospace;letter-spacing:.02em}
-.screen-ref{display:inline-block;background:#F3F4F6;border:1px solid #D1D5DB;color:#374151;font-size:11.5px;padding:1px 8px;border-radius:4px;font-weight:600}
+.rule-id{display:inline-block;background:#0A0A0A;color:#fff;font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:4px;font-family:'Sarabun',monospace;letter-spacing:.02em}
+.uc-id{display:inline-block;background:#3B82F6;color:#fff;font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:4px;font-family:'Sarabun',monospace;letter-spacing:.02em}
+.screen-ref{display:inline-block;background:#FAFAFA;border:1px solid #D1D5DB;color:#374151;font-size:11.5px;padding:1px 8px;border-radius:4px;font-weight:600}
 .br-ref{display:inline-block;background:#FFFBEB;border:1px solid #FDE68A;color:#92400E;font-size:11px;padding:1px 7px;border-radius:4px;font-weight:600;font-family:'Sarabun',monospace}
 .use-case{border:1px solid #E5E7EB;border-radius:10px;margin:18px 0;background:#fff;overflow:hidden}
-.uc-header{background:#1E3A5F;color:#fff;padding:12px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.uc-header{background:#0A0A0A;color:#fff;padding:12px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px}
 .uc-header .uc-num{font-size:13px;font-weight:700;letter-spacing:.04em}
 .uc-header .uc-title{font-size:14px;font-weight:600;flex:1}
 .uc-body{padding:16px 22px}
 .uc-section{margin:12px 0}
-.uc-section-label{font-size:11.5px;font-weight:700;color:#1E3A5F;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+.uc-section-label{font-size:11.5px;font-weight:700;color:#0A0A0A;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
 .uc-flow{counter-reset:flow;list-style:none;margin-left:0}
 .uc-flow > li{counter-increment:flow;position:relative;padding:5px 0 5px 32px;font-size:13px}
-.uc-flow > li::before{content:counter(flow);position:absolute;left:0;top:5px;width:22px;height:22px;background:#2563EB;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700}
+.uc-flow > li::before{content:counter(flow);position:absolute;left:0;top:5px;width:22px;height:22px;background:linear-gradient(90deg,#3B82F6,#8B5CF6);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700}
 .uc-alt{background:#FFFBEB;border-left:3px solid #F59E0B;padding:8px 14px;margin:6px 0;border-radius:0 6px 6px 0;font-size:12.5px}
 .uc-exc{background:#FEF2F2;border-left:3px solid #E11D48;padding:8px 14px;margin:6px 0;border-radius:0 6px 6px 0;font-size:12.5px}
 .uc-ac{background:#ECFDF5;border:1px solid #A7F3D0;border-radius:6px;padding:10px 14px;margin:4px 0;font-size:12.5px}
@@ -73,27 +85,59 @@ td strong{color:#1E3A5F}
 .tag-pending{display:inline-block;background:#FEF3C7;color:#92400E;font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:10px}
 @media print{
   body{background:#fff}
-  .toolbar{display:none}
   #doc{max-width:none;margin:0;box-shadow:none;padding:24px 40px}
   .cover{margin:-24px -40px 24px;padding:50px 40px 40px}
   h1{page-break-before:always}
   h1:first-of-type{page-break-before:auto}
   table,.use-case{page-break-inside:avoid}
 }
+
+/* -- Upload Widget -- */
+.screen-figure{position:relative;cursor:pointer;transition:transform .15s,box-shadow .15s;margin:14px 0 18px;border:1px solid #E5E7EB;border-radius:10px;overflow:hidden;background:#FAFAFA}
+.screen-figure:hover{box-shadow:0 6px 18px rgba(59,130,246,0.25)}
+.screen-figure img{display:block;width:100%;height:auto}
+.screen-caption{padding:10px 16px;background:#0A0A0A;color:#fff;font-size:12px;font-weight:600;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.screen-caption .ref{font-size:10.5px;color:rgba(255,255,255,0.65);font-weight:500;font-family:'Sarabun',monospace}
+.screen-figure .upload-overlay{position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(10,10,10,0.92);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;transition:opacity .2s;z-index:5;pointer-events:none;text-align:center;padding:24px}
+.screen-figure:hover .upload-overlay{opacity:1}
+.screen-figure.no-image{background:#F8FAFC;border:2px dashed #3B82F6;min-height:200px;display:flex;align-items:center;justify-content:center}
+.screen-figure.no-image .upload-overlay{position:relative;opacity:1;background:transparent;color:#0A0A0A;border:none}
+.screen-figure.no-image img{display:none}
+.screen-figure.no-image .screen-caption{display:none}
+.upload-icon{font-size:42px;font-weight:800;color:#3B82F6;border:3px solid currentColor;width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:12px;line-height:1}
+.screen-figure:hover .upload-icon{color:#fff;border-color:#fff}
+.screen-figure.no-image .upload-icon{color:#3B82F6;border-color:#3B82F6}
+.upload-text{font-size:14px;font-weight:700;margin-bottom:4px}
+.upload-filename{font-size:11.5px;font-family:'Sarabun',monospace;background:rgba(255,255,255,.18);padding:4px 10px;border-radius:4px;margin-top:6px}
+.screen-figure.no-image .upload-filename{background:#EFF6FF;color:#0A0A0A;border:1px solid #BFDBFE}
+.uploaded-badge{position:absolute;top:8px;right:8px;background:#10B981;color:#fff;font-size:10.5px;font-weight:700;padding:3px 9px;border-radius:10px;z-index:6;display:none}
+.screen-figure.uploaded .uploaded-badge{display:block}
+#upload-toolbar{position:fixed;bottom:24px;right:24px;background:#0A0A0A;color:#fff;padding:14px 18px;border-radius:14px;box-shadow:0 8px 28px rgba(0,0,0,0.25);z-index:1000;font-family:'Plus Jakarta Sans','Sarabun',sans-serif;display:flex;flex-direction:column;gap:10px;min-width:240px}
+#upload-toolbar .ut-header{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:rgba(255,255,255,0.65);font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+#upload-toolbar .ut-stats{font-size:13px;font-weight:600}
+#upload-toolbar .ut-stats b{color:#FDE68A;font-size:16px}
+#upload-toolbar button{background:#3B82F6;color:#fff;border:none;padding:10px 14px;border-radius:8px;cursor:pointer;font-weight:700;font-size:12.5px;font-family:'Plus Jakarta Sans','Sarabun',sans-serif}
+#upload-toolbar button:hover{background:#1D4ED8}
+#upload-toolbar button.danger{background:transparent;color:#FCA5A5;border:1px solid #EF4444;padding:6px 10px;font-size:11px}
+#upload-toolbar button.danger:hover{background:rgba(239,68,68,.15)}
+#upload-toolbar.collapsed{padding:10px 14px;min-width:auto}
+#upload-toolbar.collapsed .ut-body{display:none}
+#upload-toolbar .toggle{cursor:pointer;font-size:14px;background:transparent;padding:0;border:none;color:rgba(255,255,255,0.65)}
+@media print{#upload-toolbar{display:none}.screen-figure .upload-overlay,.uploaded-badge{display:none !important}}
 </style>
 </head>
 <body>
 
-<div class="toolbar">
-  <div style="display:flex;align-items:center;gap:14px">
-    <a href="index.html" class="home">สารบัญ</a>
-    <span style="color:rgba(255,255,255,.25)">|</span>
-    <span class="toolbar-title">YSC PRD BRD — ระบบจัดการข้อมูลสินค้า v2.0</span>
+<nav style="position:sticky;top:0;z-index:200;background:rgba(255,255,255,.9);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid #EDEDED;display:flex;align-items:center;justify-content:space-between;padding:10px 28px;">
+  <div style="display:flex;align-items:center;gap:16px;">
+    <a href="index.html"><img src="assets/adeptio_logo.png" alt="Adeptio" style="height:26px;display:block"></a>
+    <span style="width:1px;height:20px;background:#EDEDED;display:inline-block"></span>
+    <a href="index.html" style="font-size:13px;font-weight:600;color:#525252;text-decoration:none;">สารบัญ</a>
+    <span style="font-size:13px;color:#8A8A8A;">|</span>
+    <span class="toolbar-title" style="font-size:13px;font-weight:600;color:#2B2B2B;">YSC PRD BRD — ระบบจัดการข้อมูลสินค้า v2.0</span>
   </div>
-  <div style="display:flex;align-items:center;gap:8px">
-    <button class="btn" onclick="window.print()">พิมพ์ / PDF</button>
-  </div>
-</div>
+  <button onclick="window.print()" style="display:inline-flex;align-items:center;gap:6px;padding:8px 18px;border-radius:999px;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;border:1.5px solid #EDEDED;background:#fff;color:#0A0A0A;">พิมพ์ / PDF</button>
+</nav>
 
 <div id="doc">
 
@@ -272,6 +316,10 @@ td strong{color:#1E3A5F}
 <div class="use-case">
   <div class="uc-header"><span class="uc-num">UC-PRD-001</span><span class="uc-title">สร้างสินค้าใหม่</span></div>
   <div class="uc-body">
+      <div class="screen-figure">
+        <img src="ysc_screens/prd/prd_uc001.png" alt="UC-PRD-001">
+        <div class="screen-caption"><span>หน้าจอสำหรับ UC-PRD-001</span><span class="ref">prd_uc001.png</span></div>
+      </div>
     <div class="uc-section"><div class="uc-section-label">จุดประสงค์</div><p style="margin:0">ผู้ดูแลสินค้าสร้างรายการสินค้าใหม่ในระบบ กำหนด SKU บาร์โค้ด ประเภท ราคา และคุณสมบัติพื้นฐาน</p></div>
     <div class="uc-section"><div class="uc-section-label">เงื่อนไขก่อนเริ่มต้น</div><ul style="margin:0 0 0 18px"><li>ผู้ใช้งานเข้าสู่ระบบหลังบ้านด้วยบทบาท "ผู้ดูแลสินค้า"</li><li>มีข้อมูลสินค้าจากผู้ผลิต (รหัส, ชื่อ, ราคา, ภาพ)</li></ul></div>
     <div class="uc-section"><div class="uc-section-label">เหตุการณ์เริ่มต้น</div><p style="margin:0">ผู้ใช้กดปุ่ม "สร้างสินค้าใหม่" ที่ <span class="screen-ref">หน้าจอรายการสินค้า</span></p></div>
@@ -310,6 +358,10 @@ td strong{color:#1E3A5F}
 <div class="use-case">
   <div class="uc-header"><span class="uc-num">UC-PRD-002</span><span class="uc-title">แก้ไขข้อมูลสินค้าเดิม</span></div>
   <div class="uc-body">
+      <div class="screen-figure">
+        <img src="ysc_screens/prd/prd_uc002.png" alt="UC-PRD-002">
+        <div class="screen-caption"><span>หน้าจอสำหรับ UC-PRD-002</span><span class="ref">prd_uc002.png</span></div>
+      </div>
     <div class="uc-section"><div class="uc-section-label">จุดประสงค์</div><p style="margin:0">ผู้ดูแลสินค้าแก้ไขข้อมูลของสินค้าที่มีอยู่ เช่น ชื่อ, รูปภาพ, ราคา, สถานะ</p></div>
     <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
       <ol class="uc-flow">
@@ -334,6 +386,10 @@ td strong{color:#1E3A5F}
 <div class="use-case">
   <div class="uc-header"><span class="uc-num">UC-PRD-003</span><span class="uc-title">กำหนดราคามีผลล่วงหน้า (Effective Date)</span></div>
   <div class="uc-body">
+      <div class="screen-figure">
+        <img src="ysc_screens/prd/prd_uc003.png" alt="UC-PRD-003">
+        <div class="screen-caption"><span>หน้าจอสำหรับ UC-PRD-003</span><span class="ref">prd_uc003.png</span></div>
+      </div>
     <div class="uc-section"><div class="uc-section-label">จุดประสงค์</div><p style="margin:0">ตั้งราคาสินค้าใหม่ที่จะเริ่มใช้งานในวันที่กำหนดในอนาคต</p></div>
     <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
       <ol class="uc-flow">
@@ -357,6 +413,10 @@ td strong{color:#1E3A5F}
 <div class="use-case">
   <div class="uc-header"><span class="uc-num">UC-PRD-004</span><span class="uc-title">จัดการรหัสบาร์โค้ด (Multi-Barcode)</span></div>
   <div class="uc-body">
+      <div class="screen-figure">
+        <img src="ysc_screens/prd/prd_uc004.png" alt="UC-PRD-004">
+        <div class="screen-caption"><span>หน้าจอสำหรับ UC-PRD-004</span><span class="ref">prd_uc004.png</span></div>
+      </div>
     <div class="uc-section"><div class="uc-section-label">จุดประสงค์</div><p style="margin:0">เพิ่มหรือลบรหัสบาร์โค้ดของสินค้า เมื่อสินค้าเดียวกันมีบาร์โค้ดต่างกัน (สั่งจากผู้ผลิตหลายล็อต)</p></div>
     <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
       <ol class="uc-flow">
@@ -378,6 +438,10 @@ td strong{color:#1E3A5F}
 <div class="use-case">
   <div class="uc-header"><span class="uc-num">UC-PRD-005</span><span class="uc-title">กำหนดสินค้าทดแทนและสินค้าคล้ายกัน</span></div>
   <div class="uc-body">
+      <div class="screen-figure">
+        <img src="ysc_screens/prd/prd_uc005.png" alt="UC-PRD-005">
+        <div class="screen-caption"><span>หน้าจอสำหรับ UC-PRD-005</span><span class="ref">prd_uc005.png</span></div>
+      </div>
     <div class="uc-section"><div class="uc-section-label">จุดประสงค์</div><p style="margin:0">กำหนดสินค้าทดแทน (Substitute) ที่จะเสนอเมื่อสินค้าหลักหมด และสินค้าคล้ายกัน (Similar) ที่แสดงเป็นแนะนำในหน้าเว็บไซต์</p></div>
     <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
       <ol class="uc-flow">
@@ -398,6 +462,10 @@ td strong{color:#1E3A5F}
 <div class="use-case">
   <div class="uc-header"><span class="uc-num">UC-PRD-006</span><span class="uc-title">ปรับสถานะสินค้า (Active / Inactive / Discontinued)</span></div>
   <div class="uc-body">
+      <div class="screen-figure">
+        <img src="ysc_screens/prd/prd_uc006.png" alt="UC-PRD-006">
+        <div class="screen-caption"><span>หน้าจอสำหรับ UC-PRD-006</span><span class="ref">prd_uc006.png</span></div>
+      </div>
     <div class="uc-section"><div class="uc-section-label">จุดประสงค์</div><p style="margin:0">เปลี่ยนสถานะของสินค้าเพื่อควบคุมว่าสินค้านี้จะแสดงในช่องทางใดบ้าง</p></div>
     <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
       <ol class="uc-flow">
@@ -419,6 +487,10 @@ td strong{color:#1E3A5F}
 <div class="use-case">
   <div class="uc-header"><span class="uc-num">UC-PRD-007</span><span class="uc-title">สร้างสินค้าจัดชุด (Bundle)</span></div>
   <div class="uc-body">
+      <div class="screen-figure">
+        <img src="ysc_screens/prd/prd_uc007.png" alt="UC-PRD-007">
+        <div class="screen-caption"><span>หน้าจอสำหรับ UC-PRD-007</span><span class="ref">prd_uc007.png</span></div>
+      </div>
     <div class="uc-section"><div class="uc-section-label">จุดประสงค์</div><p style="margin:0">สร้างสินค้าประเภทจัดชุดที่ประกอบจากสินค้าย่อยหลายรายการ มีราคาและบาร์โค้ดของชุด</p></div>
     <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
       <ol class="uc-flow">
@@ -440,6 +512,10 @@ td strong{color:#1E3A5F}
 <div class="use-case">
   <div class="uc-header"><span class="uc-num">UC-PRD-008</span><span class="uc-title">กำหนดป้ายสถานะหน้าเว็บไซต์ (New / Promotion)</span></div>
   <div class="uc-body">
+      <div class="screen-figure">
+        <img src="ysc_screens/prd/prd_uc008.png" alt="UC-PRD-008">
+        <div class="screen-caption"><span>หน้าจอสำหรับ UC-PRD-008</span><span class="ref">prd_uc008.png</span></div>
+      </div>
     <div class="uc-section"><div class="uc-section-label">จุดประสงค์</div><p style="margin:0">กำหนดป้ายแสดงสถานะของสินค้าในหน้าเว็บไซต์ เพื่อช่วยให้ลูกค้าเห็นสินค้าใหม่หรือสินค้าโปรโมชั่นได้ง่าย</p></div>
     <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
       <ol class="uc-flow">
@@ -459,6 +535,10 @@ td strong{color:#1E3A5F}
 <div class="use-case">
   <div class="uc-header"><span class="uc-num">UC-PRD-009</span><span class="uc-title">ดูประวัติการแก้ไขสินค้า (Activity Log)</span></div>
   <div class="uc-body">
+      <div class="screen-figure">
+        <img src="ysc_screens/prd/prd_uc009.png" alt="UC-PRD-009">
+        <div class="screen-caption"><span>หน้าจอสำหรับ UC-PRD-009</span><span class="ref">prd_uc009.png</span></div>
+      </div>
     <div class="uc-section"><div class="uc-section-label">จุดประสงค์</div><p style="margin:0">ผู้ใช้ค้นหาประวัติการแก้ไขข้อมูลสินค้า ใครแก้, แก้อะไร, เมื่อใด, ค่าก่อน-หลัง</p></div>
     <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
       <ol class="uc-flow">
@@ -478,6 +558,10 @@ td strong{color:#1E3A5F}
 <div class="use-case">
   <div class="uc-header"><span class="uc-num">UC-PRD-010</span><span class="uc-title">นำเข้าและส่งออกข้อมูลสินค้าเป็นชุด (Batch Import / Export)</span></div>
   <div class="uc-body">
+      <div class="screen-figure">
+        <img src="ysc_screens/prd/prd_uc010.png" alt="UC-PRD-010">
+        <div class="screen-caption"><span>หน้าจอสำหรับ UC-PRD-010</span><span class="ref">prd_uc010.png</span></div>
+      </div>
     <div class="uc-section"><div class="uc-section-label">จุดประสงค์</div><p style="margin:0">นำเข้าสินค้าใหม่หรือแก้ไขสินค้าจำนวนมากในคราวเดียวผ่านไฟล์ Excel / CSV</p></div>
     <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
       <ol class="uc-flow">
@@ -512,7 +596,7 @@ td strong{color:#1E3A5F}
 
 <h1>9. กฎเกณฑ์เชิงธุรกิจ — อ้างอิงเอกสารแม่บท</h1>
 <div class="callout">
-  <strong>หมายเหตุ:</strong> กฎเกณฑ์เชิงธุรกิจฉบับเต็มอยู่ในเอกสารแม่บท <a href="ysc_business_rules.html" style="color:#1E3A5F;font-weight:700">ysc_business_rules.html หมวด 18 ข้อมูลหลักของสินค้า</a> ส่วนนี้สรุปเฉพาะกฎที่เกี่ยวข้องกับโมดูล PRD
+  <strong>หมายเหตุ:</strong> กฎเกณฑ์เชิงธุรกิจฉบับเต็มอยู่ในเอกสารแม่บท <a href="ysc_business_rules.html" style="color:#0A0A0A;font-weight:700">ysc_business_rules.html หมวด 18 ข้อมูลหลักของสินค้า</a> ส่วนนี้สรุปเฉพาะกฎที่เกี่ยวข้องกับโมดูล PRD
 </div>
 <table>
   <thead><tr><th style="width:100px">รหัส</th><th>กฎเกณฑ์</th></tr></thead>
@@ -627,5 +711,129 @@ td strong{color:#1E3A5F}
 </table>
 
 </div>
+
+<!-- Upload Toolbar -->
+<div id="upload-toolbar">
+  <div class="ut-header">
+    <span>การจัดการรูปภาพ</span>
+    <button class="toggle" id="ut-toggle">--</button>
+  </div>
+  <div class="ut-body">
+    <div class="ut-stats">อัพโหลดแล้ว <b id="ut-count">0</b> / <span id="ut-total">0</span> รูป</div>
+    <div style="font-size:11.5px;color:rgba(255,255,255,0.65);line-height:1.5">คลิกที่กรอบรูปใดก็ได้เพื่ออัพโหลด Screenshot จากเครื่อง ระบบจะดาวน์โหลดไฟล์ให้อัตโนมัติเพื่อนำไปวางใน <code style="background:rgba(255,255,255,.15);padding:2px 6px;border-radius:3px">docs/ysc_screens/prd/</code></div>
+    <button id="ut-export">ดาวน์โหลดรูปทั้งหมดอีกครั้ง</button>
+    <button id="ut-clear" class="danger">ล้างรูปที่อัพโหลดในเครื่อง</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  const STORAGE_PREFIX = 'ysc_screen_';
+  const figs = document.querySelectorAll('.screen-figure');
+  let totalSlots = 0;
+  let uploadedSlots = 0;
+  figs.forEach(fig => {
+    const img = fig.querySelector('img');
+    if (!img) return;
+    const src = img.getAttribute('src') || '';
+    const filename = src.split('/').pop();
+    const slotName = filename.replace(/\.(png|jpe?g|webp|gif)$/i, '');
+    if (!slotName) return;
+    fig.dataset.slot = slotName;
+    totalSlots++;
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'image/png,image/jpeg,image/webp';
+    input.style.display = 'none';
+    fig.appendChild(input);
+    const overlay = document.createElement('div');
+    overlay.className = 'upload-overlay';
+    overlay.innerHTML = '<div class="upload-icon">+</div><div class="upload-text">คลิกเพื่ออัพโหลด Screenshot</div><div class="upload-filename">' + slotName + '.png</div>';
+    fig.insertBefore(overlay, fig.firstChild);
+    const badge = document.createElement('div');
+    badge.className = 'uploaded-badge';
+    badge.textContent = 'อัพโหลดแล้ว';
+    fig.appendChild(badge);
+    const saved = localStorage.getItem(STORAGE_PREFIX + slotName);
+    if (saved) {
+      img.src = saved;
+      fig.classList.add('uploaded');
+      uploadedSlots++;
+    }
+    img.addEventListener('error', () => {
+      if (!fig.classList.contains('uploaded')) fig.classList.add('no-image');
+    });
+    if (img.complete && img.naturalWidth === 0 && !fig.classList.contains('uploaded')) {
+      fig.classList.add('no-image');
+    }
+    fig.addEventListener('click', (e) => {
+      if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
+      input.click();
+    });
+    input.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (ev) => {
+        const dataUrl = ev.target.result;
+        img.src = dataUrl;
+        img.style.display = 'block';
+        try { localStorage.setItem(STORAGE_PREFIX + slotName, dataUrl); }
+        catch (err) { alert('ไม่สามารถบันทึกใน Browser ได้ (อาจเกิน Quota) แต่จะดาวน์โหลดไฟล์ให้'); }
+        if (!fig.classList.contains('uploaded')) {
+          fig.classList.add('uploaded');
+          fig.classList.remove('no-image');
+          uploadedSlots++;
+          updateCount();
+        }
+        const ext = file.type === 'image/jpeg' ? 'jpg' : file.type === 'image/webp' ? 'webp' : 'png';
+        const a = document.createElement('a');
+        a.href = dataUrl;
+        a.download = slotName + '.' + ext;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      };
+      reader.readAsDataURL(file);
+    });
+  });
+  function updateCount() {
+    document.getElementById('ut-count').textContent = uploadedSlots;
+    document.getElementById('ut-total').textContent = totalSlots;
+  }
+  updateCount();
+  document.getElementById('ut-export').addEventListener('click', () => {
+    let n = 0;
+    document.querySelectorAll('.screen-figure[data-slot]').forEach(fig => {
+      const name = fig.dataset.slot;
+      const saved = localStorage.getItem(STORAGE_PREFIX + name);
+      if (saved) {
+        const a = document.createElement('a');
+        a.href = saved;
+        a.download = name + '.png';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        n++;
+      }
+    });
+    if (n === 0) alert('ยังไม่มีรูปที่อัพโหลด');
+  });
+  document.getElementById('ut-clear').addEventListener('click', () => {
+    if (!confirm('ลบรูปทั้งหมดที่อัพโหลดในเครื่องนี้?')) return;
+    document.querySelectorAll('.screen-figure[data-slot]').forEach(fig => {
+      localStorage.removeItem(STORAGE_PREFIX + fig.dataset.slot);
+    });
+    location.reload();
+  });
+  document.getElementById('ut-toggle').addEventListener('click', (e) => {
+    e.stopPropagation();
+    const tb = document.getElementById('upload-toolbar');
+    tb.classList.toggle('collapsed');
+    e.target.textContent = tb.classList.contains('collapsed') ? '+' : '--';
+  });
+})();
+</script>
+
 </body>
 </html>
