@@ -163,9 +163,9 @@ body{background:var(--bg);font-family:'Plus Jakarta Sans','Sarabun',Tahoma,sans-
       <span class="doc-label th">Documentation <span class="accent">Center</span></span>
     </a>
     <div class="nav-links">
+      <a href="#channels" class="nav-link th">ช่องทางการขาย</a>
       <a href="#master" class="nav-link th">เอกสารหลัก</a>
       <a href="#backoffice" class="nav-link th">Backoffice</a>
-      <a href="#channels" class="nav-link th">Channels</a>
     </div>
   </div>
 </nav>
@@ -184,7 +184,7 @@ body{background:var(--bg);font-family:'Plus Jakarta Sans','Sarabun',Tahoma,sans-
     </h1>
     <p class="lead th">
       เอกสารข้อกำหนดและขอบเขตโครงการของบริษัท ยงเจริญศูนย์เครื่องเขียน จำกัด
-      ครอบคลุม Backoffice 7 โมดูล + Storefront + POS รวม <strong>116 Use Cases</strong>
+      ครอบคลุม Backoffice 7 โมดูล + 3 ช่องทางการขาย (Storefront, POS, Sale Agent) รวม <strong>116+ Use Cases</strong>
       ออกแบบและพัฒนาโดย <strong>Adeptio</strong>
     </p>
     <div class="hero-actions">
@@ -198,17 +198,69 @@ body{background:var(--bg);font-family:'Plus Jakarta Sans','Sarabun',Tahoma,sans-
 <div class="stats">
   <div class="stats-grid">
     <div class="stat"><div class="stat-v">3</div><div class="stat-l th">ช่องทางการขาย</div></div>
-    <div class="stat"><div class="stat-v">9</div><div class="stat-l th">โมดูล / ช่องทาง</div></div>
+    <div class="stat"><div class="stat-v">10</div><div class="stat-l th">โมดูล / ช่องทาง</div></div>
     <div class="stat"><div class="stat-v">116</div><div class="stat-l th">Use Cases รวม</div></div>
     <div class="stat"><div class="stat-v">ต.ค. 69</div><div class="stat-l th">กำหนดส่งมอบ</div></div>
   </div>
 </div>
 
-<!-- ── Master Documents ── -->
+<!-- ── 01 Sales Channels ── -->
+<section class="section" id="channels">
+  <div class="section-head">
+    <div class="left">
+      <div class="section-tag">01 — Sales Channels</div>
+      <h2 class="section-title th">ช่องทางการขาย</h2>
+      <p class="section-sub th">เว็บไซต์ลูกค้า + หน้าร้าน + ตัวแทนขาย อ้างอิงดีไซน์จาก Figma รวม <strong>45+ Use Cases</strong></p>
+    </div>
+  </div>
+  <div class="cards cards-channels">
+
+    <a href="ysc_storefront_brd.html" class="card featured">
+      <span class="card-badge uc">32 UC</span>
+      <div class="card-row">
+        <div class="card-icon">W</div>
+        <div class="card-titles">
+          <div class="card-title th">Storefront (Web)</div>
+          <div class="card-sub">E-Commerce · v2.0 · 8 Sections</div>
+        </div>
+      </div>
+      <div class="card-desc th">เว็บไซต์สำหรับลูกค้า ครอบคลุม 8 Section: Browse, Product/Cart, Checkout 4 ขั้น, Authentication, My Account, Loyalty, Info Pages, Mobile รองรับ Responsive Desktop+Mobile</div>
+      <div class="card-meta"><span class="who th">ลูกค้าออนไลน์</span><span class="link">เปิดอ่าน →</span></div>
+    </a>
+
+    <a href="ysc_pos_brd.html" class="card featured">
+      <span class="card-badge uc">13 UC</span>
+      <div class="card-row">
+        <div class="card-icon">P</div>
+        <div class="card-titles">
+          <div class="card-title th">Point of Sale (POS)</div>
+          <div class="card-sub">ระบบขายหน้าร้าน · v1.0</div>
+        </div>
+      </div>
+      <div class="card-desc th">ระบบสำหรับพนักงานแคชเชียร์ — Login, ค้นหาลูกค้า, สแกนสินค้า, โปรโมชั่น/คูปองอัตโนมัติ, แลกของรางวัล, 3 โหมดรับสินค้า, ชำระเงิน 4 วิธี, Customer Display, Offline Mode</div>
+      <div class="card-meta"><span class="who th">พนักงานแคชเชียร์ · หัวหน้าสาขา</span><span class="link">เปิดอ่าน →</span></div>
+    </a>
+
+    <a href="#" class="card featured" style="opacity:.85;cursor:default" onclick="return false">
+      <span class="card-badge" style="background:linear-gradient(135deg,#8B5CF6,#EC4899);color:#fff">เร็วๆ นี้</span>
+      <div class="card-row">
+        <div class="card-icon" style="background:linear-gradient(135deg,#8B5CF6 0%,#EC4899 100%)">S</div>
+        <div class="card-titles">
+          <div class="card-title th">Sale Agent</div>
+          <div class="card-sub">ระบบตัวแทนขาย · v1.0</div>
+        </div>
+      </div>
+      <div class="card-desc th">แอปสำหรับทีมขาย — ดูข้อมูลลูกค้า ค้นหาสินค้า เสนอราคา รับออเดอร์ในสนาม ติดตามยอดขายส่วนตัว ดูสต็อกแบบ Real-time รองรับ Offline Mode</div>
+      <div class="card-meta"><span class="who th">ทีมขาย · ตัวแทน</span><span class="link" style="color:#8B5CF6">กำลังพัฒนา</span></div>
+    </a>
+  </div>
+</section>
+
+<!-- ── 02 Master Documents ── -->
 <section class="section" id="master">
   <div class="section-head">
     <div class="left">
-      <div class="section-tag">01 — Master Documents</div>
+      <div class="section-tag">02 — Master Documents</div>
       <h2 class="section-title th">เอกสารหลัก</h2>
       <p class="section-sub th">เริ่มอ่านที่นี่ก่อน — ภาพรวมโครงการ กฎเกณฑ์ร่วม และ Sitemap</p>
     </div>
@@ -252,11 +304,11 @@ body{background:var(--bg);font-family:'Plus Jakarta Sans','Sarabun',Tahoma,sans-
   </div>
 </section>
 
-<!-- ── Backoffice Modules ── -->
+<!-- ── 03 Backoffice Modules ── -->
 <section class="section" id="backoffice">
   <div class="section-head">
     <div class="left">
-      <div class="section-tag">02 — Backoffice Modules</div>
+      <div class="section-tag">03 — Backoffice Modules</div>
       <h2 class="section-title th">ระบบหลังบ้าน 7 โมดูล</h2>
       <p class="section-sub th">เอกสาร BRD ของแต่ละโมดูล รวม <strong>71 Use Cases</strong> เขียนใหม่ทั้งหมด v2.0 อ้างอิง Business Rules v2.2</p>
     </div>
@@ -352,45 +404,6 @@ body{background:var(--bg);font-family:'Plus Jakarta Sans','Sarabun',Tahoma,sans-
       </div>
       <div class="card-desc th">แดชบอร์ดผู้บริหาร · รายงานทุกโมดูล · ส่งออก Excel/PDF/CSV · การแจ้งเตือนเมื่อค่าเข้าเกณฑ์ · Custom Report</div>
       <div class="card-meta"><span class="who th">ผู้บริหาร · หัวหน้างาน</span><span class="link">เปิดอ่าน →</span></div>
-    </a>
-  </div>
-</section>
-
-<!-- ── Sales Channels ── -->
-<section class="section" id="channels">
-  <div class="section-head">
-    <div class="left">
-      <div class="section-tag">03 — Sales Channels</div>
-      <h2 class="section-title th">ช่องทางการขาย</h2>
-      <p class="section-sub th">เว็บไซต์สำหรับลูกค้า + ระบบขายหน้าร้าน อ้างอิงดีไซน์จาก Figma รวม <strong>45 Use Cases</strong></p>
-    </div>
-  </div>
-  <div class="cards cards-channels">
-
-    <a href="ysc_storefront_brd.html" class="card featured">
-      <span class="card-badge uc">32 UC</span>
-      <div class="card-row">
-        <div class="card-icon">W</div>
-        <div class="card-titles">
-          <div class="card-title th">Storefront (Web)</div>
-          <div class="card-sub">E-Commerce · v2.0 · 8 Sections</div>
-        </div>
-      </div>
-      <div class="card-desc th">เว็บไซต์สำหรับลูกค้า ครอบคลุม 8 Section: Browse, Product/Cart, Checkout 4 ขั้น, Authentication, My Account, Loyalty, Info Pages, Mobile รองรับ Responsive Desktop+Mobile</div>
-      <div class="card-meta"><span class="who th">ลูกค้าออนไลน์</span><span class="link">เปิดอ่าน →</span></div>
-    </a>
-
-    <a href="ysc_pos_brd.html" class="card featured">
-      <span class="card-badge uc">13 UC</span>
-      <div class="card-row">
-        <div class="card-icon">P</div>
-        <div class="card-titles">
-          <div class="card-title th">Point of Sale (POS)</div>
-          <div class="card-sub">ระบบขายหน้าร้าน · v1.0</div>
-        </div>
-      </div>
-      <div class="card-desc th">ระบบสำหรับพนักงานแคชเชียร์ — Login, ค้นหาลูกค้า, สแกนสินค้า, โปรโมชั่น/คูปองอัตโนมัติ, แลกของรางวัล, 3 โหมดรับสินค้า, ชำระเงิน 4 วิธี, Customer Display, Offline Mode</div>
-      <div class="card-meta"><span class="who th">พนักงานแคชเชียร์ · หัวหน้าสาขา</span><span class="link">เปิดอ่าน →</span></div>
     </a>
   </div>
 </section>
