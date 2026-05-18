@@ -167,9 +167,9 @@ td strong{color:#0A0A0A}
     <li>กระบวนการในอนาคต (To-Be)</li>
     <li>ข้อกำหนดเชิงหน้าที่ — กรณีการใช้งาน (Use Cases)
       <ol>
-        <li>UC-CRM-001 ลูกค้าสมัครสมาชิกใหม่ผ่านเว็บไซต์</li>
+        <li>UC-CRM-001 ลูกค้าสมัครสมาชิกใหม่ผ่านเว็บไซต์ <span style="color:#92400E;font-size:11px">(→ Storefront BRD)</span></li>
         <li>UC-CRM-002 พนักงาน CC สร้างลูกค้าใหม่</li>
-        <li>UC-CRM-003 ลูกค้าเข้าสู่ระบบ</li>
+        <li>UC-CRM-003 ลูกค้าเข้าสู่ระบบ <span style="color:#92400E;font-size:11px">(→ Storefront BRD)</span></li>
         <li>UC-CRM-004 ค้นหาและดูข้อมูลลูกค้าครบถ้วน</li>
         <li>UC-CRM-005 แก้ไขข้อมูลลูกค้า</li>
         <li>UC-CRM-006 ลูกค้านิติบุคคลขอวงเงินเครดิต</li>
@@ -208,9 +208,9 @@ td strong{color:#0A0A0A}
     </tr>
   </thead>
   <tbody>
-    <tr><td>1</td><td><strong>UC-CRM-001</strong></td><td>ลูกค้าสมัครสมาชิกใหม่ผ่านเว็บไซต์</td><td>ลูกค้า (บุคคลธรรมดา / นิติบุคคล)</td><td><span class="br-ref">AUTH-01</span> <span class="br-ref">AUTH-02</span> <span class="br-ref">NTF-03</span></td><td><span class="tag-confirmed">ยืนยัน</span></td></tr>
+    <tr><td>1</td><td><strong>UC-CRM-001</strong></td><td>ลูกค้าสมัครสมาชิกใหม่ผ่านเว็บไซต์<br><span style="font-size:11px;color:#92400E">→ Storefront BRD: UC-WEB-D03 / UC-WEB-D04</span></td><td>ลูกค้า (บุคคลธรรมดา / นิติบุคคล)</td><td><span class="br-ref">AUTH-01</span> <span class="br-ref">AUTH-02</span> <span class="br-ref">NTF-03</span></td><td><span class="tag-confirmed">ยืนยัน</span></td></tr>
     <tr><td>2</td><td><strong>UC-CRM-002</strong></td><td>พนักงาน CC สร้างลูกค้าใหม่</td><td>พนักงาน CC</td><td><span class="br-ref">AUTH-02</span></td><td><span class="tag-confirmed">ยืนยัน</span></td></tr>
-    <tr><td>3</td><td><strong>UC-CRM-003</strong></td><td>ลูกค้าเข้าสู่ระบบ</td><td>ลูกค้า</td><td><span class="br-ref">NTF-04</span></td><td><span class="tag-confirmed">ยืนยัน</span></td></tr>
+    <tr><td>3</td><td><strong>UC-CRM-003</strong></td><td>ลูกค้าเข้าสู่ระบบ<br><span style="font-size:11px;color:#92400E">→ Storefront BRD: UC-WEB-D01 / UC-WEB-D02 / UC-WEB-D05</span></td><td>ลูกค้า</td><td><span class="br-ref">NTF-04</span> <span class="br-ref">AUTH-01</span></td><td><span class="tag-confirmed">ยืนยัน</span></td></tr>
     <tr><td>4</td><td><strong>UC-CRM-004</strong></td><td>ค้นหาและดูข้อมูลลูกค้าครบถ้วน</td><td>พนักงาน CC</td><td><span class="br-ref">CC-05</span></td><td><span class="tag-confirmed">ยืนยัน</span></td></tr>
     <tr><td>5</td><td><strong>UC-CRM-005</strong></td><td>แก้ไขข้อมูลลูกค้า</td><td>ลูกค้า / พนักงาน CC</td><td><span class="br-ref">NTF-03</span></td><td><span class="tag-confirmed">ยืนยัน</span></td></tr>
     <tr><td>6</td><td><strong>UC-CRM-006</strong></td><td>ลูกค้านิติบุคคลขอวงเงินเครดิต</td><td>ลูกค้านิติบุคคล + ฝ่ายการเงิน</td><td><span class="br-ref">C-01</span></td><td><span class="tag-confirmed">ยืนยัน</span></td></tr>
@@ -310,51 +310,22 @@ td strong{color:#0A0A0A}
 <h1>7. ข้อกำหนดเชิงหน้าที่ — กรณีการใช้งาน (Use Cases)</h1>
 
 <div class="use-case">
-  <div class="uc-header"><span class="uc-num">UC-CRM-001</span><span class="uc-title">ลูกค้าสมัครสมาชิกใหม่ผ่านเว็บไซต์</span></div>
+  <div class="uc-header"><span class="uc-num">UC-CRM-001</span><span class="uc-title">การสมัครสมาชิกผ่านเว็บไซต์</span></div>
   <div class="uc-body">
-      <div class="screen-figure">
-        <img src="ysc_screens/crm_uc001.png" alt="UC-CRM-001">
-        <div class="screen-caption"><span>หน้าจอสำหรับ UC-CRM-001</span><span class="ref">crm_uc001.png</span></div>
-      </div>
-    <div class="uc-section"><div class="uc-section-label">จุดประสงค์</div><p style="margin:0">ลูกค้าใหม่สมัครสมาชิกผ่านเว็บไซต์เพื่อให้สามารถสั่งซื้อสินค้าได้ (Guest Checkout ไม่รองรับ ตาม <span class="br-ref">AUTH-01</span>)</p></div>
-    <div class="uc-section"><div class="uc-section-label">เงื่อนไขก่อนเริ่มต้น</div><p style="margin:0">ลูกค้ามีอีเมลและเบอร์โทรศัพท์ใช้งานได้</p></div>
-    <div class="uc-section"><div class="uc-section-label">เหตุการณ์เริ่มต้น</div><p style="margin:0">ลูกค้ากดปุ่ม "สมัครสมาชิก" ที่ <span class="screen-ref">หน้าจอเข้าสู่ระบบ</span></p></div>
-    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
-      <ol class="uc-flow">
-        <li>ลูกค้าเลือกประเภท: ลูกค้าทั่วไป (บุคคลธรรมดา) หรือ ลูกค้าประเภทธุรกิจ (นิติบุคคล)</li>
-        <li>ลูกค้ากรอกอีเมล ระบบส่ง OTP ไปยังอีเมล (ตาม <span class="br-ref">AUTH-02</span>)</li>
-        <li>ลูกค้ายืนยัน OTP จากอีเมล</li>
-        <li>ลูกค้ากรอกข้อมูลส่วนตัว: ชื่อ-สกุล, เบอร์โทร, ที่อยู่จัดส่ง</li>
-        <li>กรณีลูกค้านิติบุคคล: ลูกค้ากรอกเลขทะเบียนนิติบุคคล (13 หลัก), ชื่อบริษัท, ที่อยู่ตามทะเบียน, ที่อยู่ออกใบกำกับภาษี</li>
-        <li>กรณีลูกค้านิติบุคคล: อัปโหลดเอกสาร (หนังสือรับรอง, ภ.พ.20, สำเนาบัตรประชาชนกรรมการ)</li>
-        <li>ลูกค้ายอมรับเงื่อนไขการใช้งาน</li>
-        <li>ลูกค้ากดปุ่ม "สมัคร"</li>
-        <li>ระบบสร้างบัญชีลูกค้าระดับ Prospect และเข้าสู่ระบบทันที</li>
-        <li>กรณีลูกค้านิติบุคคล: ระบบส่งคำขออนุมัติเอกสารให้ผู้ดูแลข้อมูลลูกค้า</li>
-      </ol>
+    <div class="callout callout-amber">
+      <strong>→ อ้างอิง Storefront BRD (ไม่ duplicate ที่นี่)</strong>
+      <p style="margin-top:8px;margin-bottom:0;font-size:13px">UC นี้เป็น <strong>Storefront action</strong> — ลูกค้าทำผ่านหน้าเว็บไซต์ ไม่ใช่ Backoffice รายละเอียด UX flow และ Mockup อยู่ใน <strong>ysc_storefront_brd.html</strong>:<br><br>
+      &nbsp;&nbsp;• <strong>UC-WEB-D03</strong> — สมัครสมาชิกบุคคลธรรมดา<br>
+      &nbsp;&nbsp;• <strong>UC-WEB-D04</strong> — สมัครสมาชิกนิติบุคคล (รับใบกำกับภาษีในนามนิติบุคคล)</p>
     </div>
-    <div class="uc-section"><div class="uc-section-label">ขั้นตอนทางเลือก</div>
-      <div class="uc-alt"><strong>2a.</strong> อีเมลซ้ำกับลูกค้าที่มีอยู่ ระบบแสดง "อีเมลนี้ลงทะเบียนแล้ว" และเสนอให้เข้าสู่ระบบหรือกู้คืนรหัสผ่าน</div>
-      <div class="uc-alt"><strong>6a.</strong> ลูกค้ายังไม่มีเอกสารพร้อม ลูกค้าบันทึกเป็น Draft และกลับมาทำต่อภายหลังได้</div>
-    </div>
-    <div class="uc-section"><div class="uc-section-label">ขั้นตอนกรณีผิดพลาด</div>
-      <div class="uc-exc"><strong>3-E.</strong> OTP หมดอายุ (เกิน 10 นาที) ระบบให้กดส่ง OTP ใหม่</div>
-      <div class="uc-exc"><strong>5-E.</strong> เลขทะเบียนนิติบุคคลรูปแบบไม่ถูกต้อง ระบบแสดงข้อความและไม่ให้ไปต่อ</div>
-    </div>
-    <div class="uc-section"><div class="uc-section-label">ผลลัพธ์ที่ได้</div>
-      <ul style="margin:0 0 0 18px">
-        <li>ลูกค้ามีบัญชีในระบบ พร้อมสั่งซื้อ</li>
-        <li>ลูกค้านิติบุคคล: รอการตรวจสอบเอกสารจากผู้ดูแล</li>
-        <li>ระบบส่งอีเมลต้อนรับและข้อมูลการใช้งานพื้นฐาน</li>
+    <div class="uc-section">
+      <div class="uc-section-label">ผลลัพธ์ที่ CRM ได้รับ (Data Outcome)</div>
+      <ul style="margin:0 0 0 18px;font-size:13px;line-height:1.8">
+        <li>ระบบสร้าง <strong>Customer Record</strong> ระดับ Prospect ทันทีหลังสมัคร — ใช้งานได้โดยไม่ต้องรอยืนยันซ้ำ ตาม <span class="br-ref">AUTH-02</span></li>
+        <li>ลูกค้านิติบุคคล: ระบบสร้าง Credit Application รอ CRM Admin อนุมัติเอกสาร</li>
+        <li>ระบบไม่อนุญาตสมัครซ้ำด้วยอีเมลเดียวกัน — Guest Checkout ไม่รองรับ ตาม <span class="br-ref">AUTH-01</span></li>
       </ul>
     </div>
-    <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
-      <div class="uc-ac"><strong>AC-CRM-001-01:</strong> ลูกค้าใช้งานบัญชีได้ทันทีหลังสมัคร (ไม่ต้องรออีเมลยืนยันซ้ำ) ตาม <span class="br-ref">AUTH-02</span></div>
-      <div class="uc-ac"><strong>AC-CRM-001-02:</strong> ลูกค้านิติบุคคลที่ยังไม่ได้อนุมัติเอกสาร ยังไม่สามารถขอวงเงินเครดิตได้</div>
-      <div class="uc-ac"><strong>AC-CRM-001-03:</strong> ระบบไม่อนุญาตให้สมัครซ้ำด้วยอีเมลเดียวกัน</div>
-      <div class="uc-ac"><strong>AC-CRM-001-04:</strong> Guest Checkout ไม่รองรับ ลูกค้าต้องสมัครก่อนเสมอ ตาม <span class="br-ref">AUTH-01</span></div>
-    </div>
-    <div class="uc-section"><div class="uc-section-label">หน้าจอและกฎเกณฑ์ที่เกี่ยวข้อง</div><p style="margin:0">หน้าจอ: <span class="screen-ref">หน้าจอเข้าสู่ระบบ</span>, <span class="screen-ref">หน้าจอสมัครสมาชิก</span> · กฎเกณฑ์: <span class="br-ref">AUTH-01</span>, <span class="br-ref">AUTH-02</span>, <span class="br-ref">NTF-03</span></p></div>
   </div>
 </div>
 
@@ -362,7 +333,7 @@ td strong{color:#0A0A0A}
   <div class="uc-header"><span class="uc-num">UC-CRM-002</span><span class="uc-title">พนักงาน CC สร้างลูกค้าใหม่</span></div>
   <div class="uc-body">
       <div class="screen-figure">
-        <img src="ysc_screens/crm_uc002.png" alt="UC-CRM-002">
+        <img src="ysc_screens/crm/crm_uc002.png" alt="UC-CRM-002">
         <div class="screen-caption"><span>หน้าจอสำหรับ UC-CRM-002</span><span class="ref">crm_uc002.png</span></div>
       </div>
     <div class="uc-section"><div class="uc-section-label">จุดประสงค์</div><p style="margin:0">พนักงาน CC สร้างบัญชีลูกค้าใหม่แทนลูกค้า เมื่อลูกค้าโทรเข้ามาสั่งซื้อแต่ยังไม่มีบัญชี</p></div>
@@ -386,23 +357,20 @@ td strong{color:#0A0A0A}
 <div class="use-case">
   <div class="uc-header"><span class="uc-num">UC-CRM-003</span><span class="uc-title">ลูกค้าเข้าสู่ระบบ</span></div>
   <div class="uc-body">
-      <div class="screen-figure">
-        <img src="ysc_screens/crm_uc003.png" alt="UC-CRM-003">
-        <div class="screen-caption"><span>หน้าจอสำหรับ UC-CRM-003</span><span class="ref">crm_uc003.png</span></div>
-      </div>
-    <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
-      <ol class="uc-flow">
-        <li>ลูกค้าเปิด <span class="screen-ref">หน้าจอเข้าสู่ระบบ</span></li>
-        <li>ลูกค้ากรอกอีเมลและรหัสผ่าน</li>
-        <li>ระบบตรวจสอบและเข้าสู่ระบบ</li>
-        <li>ระบบแสดง <span class="screen-ref">หน้าจอหลักของบัญชีฉัน</span></li>
-      </ol>
+    <div class="callout callout-amber">
+      <strong>→ อ้างอิง Storefront BRD (ไม่ duplicate ที่นี่)</strong>
+      <p style="margin-top:8px;margin-bottom:0;font-size:13px">UC นี้เป็น <strong>Storefront action</strong> — ลูกค้า Login / Reset Password ผ่านหน้าเว็บไซต์ ไม่ใช่หน้าจอ Backoffice CRM รายละเอียดเต็มอยู่ใน Storefront BRD:<br>
+      • <strong>UC-WEB-D01</strong> — ลูกค้าเข้าสู่ระบบ (Login)<br>
+      • <strong>UC-WEB-D02</strong> — ลืมรหัสผ่าน / รีเซ็ตรหัสผ่าน<br>
+      • <strong>UC-WEB-D05</strong> — ยืนยันตัวตนด้วย OTP</p>
     </div>
-    <div class="uc-section"><div class="uc-section-label">ขั้นตอนทางเลือก</div>
-      <div class="uc-alt"><strong>2a.</strong> ลูกค้าลืมรหัสผ่าน กด "ลืมรหัสผ่าน" ระบบส่งลิงก์รีเซ็ตไปอีเมล</div>
-    </div>
-    <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
-      <div class="uc-ac"><strong>AC-CRM-003-01:</strong> การเปลี่ยนรหัสผ่านต้องผ่าน OTP ตาม <span class="br-ref">NTF-04</span></div>
+    <div class="uc-section">
+      <div class="uc-section-label">ผลลัพธ์ที่ CRM ได้รับ (Data Outcome)</div>
+      <ul>
+        <li>ระบบบันทึก Session Token และ Last Login Timestamp ให้ Customer Record ทันทีหลัง Login สำเร็จ</li>
+        <li>การเปลี่ยนรหัสผ่านต้องผ่าน OTP ตาม <span class="br-ref">NTF-04</span> — CRM ไม่จัดการ flow นี้โดยตรง</li>
+        <li>ระบบล็อก Account หลังพยายาม Login ผิด 5 ครั้งติดต่อกัน ตาม <span class="br-ref">AUTH-01</span></li>
+      </ul>
     </div>
   </div>
 </div>
@@ -411,7 +379,7 @@ td strong{color:#0A0A0A}
   <div class="uc-header"><span class="uc-num">UC-CRM-004</span><span class="uc-title">ค้นหาและดูข้อมูลลูกค้าครบถ้วน</span></div>
   <div class="uc-body">
       <div class="screen-figure">
-        <img src="ysc_screens/crm_uc004.png" alt="UC-CRM-004">
+        <img src="ysc_screens/crm/crm_uc004.png" alt="UC-CRM-004">
         <div class="screen-caption"><span>หน้าจอสำหรับ UC-CRM-004</span><span class="ref">crm_uc004.png</span></div>
       </div>
     <div class="uc-section"><div class="uc-section-label">จุดประสงค์</div><p style="margin:0">พนักงาน CC ค้นหาลูกค้าและดูข้อมูลทั้งหมดในหน้าเดียวเพื่อให้บริการอย่างรวดเร็ว</p></div>
@@ -435,7 +403,7 @@ td strong{color:#0A0A0A}
   <div class="uc-header"><span class="uc-num">UC-CRM-005</span><span class="uc-title">แก้ไขข้อมูลลูกค้า</span></div>
   <div class="uc-body">
       <div class="screen-figure">
-        <img src="ysc_screens/crm_uc005.png" alt="UC-CRM-005">
+        <img src="ysc_screens/crm/crm_uc005.png" alt="UC-CRM-005">
         <div class="screen-caption"><span>หน้าจอสำหรับ UC-CRM-005</span><span class="ref">crm_uc005.png</span></div>
       </div>
     <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
@@ -458,7 +426,7 @@ td strong{color:#0A0A0A}
   <div class="uc-header"><span class="uc-num">UC-CRM-006</span><span class="uc-title">ลูกค้านิติบุคคลขอวงเงินเครดิต</span></div>
   <div class="uc-body">
       <div class="screen-figure">
-        <img src="ysc_screens/crm_uc006.png" alt="UC-CRM-006">
+        <img src="ysc_screens/crm/crm_uc006.png" alt="UC-CRM-006">
         <div class="screen-caption"><span>หน้าจอสำหรับ UC-CRM-006</span><span class="ref">crm_uc006.png</span></div>
       </div>
     <div class="uc-section"><div class="uc-section-label">จุดประสงค์</div><p style="margin:0">ลูกค้านิติบุคคลขอวงเงินเครดิตเพื่อสั่งซื้อแบบเครดิตเทอม</p></div>
@@ -486,7 +454,7 @@ td strong{color:#0A0A0A}
   <div class="uc-header"><span class="uc-num">UC-CRM-007</span><span class="uc-title">ปรับวงเงินเครดิตของลูกค้านิติบุคคล</span></div>
   <div class="uc-body">
       <div class="screen-figure">
-        <img src="ysc_screens/crm_uc007.png" alt="UC-CRM-007">
+        <img src="ysc_screens/crm/crm_uc007.png" alt="UC-CRM-007">
         <div class="screen-caption"><span>หน้าจอสำหรับ UC-CRM-007</span><span class="ref">crm_uc007.png</span></div>
       </div>
     <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
@@ -509,7 +477,7 @@ td strong{color:#0A0A0A}
   <div class="uc-header"><span class="uc-num">UC-CRM-008</span><span class="uc-title">เลื่อน / ลดระดับสมาชิก</span></div>
   <div class="uc-body">
       <div class="screen-figure">
-        <img src="ysc_screens/crm_uc008.png" alt="UC-CRM-008">
+        <img src="ysc_screens/crm/crm_uc008.png" alt="UC-CRM-008">
         <div class="screen-caption"><span>หน้าจอสำหรับ UC-CRM-008</span><span class="ref">crm_uc008.png</span></div>
       </div>
     <div class="uc-section"><div class="uc-section-label">จุดประสงค์</div><p style="margin:0">ระบบเลื่อนหรือลดระดับสมาชิกของลูกค้าตามยอดซื้อสะสมในช่วงเวลาที่กำหนด</p></div>
@@ -532,7 +500,7 @@ td strong{color:#0A0A0A}
   <div class="uc-header"><span class="uc-num">UC-CRM-009</span><span class="uc-title">จัดการระดับราคา (P1-P5)</span></div>
   <div class="uc-body">
       <div class="screen-figure">
-        <img src="ysc_screens/crm_uc009.png" alt="UC-CRM-009">
+        <img src="ysc_screens/crm/crm_uc009.png" alt="UC-CRM-009">
         <div class="screen-caption"><span>หน้าจอสำหรับ UC-CRM-009</span><span class="ref">crm_uc009.png</span></div>
       </div>
     <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
@@ -554,7 +522,7 @@ td strong{color:#0A0A0A}
   <div class="uc-header"><span class="uc-num">UC-CRM-010</span><span class="uc-title">ดูประวัติการสั่งซื้อและคะแนนสะสม</span></div>
   <div class="uc-body">
       <div class="screen-figure">
-        <img src="ysc_screens/crm_uc010.png" alt="UC-CRM-010">
+        <img src="ysc_screens/crm/crm_uc010.png" alt="UC-CRM-010">
         <div class="screen-caption"><span>หน้าจอสำหรับ UC-CRM-010</span><span class="ref">crm_uc010.png</span></div>
       </div>
     <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
@@ -576,7 +544,7 @@ td strong{color:#0A0A0A}
   <div class="uc-header"><span class="uc-num">UC-CRM-011</span><span class="uc-title">พนักงาน CC ดูสินค้ายอดนิยมที่ลูกค้าซื้อประจำ</span></div>
   <div class="uc-body">
       <div class="screen-figure">
-        <img src="ysc_screens/crm_uc011.png" alt="UC-CRM-011">
+        <img src="ysc_screens/crm/crm_uc011.png" alt="UC-CRM-011">
         <div class="screen-caption"><span>หน้าจอสำหรับ UC-CRM-011</span><span class="ref">crm_uc011.png</span></div>
       </div>
     <div class="uc-section"><div class="uc-section-label">จุดประสงค์</div><p style="margin:0">พนักงาน CC เห็นสินค้ายอดนิยม 10 อันดับที่ลูกค้าซื้อประจำ เพื่อให้บริการได้รวดเร็ว</p></div>
@@ -734,7 +702,7 @@ td strong{color:#0A0A0A}
   </div>
   <div class="ut-body">
     <div class="ut-stats">อัพโหลดแล้ว <b id="ut-count">0</b> / <span id="ut-total">0</span> รูป</div>
-    <div style="font-size:11.5px;color:rgba(255,255,255,0.65);line-height:1.5">คลิกที่กรอบรูปใดก็ได้เพื่ออัพโหลด Screenshot จากเครื่อง ระบบจะดาวน์โหลดไฟล์ให้อัตโนมัติเพื่อนำไปวางใน <code style="background:rgba(255,255,255,.15);padding:2px 6px;border-radius:3px">docs/ysc_screens/</code></div>
+    <div style="font-size:11.5px;color:rgba(255,255,255,0.65);line-height:1.5">คลิกที่กรอบรูปใดก็ได้เพื่ออัพโหลด Screenshot จากเครื่อง ระบบจะดาวน์โหลดไฟล์ให้อัตโนมัติเพื่อนำไปวางใน <code style="background:rgba(255,255,255,.15);padding:2px 6px;border-radius:3px">docs/ysc_screens/crm/</code></div>
     <button id="ut-export">ดาวน์โหลดรูปทั้งหมดอีกครั้ง</button>
     <button id="ut-clear" class="danger">ล้างรูปที่อัพโหลดในเครื่อง</button>
   </div>

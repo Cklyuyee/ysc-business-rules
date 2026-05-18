@@ -321,21 +321,22 @@ td strong{color:#0A0A0A}
 <p>เว็บไซต์แบ่งโครงสร้างเป็น <strong>8 Section หลัก</strong> โดยแต่ละ Section อ้างอิง Flow Diagram จาก Figma ดังภาพรวมต่อไปนี้:</p>
 
 <div class="flow-overview">
-  <img src="ysc_screens/web_sitemap.png" alt="Sitemap ภาพรวม">
+  <img src="ysc_screens/web/web_sitemap.png" alt="Sitemap ภาพรวม">
   <div class="caption">Sitemap ภาพรวมเว็บไซต์ทั้งหมด (Figma node 437:1248)</div>
 </div>
 
 <table>
-  <thead><tr><th style="width:120px">Section</th><th>เนื้อหา</th><th style="width:160px">Figma Flow</th></tr></thead>
+  <thead><tr><th style="width:120px">Section</th><th>เนื้อหา</th><th style="width:200px">หน้าจออ้างอิง (SCR)</th></tr></thead>
   <tbody>
-    <tr><td><strong>A. Browse</strong></td><td>หน้าแรก ค้นหา หน้าสินค้าตามแบรนด์ หน้าแคมเปญโปรโมชั่น</td><td>Promotion + Brand (node 5383, 8865)</td></tr>
-    <tr><td><strong>B. Product &amp; Cart</strong></td><td>รายละเอียดสินค้า ตะกร้า เทมเพลตตะกร้า</td><td>(ใน Cart Flow)</td></tr>
-    <tr><td><strong>C. Checkout</strong></td><td>4 ขั้นตอน + สั่งซื้อสำเร็จ</td><td>(ใน Cart > Payment > Complete)</td></tr>
-    <tr><td><strong>D. Authentication</strong></td><td>Login (Email/OTP), Register บุคคลธรรมดา + นิติบุคคล, ลืมรหัสผ่าน</td><td>Login Flow (node 5822:37207)</td></tr>
-    <tr><td><strong>E. My Account</strong></td><td>Dashboard, Profile, Addresses, Orders, Pre-Orders, Quotations, Cart Templates</td><td>Account Flow (node 3172:13345)</td></tr>
-    <tr><td><strong>F. Loyalty</strong></td><td>คะแนน รางวัล คูปอง สิทธิ์พิเศษ ประวัติคะแนน</td><td>Account Flow (node 3172:13345)</td></tr>
-    <tr><td><strong>G. Info Pages</strong></td><td>ช่วยเหลือ นโยบาย เกี่ยวกับเรา ผลิตภัณฑ์โบนัส</td><td>Info Flow (node 7100:44288)</td></tr>
-    <tr><td><strong>H. Mobile</strong></td><td>เวอร์ชัน Mobile ของทุกหน้า</td><td>Mobile Flow (node 5246:37634)</td></tr>
+    <tr><td><strong>A. Browse</strong></td><td>หน้าแรก ค้นหา หน้ารวมสินค้า แบรนด์ โปรโมชั่น</td><td><a href="#SCR-WEB-A01" class="br-ref">A01</a> <a href="#SCR-WEB-A02" class="br-ref">A02</a> <a href="#SCR-WEB-A03" class="br-ref">A03</a> <a href="#SCR-WEB-A04" class="br-ref">A04</a> <a href="#SCR-WEB-A05" class="br-ref">A05</a></td></tr>
+    <tr><td><strong>B. Product &amp; Cart</strong></td><td>รายละเอียดสินค้า ตะกร้า ขอใบเสนอราคา</td><td><a href="#SCR-WEB-B01" class="br-ref">B01</a> <a href="#SCR-WEB-B02" class="br-ref">B02</a> <a href="#SCR-WEB-B03" class="br-ref">B03</a></td></tr>
+    <tr><td><strong>C. Checkout</strong></td><td>4 ขั้นตอน + สั่งซื้อสำเร็จ</td><td><a href="#SCR-WEB-C01" class="br-ref">C01</a> <a href="#SCR-WEB-C02" class="br-ref">C02</a> <a href="#SCR-WEB-C03" class="br-ref">C03</a> <a href="#SCR-WEB-C04" class="br-ref">C04</a> <a href="#SCR-WEB-C05" class="br-ref">C05</a></td></tr>
+    <tr><td><strong>D. Authentication</strong></td><td>Login อีเมล / เบอร์โทร, Register บุคคลธรรมดา + นิติบุคคล, ลืมรหัสผ่าน</td><td><a href="#SCR-WEB-D01" class="br-ref">D01</a> <a href="#SCR-WEB-D02" class="br-ref">D02</a> <a href="#SCR-WEB-D03" class="br-ref">D03</a> <a href="#SCR-WEB-D04" class="br-ref">D04</a> <a href="#SCR-WEB-D05" class="br-ref">D05</a></td></tr>
+    <tr><td><strong>E. My Account</strong></td><td>Dashboard, Profile, ที่อยู่, ประวัติออเดอร์, ใบเสนอราคา, Cart Templates</td><td><a href="#SCR-WEB-E01" class="br-ref">E01</a> <a href="#SCR-WEB-E02" class="br-ref">E02</a> <a href="#SCR-WEB-E03" class="br-ref">E03</a> <a href="#SCR-WEB-E04" class="br-ref">E04</a> <a href="#SCR-WEB-E05" class="br-ref">E05</a> <a href="#SCR-WEB-E06" class="br-ref">E06</a></td></tr>
+    <tr><td><strong>F. Loyalty</strong></td><td>คะแนน รางวัล แลกคูปอง สิทธิ์พิเศษ ประวัติคะแนน</td><td><a href="#SCR-WEB-F01" class="br-ref">F01</a> <a href="#SCR-WEB-F02" class="br-ref">F02</a> <a href="#SCR-WEB-F03" class="br-ref">F03</a> <a href="#SCR-WEB-F04" class="br-ref">F04</a> <a href="#SCR-WEB-F05" class="br-ref">F05</a></td></tr>
+    <tr><td><strong>G. Info Pages</strong></td><td>ช่วยเหลือ ขายสินค้ากับเรา สิทธิประโยชน์ นโยบาย เกี่ยวกับบริษัท</td><td><a href="#SCR-WEB-G01" class="br-ref">G01</a> <a href="#SCR-WEB-G02" class="br-ref">G02</a> <a href="#SCR-WEB-G03" class="br-ref">G03</a> <a href="#SCR-WEB-G04" class="br-ref">G04</a> <a href="#SCR-WEB-G05" class="br-ref">G05</a> <a href="#SCR-WEB-G06" class="br-ref">G06</a></td></tr>
+    <tr><td><strong>H. Mobile</strong></td><td>เวอร์ชัน Mobile ของทุกหน้า</td><td><a href="#SCR-WEB-H01" class="br-ref">H01</a></td></tr>
+    <tr><td><strong>I. Content</strong></td><td>ข่าวสารและกิจกรรม</td><td><a href="#SCR-WEB-I01" class="br-ref">I01</a> <a href="#SCR-WEB-I02" class="br-ref">I02</a></td></tr>
   </tbody>
 </table>
 
@@ -364,31 +365,72 @@ td strong{color:#0A0A0A}
 </div>
 
 <div class="flow-overview">
-  <img src="ysc_screens/web_flow_promotion.png" alt="Promotion Flow Diagram">
+  <img src="ysc_screens/web/web_flow_promotion.png" alt="Promotion Flow Diagram">
   <div class="caption">Flow Diagram: หน้าโปรโมชั่นและแคมเปญ (Figma node 5383:32810)</div>
 </div>
 
 <div class="use-case">
   <div class="uc-header"><span class="uc-num">UC-WEB-A01</span><span class="uc-title">เข้าหน้าแรกเว็บไซต์</span></div>
   <div class="uc-body">
-    <div class="screen-figure">
-      <img src="ysc_screens/web_homepage.png" alt="หน้าแรกเว็บไซต์">
-      <div class="screen-caption"><span>หน้าแรก — Banner, แบรนด์, สินค้ามาใหม่, โปรโมชั่น</span><span class="ref">Figma node 994:8203</span></div>
+
+    <div class="screen-figure" data-slot="SCR-WEB-A01">
+      <img src="ysc_screens/web/SCR-WEB-A01.png" alt="หน้าแรกเว็บไซต์ — Figma Design">
+      <div class="screen-caption"><span>SCR-WEB-A01 — หน้าแรก (Figma Design)</span><span class="ref">node 8559:52297</span></div>
+      <div class="upload-overlay"><div class="upload-icon">+</div><div class="upload-text">คลิกเพื่ออัพโหลดรูปภาพ</div><div class="upload-filename">SCR-WEB-A01.png</div></div>
+      <span class="uploaded-badge">✓ อัพโหลดแล้ว</span>
     </div>
+
+    <div class="screen-figure" data-slot="SCR-WEB-A01-annotated">
+      <img src="ysc_screens/web/SCR-WEB-A01-annotated.png" alt="SCR-WEB-A01 — Homepage พร้อม FR Zone Labels">
+      <div class="screen-caption"><span>SCR-WEB-A01 — Homepage Layout Zones (FR-1.1.1 – FR-1.1.16)</span><span class="ref">สร้าง: 2026-05-18</span></div>
+      <div class="upload-overlay"><div class="upload-icon">+</div><div class="upload-text">คลิกเพื่ออัพโหลดรูปภาพ</div><div class="upload-filename">SCR-WEB-A01-annotated.png</div></div>
+      <span class="uploaded-badge">✓ อัพโหลดแล้ว</span>
+    </div>
+
+    <div class="uc-section"><div class="uc-section-label">Homepage Layout Zones — FR-1.1.x Reference</div>
+      <table>
+        <thead><tr><th style="width:90px">FR Code</th><th style="width:200px">Zone</th><th>รายละเอียด Component</th><th style="width:110px">Data Source</th></tr></thead>
+        <tbody>
+          <tr><td><span class="br-ref">FR-1.1.1</span></td><td><strong>Top bar Ticker</strong></td><td>ข้อความประกาศเคลื่อนไหว: วันที่ Flash Sale / Warehouse Sale · Countdown นับถอยหลัง</td><td>CMS</td></tr>
+          <tr><td><span class="br-ref">FR-1.1.2</span></td><td><strong>Header</strong></td><td>Logo YONGCHAROEN · Mega Menu (สินค้าทั้งหมด, โปรโมชั่น, สมาชิกพิเศษ, อื่น ๆ) · Search Bar · Cart + Badge · แต้มสะสม (Login)</td><td>CRM / PRD</td></tr>
+          <tr><td><span class="br-ref">FR-1.1.3</span></td><td><strong>Promo Strip (3 Banners)</strong></td><td>แบนเนอร์นับถอยหลัง 3 ชิ้น — ลดคลัง / แพ็กที่ 2 แห่ 8,800 / ซื้อ 2 ลด 70%</td><td>CMS + Promo Engine</td></tr>
+          <tr><td><span class="br-ref">FR-1.1.4</span></td><td><strong>Hero Banner</strong></td><td>Full-width: "WAREHOUSE HOT SALE UP TO 80%" + วันที่ Flash Sale</td><td>CMS</td></tr>
+          <tr><td><span class="br-ref">FR-1.1.5</span></td><td><strong>Flash Sale Event Bar</strong></td><td>แถบวันเวลา Flash Sale: "16 - 30 ก.พ. 2569 | 09:30 - 18:00 น." + Countdown Timer ซิงค์ Server</td><td>CMS</td></tr>
+          <tr><td><span class="br-ref">FR-1.1.6</span></td><td><strong>Category Sidebar</strong></td><td>Tree หมวดหมู่ฝั่งซ้าย พร้อมไอคอน — คลิกไปหน้า Category Listing <a href="#SCR-WEB-A03" class="br-ref">A03</a></td><td>PRD</td></tr>
+          <tr><td><span class="br-ref">FR-1.1.7</span></td><td><strong>Promo Carousel (4 Banners)</strong></td><td>Slider อัตโนมัติ: 40% · 50% · -20~60% · 30% — คลิกไปหน้าโปรโมชั่น <a href="#SCR-WEB-A05" class="br-ref">A05</a></td><td>CMS + Promo Engine</td></tr>
+          <tr><td><span class="br-ref">FR-1.1.8</span></td><td><strong>Shelf: สินค้าขายดีประจำสัปดาห์</strong></td><td>Horizontal scroll · Product Card (รูป + ชื่อ + ราคา + ปุ่ม +/- + Add to Cart) · เรียงตาม OMS ยอดขาย</td><td>PRD + OMS</td></tr>
+          <tr><td><span class="br-ref">FR-1.1.9</span></td><td><strong>Shelf: สินค้าใหม่ YONG CHAROEN</strong></td><td>Product Card เหมือน FR-1.1.8 — เรียงตาม Date Added DESC</td><td>PRD</td></tr>
+          <tr><td><span class="br-ref">FR-1.1.10</span></td><td><strong>Mid Banners (2 ชิ้น)</strong></td><td>Full-width banner คู่: SALE 50% + SUMMER SALE 60%</td><td>CMS</td></tr>
+          <tr><td><span class="br-ref">FR-1.1.11</span></td><td><strong>Featured Product Spotlight</strong></td><td>สินค้าเด่น 1 รายการ (Hero Card) + Grid สินค้าประกอบ (ตัวอย่าง: Duracell)</td><td>PRD + Promo Engine</td></tr>
+          <tr><td><span class="br-ref">FR-1.1.12</span></td><td><strong>Category Blocks + Sports Banner</strong></td><td>4 กลุ่ม: เฟอร์นิเจอร์ · เครื่องดนตรี · เครื่องเขียน · สันทนาการ — Carousel สินค้า + Banner ลด 40%</td><td>PRD + CMS</td></tr>
+          <tr><td><span class="br-ref">FR-1.1.13</span></td><td><strong>Brand Shelf (Advertiser)</strong></td><td>Logo แบรนด์ + Product Cards ของแบรนด์ — ตัวอย่าง: Horse · จัดการโดย CMS</td><td>PRD + CMS</td></tr>
+          <tr><td><span class="br-ref">FR-1.1.14</span></td><td><strong>ข่าวสารและกิจกรรม</strong></td><td>3 บทความล่าสุด: รูป + วันที่ + หัวข้อ → คลิกไป <a href="#SCR-WEB-I01" class="br-ref">I01</a> / <a href="#SCR-WEB-I02" class="br-ref">I02</a></td><td>CMS</td></tr>
+          <tr><td><span class="br-ref">FR-1.1.15</span></td><td><strong>Footer (Info Columns)</strong></td><td>4 คอลัมน์: ติดต่อบริษัท · บริการลูกค้า · สิทธิประโยชน์โปรโมชั่น · เกี่ยวกับสมาชิก</td><td>CMS</td></tr>
+          <tr><td><span class="br-ref">FR-1.1.16</span></td><td><strong>Footer (Brand + Social)</strong></td><td>Logo YONG CHAROEN · About text · Social icons (FB/IG/TikTok/LINE) · DBD Registered · Trust Badge</td><td>CMS</td></tr>
+        </tbody>
+      </table>
+    </div>
+
     <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
       <ol class="uc-flow">
-        <li>ลูกค้าเข้า URL หลัก ระบบแสดง Header (Logo, Search, Menu, Cart, Login/Account)</li>
-        <li>Hero Banner / Carousel โปรโมชั่นปัจจุบัน</li>
-        <li>หมวดหมู่สินค้ายอดนิยม (Grid ไอคอน)</li>
-        <li>สินค้ามาใหม่ / Hot Trend / ขายดี (Carousel)</li>
-        <li>แบรนด์ยอดนิยม + Newsletter</li>
-        <li>Footer ลิงก์นโยบาย ติดต่อ โซเชียล</li>
+        <li>ลูกค้าเข้า URL หลัก — ระบบแสดง Header (Logo, Mega Menu, Search, Cart, แต้มสะสม)</li>
+        <li>Top bar Ticker แสดงข้อความ Warehouse / Flash Sale + Countdown</li>
+        <li>Promo Strip 3 แบนเนอร์ + Hero Banner ปรากฏเหนือ fold</li>
+        <li>Category Sidebar ฝั่งซ้าย + Promo Carousel 4 แบนเนอร์ฝั่งขวา</li>
+        <li>Shelf สินค้าขายดีประจำสัปดาห์ (Horizontal scroll + Product Card + Add to Cart)</li>
+        <li>Shelf สินค้าใหม่ YONG CHAROEN</li>
+        <li>Mid Banners (2 ชิ้น) + Featured Product Spotlight</li>
+        <li>Category Blocks 4 กลุ่ม พร้อม Carousel สินค้าแต่ละกลุ่ม</li>
+        <li>Brand Shelf + ข่าวสารและกิจกรรม 3 บทความ</li>
+        <li>Footer ลิงก์นโยบาย ติดต่อ โซเชียล DBD</li>
       </ol>
     </div>
     <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
       <div class="uc-ac"><strong>AC-A01-01:</strong> โหลด ≤ 3 วินาที (LCP ผ่าน Google Web Vitals)</div>
-      <div class="uc-ac"><strong>AC-A01-02:</strong> Banner เปลี่ยนสไลด์อัตโนมัติ 5 วินาที</div>
-      <div class="uc-ac"><strong>AC-A01-03:</strong> Banner / Pop-up มาจาก CMS Backoffice อัปเดต ≤ 5 นาที</div>
+      <div class="uc-ac"><strong>AC-A01-02:</strong> Promo Carousel เปลี่ยนสไลด์อัตโนมัติ 5 วินาที</div>
+      <div class="uc-ac"><strong>AC-A01-03:</strong> Banner / Top bar / Promo Strip มาจาก CMS Backoffice — อัปเดตใน ≤ 5 นาที</div>
+      <div class="uc-ac"><strong>AC-A01-04:</strong> Product Shelf แสดง Real-time Stock (ไม่มีสต็อก = ปุ่มเพิ่มตะกร้าถูก Disable)</div>
+      <div class="uc-ac"><strong>AC-A01-05:</strong> Countdown Timer ซิงค์เวลาจาก Server — ไม่ใช้ Client local time</div>
     </div>
   </div>
 </div>
@@ -397,7 +439,7 @@ td strong{color:#0A0A0A}
   <div class="uc-header"><span class="uc-num">UC-WEB-A02</span><span class="uc-title">ค้นหาสินค้าและดูผลค้นหา</span></div>
   <div class="uc-body">
     <div class="screen-figure">
-      <img src="ysc_screens/web_search_dropdown.png" alt="Search Auto-suggest">
+      <img src="ysc_screens/web/web_search_dropdown.png" alt="Search Auto-suggest">
       <div class="screen-caption"><span>Auto-suggest dropdown ระหว่างพิมพ์</span><span class="ref">Figma node 1037:5301</span></div>
     </div>
     <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
@@ -420,7 +462,7 @@ td strong{color:#0A0A0A}
   <div class="uc-header"><span class="uc-num">UC-WEB-A03</span><span class="uc-title">ดูหน้าสินค้าตามแบรนด์ (Brand Page)</span></div>
   <div class="uc-body">
     <div class="screen-figure">
-      <img src="ysc_screens/web_brand_detail.png" alt="หน้าแบรนด์ ESY">
+      <img src="ysc_screens/web/web_brand_detail.png" alt="หน้าแบรนด์ ESY">
       <div class="screen-caption"><span>Brand Page (ตัวอย่าง: ESY) — Banner + Promo + สินค้าตามแบรนด์</span><span class="ref">Figma node 8865:70318</span></div>
     </div>
     <div class="uc-section"><div class="uc-section-label">จุดประสงค์</div><p style="margin:0">หน้ารวมสินค้าตามแบรนด์ พร้อม Banner ของแบรนด์, แคมเปญพิเศษของแบรนด์, และส่วนแลกของรางวัล</p></div>
@@ -487,7 +529,7 @@ td strong{color:#0A0A0A}
   <div class="uc-header"><span class="uc-num">UC-WEB-B01</span><span class="uc-title">ดูรายละเอียดสินค้า (PDP)</span></div>
   <div class="uc-body">
     <div class="screen-figure">
-      <img src="ysc_screens/web_product_detail.png" alt="หน้ารายละเอียดสินค้า">
+      <img src="ysc_screens/web/web_product_detail.png" alt="หน้ารายละเอียดสินค้า">
       <div class="screen-caption"><span>Product Detail Page</span><span class="ref">Figma node 487:2653</span></div>
     </div>
     <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
@@ -512,7 +554,7 @@ td strong{color:#0A0A0A}
   <div class="uc-header"><span class="uc-num">UC-WEB-B02</span><span class="uc-title">เพิ่มสินค้าและจัดการตะกร้า</span></div>
   <div class="uc-body">
     <div class="screen-figure">
-      <img src="ysc_screens/web_cart.png" alt="หน้าตะกร้าสินค้า">
+      <img src="ysc_screens/web/web_cart.png" alt="หน้าตะกร้าสินค้า">
       <div class="screen-caption"><span>หน้าตะกร้า (Cart) — Checkout Step 1</span><span class="ref">Figma node 857:5081</span></div>
     </div>
     <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
@@ -596,11 +638,11 @@ td strong{color:#0A0A0A}
   <div class="uc-body">
     <div class="screen-grid">
       <div class="screen-figure">
-        <img src="ysc_screens/web_checkout_information.png" alt="Checkout Information">
+        <img src="ysc_screens/web/web_checkout_information.png" alt="Checkout Information">
         <div class="screen-caption"><span>Step 2 — Information แบบรวม</span><span class="ref">Figma node 867:14194</span></div>
       </div>
       <div class="screen-figure">
-        <img src="ysc_screens/web_checkout_address.png" alt="Select Address ขนส่งเอกชน">
+        <img src="ysc_screens/web/web_checkout_address.png" alt="Select Address ขนส่งเอกชน">
         <div class="screen-caption"><span>Step 2 — เลือกที่อยู่ขนส่งเอกชน</span><span class="ref">Figma node 3211:13755</span></div>
       </div>
     </div>
@@ -623,7 +665,7 @@ td strong{color:#0A0A0A}
   <div class="uc-header"><span class="uc-num">UC-WEB-C03</span><span class="uc-title">Step 3: วิธีการชำระเงิน</span></div>
   <div class="uc-body">
     <div class="screen-figure">
-      <img src="ysc_screens/web_checkout_payment.png" alt="หน้าเลือกวิธีชำระเงิน">
+      <img src="ysc_screens/web/web_checkout_payment.png" alt="หน้าเลือกวิธีชำระเงิน">
       <div class="screen-caption"><span>Step 3 — Payment Methods</span><span class="ref">Figma node 614:1753</span></div>
     </div>
     <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
@@ -672,7 +714,7 @@ td strong{color:#0A0A0A}
   <div class="uc-header"><span class="uc-num">UC-WEB-C05</span><span class="uc-title">หน้าสั่งซื้อสำเร็จ (Order Confirmation)</span></div>
   <div class="uc-body">
     <div class="screen-figure">
-      <img src="ysc_screens/web_order_success.png" alt="สั่งซื้อสำเร็จ" style="max-width:400px;margin:0 auto">
+      <img src="ysc_screens/web/web_order_success.png" alt="สั่งซื้อสำเร็จ" style="max-width:400px;margin:0 auto">
       <div class="screen-caption"><span>Modal สั่งซื้อสำเร็จ</span><span class="ref">Figma node 618:2356</span></div>
     </div>
     <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
@@ -697,7 +739,7 @@ td strong{color:#0A0A0A}
 </div>
 
 <div class="flow-overview">
-  <img src="ysc_screens/web_flow_login.png" alt="Login &amp; Register Flow Diagram">
+  <img src="ysc_screens/web/web_flow_login.png" alt="Login &amp; Register Flow Diagram">
   <div class="caption">Flow Diagram: เข้าสู่ระบบและสมัครสมาชิก (Figma node 5822:37207)</div>
 </div>
 
@@ -705,7 +747,7 @@ td strong{color:#0A0A0A}
   <div class="uc-header"><span class="uc-num">UC-WEB-D01</span><span class="uc-title">เข้าสู่ระบบด้วยอีเมล / รหัสผ่าน</span></div>
   <div class="uc-body">
     <div class="screen-figure">
-      <img src="ysc_screens/web_login.png" alt="หน้าเข้าสู่ระบบ">
+      <img src="ysc_screens/web/web_login.png" alt="หน้าเข้าสู่ระบบ">
       <div class="screen-caption"><span>หน้า Login</span><span class="ref">Figma node 994:7246</span></div>
     </div>
     <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
@@ -823,7 +865,7 @@ td strong{color:#0A0A0A}
 </div>
 
 <div class="flow-overview">
-  <img src="ysc_screens/web_flow_account.png" alt="My Account Flow Diagram">
+  <img src="ysc_screens/web/web_flow_account.png" alt="My Account Flow Diagram">
   <div class="caption">Flow Diagram: บัญชีของฉัน — Dashboard, Loyalty, Orders, Profile, Addresses, Quotations, Cart Templates (Figma node 3172:13345)</div>
 </div>
 
@@ -1058,7 +1100,7 @@ td strong{color:#0A0A0A}
 </div>
 
 <div class="flow-overview">
-  <img src="ysc_screens/web_flow_info.png" alt="Info Pages Flow Diagram">
+  <img src="ysc_screens/web/web_flow_info.png" alt="Info Pages Flow Diagram">
   <div class="caption">Flow Diagram: หน้าข้อมูลทั่วไป (Figma node 7100:44288)</div>
 </div>
 
@@ -1134,7 +1176,7 @@ td strong{color:#0A0A0A}
 </div>
 
 <div class="flow-overview">
-  <img src="ysc_screens/web_flow_mobile.png" alt="Mobile Flow Diagram">
+  <img src="ysc_screens/web/web_flow_mobile.png" alt="Mobile Flow Diagram">
   <div class="caption">Flow Diagram: เวอร์ชัน Mobile ทั้งเว็บ — Homepage, Product List, News &amp; Event, Product Detail, Cart > Payment > Complete, Login &amp; Register, More (Figma node 5246:37634)</div>
 </div>
 
@@ -1161,41 +1203,90 @@ td strong{color:#0A0A0A}
 </div>
 
 <h1>8. การออกแบบประสบการณ์ผู้ใช้ (Screen Inventory)</h1>
-<p>ภาพรวมของหน้าจอทั้งหมดที่อยู่ในขอบเขต — รวมถึงสถานะของดีไซน์ใน Figma</p>
+<p>ภาพรวมของหน้าจอทั้งหมดที่อยู่ในขอบเขต — อ้างอิงจาก Figma Front End (Web) tracking sheet ทั้งหมด 54 หน้าจอ</p>
 <table>
-  <thead><tr><th style="width:140px">รหัส</th><th>ชื่อหน้าจอ</th><th style="width:120px">Section</th><th style="width:120px">สถานะ Figma</th></tr></thead>
+  <thead><tr><th style="width:140px">รหัส</th><th>ชื่อหน้าจอ</th><th style="width:80px">Section</th><th style="width:200px">รายละเอียด / Sub-screens</th><th style="width:100px">สถานะ Figma</th></tr></thead>
   <tbody>
-    <tr><td><strong>SCR-WEB-A01</strong></td><td>หน้าแรก (Homepage)</td><td>A</td><td><span class="tag-confirmed">มี</span></td></tr>
-    <tr><td><strong>SCR-WEB-A02</strong></td><td>ผลการค้นหา (Search Result + Auto-suggest)</td><td>A</td><td><span class="tag-confirmed">มี</span></td></tr>
-    <tr><td><strong>SCR-WEB-A03</strong></td><td>หน้าตามแบรนด์ (Brand Page) — ตัวอย่าง ESY</td><td>A</td><td><span class="tag-confirmed">มี</span></td></tr>
-    <tr><td><strong>SCR-WEB-A04</strong></td><td>หน้าโปรโมชั่น (Promotion Hub + Landing 4 รูปแบบ)</td><td>A</td><td><span class="tag-confirmed">มี</span></td></tr>
-    <tr><td><strong>SCR-WEB-B01</strong></td><td>รายละเอียดสินค้า (PDP)</td><td>B</td><td><span class="tag-confirmed">มี</span></td></tr>
-    <tr><td><strong>SCR-WEB-B02</strong></td><td>ตะกร้า (Cart) — 3 Tabs</td><td>B</td><td><span class="tag-confirmed">มี</span></td></tr>
-    <tr><td><strong>SCR-WEB-B03</strong></td><td>เทมเพลตตะกร้า (My Cart Templates)</td><td>B</td><td><span class="tag-confirmed">มี</span></td></tr>
-    <tr><td><strong>SCR-WEB-C01</strong></td><td>Checkout Step 2: Information</td><td>C</td><td><span class="tag-confirmed">มี</span></td></tr>
-    <tr><td><strong>SCR-WEB-C02</strong></td><td>Checkout Step 2 variant: Select Address ขนส่งเอกชน</td><td>C</td><td><span class="tag-confirmed">มี</span></td></tr>
-    <tr><td><strong>SCR-WEB-C03</strong></td><td>Checkout Step 3: Payment</td><td>C</td><td><span class="tag-confirmed">มี</span></td></tr>
-    <tr><td><strong>SCR-WEB-C04</strong></td><td>Checkout Step 4: Review</td><td>C</td><td><span class="tag-confirmed">มี</span></td></tr>
-    <tr><td><strong>SCR-WEB-C05</strong></td><td>หน้าสั่งซื้อสำเร็จ (Modal)</td><td>C</td><td><span class="tag-confirmed">มี</span></td></tr>
-    <tr><td><strong>SCR-WEB-D01</strong></td><td>เข้าสู่ระบบ (Login Email + OTP)</td><td>D</td><td><span class="tag-confirmed">มี</span></td></tr>
-    <tr><td><strong>SCR-WEB-D02</strong></td><td>สมัครสมาชิกบุคคลธรรมดา</td><td>D</td><td><span class="tag-confirmed">มี</span></td></tr>
-    <tr><td><strong>SCR-WEB-D03</strong></td><td>สมัครสมาชิกนิติบุคคล (Multi-step)</td><td>D</td><td><span class="tag-confirmed">มี</span></td></tr>
-    <tr><td><strong>SCR-WEB-D04</strong></td><td>ลืม/รีเซ็ตรหัสผ่าน</td><td>D</td><td><span class="tag-confirmed">มี</span></td></tr>
-    <tr><td><strong>SCR-WEB-E01</strong></td><td>Account Dashboard (2 variants: เครดิต / ไม่มีเครดิต)</td><td>E</td><td><span class="tag-confirmed">มี</span></td></tr>
-    <tr><td><strong>SCR-WEB-E02</strong></td><td>ข้อมูลบัญชีผู้ใช้งาน (Profile)</td><td>E</td><td><span class="tag-confirmed">มี</span></td></tr>
-    <tr><td><strong>SCR-WEB-E03</strong></td><td>จัดการที่อยู่ (2 Tabs: จัดส่ง / ออกเอกสาร)</td><td>E</td><td><span class="tag-confirmed">มี</span></td></tr>
-    <tr><td><strong>SCR-WEB-E04</strong></td><td>คำสั่งซื้อทั่วไป + Pre-Order</td><td>E</td><td><span class="tag-confirmed">มี</span></td></tr>
-    <tr><td><strong>SCR-WEB-E05</strong></td><td>ใบเสนอราคา</td><td>E</td><td><span class="tag-confirmed">มี</span></td></tr>
-    <tr><td><strong>SCR-WEB-E06</strong></td><td>เทมเพลตตะกร้าของฉัน + ของ Marketing</td><td>E</td><td><span class="tag-confirmed">มี</span></td></tr>
-    <tr><td><strong>SCR-WEB-F01</strong></td><td>คะแนนสะสมและกิจกรรม</td><td>F</td><td><span class="tag-confirmed">มี</span></td></tr>
-    <tr><td><strong>SCR-WEB-F02</strong></td><td>Rewards Catalog (แลกรับสินค้า)</td><td>F</td><td><span class="tag-confirmed">มี</span></td></tr>
-    <tr><td><strong>SCR-WEB-F03</strong></td><td>คูปองส่วนลด + วันเกิด + สิทธิ์พิเศษ</td><td>F</td><td><span class="tag-confirmed">มี</span></td></tr>
-    <tr><td><strong>SCR-WEB-F04</strong></td><td>ประวัติคะแนน</td><td>F</td><td><span class="tag-confirmed">มี</span></td></tr>
-    <tr><td><strong>SCR-WEB-G01</strong></td><td>ช่วยเหลือ / FAQ / ติดต่อ</td><td>G</td><td><span class="tag-confirmed">มี</span></td></tr>
-    <tr><td><strong>SCR-WEB-G02</strong></td><td>นโยบาย</td><td>G</td><td><span class="tag-confirmed">มี</span></td></tr>
-    <tr><td><strong>SCR-WEB-G03</strong></td><td>เกี่ยวกับเรา</td><td>G</td><td><span class="tag-confirmed">มี</span></td></tr>
-    <tr><td><strong>SCR-WEB-G04</strong></td><td>ผลิตภัณฑ์โบนัส</td><td>G</td><td><span class="tag-confirmed">มี</span></td></tr>
-    <tr><td><strong>SCR-WEB-H01</strong></td><td>Mobile (ทุก Section)</td><td>H</td><td><span class="tag-confirmed">มี (ดู Mobile Flow)</span></td></tr>
+    <tr style="background:#F0F9FF"><td colspan="5" style="font-weight:700;font-size:12px;letter-spacing:.05em;color:#1E40AF;padding:8px 12px">A — Discovery (ค้นพบสินค้า)</td></tr>
+    <tr id="SCR-WEB-A01"><td><strong>SCR-WEB-A01</strong></td><td>หน้าแรก (Homepage)</td><td>A</td><td>Top bar Ticker · Hero Flash Sale + นับถอยหลัง · Category Sidebar (Tree) · Promo Carousel (4 แบนเนอร์) · Shelf ขายดีประจำสัปดาห์ · Shelf สินค้าใหม่ · Mid Banners (2 ใบ) · Featured Product Spotlight · Category Blocks (เฟอร์นิเจอร์/ดนตรี/เครื่องเขียน/กีฬา) · Brand Shelf (Horse) · ข่าวสารและกิจกรรม (3 บทความ) · Footer</td><td><span class="tag-confirmed">มี</span></td></tr>
+    <tr id="SCR-WEB-A02"><td><strong>SCR-WEB-A02</strong></td><td>ผลการค้นหา (Search Result + Auto-suggest)</td><td>A</td><td>—</td><td><span class="tag-confirmed">มี</span></td></tr>
+    <tr id="SCR-WEB-A03"><td><strong>SCR-WEB-A03</strong></td><td>หน้ารวมสินค้าทั้งหมด (All Products / Category Listing)</td><td>A</td><td>ตาม Figma #2</td><td><span class="tag-confirmed">มี</span></td></tr>
+    <tr id="SCR-WEB-A04"><td><strong>SCR-WEB-A04</strong></td><td>หน้าตามแบรนด์ (Brand Page)</td><td>A</td><td>ตัวอย่าง ESY</td><td><span class="tag-confirmed">มี</span></td></tr>
+    <tr id="SCR-WEB-A05"><td><strong>SCR-WEB-A05</strong></td><td>หน้าโปรโมชั่น (Promotion Hub + Landing)</td><td>A</td><td>4 รูปแบบ: Hub แบนเนอร์รวม (#15) · ภาพ+รายละเอียด+สินค้า (#16) · Shelf ภาพ Header+ลิสต์ type 1 (#17) · type 2 (#18)</td><td><span class="tag-confirmed">มี</span></td></tr>
+    <tr style="background:#F0F9FF"><td colspan="5" style="font-weight:700;font-size:12px;letter-spacing:.05em;color:#1E40AF;padding:8px 12px">B — Shopping (สั่งซื้อสินค้า)</td></tr>
+    <tr id="SCR-WEB-B01"><td><strong>SCR-WEB-B01</strong></td><td>รายละเอียดสินค้า (PDP)</td><td>B</td><td>4 variants: +โปรโมชั่น (#3) · +ตัวเลือก 3 Level (#4) · +กลุ่ม/ขนาด/โปร ต่างกัน (#5) · +Pre-Order (#6)</td><td><span class="tag-confirmed">มี</span></td></tr>
+    <tr id="SCR-WEB-B02"><td><strong>SCR-WEB-B02</strong></td><td>ตะกร้า (Cart)</td><td>B</td><td>3 Tabs รวม Pre-Order Tab (#7) · Cart Templates</td><td><span class="tag-confirmed">มี</span></td></tr>
+    <tr id="SCR-WEB-B03"><td><strong>SCR-WEB-B03</strong></td><td>ขอใบเสนอราคา (Quote Request Cart)</td><td>B</td><td>รายการสินค้าในตะกร้า ขอใบเสนอราคา (#14)</td><td><span class="tag-confirmed">มี</span></td></tr>
+    <tr style="background:#F0F9FF"><td colspan="5" style="font-weight:700;font-size:12px;letter-spacing:.05em;color:#1E40AF;padding:8px 12px">C — Checkout (ชำระเงิน)</td></tr>
+    <tr id="SCR-WEB-C01"><td><strong>SCR-WEB-C01</strong></td><td>Checkout Step 1: ตรวจสอบตะกร้า</td><td>C</td><td>Flow overview step 1 (#8)</td><td><span class="tag-confirmed">มี</span></td></tr>
+    <tr id="SCR-WEB-C02"><td><strong>SCR-WEB-C02</strong></td><td>Checkout Step 2: ที่อยู่และวิธีจัดส่ง</td><td>C</td><td>มารับเอง / ขนส่งเอกชน (#9)</td><td><span class="tag-confirmed">มี</span></td></tr>
+    <tr id="SCR-WEB-C03"><td><strong>SCR-WEB-C03</strong></td><td>Checkout Step 3: Payment</td><td>C</td><td>4 วิธี: โอนผ่านธนาคาร (#10) · บัตรเครดิต (#11) · หักวงเงินเครดิต (#12) · จ่ายหน้าร้าน-มารับเอง (#13)</td><td><span class="tag-confirmed">มี</span></td></tr>
+    <tr id="SCR-WEB-C04"><td><strong>SCR-WEB-C04</strong></td><td>Checkout Step 4: Review &amp; Confirm</td><td>C</td><td>—</td><td><span class="tag-confirmed">มี</span></td></tr>
+    <tr id="SCR-WEB-C05"><td><strong>SCR-WEB-C05</strong></td><td>หน้าสั่งซื้อสำเร็จ (Order Success)</td><td>C</td><td>—</td><td><span class="tag-confirmed">มี</span></td></tr>
+    <tr style="background:#F0F9FF"><td colspan="5" style="font-weight:700;font-size:12px;letter-spacing:.05em;color:#1E40AF;padding:8px 12px">D — Authentication (เข้าสู่ระบบ / สมัครสมาชิก)</td></tr>
+    <tr id="SCR-WEB-D01"><td><strong>SCR-WEB-D01</strong></td><td>เข้าสู่ระบบด้วยอีเมล (Email Login + OTP)</td><td>D</td><td>Figma #27</td><td><span class="tag-confirmed">มี</span></td></tr>
+    <tr id="SCR-WEB-D02"><td><strong>SCR-WEB-D02</strong></td><td>เข้าสู่ระบบด้วยเบอร์โทรศัพท์ (Phone OTP Login)</td><td>D</td><td>Figma #26 — หน้าแยกจาก Email Login</td><td><span class="tag-confirmed">มี</span></td></tr>
+    <tr id="SCR-WEB-D03"><td><strong>SCR-WEB-D03</strong></td><td>สมัครสมาชิกบุคคลธรรมดา (Register)</td><td>D</td><td>Figma #28</td><td><span class="tag-confirmed">มี</span></td></tr>
+    <tr id="SCR-WEB-D04"><td><strong>SCR-WEB-D04</strong></td><td>สมัครสมาชิกนิติบุคคล (Multi-step)</td><td>D</td><td>—</td><td><span class="tag-confirmed">มี</span></td></tr>
+    <tr id="SCR-WEB-D05"><td><strong>SCR-WEB-D05</strong></td><td>ลืม/รีเซ็ตรหัสผ่าน</td><td>D</td><td>—</td><td><span class="tag-confirmed">มี</span></td></tr>
+    <tr style="background:#F0F9FF"><td colspan="5" style="font-weight:700;font-size:12px;letter-spacing:.05em;color:#1E40AF;padding:8px 12px">E — My Account (บัญชีและประวัติ)</td></tr>
+    <tr id="SCR-WEB-E01"><td><strong>SCR-WEB-E01</strong></td><td>Account Dashboard</td><td>E</td><td>2 variants: มีวงเงินเครดิต (#19) · ไม่มีวงเงินเครดิต (#20)</td><td><span class="tag-confirmed">มี</span></td></tr>
+    <tr id="SCR-WEB-E02"><td><strong>SCR-WEB-E02</strong></td><td>ข้อมูลบัญชีผู้ใช้งาน (Profile)</td><td>E</td><td>ข้อมูลส่วนตัว · ข้อมูลเครดิต · ข้อมูลติดต่อ (#35)</td><td><span class="tag-confirmed">มี</span></td></tr>
+    <tr id="SCR-WEB-E03"><td><strong>SCR-WEB-E03</strong></td><td>จัดการที่อยู่</td><td>E</td><td>2 Tabs: ที่อยู่จัดส่ง (#36) · ที่อยู่ออกเอกสาร (#37)</td><td><span class="tag-confirmed">มี</span></td></tr>
+    <tr id="SCR-WEB-E04"><td><strong>SCR-WEB-E04</strong></td><td>ประวัติคำสั่งซื้อ</td><td>E</td><td>List+Filter ตามสถานะ (#21) · รายละเอียด+ของรางวัล (#22) · Pre-Order (#23)</td><td><span class="tag-confirmed">มี</span></td></tr>
+    <tr id="SCR-WEB-E05"><td><strong>SCR-WEB-E05</strong></td><td>ประวัติใบเสนอราคา</td><td>E</td><td>List+Filter ตามสถานะ (#24) · รายละเอียด (#25)</td><td><span class="tag-confirmed">มี</span></td></tr>
+    <tr id="SCR-WEB-E06"><td><strong>SCR-WEB-E06</strong></td><td>เทมเพลตตะกร้าของฉัน + ของ Marketing</td><td>E</td><td>—</td><td><span class="tag-confirmed">มี</span></td></tr>
+    <tr style="background:#F0F9FF"><td colspan="5" style="font-weight:700;font-size:12px;letter-spacing:.05em;color:#1E40AF;padding:8px 12px">F — Loyalty (คะแนน รางวัล คูปอง)</td></tr>
+    <tr id="SCR-WEB-F01"><td><strong>SCR-WEB-F01</strong></td><td>คะแนนสะสมและกิจกรรม</td><td>F</td><td>หน้าหลัก (#29) · รางวัลและคะแนน Tab (#30)</td><td><span class="tag-confirmed">มี</span></td></tr>
+    <tr id="SCR-WEB-F02"><td><strong>SCR-WEB-F02</strong></td><td>Rewards Catalog (แลกรับสินค้า)</td><td>F</td><td>Figma #31</td><td><span class="tag-confirmed">มี</span></td></tr>
+    <tr id="SCR-WEB-F03"><td><strong>SCR-WEB-F03</strong></td><td>แลกคะแนนเป็นคูปอง</td><td>F</td><td>Figma #32</td><td><span class="tag-confirmed">มี</span></td></tr>
+    <tr id="SCR-WEB-F04"><td><strong>SCR-WEB-F04</strong></td><td>คูปองส่วนลด + สิทธิ์พิเศษ + รางวัลที่แลกไว้</td><td>F</td><td>คูปองและรางวัลที่แลกไว้ (#33) · วันเกิด · สิทธิ์พิเศษ</td><td><span class="tag-confirmed">มี</span></td></tr>
+    <tr id="SCR-WEB-F05"><td><strong>SCR-WEB-F05</strong></td><td>ประวัติคะแนน</td><td>F</td><td>Figma #34</td><td><span class="tag-confirmed">มี</span></td></tr>
+    <tr style="background:#F0F9FF"><td colspan="5" style="font-weight:700;font-size:12px;letter-spacing:.05em;color:#1E40AF;padding:8px 12px">G — Info Pages (หน้าข้อมูลทั่วไป)</td></tr>
+    <tr id="SCR-WEB-G01"><td><strong>SCR-WEB-G01</strong></td><td>ช่วยเหลือ (Help Center)</td><td>G</td><td>FAQ (#38) · เปลี่ยน/คืน/เคลมสินค้า (#39) · เช็คสถานะสั่งซื้อ (#40) · การขอเครดิตเทอม (#41)</td><td><span class="tag-confirmed">มี</span></td></tr>
+    <tr id="SCR-WEB-G02"><td><strong>SCR-WEB-G02</strong></td><td>ขายสินค้ากับเรา (Sell With Us)</td><td>G</td><td>Figma #42</td><td><span class="tag-confirmed">มี</span></td></tr>
+    <tr id="SCR-WEB-G03"><td><strong>SCR-WEB-G03</strong></td><td>สิทธิประโยชน์สมาชิก</td><td>G</td><td>การสมัครสมาชิก (#43) · ราคาพิเศษสมาชิกขายส่ง (#44) · วิธีแลกของรางวัลและอื่น ๆ (#45)</td><td><span class="tag-pending">กำลังทำ</span></td></tr>
+    <tr id="SCR-WEB-G04"><td><strong>SCR-WEB-G04</strong></td><td>นโยบาย</td><td>G</td><td>เงื่อนไขการใช้งาน (#46) · การส่งสินค้า (#47) · ความเป็นส่วนตัว (#48) · คุกกี้ (#49)</td><td><span class="tag-confirmed">มี</span></td></tr>
+    <tr id="SCR-WEB-G05"><td><strong>SCR-WEB-G05</strong></td><td>เกี่ยวกับบริษัท</td><td>G</td><td>ประวัติบริษัท (#50) · สาขา (#51) · สมัครงาน (#52)</td><td><span class="tag-confirmed">มี</span></td></tr>
+    <tr id="SCR-WEB-G06"><td><strong>SCR-WEB-G06</strong></td><td>ผลิตภัณฑ์โบนัส</td><td>G</td><td>—</td><td><span class="tag-confirmed">มี</span></td></tr>
+    <tr style="background:#F0F9FF"><td colspan="5" style="font-weight:700;font-size:12px;letter-spacing:.05em;color:#1E40AF;padding:8px 12px">H — Mobile</td></tr>
+    <tr id="SCR-WEB-H01"><td><strong>SCR-WEB-H01</strong></td><td>Mobile (ทุก Section)</td><td>H</td><td>ดู Mobile Flow Diagram</td><td><span class="tag-confirmed">มี</span></td></tr>
+    <tr style="background:#F0F9FF"><td colspan="5" style="font-weight:700;font-size:12px;letter-spacing:.05em;color:#1E40AF;padding:8px 12px">I — Content (ข่าวสารและกิจกรรม)</td></tr>
+    <tr id="SCR-WEB-I01"><td><strong>SCR-WEB-I01</strong></td><td>ข่าวสารและกิจกรรม — หน้ารวม</td><td>I</td><td>Figma #53</td><td><span class="tag-confirmed">มี</span></td></tr>
+    <tr id="SCR-WEB-I02"><td><strong>SCR-WEB-I02</strong></td><td>ข่าวสารและกิจกรรม — หน้ารายละเอียด</td><td>I</td><td>Figma #54</td><td><span class="tag-confirmed">มี</span></td></tr>
+  </tbody>
+</table>
+<p style="font-size:12px;color:#6B7280;margin-top:-10px">รวม 43 หน้าจอ (SCR-WEB-A01 ถึง I02) — อ้างอิง Figma Front End (Web) tracking sheet ครบทั้ง 54 Figma screens</p>
+
+<h2 id="scr-a01-layout" style="font-size:16px;font-weight:700;margin:32px 0 12px;border-bottom:2px solid #E5E7EB;padding-bottom:8px">8.1 SCR-WEB-A01 — Homepage Layout Zones (หน้าจริง)</h2>
+<p style="font-size:13px;color:#6B7280;margin-bottom:16px">โครงสร้างหน้าแรกที่ใช้งานจริง (Live Site) — แต่ละ Zone ระบุแหล่งข้อมูลที่ระบบต้องเรียก</p>
+
+<div class="screen-figure" data-slot="SCR-WEB-A01-annotated" style="max-width:420px">
+  <img src="ysc_screens/web/SCR-WEB-A01-annotated.png" alt="SCR-WEB-A01 — Homepage พร้อม FR Zone Labels">
+  <div class="screen-caption"><span>SCR-WEB-A01 — Homepage Layout Zones (FR-1.1.1 – FR-1.1.16)</span><span class="ref">สร้าง: 2026-05-18</span></div>
+  <div class="upload-overlay"><div class="upload-icon">+</div><div class="upload-text">คลิกเพื่ออัพโหลดรูปภาพ</div><div class="upload-filename">SCR-WEB-A01-annotated.png</div></div>
+  <span class="uploaded-badge">✓ อัพโหลดแล้ว</span>
+</div>
+
+<table style="margin-top:16px">
+  <thead><tr><th style="width:90px">FR Code</th><th style="width:220px">Zone</th><th>รายละเอียด Component</th><th style="width:120px">Data Source</th></tr></thead>
+  <tbody>
+    <tr><td><span class="br-ref">FR-1.1.1</span></td><td><strong>Top bar Ticker</strong></td><td>ข้อความเลื่อน: วันที่ Flash Sale · Countdown นับถอยหลัง</td><td>CMS</td></tr>
+    <tr><td><span class="br-ref">FR-1.1.2</span></td><td><strong>Header</strong></td><td>Logo · Mega Menu · Search Bar (Auto-suggest) · Cart + Badge · แต้มสะสม (Login เท่านั้น)</td><td>CRM / PRD</td></tr>
+    <tr><td><span class="br-ref">FR-1.1.3</span></td><td><strong>Promo Strip (3 Banners)</strong></td><td>แบนเนอร์ขนาดเล็ก 3 ชิ้น พร้อม Countdown — ลดคลัง / Bundle / ซื้อ 2 ลด 70%</td><td>CMS + Promo Engine</td></tr>
+    <tr><td><span class="br-ref">FR-1.1.4</span></td><td><strong>Hero Banner</strong></td><td>Full-width: "WAREHOUSE HOT SALE UP TO 80%" + วันที่ Flash Sale</td><td>CMS</td></tr>
+    <tr><td><span class="br-ref">FR-1.1.5</span></td><td><strong>Flash Sale Event Bar</strong></td><td>แถบวันเวลา Flash Sale + Countdown Timer ซิงค์ Server (ไม่ใช้ client local time)</td><td>CMS</td></tr>
+    <tr><td><span class="br-ref">FR-1.1.6</span></td><td><strong>Category Sidebar</strong></td><td>Tree หมวดหมู่ฝั่งซ้าย พร้อมไอคอน — คลิกไปหน้า Category Listing <a href="#SCR-WEB-A03" class="br-ref">A03</a></td><td>PRD</td></tr>
+    <tr><td><span class="br-ref">FR-1.1.7</span></td><td><strong>Promo Carousel (4 Banners)</strong></td><td>Slider อัตโนมัติ: 40% / 50% / -20~60% / 30% — คลิกไปหน้าโปรโมชั่น <a href="#SCR-WEB-A05" class="br-ref">A05</a></td><td>CMS + Promo Engine</td></tr>
+    <tr><td><span class="br-ref">FR-1.1.8</span></td><td><strong>Shelf: สินค้าขายดีประจำสัปดาห์</strong></td><td>Horizontal scroll · Product Card (รูป + ชื่อ + ราคา + ปุ่ม +/- + Add to Cart) · เรียงตาม OMS ยอดขาย</td><td>PRD + OMS</td></tr>
+    <tr><td><span class="br-ref">FR-1.1.9</span></td><td><strong>Shelf: สินค้าใหม่ YONG CHAROEN</strong></td><td>Product Card เหมือน FR-1.1.8 — เรียงตาม Date Added DESC</td><td>PRD</td></tr>
+    <tr><td><span class="br-ref">FR-1.1.10</span></td><td><strong>Mid Banners (2 ชิ้น)</strong></td><td>Full-width banner คู่: SALE 50% + SUMMER SALE 60%</td><td>CMS</td></tr>
+    <tr><td><span class="br-ref">FR-1.1.11</span></td><td><strong>Featured Product Spotlight</strong></td><td>สินค้าเด่น 1 รายการ (Hero Card) + Grid สินค้าประกอบ (ตัวอย่าง: Duracell)</td><td>PRD + Promo Engine</td></tr>
+    <tr><td><span class="br-ref">FR-1.1.12</span></td><td><strong>Category Blocks + Sports Banner</strong></td><td>4 กลุ่ม: เฟอร์นิเจอร์ · เครื่องดนตรี · เครื่องเขียน · สันทนาการ — Carousel สินค้า + Banner ลด 40%</td><td>PRD + CMS</td></tr>
+    <tr><td><span class="br-ref">FR-1.1.13</span></td><td><strong>Brand Shelf (Advertiser)</strong></td><td>Logo แบรนด์ + Product Cards ของแบรนด์นั้น — ตัวอย่าง: Horse · จัดการโดย CMS</td><td>PRD + CMS</td></tr>
+    <tr><td><span class="br-ref">FR-1.1.14</span></td><td><strong>ข่าวสารและกิจกรรม</strong></td><td>3 บทความล่าสุด: รูป + วันที่ + หัวข้อ → คลิกไป <a href="#SCR-WEB-I01" class="br-ref">I01</a> / <a href="#SCR-WEB-I02" class="br-ref">I02</a></td><td>CMS</td></tr>
+    <tr><td><span class="br-ref">FR-1.1.15</span></td><td><strong>Footer (Info Columns)</strong></td><td>4 คอลัมน์: ติดต่อบริษัท · บริการลูกค้า · สิทธิประโยชน์โปรโมชั่น · เกี่ยวกับสมาชิก</td><td>CMS</td></tr>
+    <tr><td><span class="br-ref">FR-1.1.16</span></td><td><strong>Footer (Brand + Social)</strong></td><td>Logo YONG CHAROEN · About text · Social icons (FB/IG/TikTok/LINE) · DBD Registered · Trust Badge</td><td>CMS</td></tr>
   </tbody>
 </table>
 
@@ -1321,7 +1412,7 @@ td strong{color:#0A0A0A}
   </div>
   <div class="ut-body">
     <div class="ut-stats">อัพโหลดแล้ว <b id="ut-count">0</b> / <span id="ut-total">0</span> รูป</div>
-    <div style="font-size:11.5px;color:rgba(255,255,255,0.65);line-height:1.5">คลิกที่กรอบรูปใดก็ได้เพื่ออัพโหลด Screenshot จากเครื่องคุณ ระบบจะดาวน์โหลดไฟล์ให้อัตโนมัติเพื่อนำไปวางใน <code style="background:rgba(255,255,255,.15);padding:2px 6px;border-radius:3px">docs/ysc_screens/</code> แล้ว commit เข้า GitHub</div>
+    <div style="font-size:11.5px;color:rgba(255,255,255,0.65);line-height:1.5">คลิกที่กรอบรูปใดก็ได้เพื่ออัพโหลด Screenshot จากเครื่องคุณ ระบบจะดาวน์โหลดไฟล์ให้อัตโนมัติเพื่อนำไปวางใน <code style="background:rgba(255,255,255,.15);padding:2px 6px;border-radius:3px">docs/ysc_screens/web/</code> แล้ว commit เข้า GitHub</div>
     <button id="ut-export">ดาวน์โหลดรูปทั้งหมดอีกครั้ง</button>
     <button id="ut-clear" class="danger">ล้างรูปที่อัพโหลดในเครื่อง</button>
   </div>

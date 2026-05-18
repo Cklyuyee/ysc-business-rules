@@ -122,9 +122,9 @@ td strong{color:#0A0A0A}
     <li>การรับสินค้าด้วยตนเอง <span class="count">SP-01 ถึง SP-03</span></li>
     <li>ระดับสมาชิก ระดับราคา และคะแนนสะสม <span class="count">7 ระดับ + PT-01 ถึง PT-08</span></li>
     <li>ระบบจัดการโปรโมชั่น <span class="count">PR-01 ถึง PR-07</span></li>
-    <li>ใบกำกับและภาษีมูลค่าเพิ่ม <span class="count">INV-01 ถึง INV-04</span></li>
-    <li>วงจรชีวิตของคำสั่งซื้อ <span class="count">SO-01 ถึง SO-06</span></li>
-    <li>การหยิบและบรรจุสินค้า <span class="count">WH-01 ถึง WH-07</span></li>
+    <li>ใบกำกับและภาษีมูลค่าเพิ่ม <span class="count">INV-01 ถึง INV-05</span></li>
+    <li>วงจรชีวิตของคำสั่งซื้อ <span class="count">SO-01 ถึง SO-07</span></li>
+    <li>การหยิบและบรรจุสินค้า <span class="count">WH-01 ถึง WH-21</span></li>
     <li>การเชื่อมต่อกับระบบ ConX ERP <span class="count">INT-01 ถึง INT-10</span></li>
     <li>ช่องทางการขาย <span class="count">CH-01 ถึง CH-05</span></li>
     <li>การให้บริการลูกค้าโดย Contact Center (CC) <span class="count">CC-01 ถึง CC-05</span></li>
@@ -453,7 +453,22 @@ td strong{color:#0A0A0A}
     <tr><td><span class="rule-id">INV-01</span></td><td>ระบบออกใบกำกับ 2 ใบโดยอัตโนมัติ ได้แก่ <strong>ใบกำกับมีภาษี (EV) และใบกำกับไม่มีภาษี (EN)</strong> — เงื่อนไขการแยกรอการยืนยัน <span class="dec-ref">D-003</span></td><td><span class="pending-tag">รอยืนยัน P-06</span></td></tr>
     <tr><td><span class="rule-id">INV-02</span></td><td>แคชเชียร์เป็น<strong>ด่านสุดท้าย</strong>ก่อนการออกใบกำกับและปล่อยสินค้า</td><td><span class="pending-tag">รอยืนยัน P-07</span></td></tr>
     <tr><td><span class="rule-id">INV-03</span></td><td>ทุกคำสั่งซื้อต้องผ่านขั้นตอนแคชเชียร์เสมอ — <strong>ไม่มีการออกใบกำกับอัตโนมัติข้ามแคชเชียร์</strong></td><td><span class="confirmed-tag">ยืนยันแล้ว</span></td></tr>
-    <tr><td><span class="rule-id">INV-04</span></td><td>ประเภทใบกำกับสำหรับลูกค้า (Y, N, M, A) — เงื่อนไขการคิดราคารอการยืนยัน</td><td><span class="pending-tag">รอยืนยัน P-05</span></td></tr>
+    <tr>
+      <td><span class="rule-id">INV-04</span></td>
+      <td>
+        <strong>docType ลูกค้า</strong> กำหนดรูปแบบเอกสารที่ระบบต้องออกในแต่ละคำสั่งซื้อ<br>
+        <strong>Y</strong> = ลูกค้า VAT (ใบกำกับรวม) → ConX ออก IV รวมทั้งสินค้า V และ I ใบเดียว<br>
+        <strong>N</strong> = ลูกค้าทั่วไป (ไม่ขอใบกำกับ) → ConX ออก IN (ใบส่งสินค้า) เพียงใบเดียว<br>
+        <strong>M</strong> = ลูกค้า VAT (แยกตามประเภทสินค้า) → ConX ออก IV (สินค้า V) + IVN (สินค้า I) แยก 2 ใบ<br>
+        <strong>A</strong> = ลูกค้า VAT (ใบกำกับอย่างย่อ / กรณีพิเศษ) → ConX ออก IV (สินค้า V) + IVN (สินค้า I) แยก 2 ใบ
+      </td>
+      <td><span class="confirmed-tag">ยืนยันแล้ว</span></td>
+    </tr>
+    <tr>
+      <td><span class="rule-id">INV-05</span></td>
+      <td><strong>กรณี docType M หรือ A</strong> — ระบบออก<strong>ใบเตรียมสินค้า 2 ใบ</strong> แยกตามประเภทสินค้า (V และ I) / ConX ออก IV + IVN แยกกัน / RV และ RVN ออกแยกตามในขั้นตอนชำระเงิน</td>
+      <td><span class="confirmed-tag">ยืนยันแล้ว</span></td>
+    </tr>
   </tbody>
 </table>
 
@@ -787,6 +802,11 @@ td strong{color:#0A0A0A}
     <tr><td><span class="rule-id">SO-04</span></td><td>รูปแบบรหัส OD (เว็บไซต์) และ SO (พนักงาน CC) เป็นรูปแบบของระบบ ConX — Adeptio มีรูปแบบรหัสของตัวเองแยกต่างหาก</td><td><span class="pending-tag">รอยืนยัน P-08</span></td></tr>
     <tr><td><span class="rule-id">SO-05</span></td><td>ทุกคำสั่งซื้อต้องระบุ<strong>ช่องทางการขาย</strong> เพื่อการจัดทำรายงานแยกตามช่องทาง</td><td><span class="dec-ref">D-039</span></td></tr>
     <tr><td><span class="rule-id">SO-06</span></td><td><strong>การจัดส่งแบบทยอย (Partial Delivery) ของการสั่งซื้อสินค้าล่วงหน้า:</strong> ระบบทยอยสร้างคำสั่งซื้อใหม่ตามสินค้าที่เข้ามา — การสั่งซื้อสินค้าล่วงหน้า 1 รายการ อาจประกอบด้วยคำสั่งซื้อหลายฉบับ</td><td><span class="dec-ref">D-025</span></td></tr>
+    <tr>
+      <td><span class="rule-id">SO-07</span></td>
+      <td><strong>Short Pick Naming Convention</strong> — เมื่อมีการรายงานของขาด (Short Pick) คำสั่งซื้อเดิมจะถูกเปลี่ยนชื่อเป็น <code style="background:#F1F5F9;padding:1px 5px;border-radius:3px;font-size:11.5px">SO-XXXX(1)</code> และระบบสร้างคำสั่งซื้อใหม่ <code style="background:#F1F5F9;padding:1px 5px;border-radius:3px;font-size:11.5px">SO-XXXX(2)</code> สำหรับรายการที่ยังหยิบไม่ครบ</td>
+      <td><span class="confirmed-tag">ยืนยันแล้ว</span></td>
+    </tr>
   </tbody>
 </table>
 
@@ -906,7 +926,7 @@ td strong{color:#0A0A0A}
     <tr><td><span class="rule-id">WH-02</span></td><td>การแบ่งงานหยิบสินค้าตาม<strong>ชั้นภายในคลังออนไลน์</strong> (ชั้น 2 / 3 / 4) — Picker ประจำแต่ละชั้นทำงานคู่ขนานกันได้ ไม่ต้องเดินข้ามชั้น</td><td><span class="dec-ref">D-031</span></td></tr>
     <tr><td><span class="rule-id">WH-03</span></td><td>เครื่องอ่านบาร์โค้ดมือถือ <strong>สแกนบาร์โค้ดทุกขั้นตอน</strong> — ห้ามพนักงานป้อนตัวเลขด้วยตนเอง</td><td><span class="dec-ref">D-017</span></td></tr>
     <tr><td><span class="rule-id">WH-04</span></td><td>สแกนผิดรายการหรือเกินจำนวน → <strong>หน้าจอแสดงสีแดงและส่งเสียงเตือน</strong></td><td>—</td></tr>
-    <tr><td><span class="rule-id">WH-05</span></td><td>ใบเตรียมสินค้า<strong>ห้ามแสดงราคาสินค้า</strong></td><td><span class="dec-ref">D-035</span></td></tr>
+    <tr><td><span class="rule-id">WH-05</span></td><td>ใบเตรียมสินค้า<strong>แสดงราคาสินค้า</strong></td><td><span class="confirmed-tag">ยืนยันแล้ว</span></td></tr>
     <tr><td><span class="rule-id">WH-06</span></td><td>ฉลากปะหน้ากล่องพิมพ์ได้ทันทีหลังบรรจุสินค้าเสร็จ</td><td>—</td></tr>
     <tr><td><span class="rule-id">WH-07</span></td><td>การสั่งซื้อสินค้าล่วงหน้ารองรับการหยิบและบรรจุแบบทยอย — ระบบทยอยสร้างคำสั่งซื้อตามสินค้าที่เข้ามา (กฎกำหนดที่ระดับคำสั่งซื้อ ไม่ใช่ระดับคลัง)</td><td><span class="dec-ref">D-025</span></td></tr>
     <tr><td><span class="rule-id">WH-08</span></td><td><strong>Cart Pool</strong> — รถเข็นเป็นทรัพยากรกลาง Picker ใดก็หยิบใช้ได้ — สแกนเพื่อ assign ให้คำสั่งซื้อ + ปล่อยคืนหลัง Pack เสร็จ</td><td>—</td></tr>
@@ -928,6 +948,11 @@ td strong{color:#0A0A0A}
     <tr><td><span class="rule-id">WH-18</span></td><td><strong>การจัดส่งต้องรอการยืนยันการชำระเงินจาก ConX</strong> — Logistic จะไม่สามารถปล่อยของออกได้จนกว่า ConX จะยืนยันการรับชำระเงิน — ระบบระงับปุ่ม "ปล่อยของออก" หากยังไม่ยืนยัน</td><td>MoM 27 เม.ย. 2569</td></tr>
     <tr><td><span class="rule-id">WH-19</span></td><td><strong>การกรองรายการสำหรับ Logistic</strong> — ใช้ตัวกรอง<strong>ตามสายขนส่ง (สาย A / B / C / ทั่วประเทศ)</strong> เท่านั้น — ไม่แยกตามจังหวัด</td><td>MoM 27 เม.ย. 2569</td></tr>
     <tr><td><span class="rule-id">WH-20</span></td><td><strong>ปุ่มพักงาน (Break)</strong> ในหน้าจอ Handheld สำหรับพนักงานออกจากตำแหน่งชั่วคราว (เช่น เข้าห้องน้ำ) — Supervisor เห็นสถานะพนักงานที่พร้อมทำงาน</td><td>MoM 27 เม.ย. 2569</td></tr>
+    <tr>
+      <td><span class="rule-id">WH-21</span></td>
+      <td><strong>การพิมพ์เอกสารจาก Handheld ผ่าน Pack Station</strong> — Handheld ไม่สามารถสั่งพิมพ์โดยตรงได้ — เอกสารทุกประเภท (ใบเตรียมสินค้า, ฉลากสินค้า, ใบปะหน้ากล่อง) ส่งเข้าคิวพิมพ์ที่ <strong>Pack Station</strong> เสมอ</td>
+      <td><span class="confirmed-tag">ยืนยันแล้ว</span></td>
+    </tr>
   </tbody>
 </table>
 
@@ -1330,11 +1355,11 @@ td strong{color:#0A0A0A}
 <table>
   <thead><tr><th style="width:80px">รหัส</th><th>รายการ</th><th>ผลกระทบ</th><th style="width:120px">ระบบ</th></tr></thead>
   <tbody>
-    <tr><td><span class="pending-tag">P-01</span></td><td>เปอร์เซ็นต์เงินมัดจำสำหรับการสั่งซื้อสินค้าล่วงหน้า — ขึ้นกับประเภทลูกค้า / สินค้า</td><td>BR-04, BR-05, FR Pre-Order</td><td>เว็บไซต์, พนักงาน CC</td></tr>
+    <tr><td><span class="confirmed-tag">P-01 ✓</span></td><td>เงินมัดจำ Pre-Order = <strong>100%</strong> ของมูลค่าสินค้า — ชำระเต็มจำนวนก่อนสินค้าเข้าคลัง ไม่มีการแบ่งชำระ</td><td>S-06, UC-OMS-008</td><td>เว็บไซต์, พนักงาน CC</td></tr>
     <tr><td><span class="pending-tag">P-02</span></td><td><strong>ตารางอำนาจการอนุมัติเครดิต</strong> — ตัวเลขวงเงินสำหรับแต่ละตำแหน่ง</td><td>C-02, CC-02, กระบวนการ Over-limit</td><td>พนักงาน CC, ระบบหลังบ้าน</td></tr>
     <tr><td><span class="pending-tag">P-03</span></td><td><strong>จังหวะการเลื่อนหรือลดระดับสมาชิก</strong> (ทันที หรือ รอสิ้นปี)</td><td>PT, การแสดงระดับสมาชิก</td><td>เว็บ, ระบบหลังบ้าน</td></tr>
-    <tr><td><span class="pending-tag">P-05</span></td><td><strong>ประเภทใบกำกับลูกค้า</strong> (Y, N, M, A) — เงื่อนไขการคิดราคา</td><td>INV-04, ขั้นตอนชำระเงิน</td><td>เว็บไซต์, พนักงาน CC</td></tr>
-    <tr><td><span class="pending-tag">P-06</span></td><td><strong>รายละเอียดการออกใบกำกับ 2 ใบ (EV / EN)</strong> — เงื่อนไขการแยก</td><td>INV-01</td><td>ทุกระบบ</td></tr>
+    <tr><td><span class="confirmed-tag">P-05 ✓</span></td><td><strong>ประเภทใบกำกับลูกค้า</strong> (Y, N, M, A) — ยืนยันแล้ว ดูรายละเอียดที่ INV-04</td><td>INV-04, INV-05, UC-OMS-010</td><td>เว็บไซต์, พนักงาน CC</td></tr>
+    <tr><td><span class="confirmed-tag">P-06 ✓</span></td><td><strong>รายละเอียดการออกเอกสาร 2 ใบ (IV / IVN)</strong> — ยืนยันแล้ว ดูรายละเอียดที่ INV-05</td><td>INV-05, UC-OMS-010</td><td>ทุกระบบ</td></tr>
     <tr><td><span class="pending-tag">P-07</span></td><td><strong>รายละเอียดกระบวนการของแคชเชียร์</strong></td><td>INV-02</td><td>ทุกระบบ</td></tr>
     <tr><td><span class="pending-tag">P-08</span></td><td><strong>รูปแบบรหัสคำสั่งซื้อฝั่ง Adeptio</strong> และการเชื่อมกับ ConX (SO / OD)</td><td>SO-04, CC-04, INT-08</td><td>ทุกระบบ</td></tr>
     <tr><td><span class="pending-tag">P-09</span></td><td><strong>ขั้นตอนการยืนยันคำสั่งซื้อหลังพนักงาน CC สร้างตะกร้า</strong></td><td>CC-03</td><td>พนักงาน CC</td></tr>
