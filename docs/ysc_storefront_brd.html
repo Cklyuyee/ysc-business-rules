@@ -372,24 +372,72 @@ td strong{color:#0A0A0A}
 <div class="use-case">
   <div class="uc-header"><span class="uc-num">UC-WEB-A01</span><span class="uc-title">เข้าหน้าแรกเว็บไซต์</span></div>
   <div class="uc-body">
-    <div class="screen-figure">
-      <img src="ysc_screens/web/web_homepage.png" alt="หน้าแรกเว็บไซต์">
-      <div class="screen-caption"><span>หน้าแรก — Banner, แบรนด์, สินค้ามาใหม่, โปรโมชั่น</span><span class="ref">Figma node 994:8203</span></div>
+
+    <div class="screen-figure no-image" data-slot="web_homepage_fullpage">
+      <img src="ysc_screens/web/web_homepage_fullpage.png" alt="หน้าแรกเว็บไซต์ — Full Page">
+      <div class="screen-caption"><span>หน้าแรก — Full Page Screenshot (Live Site)</span><span class="ref">SCR-WEB-A01</span></div>
+      <div class="upload-overlay"><div class="upload-icon">+</div><div class="upload-text">คลิกเพื่ออัพโหลดรูปภาพ</div><div class="upload-filename">web_homepage_fullpage.png</div></div>
+      <span class="uploaded-badge">✓ อัพโหลดแล้ว</span>
     </div>
+
+    <div class="screen-grid">
+      <div class="screen-figure" data-slot="web_homepage">
+        <img src="ysc_screens/web/web_homepage.png" alt="หน้าแรกเว็บไซต์ — Figma">
+        <div class="screen-caption"><span>หน้าแรก — Figma Design</span><span class="ref">Figma node 994:8203</span></div>
+        <div class="upload-overlay"><div class="upload-icon">+</div><div class="upload-text">คลิกเพื่ออัพโหลดรูปภาพ</div><div class="upload-filename">web_homepage.png</div></div>
+        <span class="uploaded-badge">✓ อัพโหลดแล้ว</span>
+      </div>
+      <div class="screen-figure" data-slot="web_homepage_overview">
+        <img src="ysc_screens/web/web_homepage_overview.png" alt="หน้าแรกเว็บไซต์ — Overview">
+        <div class="screen-caption"><span>หน้าแรก — Overview / Flow</span><span class="ref">Figma node 994:8203</span></div>
+        <div class="upload-overlay"><div class="upload-icon">+</div><div class="upload-text">คลิกเพื่ออัพโหลดรูปภาพ</div><div class="upload-filename">web_homepage_overview.png</div></div>
+        <span class="uploaded-badge">✓ อัพโหลดแล้ว</span>
+      </div>
+    </div>
+
+    <div class="uc-section"><div class="uc-section-label">Homepage Layout Zones (จากหน้าจริง)</div>
+      <table>
+        <thead><tr><th style="width:40px">#</th><th style="width:200px">Zone</th><th>รายละเอียด</th><th style="width:100px">ข้อมูลจาก</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td><strong>Top bar Ticker</strong></td><td>ข้อความประกาศเคลื่อนไหว: วันที่ Flash Sale / Warehouse Sale, นับถอยหลัง Countdown</td><td>CMS</td></tr>
+          <tr><td>2</td><td><strong>Header</strong></td><td>Logo YONGCHAROEN · Mega Menu (สินค้าทั้งหมด, โปรโมชั่น, สมาชิกพิเศษ, อื่น ๆ) · Search Bar · Cart Icon + Badge · แต้มสะสม (ถ้า Login)</td><td>CRM / PRD</td></tr>
+          <tr><td>3</td><td><strong>Promo Strip (3 แบนเนอร์)</strong></td><td>แบนเนอร์นับถอยหลัง 3 ชิ้น — ลดคลัง / แพ็กที่ 2 แห่ 8,800 / ซื้อ 2 ลด 70%</td><td>CMS / Promo Engine</td></tr>
+          <tr><td>4</td><td><strong>Hero Banner</strong></td><td>"WAREHOUSE HOT SALE UP TO 80%" — วันที่ + ช่วงเวลา Flash Sale</td><td>CMS</td></tr>
+          <tr><td>5</td><td><strong>Category Sidebar</strong></td><td>Tree เมนูหมวดหมู่ฝั่งซ้าย พร้อมไอคอน (เฟอร์นิเจอร์, เครื่องเขียน, อิเล็กทรอนิกส์ ฯลฯ)</td><td>PRD</td></tr>
+          <tr><td>6</td><td><strong>Promo Carousel</strong></td><td>4 แบนเนอร์โปรโมชั่น: 40% · 50% · -20~60% · 30% — Slider อัตโนมัติ</td><td>CMS / Promo Engine</td></tr>
+          <tr><td>7</td><td><strong>Shelf: สินค้าขายดีประจำสัปดาห์</strong></td><td>Horizontal scroll, Product Card: รูป · ชื่อ · ราคา · ปุ่ม +/- · ปุ่มเพิ่มตะกร้า</td><td>PRD / OMS (ยอดขาย)</td></tr>
+          <tr><td>8</td><td><strong>Shelf: สินค้าใหม่ YONG CHAROEN</strong></td><td>Product Card เหมือน Shelf ขายดี — เรียงตามวันที่เพิ่มสินค้าใหม่</td><td>PRD</td></tr>
+          <tr><td>9</td><td><strong>Mid Banners (2 ชิ้น)</strong></td><td>แบนเนอร์ขนาดใหญ่คู่: 50% + SUMMER SALE 60% — Full-width</td><td>CMS</td></tr>
+          <tr><td>10</td><td><strong>Featured Product Spotlight</strong></td><td>สินค้าโฟกัส 1 รายการ (Duracell ฿96) + Grid สินค้าประกอบ</td><td>PRD / Promo Engine</td></tr>
+          <tr><td>11</td><td><strong>Category Blocks</strong></td><td>4 กลุ่ม: เฟอร์นิเจอร์สำนักงาน · เครื่องดนตรี · เครื่องเขียน · สันทนาการและกีฬา — แต่ละกลุ่มมี Carousel สินค้า</td><td>PRD</td></tr>
+          <tr><td>12</td><td><strong>Sports Section Banner</strong></td><td>"ยกตะกร้าปรับกีฬาครบ ครบจบในที่เดียว YSC ลด 40%" + Product Grid</td><td>CMS / Promo Engine</td></tr>
+          <tr><td>13</td><td><strong>Brand Shelf (Horse)</strong></td><td>แสดงสินค้าตามแบรนด์ — Logo แบรนด์ + Product Cards</td><td>PRD</td></tr>
+          <tr><td>14</td><td><strong>ข่าวสารและกิจกรรม</strong></td><td>3 บทความล่าสุด — รูปภาพ + วันที่ + หัวข้อ → ลิงก์ไป <a href="#SCR-WEB-I01" class="br-ref">I01</a></td><td>CMS</td></tr>
+          <tr><td>15</td><td><strong>Footer</strong></td><td>ที่อยู่บริษัท · ช่องทางติดต่อ · ลิงก์หมวดหมู่ · สิทธิประโยชน์สมาชิก · โซเชียล (FB/IG/TikTok/Line) · DBD + Trust Badge</td><td>CMS</td></tr>
+        </tbody>
+      </table>
+    </div>
+
     <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
       <ol class="uc-flow">
-        <li>ลูกค้าเข้า URL หลัก ระบบแสดง Header (Logo, Search, Menu, Cart, Login/Account)</li>
-        <li>Hero Banner / Carousel โปรโมชั่นปัจจุบัน</li>
-        <li>หมวดหมู่สินค้ายอดนิยม (Grid ไอคอน)</li>
-        <li>สินค้ามาใหม่ / Hot Trend / ขายดี (Carousel)</li>
-        <li>แบรนด์ยอดนิยม + Newsletter</li>
-        <li>Footer ลิงก์นโยบาย ติดต่อ โซเชียล</li>
+        <li>ลูกค้าเข้า URL หลัก — ระบบแสดง Header (Logo, Mega Menu, Search, Cart, แต้มสะสม)</li>
+        <li>Top bar Ticker แสดงข้อความ Warehouse / Flash Sale + Countdown</li>
+        <li>Promo Strip 3 แบนเนอร์ + Hero Banner ปรากฏเหนือ fold</li>
+        <li>Category Sidebar ฝั่งซ้าย + Promo Carousel 4 แบนเนอร์ฝั่งขวา</li>
+        <li>Shelf สินค้าขายดีประจำสัปดาห์ (Horizontal scroll + Product Card + Add to Cart)</li>
+        <li>Shelf สินค้าใหม่ YONG CHAROEN</li>
+        <li>Mid Banners (2 ชิ้น) + Featured Product Spotlight</li>
+        <li>Category Blocks 4 กลุ่ม พร้อม Carousel สินค้าแต่ละกลุ่ม</li>
+        <li>Brand Shelf + ข่าวสารและกิจกรรม 3 บทความ</li>
+        <li>Footer ลิงก์นโยบาย ติดต่อ โซเชียล DBD</li>
       </ol>
     </div>
     <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
       <div class="uc-ac"><strong>AC-A01-01:</strong> โหลด ≤ 3 วินาที (LCP ผ่าน Google Web Vitals)</div>
-      <div class="uc-ac"><strong>AC-A01-02:</strong> Banner เปลี่ยนสไลด์อัตโนมัติ 5 วินาที</div>
-      <div class="uc-ac"><strong>AC-A01-03:</strong> Banner / Pop-up มาจาก CMS Backoffice อัปเดต ≤ 5 นาที</div>
+      <div class="uc-ac"><strong>AC-A01-02:</strong> Promo Carousel เปลี่ยนสไลด์อัตโนมัติ 5 วินาที</div>
+      <div class="uc-ac"><strong>AC-A01-03:</strong> Banner / Top bar / Promo Strip มาจาก CMS Backoffice — อัปเดตใน ≤ 5 นาที</div>
+      <div class="uc-ac"><strong>AC-A01-04:</strong> Product Shelf แสดง Real-time Stock (ไม่มีสต็อก = ปุ่มเพิ่มตะกร้าถูก Disable)</div>
+      <div class="uc-ac"><strong>AC-A01-05:</strong> Countdown Timer ซิงค์เวลาจาก Server — ไม่ใช้ Client local time</div>
     </div>
   </div>
 </div>
@@ -1167,7 +1215,7 @@ td strong{color:#0A0A0A}
   <thead><tr><th style="width:140px">รหัส</th><th>ชื่อหน้าจอ</th><th style="width:80px">Section</th><th style="width:200px">รายละเอียด / Sub-screens</th><th style="width:100px">สถานะ Figma</th></tr></thead>
   <tbody>
     <tr style="background:#F0F9FF"><td colspan="5" style="font-weight:700;font-size:12px;letter-spacing:.05em;color:#1E40AF;padding:8px 12px">A — Discovery (ค้นพบสินค้า)</td></tr>
-    <tr id="SCR-WEB-A01"><td><strong>SCR-WEB-A01</strong></td><td>หน้าแรก (Homepage)</td><td>A</td><td>—</td><td><span class="tag-confirmed">มี</span></td></tr>
+    <tr id="SCR-WEB-A01"><td><strong>SCR-WEB-A01</strong></td><td>หน้าแรก (Homepage)</td><td>A</td><td>Top bar Ticker · Hero Flash Sale + นับถอยหลัง · Category Sidebar (Tree) · Promo Carousel (4 แบนเนอร์) · Shelf ขายดีประจำสัปดาห์ · Shelf สินค้าใหม่ · Mid Banners (2 ใบ) · Featured Product Spotlight · Category Blocks (เฟอร์นิเจอร์/ดนตรี/เครื่องเขียน/กีฬา) · Brand Shelf (Horse) · ข่าวสารและกิจกรรม (3 บทความ) · Footer</td><td><span class="tag-confirmed">มี</span></td></tr>
     <tr id="SCR-WEB-A02"><td><strong>SCR-WEB-A02</strong></td><td>ผลการค้นหา (Search Result + Auto-suggest)</td><td>A</td><td>—</td><td><span class="tag-confirmed">มี</span></td></tr>
     <tr id="SCR-WEB-A03"><td><strong>SCR-WEB-A03</strong></td><td>หน้ารวมสินค้าทั้งหมด (All Products / Category Listing)</td><td>A</td><td>ตาม Figma #2</td><td><span class="tag-confirmed">มี</span></td></tr>
     <tr id="SCR-WEB-A04"><td><strong>SCR-WEB-A04</strong></td><td>หน้าตามแบรนด์ (Brand Page)</td><td>A</td><td>ตัวอย่าง ESY</td><td><span class="tag-confirmed">มี</span></td></tr>
@@ -1216,6 +1264,37 @@ td strong{color:#0A0A0A}
   </tbody>
 </table>
 <p style="font-size:12px;color:#6B7280;margin-top:-10px">รวม 43 หน้าจอ (SCR-WEB-A01 ถึง I02) — อ้างอิง Figma Front End (Web) tracking sheet ครบทั้ง 54 Figma screens</p>
+
+<h2 id="scr-a01-layout" style="font-size:16px;font-weight:700;margin:32px 0 12px;border-bottom:2px solid #E5E7EB;padding-bottom:8px">8.1 SCR-WEB-A01 — Homepage Layout Zones (หน้าจริง)</h2>
+<p style="font-size:13px;color:#6B7280;margin-bottom:16px">โครงสร้างหน้าแรกที่ใช้งานจริง (Live Site) — แต่ละ Zone ระบุแหล่งข้อมูลที่ระบบต้องเรียก</p>
+
+<div class="screen-figure no-image" data-slot="web_homepage_fullpage" style="max-width:420px">
+  <img src="ysc_screens/web/web_homepage_fullpage.png" alt="Homepage Full Page">
+  <div class="screen-caption"><span>SCR-WEB-A01 — หน้าแรก Full Page (Live)</span><span class="ref">อัพเดต: 2026-05-18</span></div>
+  <div class="upload-overlay"><div class="upload-icon">+</div><div class="upload-text">คลิกเพื่ออัพโหลดรูปภาพ</div><div class="upload-filename">web_homepage_fullpage.png</div></div>
+  <span class="uploaded-badge">✓ อัพโหลดแล้ว</span>
+</div>
+
+<table style="margin-top:16px">
+  <thead><tr><th style="width:32px">#</th><th style="width:220px">Zone</th><th>รายละเอียด Component</th><th style="width:120px">Data Source</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td><strong>Top bar Ticker</strong></td><td>ข้อความเลื่อน: วันที่ Flash Sale · Countdown นับถอยหลัง</td><td>CMS</td></tr>
+    <tr><td>2</td><td><strong>Header</strong></td><td>Logo · Mega Menu · Search Bar (Auto-suggest) · Cart + Badge · แต้มสะสม (Login เท่านั้น)</td><td>CRM / PRD</td></tr>
+    <tr><td>3</td><td><strong>Promo Strip (3 Banners)</strong></td><td>แบนเนอร์ขนาดเล็ก 3 ชิ้น พร้อม Countdown — ลดคลัง / Bundle / ซื้อ 2 ลด 70%</td><td>CMS + Promo Engine</td></tr>
+    <tr><td>4</td><td><strong>Hero Banner</strong></td><td>Full-width: "WAREHOUSE HOT SALE UP TO 80%" + วันเวลา Flash Sale</td><td>CMS</td></tr>
+    <tr><td>5</td><td><strong>Category Sidebar</strong></td><td>Tree หมวดหมู่ฝั่งซ้าย พร้อมไอคอน — คลิกไปหน้า Category Listing <a href="#SCR-WEB-A03" class="br-ref">A03</a></td><td>PRD</td></tr>
+    <tr><td>6</td><td><strong>Promo Carousel (4 Banners)</strong></td><td>Slider อัตโนมัติ: 40% / 50% / -20~60% / 30% — คลิกไปหน้าโปรโมชั่น <a href="#SCR-WEB-A05" class="br-ref">A05</a></td><td>CMS + Promo Engine</td></tr>
+    <tr><td>7</td><td><strong>Shelf: สินค้าขายดีประจำสัปดาห์</strong></td><td>Horizontal scroll · Product Card (รูป + ชื่อ + ราคา + ปุ่ม +/- + Add to Cart)</td><td>PRD + OMS (rank)</td></tr>
+    <tr><td>8</td><td><strong>Shelf: สินค้าใหม่ YONG CHAROEN</strong></td><td>Product Card เหมือน Shelf 7 — เรียงตาม Date Added DESC</td><td>PRD</td></tr>
+    <tr><td>9</td><td><strong>Mid Banners (2 ชิ้น)</strong></td><td>Full-width banner คู่: SALE 50% + SUMMER SALE 60%</td><td>CMS</td></tr>
+    <tr><td>10</td><td><strong>Featured Product Spotlight</strong></td><td>สินค้าเด่น 1 รายการ (Hero Card) + Grid สินค้าที่เกี่ยวข้อง</td><td>PRD + Promo Engine</td></tr>
+    <tr><td>11</td><td><strong>Category Blocks (4 กลุ่ม)</strong></td><td>เฟอร์นิเจอร์ · เครื่องดนตรี · เครื่องเขียน · สันทนาการ — แต่ละกลุ่มมี Carousel สินค้า</td><td>PRD</td></tr>
+    <tr><td>12</td><td><strong>Sports Section Banner</strong></td><td>"ยกตะกร้าปรับกีฬาครบ YSC ลด 40%" + Product Grid กีฬา</td><td>CMS + PRD</td></tr>
+    <tr><td>13</td><td><strong>Brand Shelf (Horse)</strong></td><td>Logo แบรนด์ + Product Cards ของแบรนด์นั้น</td><td>PRD</td></tr>
+    <tr><td>14</td><td><strong>ข่าวสารและกิจกรรม</strong></td><td>3 บทความล่าสุด: รูป + วันที่ + หัวข้อ → คลิกไป <a href="#SCR-WEB-I01" class="br-ref">I01</a> / <a href="#SCR-WEB-I02" class="br-ref">I02</a></td><td>CMS</td></tr>
+    <tr><td>15</td><td><strong>Footer</strong></td><td>ที่อยู่ · ติดต่อ · ลิงก์หมวดหมู่ · สิทธิสมาชิก · Follow Us (FB/IG/TikTok/LINE) · DBD Trust Badge</td><td>CMS</td></tr>
+  </tbody>
+</table>
 
 <h1>9. กฎเกณฑ์เชิงธุรกิจ — อ้างอิงเอกสารแม่บท</h1>
 <div class="callout"><strong>หมายเหตุ:</strong> กฎฉบับเต็มอยู่ใน <a href="ysc_business_rules.html" style="color:#0A0A0A;font-weight:700">ysc_business_rules.html v2.2</a></div>
