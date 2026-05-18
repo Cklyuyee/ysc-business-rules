@@ -218,9 +218,9 @@ td strong{color:#0A0A0A}
     <tr><td>5</td><td><strong>UC-OMS-005</strong></td><td>ชำระเงินด้วยวงเงินเครดิต</td><td>ลูกค้านิติบุคคล</td><td><span class="br-ref">C-01</span> <span class="br-ref">P-03</span></td><td><span class="tag-confirmed">ยืนยัน</span></td></tr>
     <tr><td>6</td><td><strong>UC-OMS-006</strong></td><td>Admin ตรวจสอบสลิปการโอน</td><td>Admin ตรวจสลิป</td><td><span class="br-ref">P-01</span></td><td><span class="tag-confirmed">ยืนยัน</span></td></tr>
     <tr><td>7</td><td><strong>UC-OMS-007</strong></td><td>ลูกค้าขอใบเสนอราคา</td><td>ลูกค้า</td><td><span class="br-ref">Q-01</span> <span class="br-ref">Q-04</span></td><td><span class="tag-confirmed">ยืนยัน</span></td></tr>
-    <tr><td>8</td><td><strong>UC-OMS-008</strong></td><td>ลูกค้าสั่งซื้อสินค้าล่วงหน้า (Pre-Order)</td><td>ลูกค้า</td><td><span class="br-ref">S-06</span></td><td><span class="tag-confirmed">ยืนยัน</span></td></tr>
+    <tr><td>8</td><td><strong>UC-OMS-008</strong></td><td>ลูกค้าสั่งซื้อสินค้าล่วงหน้า (Pre-Order)</td><td>ลูกค้า</td><td>—</td><td><span class="tag-pending">รอยืนยัน P-01</span></td></tr>
     <tr><td>9</td><td><strong>UC-OMS-009</strong></td><td>ลูกค้าสั่งซื้อซ้ำ (Re-order)</td><td>ลูกค้า</td><td><span class="br-ref">RO-01</span> <span class="br-ref">RO-03</span></td><td><span class="tag-confirmed">ยืนยัน</span></td></tr>
-    <tr><td>10</td><td><strong>UC-OMS-010</strong></td><td>ออกเอกสารประกอบคำสั่งซื้อตามประเภทลูกค้า</td><td>ระบบ + ConX</td><td><span class="br-ref">INV-01</span> <span class="br-ref">INV-04</span> <span class="br-ref">INV-05</span></td><td><span class="tag-confirmed">ยืนยัน</span></td></tr>
+    <tr><td>10</td><td><strong>UC-OMS-010</strong></td><td>ออกใบกำกับภาษี</td><td>ระบบ + ConX</td><td><span class="br-ref">INV-04</span></td><td><span class="tag-pending">รอยืนยัน P-05</span></td></tr>
     <tr><td>11</td><td><strong>UC-OMS-011</strong></td><td>ยกเลิกคำสั่งซื้อ</td><td>ลูกค้า / พนักงาน CC / หัวหน้างาน</td><td><span class="br-ref">RTN-01</span> <span class="br-ref">RTN-02</span> <span class="br-ref">RTN-10</span></td><td><span class="tag-confirmed">ยืนยัน</span></td></tr>
     <tr><td>12</td><td><strong>UC-OMS-012</strong></td><td>คืนสินค้าและออกใบลดหนี้ (CN)</td><td>พนักงาน CC + ฝ่ายบัญชี</td><td><span class="br-ref">RTN-04</span> <span class="br-ref">RTN-05</span> <span class="br-ref">RTN-07</span></td><td><span class="tag-confirmed">ยืนยัน</span></td></tr>
     <tr><td>13</td><td><strong>UC-OMS-013</strong></td><td>ดูสถานะคำสั่งซื้อ</td><td>ลูกค้า / พนักงาน CC</td><td><span class="br-ref">SO-01</span> <span class="br-ref">SO-06</span></td><td><span class="tag-confirmed">ยืนยัน</span></td></tr>
@@ -229,16 +229,8 @@ td strong{color:#0A0A0A}
 </table>
 
 <h1>1. ข้อมูลเอกสารและการอนุมัติ</h1>
-<h2>1.1 ประวัติการแก้ไข</h2>
-<table>
-  <thead><tr><th style="width:80px">เวอร์ชัน</th><th style="width:110px">วันที่</th><th>รายละเอียดการเปลี่ยนแปลง</th><th style="width:90px">สถานะ</th></tr></thead>
-  <tbody>
-    <tr><td>1.0</td><td>มี.ค. 2569</td><td>ฉบับร่างแรก</td><td><span class="tag-pending">เก่า</span></td></tr>
-    <tr><td>2.0</td><td>16 พ.ค. 2569</td><td>เขียนใหม่ทั้งฉบับ อ้างอิง Business Rules v2.2 ปรับ Order Lifecycle 10 สถานะ Payment 4 วิธี การยกเลิก/คืน (RTN-01 ถึง RTN-10) Auto-cancel 24 ชั่วโมง ตัด OCR Slip ออก (Admin ตรวจทุกใบ) Carrier ภายในและภายนอก เพิ่ม UC ครบ 14 รายการ</td><td><span class="tag-confirmed">ปัจจุบัน</span></td></tr>
-  </tbody>
-</table>
 
-<h2>1.2 ผู้อนุมัติเอกสาร</h2>
+<h2>1.1 ผู้อนุมัติเอกสาร</h2>
 <table>
   <thead><tr><th style="width:240px">บทบาท</th><th>ชื่อ-นามสกุล</th><th style="width:140px">วันที่อนุมัติ</th><th style="width:140px">ลายเซ็น</th></tr></thead>
   <tbody>
@@ -324,7 +316,7 @@ td strong{color:#0A0A0A}
   <div class="uc-header"><span class="uc-num">UC-OMS-001</span><span class="uc-title">ลูกค้าสร้างคำสั่งซื้อผ่านเว็บไซต์</span></div>
   <div class="uc-body">
       <div class="screen-figure">
-        <img src="ysc_screens/oms/oms_uc001.png" alt="UC-OMS-001">
+        <img src="ysc_screens/oms_uc001.png" alt="UC-OMS-001">
         <div class="screen-caption"><span>หน้าจอสำหรับ UC-OMS-001</span><span class="ref">oms_uc001.png</span></div>
       </div>
     <div class="uc-section"><div class="uc-section-label">จุดประสงค์</div><p style="margin:0">ลูกค้าสร้างคำสั่งซื้อใหม่ผ่านเว็บไซต์ตั้งแต่หยิบสินค้าลงตะกร้าจนถึงสร้างคำสั่งซื้อสำเร็จ</p></div>
@@ -363,7 +355,7 @@ td strong{color:#0A0A0A}
   <div class="uc-header"><span class="uc-num">UC-OMS-002</span><span class="uc-title">พนักงาน CC สร้างคำสั่งซื้อแทนลูกค้า</span></div>
   <div class="uc-body">
       <div class="screen-figure">
-        <img src="ysc_screens/oms/oms_uc002.png" alt="UC-OMS-002">
+        <img src="ysc_screens/oms_uc002.png" alt="UC-OMS-002">
         <div class="screen-caption"><span>หน้าจอสำหรับ UC-OMS-002</span><span class="ref">oms_uc002.png</span></div>
       </div>
     <div class="uc-section"><div class="uc-section-label">จุดประสงค์</div><p style="margin:0">พนักงาน CC สร้างคำสั่งซื้อแทนลูกค้าที่ติดต่อมาทางโทรศัพท์ / LINE / อีเมล / โทรสาร ตาม <span class="br-ref">CC-03</span></p></div>
@@ -389,7 +381,7 @@ td strong{color:#0A0A0A}
   <div class="uc-header"><span class="uc-num">UC-OMS-003</span><span class="uc-title">ชำระเงินด้วยการโอน (อัปโหลดสลิป)</span></div>
   <div class="uc-body">
       <div class="screen-figure">
-        <img src="ysc_screens/oms/oms_uc003.png" alt="UC-OMS-003">
+        <img src="ysc_screens/oms_uc003.png" alt="UC-OMS-003">
         <div class="screen-caption"><span>หน้าจอสำหรับ UC-OMS-003</span><span class="ref">oms_uc003.png</span></div>
       </div>
     <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
@@ -413,7 +405,7 @@ td strong{color:#0A0A0A}
   <div class="uc-header"><span class="uc-num">UC-OMS-004</span><span class="uc-title">ชำระเงินด้วยบัตรเครดิต</span></div>
   <div class="uc-body">
       <div class="screen-figure">
-        <img src="ysc_screens/oms/oms_uc004.png" alt="UC-OMS-004">
+        <img src="ysc_screens/oms_uc004.png" alt="UC-OMS-004">
         <div class="screen-caption"><span>หน้าจอสำหรับ UC-OMS-004</span><span class="ref">oms_uc004.png</span></div>
       </div>
     <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
@@ -436,7 +428,7 @@ td strong{color:#0A0A0A}
   <div class="uc-header"><span class="uc-num">UC-OMS-005</span><span class="uc-title">ชำระเงินด้วยวงเงินเครดิต</span></div>
   <div class="uc-body">
       <div class="screen-figure">
-        <img src="ysc_screens/oms/oms_uc005.png" alt="UC-OMS-005">
+        <img src="ysc_screens/oms_uc005.png" alt="UC-OMS-005">
         <div class="screen-caption"><span>หน้าจอสำหรับ UC-OMS-005</span><span class="ref">oms_uc005.png</span></div>
       </div>
     <div class="uc-section"><div class="uc-section-label">เงื่อนไขก่อนเริ่มต้น</div><p style="margin:0">เฉพาะลูกค้านิติบุคคลที่มีวงเงินเครดิตอนุมัติแล้ว</p></div>
@@ -460,7 +452,7 @@ td strong{color:#0A0A0A}
   <div class="uc-header"><span class="uc-num">UC-OMS-006</span><span class="uc-title">Admin ตรวจสอบสลิปการโอน</span></div>
   <div class="uc-body">
       <div class="screen-figure">
-        <img src="ysc_screens/oms/oms_uc006.png" alt="UC-OMS-006">
+        <img src="ysc_screens/oms_uc006.png" alt="UC-OMS-006">
         <div class="screen-caption"><span>หน้าจอสำหรับ UC-OMS-006</span><span class="ref">oms_uc006.png</span></div>
       </div>
     <div class="uc-section"><div class="uc-section-label">จุดประสงค์</div><p style="margin:0">Admin ตรวจสอบสลิปการโอนเงินด้วยตา (ไม่ใช่ OCR) เพื่อยืนยันว่าลูกค้าได้โอนเงินตามจำนวน</p></div>
@@ -485,7 +477,7 @@ td strong{color:#0A0A0A}
   <div class="uc-header"><span class="uc-num">UC-OMS-007</span><span class="uc-title">ลูกค้าขอใบเสนอราคา</span></div>
   <div class="uc-body">
       <div class="screen-figure">
-        <img src="ysc_screens/oms/oms_uc007.png" alt="UC-OMS-007">
+        <img src="ysc_screens/oms_uc007.png" alt="UC-OMS-007">
         <div class="screen-caption"><span>หน้าจอสำหรับ UC-OMS-007</span><span class="ref">oms_uc007.png</span></div>
       </div>
     <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
@@ -508,7 +500,7 @@ td strong{color:#0A0A0A}
   <div class="uc-header"><span class="uc-num">UC-OMS-008</span><span class="uc-title">ลูกค้าสั่งซื้อสินค้าล่วงหน้า (Pre-Order)</span></div>
   <div class="uc-body">
       <div class="screen-figure">
-        <img src="ysc_screens/oms/oms_uc008.png" alt="UC-OMS-008">
+        <img src="ysc_screens/oms_uc008.png" alt="UC-OMS-008">
         <div class="screen-caption"><span>หน้าจอสำหรับ UC-OMS-008</span><span class="ref">oms_uc008.png</span></div>
       </div>
     <div class="uc-section"><div class="uc-section-label">จุดประสงค์</div><p style="margin:0">ลูกค้าสั่งซื้อสินค้าที่ยังไม่ได้เข้าคลัง โดยชำระเงินครบเต็มจำนวน 100%</p></div>
@@ -524,7 +516,7 @@ td strong{color:#0A0A0A}
     <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
       <div class="uc-ac"><strong>AC-OMS-008-01:</strong> Pre-Order ชำระ 100% ไม่มีลดราคา</div>
       <div class="uc-ac"><strong>AC-OMS-008-02:</strong> ลูกค้าได้คะแนนสะสมจากการสั่งซื้อล่วงหน้า</div>
-      <div class="uc-ac"><strong>AC-OMS-008-03:</strong> เงินมัดจำ Pre-Order = <strong>100%</strong> ของมูลค่าสินค้า ชำระเต็มจำนวนก่อนสินค้าเข้าคลัง <span class="tag-confirmed">ยืนยัน</span></div>
+      <div class="uc-ac"><strong>AC-OMS-008-03:</strong> เปอร์เซ็นต์เงินมัดจำสำหรับ Pre-Order <span class="tag-pending">รอยืนยัน P-01</span></div>
     </div>
   </div>
 </div>
@@ -533,7 +525,7 @@ td strong{color:#0A0A0A}
   <div class="uc-header"><span class="uc-num">UC-OMS-009</span><span class="uc-title">ลูกค้าสั่งซื้อซ้ำ (Re-order)</span></div>
   <div class="uc-body">
       <div class="screen-figure">
-        <img src="ysc_screens/oms/oms_uc009.png" alt="UC-OMS-009">
+        <img src="ysc_screens/oms_uc009.png" alt="UC-OMS-009">
         <div class="screen-caption"><span>หน้าจอสำหรับ UC-OMS-009</span><span class="ref">oms_uc009.png</span></div>
       </div>
     <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
@@ -553,94 +545,23 @@ td strong{color:#0A0A0A}
 </div>
 
 <div class="use-case">
-  <div class="uc-header"><span class="uc-num">UC-OMS-010</span><span class="uc-title">ออกเอกสารประกอบคำสั่งซื้อตามประเภทลูกค้า</span></div>
+  <div class="uc-header"><span class="uc-num">UC-OMS-010</span><span class="uc-title">ออกใบกำกับภาษี</span></div>
   <div class="uc-body">
-    <div class="screen-figure">
-      <img src="ysc_screens/oms/oms_uc010.png" alt="UC-OMS-010">
-      <div class="screen-caption"><span>หน้าจอสำหรับ UC-OMS-010</span><span class="ref">oms_uc010.png</span></div>
-    </div>
-    <div class="uc-section">
-      <div class="uc-section-label">docType และเอกสารที่ออก</div>
-      <p style="font-size:13px;color:#374151;margin-bottom:10px">ระบบ ConX เก็บ <strong>docType</strong> ในข้อมูลหลักของลูกค้า (Customer Master) เพื่อกำหนดรูปแบบเอกสารที่ต้องออกในแต่ละคำสั่งซื้อ</p>
-      <table>
-        <thead>
-          <tr>
-            <th>docType</th>
-            <th>ลักษณะลูกค้า</th>
-            <th>สินค้า V (มี VAT 7%)</th>
-            <th>สินค้า I (ยกเว้น VAT)</th>
-            <th>ใบเตรียมสินค้า</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>Y</strong></td>
-            <td>ลูกค้า VAT — ใบกำกับรวม 1 ใบ</td>
-            <td>IV (ใบกำกับภาษี)</td>
-            <td>รวมใน IV ใบเดียวกัน</td>
-            <td>1 ใบ</td>
-          </tr>
-          <tr>
-            <td><strong>N</strong></td>
-            <td>ลูกค้าทั่วไป — ไม่ขอใบกำกับภาษี</td>
-            <td colspan="2" style="text-align:center">IN (ใบส่งสินค้า) — ออกใบเดียวรวมทุกรายการ</td>
-            <td>1 ใบ</td>
-          </tr>
-          <tr>
-            <td><strong>M</strong></td>
-            <td>ลูกค้า VAT — แยกเอกสารตามประเภทสินค้า</td>
-            <td>IV (เฉพาะสินค้า V)</td>
-            <td>IVN (เฉพาะสินค้า I)</td>
-            <td>2 ใบ <span class="br-ref">INV-05</span></td>
-          </tr>
-          <tr>
-            <td><strong>A</strong></td>
-            <td>ลูกค้า VAT — ใบกำกับอย่างย่อ / กรณีพิเศษ</td>
-            <td>IV (เฉพาะสินค้า V)</td>
-            <td>IVN (เฉพาะสินค้า I)</td>
-            <td>2 ใบ <span class="br-ref">INV-05</span></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="uc-section">
-      <div class="uc-section-label">ประเภทสินค้า V / I</div>
-      <ul style="font-size:13px;margin:4px 0 0 18px;line-height:1.8">
-        <li><strong>V (VATable)</strong> — สินค้าที่ต้องเสีย VAT 7% → ConX ออกเป็น IV (Invoice / ใบกำกับภาษี)</li>
-        <li><strong>I (VAT-exempt)</strong> — สินค้าที่ได้รับการยกเว้น VAT → ConX ออกเป็น IVN หรือรวมใน IV ตาม docType</li>
-      </ul>
-    </div>
-    <div class="uc-section">
-      <div class="uc-section-label">รหัสเอกสาร ConX</div>
-      <table>
-        <thead>
-          <tr><th>รหัส</th><th>ชื่อเอกสาร</th><th>หมายเหตุ</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><strong>ใบเตรียมสินค้า</strong></td><td>Picking Slip</td><td>ออกจาก OMS → ส่งเข้าคิว Pack Station — แสดงราคาสินค้า <span class="br-ref">WH-05</span></td></tr>
-          <tr><td><strong>IV</strong></td><td>Invoice / ใบกำกับภาษี</td><td>ออกจาก ConX — สินค้า V (มี VAT)</td></tr>
-          <tr><td><strong>IVN</strong></td><td>Invoice Note / ใบส่งสินค้า</td><td>ออกจาก ConX — สินค้า I (ยกเว้น VAT)</td></tr>
-          <tr><td><strong>ใบวางบิล</strong></td><td>Billing Note</td><td>ออกหลัง IV/IVN สำหรับลูกค้าเครดิต</td></tr>
-          <tr><td><strong>RV</strong></td><td>Receipt Voucher / ใบรับเงิน</td><td>ออกเมื่อลูกค้าชำระเงิน</td></tr>
-          <tr><td><strong>RVN</strong></td><td>Receipt Voucher Note</td><td>ออกคู่กับ RV กรณี docType M / A</td></tr>
-        </tbody>
-      </table>
-    </div>
+      <div class="screen-figure">
+        <img src="ysc_screens/oms_uc010.png" alt="UC-OMS-010">
+        <div class="screen-caption"><span>หน้าจอสำหรับ UC-OMS-010</span><span class="ref">oms_uc010.png</span></div>
+      </div>
     <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
       <ol class="uc-flow">
-        <li>SO ยืนยันแล้ว — ระบบอ่าน <strong>docType</strong> จากข้อมูลลูกค้าใน ConX</li>
-        <li>ระบบออก <strong>ใบเตรียมสินค้า</strong> (1 หรือ 2 ใบ ตาม docType) → ส่งเข้าคิวพิมพ์ที่ <strong>Pack Station</strong> <span class="br-ref">WH-05</span></li>
-        <li>พนักงานคลังหยิบและบรรจุสินค้าผ่าน Handheld → สแกนยืนยัน → ระบบแจ้ง ConX ให้ออกเอกสาร</li>
-        <li>ConX ออก <strong>IV</strong> (สินค้า V) และ/หรือ <strong>IVN</strong> (สินค้า I) ตาม docType → ระบบรับเอกสารกลับ <span class="br-ref">INV-04</span></li>
-        <li>ระบบออก <strong>ใบวางบิล</strong> (กรณีลูกค้าเครดิต)</li>
-        <li>เมื่อลูกค้าชำระเงิน → ConX ออก <strong>RV / RVN</strong></li>
+        <li>ระบบตรวจสอบประเภทใบกำกับที่ลูกค้าเลือก (Y / N / M / A)</li>
+        <li>ระบบส่งคำขอออกใบกำกับไปยัง ConX</li>
+        <li>ConX ออกใบกำกับและส่งกลับ</li>
+        <li>ระบบส่งใบกำกับเป็น PDF ไปอีเมลลูกค้า</li>
       </ol>
     </div>
     <div class="uc-section"><div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
-      <div class="uc-ac"><strong>AC-OMS-010-01:</strong> ระบบอ่าน docType (Y / N / M / A) จาก ConX และออกเอกสารถูกต้องตามตารางด้านบน <span class="tag-confirmed">ยืนยัน</span> <span class="br-ref">INV-04</span></div>
-      <div class="uc-ac"><strong>AC-OMS-010-02:</strong> docType M หรือ A → ระบบออกใบเตรียมสินค้า 2 ใบ และ ConX ออก IV + IVN แยกกัน <span class="tag-confirmed">ยืนยัน</span> <span class="br-ref">INV-05</span></div>
-      <div class="uc-ac"><strong>AC-OMS-010-03:</strong> ใบเตรียมสินค้าแสดงราคาสินค้า <span class="tag-confirmed">ยืนยัน</span> <span class="br-ref">WH-05</span></div>
-      <div class="uc-ac"><strong>AC-OMS-010-04:</strong> การพิมพ์เอกสารจาก Handheld ส่งผ่านคิว Pack Station เสมอ — ไม่สามารถสั่งพิมพ์โดยตรงจาก Handheld ได้ <span class="tag-confirmed">ยืนยัน</span> <span class="br-ref">WH-21</span></div>
+      <div class="uc-ac"><strong>AC-OMS-010-01:</strong> ประเภทใบกำกับ Y / N / M / A และเงื่อนไข <span class="tag-pending">รอยืนยัน P-05</span></div>
+      <div class="uc-ac"><strong>AC-OMS-010-02:</strong> ใบกำกับ EV / EN กรณีแยก 2 ใบ <span class="tag-pending">P-06</span></div>
     </div>
   </div>
 </div>
@@ -649,7 +570,7 @@ td strong{color:#0A0A0A}
   <div class="uc-header"><span class="uc-num">UC-OMS-011</span><span class="uc-title">ยกเลิกคำสั่งซื้อ</span></div>
   <div class="uc-body">
       <div class="screen-figure">
-        <img src="ysc_screens/oms/oms_uc011.png" alt="UC-OMS-011">
+        <img src="ysc_screens/oms_uc011.png" alt="UC-OMS-011">
         <div class="screen-caption"><span>หน้าจอสำหรับ UC-OMS-011</span><span class="ref">oms_uc011.png</span></div>
       </div>
     <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
@@ -677,7 +598,7 @@ td strong{color:#0A0A0A}
   <div class="uc-header"><span class="uc-num">UC-OMS-012</span><span class="uc-title">คืนสินค้าและออกใบลดหนี้ (CN)</span></div>
   <div class="uc-body">
       <div class="screen-figure">
-        <img src="ysc_screens/oms/oms_uc012.png" alt="UC-OMS-012">
+        <img src="ysc_screens/oms_uc012.png" alt="UC-OMS-012">
         <div class="screen-caption"><span>หน้าจอสำหรับ UC-OMS-012</span><span class="ref">oms_uc012.png</span></div>
       </div>
     <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
@@ -697,7 +618,7 @@ td strong{color:#0A0A0A}
   <div class="uc-header"><span class="uc-num">UC-OMS-013</span><span class="uc-title">ดูสถานะคำสั่งซื้อ</span></div>
   <div class="uc-body">
       <div class="screen-figure">
-        <img src="ysc_screens/oms/oms_uc013.png" alt="UC-OMS-013">
+        <img src="ysc_screens/oms_uc013.png" alt="UC-OMS-013">
         <div class="screen-caption"><span>หน้าจอสำหรับ UC-OMS-013</span><span class="ref">oms_uc013.png</span></div>
       </div>
     <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
@@ -718,7 +639,7 @@ td strong{color:#0A0A0A}
   <div class="uc-header"><span class="uc-num">UC-OMS-014</span><span class="uc-title">กรณีลูกค้าใช้เงินเกินวงเงิน (Over-limit)</span></div>
   <div class="uc-body">
       <div class="screen-figure">
-        <img src="ysc_screens/oms/oms_uc014.png" alt="UC-OMS-014">
+        <img src="ysc_screens/oms_uc014.png" alt="UC-OMS-014">
         <div class="screen-caption"><span>หน้าจอสำหรับ UC-OMS-014</span><span class="ref">oms_uc014.png</span></div>
       </div>
     <div class="uc-section"><div class="uc-section-label">ขั้นตอนหลัก</div>
@@ -870,10 +791,10 @@ td strong{color:#0A0A0A}
 <table>
   <thead><tr><th style="width:100px">รหัส</th><th>ประเด็น / ความเสี่ยง</th></tr></thead>
   <tbody>
-    <tr><td><strong>Q-OMS-001</strong></td><td>เงินมัดจำ Pre-Order = <strong>100%</strong> — ยืนยันแล้ว <span class="tag-confirmed">✓</span></td></tr>
+    <tr><td><strong>Q-OMS-001</strong></td><td>เปอร์เซ็นต์เงินมัดจำสำหรับ Pre-Order <span class="tag-pending">P-01</span></td></tr>
     <tr><td><strong>Q-OMS-002</strong></td><td>ตารางอำนาจการอนุมัติเครดิตของแต่ละตำแหน่ง <span class="tag-pending">P-02</span></td></tr>
-    <tr><td><strong>Q-OMS-003</strong></td><td>docType Y / N / M / A และรูปแบบเอกสาร — ยืนยันแล้ว ดู INV-04 <span class="tag-confirmed">✓</span></td></tr>
-    <tr><td><strong>Q-OMS-004</strong></td><td>IV / IVN กรณี docType M / A ออก 2 ใบ — ยืนยันแล้ว ดู INV-05 <span class="tag-confirmed">✓</span></td></tr>
+    <tr><td><strong>Q-OMS-003</strong></td><td>ประเภทใบกำกับ Y / N / M / A และเงื่อนไข <span class="tag-pending">P-05</span></td></tr>
+    <tr><td><strong>Q-OMS-004</strong></td><td>ใบกำกับ EV / EN กรณีออก 2 ใบ <span class="tag-pending">P-06</span></td></tr>
     <tr><td><strong>Q-OMS-005</strong></td><td>ขั้นตอนยืนยันคำสั่งซื้อที่พนักงาน CC สร้างให้ <span class="tag-pending">P-09</span></td></tr>
     <tr><td><strong>Q-OMS-006</strong></td><td>การแสดงเครื่องหมายราคาเพิ่มขึ้น (*) <span class="tag-pending">P-12</span></td></tr>
     <tr><td><strong>R-OMS-001</strong></td><td>ความเสี่ยง: ConX ล่ม ทำให้คำสั่งซื้อค้าง</td></tr>
@@ -891,7 +812,7 @@ td strong{color:#0A0A0A}
   </div>
   <div class="ut-body">
     <div class="ut-stats">อัพโหลดแล้ว <b id="ut-count">0</b> / <span id="ut-total">0</span> รูป</div>
-    <div style="font-size:11.5px;color:rgba(255,255,255,0.65);line-height:1.5">คลิกที่กรอบรูปใดก็ได้เพื่ออัพโหลด Screenshot จากเครื่อง ระบบจะดาวน์โหลดไฟล์ให้อัตโนมัติเพื่อนำไปวางใน <code style="background:rgba(255,255,255,.15);padding:2px 6px;border-radius:3px">docs/ysc_screens/oms/</code></div>
+    <div style="font-size:11.5px;color:rgba(255,255,255,0.65);line-height:1.5">คลิกที่กรอบรูปใดก็ได้เพื่ออัพโหลด Screenshot จากเครื่อง ระบบจะดาวน์โหลดไฟล์ให้อัตโนมัติเพื่อนำไปวางใน <code style="background:rgba(255,255,255,.15);padding:2px 6px;border-radius:3px">docs/ysc_screens/</code></div>
     <button id="ut-export">ดาวน์โหลดรูปทั้งหมดอีกครั้ง</button>
     <button id="ut-clear" class="danger">ล้างรูปที่อัพโหลดในเครื่อง</button>
   </div>
