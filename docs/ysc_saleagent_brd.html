@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>YSC Sale Agent BRD — ช่องทางการขายผ่านพนักงาน (Sale Agent)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FFFFFF;
+  --bg-soft:#FAFAFA;
+  --ink:#0A0A0A;
+  --ink-2:#2B2B2B;
+  --ink-3:#525252;
+  --ink-4:#8A8A8A;
+  --line:#EDEDED;
+  --line-2:#E5E7EB;
+  --teal:#14E4C7;
+  --blue:#3B82F6;
+  --purple:#8B5CF6;
+  --pink:#EC4899;
+  --gradient:linear-gradient(90deg,#8B5CF6 0%,#EC4899 100%);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#FAFAFA;font-family:'Plus Jakarta Sans','Sarabun',Tahoma,sans-serif;color:#0A0A0A;padding:0 0 80px;line-height:1.65}
+#doc{max-width:920px;margin:36px auto;background:#fff;padding:64px 72px;box-shadow:0 6px 28px rgba(0,0,0,.12);border-radius:6px}
+.cover{background:#0A0A0A;color:#fff;margin:-64px -72px 36px;padding:64px 72px 48px;border-radius:6px 6px 0 0}
+.cover .tag{display:inline-block;background:var(--gradient);font-size:11px;font-weight:700;letter-spacing:.1em;padding:5px 14px;border-radius:4px;margin-bottom:24px}
+.cover h1{font-size:32px;font-weight:700;line-height:1.25;margin-bottom:8px;color:#fff;border:none;padding:0}
+.cover .sub{font-size:16px;color:rgba(255,255,255,0.65);font-weight:300;margin-bottom:32px}
+.cover .info-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid rgba(255,255,255,.15);border-radius:8px;overflow:hidden}
+.cover .info-cell{padding:14px 20px;border-bottom:1px solid rgba(255,255,255,.1);border-right:1px solid rgba(255,255,255,.1)}
+.cover .info-cell:nth-child(2n){border-right:none}
+.cover .info-cell:nth-last-child(-n+2){border-bottom:none}
+.cover .info-label{font-size:10px;color:rgba(255,255,255,0.65);font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
+.cover .info-value{font-size:13px;color:#fff;font-weight:600}
+h1{font-size:24px;color:#0A0A0A;margin:42px 0 14px;font-weight:700;padding-bottom:8px;border-bottom:3px solid transparent;border-image:var(--gradient) 1}
+h2{font-size:18px;color:#0A0A0A;margin:30px 0 12px;font-weight:700}
+h3{font-size:15px;color:#3B82F6;margin:22px 0 10px;font-weight:700}
+p{margin-bottom:12px;font-size:13.5px}
+ul,ol{margin:8px 0 14px 22px;font-size:13.5px}
+li{margin-bottom:5px;line-height:1.7}
+table{width:100%;border-collapse:collapse;margin:14px 0 22px;font-size:12.5px}
+thead th{background:#0A0A0A;color:#fff;padding:10px 12px;text-align:left;font-weight:600;border:1px solid #0A0A0A}
+tbody td{padding:9px 12px;border:1px solid #D1D5DB;vertical-align:top;line-height:1.6}
+tbody tr:nth-child(even) td{background:#F9FAFB}
+td strong{color:#0A0A0A}
+.callout{border-left:4px solid #3B82F6;background:#EFF6FF;padding:14px 18px;margin:14px 0;border-radius:0 6px 6px 0}
+.callout strong{color:#0A0A0A}
+.callout-amber{border-left-color:#F59E0B;background:#FFFBEB}
+.callout-amber strong{color:#92400E}
+.callout-green{border-left-color:#10B981;background:#ECFDF5}
+.callout-green strong{color:#065F46}
+.callout-purple{border-left-color:#8B5CF6;background:#F5F3FF}
+.callout-purple strong{color:#4C1D95}
+.toc{background:#F8FAFC;border:1px solid #E5E7EB;border-radius:8px;padding:20px 28px;margin:20px 0}
+.toc ol{list-style:none;margin:0;padding:0;counter-reset:toc;font-size:13px}
+.toc ol > li{counter-increment:toc;padding:4px 0;border-bottom:1px dashed #E5E7EB}
+.toc ol > li::before{content:counter(toc) ". ";font-weight:700;color:#0A0A0A;margin-right:6px}
+.toc ol ol{margin:4px 0 4px 24px;font-size:12px;color:#6B7280;counter-reset:sub}
+.toc ol ol li{counter-increment:sub;padding:1px 0;border:none}
+.toc ol ol li::before{content:counter(toc) "." counter(sub) " ";color:#6B7280;font-weight:600;margin-right:4px}
+.screen-ref{display:inline-block;background:#FAFAFA;border:1px solid #D1D5DB;color:#374151;font-size:11.5px;padding:1px 8px;border-radius:4px;font-weight:600}
+.br-ref{display:inline-block;background:#FFFBEB;border:1px solid #FDE68A;color:#92400E;font-size:11px;padding:1px 7px;border-radius:4px;font-weight:600}
+.use-case{border:1px solid #E5E7EB;border-radius:10px;margin:18px 0;background:#fff;overflow:hidden}
+.uc-header{background:#0A0A0A;color:#fff;padding:12px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.uc-header .uc-num{font-size:13px;font-weight:700;letter-spacing:.04em}
+.uc-header .uc-title{font-size:14px;font-weight:600;flex:1}
+.uc-body{padding:16px 22px}
+.uc-section{margin:12px 0}
+.uc-section-label{font-size:11.5px;font-weight:700;color:#0A0A0A;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+.uc-flow{counter-reset:flow;list-style:none;margin-left:0}
+.uc-flow > li{counter-increment:flow;position:relative;padding:5px 0 5px 32px;font-size:13px}
+.uc-flow > li::before{content:counter(flow);position:absolute;left:0;top:5px;width:22px;height:22px;background:var(--gradient);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700}
+.uc-alt{background:#FFFBEB;border-left:3px solid #F59E0B;padding:8px 14px;margin:6px 0;border-radius:0 6px 6px 0;font-size:12.5px}
+.uc-exc{background:#FEF2F2;border-left:3px solid #E11D48;padding:8px 14px;margin:6px 0;border-radius:0 6px 6px 0;font-size:12.5px}
+.uc-ac{background:#ECFDF5;border:1px solid #A7F3D0;border-radius:6px;padding:10px 14px;margin:4px 0;font-size:12.5px}
+.uc-ac strong{color:#065F46}
+.tag-confirmed{display:inline-block;background:#DCFCE7;color:#166534;font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:10px}
+.tag-pending{display:inline-block;background:#FEF3C7;color:#92400E;font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:10px}
+.tag-design{display:inline-block;background:#F5F3FF;color:#5B21B6;font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:10px}
+.badge-sa{display:inline-block;background:#1E293B;color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:4px;font-family:'Sarabun',monospace}
+.planned-badge{display:inline-block;background:linear-gradient(90deg,#8B5CF6,#EC4899);color:#fff;font-size:10.5px;font-weight:700;padding:2px 9px;border-radius:10px}
+.flow-diagram{background:#F8FAFC;border:1px solid #E5E7EB;border-radius:8px;padding:20px 24px;margin:14px 0;font-size:13px;overflow-x:auto}
+.flow-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:6px 0}
+.flow-step{background:#1E3A5F;color:#fff;padding:6px 12px;border-radius:6px;font-size:12px;font-weight:600;white-space:nowrap}
+.flow-step.alt{background:#8B5CF6}
+.flow-step.warn{background:#F59E0B;color:#1c1c1c}
+.flow-step.success{background:#10B981}
+.flow-arrow{color:#8A8A8A;font-weight:700;font-size:16px}
+@media print{
+  body{background:#fff}
+  #doc{max-width:none;margin:0;box-shadow:none;padding:24px 40px}
+  .cover{margin:-24px -40px 24px;padding:50px 40px 40px}
+  h1{page-break-before:always}
+  h1:first-of-type{page-break-before:auto}
+  table,.use-case{page-break-inside:avoid}
+}
+</style>
+</head>
+<body>
+
+<nav style="position:sticky;top:0;z-index:200;background:rgba(255,255,255,.9);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid #EDEDED;display:flex;align-items:center;justify-content:space-between;padding:10px 28px;">
+  <div style="display:flex;align-items:center;gap:16px;">
+    <a href="index.html"><img src="assets/adeptio_logo.png" alt="Adeptio" style="height:26px;display:block"></a>
+    <span style="width:1px;height:20px;background:#EDEDED;display:inline-block"></span>
+    <a href="index.html" style="font-size:13px;font-weight:600;color:#525252;text-decoration:none;">สารบัญ</a>
+    <span style="font-size:13px;color:#8A8A8A;">|</span>
+    <span style="font-size:13px;font-weight:600;color:#2B2B2B;">Sale Agent BRD — ช่องทางการขายผ่านพนักงาน</span>
+  </div>
+  <button onclick="window.print()" style="display:inline-flex;align-items:center;gap:6px;padding:8px 18px;border-radius:999px;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;border:1.5px solid #EDEDED;background:#fff;color:#0A0A0A;">พิมพ์ / PDF</button>
+</nav>
+
+<div id="doc">
+
+<div class="cover">
+  <div class="tag">ช่องทางการขาย · SALE AGENT · BACKOFFICE OMS</div>
+  <h1>ช่องทางการขายผ่านพนักงาน<br>(Sale Agent)</h1>
+  <div class="sub">เอกสารข้อกำหนดเชิงธุรกิจสำหรับพนักงานที่สร้างคำสั่งซื้อแทนลูกค้า<br>ครอบคลุม CC · CS · PC ผ่านระบบหลังบ้าน (Backoffice OMS)</div>
+  <div class="info-grid">
+    <div class="info-cell"><div class="info-label">รหัสโมดูล</div><div class="info-value">SA (Sale Agent)</div></div>
+    <div class="info-cell"><div class="info-label">วันที่จัดทำ</div><div class="info-value">พฤษภาคม 2569</div></div>
+    <div class="info-cell"><div class="info-label">เจ้าของโครงการ</div><div class="info-value">บริษัท ยงเจริญศูนย์เครื่องเขียน จำกัด</div></div>
+    <div class="info-cell"><div class="info-label">ผู้พัฒนาระบบ</div><div class="info-value">บริษัท อะเดพทิโอ จำกัด</div></div>
+    <div class="info-cell"><div class="info-label">ระบบที่เชื่อมต่อ</div><div class="info-value">Backoffice OMS, ConX ERP, Customer Connect</div></div>
+    <div class="info-cell"><div class="info-label">อ้างอิงกฎเกณฑ์</div><div class="info-value">ysc_business_rules.html หมวด 2, 5, 6, 7, 13, 16, 17</div></div>
+  </div>
+</div>
+
+<div class="callout callout-purple">
+  <strong>วัตถุประสงค์ของเอกสาร</strong>
+  <p style="margin-top:6px;margin-bottom:0;font-size:13px">เอกสารฉบับนี้ระบุข้อกำหนดสำหรับ <strong>ช่องทางการขายผ่านพนักงาน (Sale Agent)</strong> ซึ่งครอบคลุมพนักงาน 3 บทบาท ได้แก่ CC (Contact Center), CS (Customer Service) และ PC (Product Consultant) ทุกบทบาทสร้างคำสั่งซื้อแทนลูกค้าผ่าน <strong>ระบบหลังบ้าน (Backoffice OMS)</strong> กฎอ้างอิงจาก <a href="ysc_business_rules.html" style="color:#5B21B6">ysc_business_rules.html</a> หมวด CH-02, CC-01–CC-05, SO-01–SO-06, Q-01–Q-04, P-04</p>
+</div>
+
+<h2>สารบัญ</h2>
+<div class="toc">
+  <ol>
+    <li>ข้อมูลเอกสารและการอนุมัติ</li>
+    <li>วัตถุประสงค์เชิงธุรกิจ</li>
+    <li>ขอบเขตของงาน (In / Out of Scope)</li>
+    <li>ผู้มีส่วนได้ส่วนเสียและบทบาทผู้ใช้งาน</li>
+    <li>สถานะปัจจุบัน (As-Is)</li>
+    <li>กระบวนการในอนาคต (To-Be)</li>
+    <li>ข้อกำหนดเชิงหน้าที่ — กรณีการใช้งาน (Use Cases)
+      <ol>
+        <li>UC-SA-001 เปิดหน้าจอ Agent Portal และดึงข้อมูลลูกค้าขึ้นทันที</li>
+        <li>UC-SA-002 ค้นหาลูกค้าและตรวจสอบประวัติก่อนสร้างคำสั่งซื้อ</li>
+        <li>UC-SA-003 สร้างคำสั่งซื้อปกติแทนลูกค้า</li>
+        <li>UC-SA-004 สร้างคำสั่งซื้อล่วงหน้า (Pre-order) กรณีสต็อกไม่เพียงพอ</li>
+        <li>UC-SA-005 สร้างใบเสนอราคาแทนลูกค้า</li>
+        <li>UC-SA-006 แปลงใบเสนอราคาเป็นคำสั่งซื้อ</li>
+        <li>UC-SA-007 ส่งข้อมูลชำระเงิน (QR Code / แจ้งโอนเงิน) ผ่านระบบ</li>
+        <li>UC-SA-008 ติดตามคำสั่งซื้อรอชำระเงินใกล้หมดเวลา</li>
+        <li>UC-SA-009 ยกเลิกและสร้างคำสั่งซื้อทดแทน (Cancel + Duplicate)</li>
+        <li>UC-SA-010 ขออนุมัติวงเงินเครดิตชั่วคราวกรณีเกินวงเงิน</li>
+        <li>UC-SA-011 บันทึกช่องทางและ Sub-channel การสั่งซื้อ</li>
+        <li>UC-SA-012 แจ้งเตือน Up-sell และ Cross-sell ระหว่างสร้างคำสั่งซื้อ</li>
+      </ol>
+    </li>
+    <li>การออกแบบประสบการณ์ผู้ใช้ (Screen Inventory)</li>
+    <li>กฎเกณฑ์เชิงธุรกิจ</li>
+    <li>การเชื่อมต่อระบบภายนอก (Integration)</li>
+    <li>การออกแบบข้อมูลและข้อมูลหลัก (Data &amp; Master)</li>
+    <li>ความปลอดภัยและสิทธิ์การเข้าถึง (Security &amp; RBAC)</li>
+    <li>ข้อกำหนดเชิงคุณภาพ (NFR)</li>
+    <li>รายงานและแดชบอร์ด</li>
+    <li>ข้อกำหนดการโอนย้ายข้อมูล (Migration)</li>
+    <li>สมมติฐานและข้อจำกัด</li>
+    <li>เกณฑ์การยอมรับผลงาน</li>
+    <li>ประเด็นเปิดและความเสี่ยง (Open Issues &amp; Risks)</li>
+  </ol>
+</div>
+
+<!-- ===== UC CATALOG ===== -->
+<h1 id="uc-catalog">สรุปกรณีการใช้งาน (Use Case Catalog)</h1>
+<table>
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>รหัส UC</th>
+      <th>ชื่อกรณีการใช้งาน</th>
+      <th>ผู้ใช้งานหลัก</th>
+      <th>กฎที่เกี่ยวข้อง (หลัก)</th>
+      <th>สถานะ</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td><span class="badge-sa">UC-SA-001</span></td>
+      <td>เปิดหน้าจอ Agent Portal และดึงข้อมูลลูกค้าขึ้นทันที</td>
+      <td>CC / CS / PC</td>
+      <td>CC-05, CH-02, D-007</td>
+      <td><span class="tag-confirmed">ยืนยัน</span></td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td><span class="badge-sa">UC-SA-002</span></td>
+      <td>ค้นหาลูกค้าและตรวจสอบประวัติก่อนสร้างคำสั่งซื้อ</td>
+      <td>CC / CS / PC</td>
+      <td>CC-05, C-01, AUTH-03</td>
+      <td><span class="tag-confirmed">ยืนยัน</span></td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td><span class="badge-sa">UC-SA-003</span></td>
+      <td>สร้างคำสั่งซื้อปกติแทนลูกค้า</td>
+      <td>CC / CS / PC</td>
+      <td>SO-01, SO-05, P-04, S-02, CH-02</td>
+      <td><span class="tag-confirmed">ยืนยัน</span></td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td><span class="badge-sa">UC-SA-004</span></td>
+      <td>สร้างคำสั่งซื้อล่วงหน้า (Pre-order) กรณีสต็อกไม่เพียงพอ</td>
+      <td>CC / CS / PC</td>
+      <td>S-06, D-024, SO-06, C-07</td>
+      <td><span class="tag-confirmed">ยืนยัน</span></td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td><span class="badge-sa">UC-SA-005</span></td>
+      <td>สร้างใบเสนอราคาแทนลูกค้า</td>
+      <td>CC / CS / PC</td>
+      <td>Q-01, Q-02, Q-04, D-023</td>
+      <td><span class="tag-confirmed">ยืนยัน</span></td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td><span class="badge-sa">UC-SA-006</span></td>
+      <td>แปลงใบเสนอราคาเป็นคำสั่งซื้อ</td>
+      <td>CC / CS / PC</td>
+      <td>Q-03, Q-02, SO-05</td>
+      <td><span class="tag-confirmed">ยืนยัน</span></td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td><span class="badge-sa">UC-SA-007</span></td>
+      <td>ส่งข้อมูลชำระเงิน (QR Code / แจ้งโอนเงิน) ผ่านระบบ</td>
+      <td>CC / CS / PC</td>
+      <td>P-08, CC-01, INV-03</td>
+      <td><span class="tag-confirmed">ยืนยัน</span></td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td><span class="badge-sa">UC-SA-008</span></td>
+      <td>ติดตามคำสั่งซื้อรอชำระเงินใกล้หมดเวลา</td>
+      <td>CC / CS / PC</td>
+      <td>SO-01 (24 ชม.), CC-03</td>
+      <td><span class="tag-confirmed">ยืนยัน</span></td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td><span class="badge-sa">UC-SA-009</span></td>
+      <td>ยกเลิกและสร้างคำสั่งซื้อทดแทน (Cancel + Duplicate)</td>
+      <td>CC / CS / PC</td>
+      <td>SO-02, SO-03, D-009</td>
+      <td><span class="tag-confirmed">ยืนยัน</span></td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td><span class="badge-sa">UC-SA-010</span></td>
+      <td>ขออนุมัติวงเงินเครดิตชั่วคราวกรณีเกินวงเงิน</td>
+      <td>CC / CS / PC</td>
+      <td>CC-02, C-02, P-02</td>
+      <td><span class="tag-design">รอออกแบบ</span></td>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td><span class="badge-sa">UC-SA-011</span></td>
+      <td>บันทึกช่องทางและ Sub-channel การสั่งซื้อ <span class="planned-badge">วางแผนไว้</span></td>
+      <td>CC / CS / PC</td>
+      <td>SO-05, CH-04, CH-05</td>
+      <td><span class="tag-design">รอออกแบบ</span></td>
+    </tr>
+    <tr>
+      <td>12</td>
+      <td><span class="badge-sa">UC-SA-012</span></td>
+      <td>แจ้งเตือน Up-sell และ Cross-sell ระหว่างสร้างคำสั่งซื้อ</td>
+      <td>CC / CS / PC</td>
+      <td>CC-05, D-007, PR-05</td>
+      <td><span class="tag-confirmed">ยืนยัน</span></td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ===== SECTION 1 ===== -->
+<h1 id="s1">1. ข้อมูลเอกสารและการอนุมัติ</h1>
+
+<h3>1.1 ผู้อนุมัติเอกสาร</h3>
+<table>
+  <thead><tr><th>บทบาท</th><th>ชื่อ</th><th>วันที่อนุมัติ</th><th>หมายเหตุ</th></tr></thead>
+  <tbody>
+    <tr><td>เจ้าของโครงการ (YSC)</td><td>[รอยืนยัน — Pending verification]</td><td>—</td><td>—</td></tr>
+    <tr><td>ผู้จัดการโครงการ (Adeptio)</td><td>[รอยืนยัน — Pending verification]</td><td>—</td><td>—</td></tr>
+    <tr><td>Business Analyst</td><td>[รอยืนยัน — Pending verification]</td><td>—</td><td>—</td></tr>
+  </tbody>
+</table>
+
+<!-- ===== SECTION 2 ===== -->
+<h1 id="s2">2. วัตถุประสงค์เชิงธุรกิจ</h1>
+<p>ช่องทางการขายผ่านพนักงาน (Sale Agent) เป็นช่องทางที่พนักงานของบริษัทสร้างคำสั่งซื้อในระบบแทนลูกค้า ครอบคลุม 3 กลุ่มพนักงาน ได้แก่</p>
+<ul>
+  <li><strong>CC — Contact Center</strong>: รับออเดอร์ผ่านโทรศัพท์, LINE OA, อีเมล หรือ Fax ป้อนข้อมูลเข้าระบบแทนลูกค้า</li>
+  <li><strong>CS — Customer Service</strong>: ดูแลปัญหาหลังการขาย รับคำขอเปลี่ยน/แก้ไขคำสั่งซื้อ ติดตามสถานะแทนลูกค้า</li>
+  <li><strong>PC — Product Consultant</strong>: แนะนำสินค้า รับออเดอร์จากลูกค้าที่เดินเข้ามาหรือโทรปรึกษา สร้างคำสั่งซื้อผ่านระบบหลังบ้านโดยตรง</li>
+</ul>
+
+<h3>วัตถุประสงค์หลัก</h3>
+<ul>
+  <li>ลดขั้นตอนการทำงานด้วยกระดาษ (เดิม: พิมพ์ใบ → นำไปคีย์ → เกิดข้อผิดพลาด) เป็นระบบดิจิทัลครบวงจร</li>
+  <li>เพิ่มโอกาส Up-sell / Cross-sell ด้วยข้อมูล Top 10 สินค้าที่ลูกค้าซื้อประจำและการแจ้งเตือนโปรโมชัน</li>
+  <li>ให้พนักงานเห็นข้อมูลลูกค้าครบถ้วน (ระดับสมาชิก, ยอดซื้อ, วงเงินเครดิต) บนหน้าจอเดียวก่อนสร้างคำสั่งซื้อ</li>
+  <li>รองรับการบันทึก Sub-channel การสั่งซื้อ (โทรศัพท์ / LINE / อีเมล / เดินเข้ามา) เพื่อการรายงานและวิเคราะห์ช่องทาง</li>
+  <li>รองรับการทำงาน 2 จอพร้อมกัน: จอสนทนากับลูกค้า + จอสร้างคำสั่งซื้อ</li>
+</ul>
+
+<!-- ===== SECTION 3 ===== -->
+<h1 id="s3">3. ขอบเขตของงาน</h1>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:14px 0">
+  <div class="callout callout-green">
+    <strong>อยู่ในขอบเขต (In Scope)</strong>
+    <ul style="margin-top:8px;margin-bottom:0;font-size:12.5px">
+      <li>Agent Portal: หน้าจอรวมข้อมูลลูกค้า + สร้างคำสั่งซื้อ</li>
+      <li>สร้างคำสั่งซื้อปกติ / Pre-order / ใบเสนอราคาผ่าน Backoffice</li>
+      <li>แปลงใบเสนอราคาเป็นคำสั่งซื้อ</li>
+      <li>ยกเลิกและสร้างคำสั่งซื้อทดแทน (Cancel + Duplicate)</li>
+      <li>ส่งข้อมูลชำระเงิน (QR Code / บัญชีโอนเงิน) ให้ลูกค้าผ่านระบบ</li>
+      <li>ติดตามคำสั่งซื้อรอชำระเงิน (SO Monitoring — 24 ชม.)</li>
+      <li>ขออนุมัติวงเงินชั่วคราว (Over-limit Approval)</li>
+      <li>บันทึก Sub-channel การสั่งซื้อ (feature วางแผนไว้)</li>
+      <li>การแจ้งเตือน Up-sell / Cross-sell</li>
+      <li>การใช้คูปองแทนลูกค้าในขั้นตอน Checkout</li>
+    </ul>
+  </div>
+  <div class="callout callout-amber">
+    <strong>อยู่นอกขอบเขต (Out of Scope)</strong>
+    <ul style="margin-top:8px;margin-bottom:0;font-size:12.5px">
+      <li>การสร้างคำสั่งซื้อผ่านเว็บไซต์หน้าร้านออนไลน์ (ดู ysc_storefront_brd.html)</li>
+      <li>การขาย ณ จุดขายหน้าร้าน POS (ดู ysc_pos_brd.html)</li>
+      <li>การออก Invoice / Cashier Gate (ดู ysc_oms_brd.html)</li>
+      <li>การจัดการสต็อกและ Pick/Pack (ดู ysc_wms_brd.html)</li>
+      <li>Ticket System / After-sales Service (อยู่ใน CRM)</li>
+      <li>การจัดการโปรโมชันและแคมเปญ (ดู ysc_promotion_brd.html)</li>
+      <li>LINE OA Chatbot / Automated Messaging (ไม่ใช่ขอบเขต Adeptio)</li>
+      <li>Shopee / Social Commerce integration อัตโนมัติ (CH-05 — CC นำเข้าเองด้วยตนเอง)</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ===== SECTION 4 ===== -->
+<h1 id="s4">4. ผู้มีส่วนได้ส่วนเสียและบทบาทผู้ใช้งาน</h1>
+<table>
+  <thead>
+    <tr><th>บทบาท</th><th>ชื่อย่อ</th><th>ความรับผิดชอบหลัก</th><th>สิทธิ์ในระบบ</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>พนักงาน Contact Center</strong></td>
+      <td>CC</td>
+      <td>รับออเดอร์ทางโทรศัพท์ / LINE / อีเมล / Fax, สร้างตะกร้า, ส่งข้อมูลยืนยันให้ลูกค้า, ติดตาม SO รอชำระ</td>
+      <td>สร้าง/อ่าน SO, Quotation, Pre-order; ขอ Over-limit Approval; ใช้คูปองแทนลูกค้า</td>
+    </tr>
+    <tr>
+      <td><strong>พนักงาน Customer Service</strong></td>
+      <td>CS</td>
+      <td>แก้ไขคำสั่งซื้อ (Cancel + Duplicate), ติดตามสถานะแทนลูกค้า, รับ Complaint</td>
+      <td>สร้าง/อ่าน SO, Cancel SO ที่ยังไม่ Pick; ดู Order History</td>
+    </tr>
+    <tr>
+      <td><strong>พนักงาน Product Consultant</strong></td>
+      <td>PC</td>
+      <td>แนะนำสินค้า สร้างคำสั่งซื้อให้ลูกค้าที่เดินเข้ามาหรือโทรปรึกษา</td>
+      <td>สร้าง/อ่าน SO, Quotation; ดูสต็อก On-hand / Available</td>
+    </tr>
+    <tr>
+      <td><strong>ผู้จัดการ Contact Center</strong></td>
+      <td>CC Supervisor</td>
+      <td>อนุมัติ Over-limit วงเงินชั่วคราว, ดูรายงาน SO Monitoring</td>
+      <td>อนุมัติ Over-limit (ตามวงเงิน Approval Matrix); ดู Report</td>
+    </tr>
+    <tr>
+      <td><strong>Admin ระบบ</strong></td>
+      <td>Admin</td>
+      <td>ตั้งค่า Price Tier, วงเงินเครดิต, ข้อมูลหลักลูกค้า</td>
+      <td>เข้าถึงทุก Module</td>
+    </tr>
+    <tr>
+      <td><strong>ลูกค้า (ทั่วไปและธุรกิจ)</strong></td>
+      <td>—</td>
+      <td>ผู้รับบริการ — ไม่เข้าระบบ Backoffice โดยตรง</td>
+      <td>—</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ===== SECTION 5 ===== -->
+<h1 id="s5">5. สถานะปัจจุบัน (As-Is)</h1>
+<h3>กระบวนการรับออเดอร์ทาง LINE (ปัจจุบัน)</h3>
+<div class="flow-diagram">
+  <div class="flow-row">
+    <div class="flow-step">ลูกค้าส่ง Order ทาง LINE</div>
+    <div class="flow-arrow">&#8594;</div>
+    <div class="flow-step warn">CC พิมพ์ลงกระดาษ (บิลด่วน = กระดาษสีเขียว)</div>
+    <div class="flow-arrow">&#8594;</div>
+    <div class="flow-step warn">นำกระดาษไปให้คนคีย์บิล</div>
+    <div class="flow-arrow">&#8594;</div>
+    <div class="flow-step warn">คีย์เข้าระบบ ConX</div>
+  </div>
+</div>
+
+<h3>ปัญหาของกระบวนการปัจจุบัน</h3>
+<table>
+  <thead><tr><th>ปัญหา</th><th>ผลกระทบ</th></tr></thead>
+  <tbody>
+    <tr><td>ต้องพิมพ์ลงกระดาษและส่งต่อด้วยมือ</td><td>Lead Time นาน ข้อมูลหาย/อ่านไม่ออก</td></tr>
+    <tr><td>คีย์บิลด้วยตัวเอง — โอกาสผิดพลาดสูง</td><td>สต็อกคลาดเคลื่อน ลูกค้าได้สินค้าไม่ครบ</td></tr>
+    <tr><td>ไม่มีข้อมูลลูกค้าแสดงขณะรับสาย</td><td>โอกาส Up-sell / Cross-sell หายไป</td></tr>
+    <tr><td>ไม่มีระบบติดตาม SO รอชำระ</td><td>SO หมดอายุ 24 ชม. โดยไม่มีใครแจ้งลูกค้า</td></tr>
+    <tr><td>ไม่สามารถใช้คูปองแทนลูกค้าได้</td><td>ลูกค้าเสียสิทธิ์ส่วนลดที่มีอยู่</td></tr>
+    <tr><td>ไม่มีการบันทึก Sub-channel (LINE / โทร / อีเมล)</td><td>วิเคราะห์ยอดขายแยกช่องทางไม่ได้</td></tr>
+  </tbody>
+</table>
+
+<!-- ===== SECTION 6 ===== -->
+<h1 id="s6">6. กระบวนการในอนาคต (To-Be)</h1>
+<h3>Agent Portal — หน้าจอเดียวครบวงจร</h3>
+<div class="callout callout-green">
+  <strong>แนวคิดหลัก (จากการประชุม 16-01-2026, 18-03-2026)</strong>
+  <p style="margin:6px 0 0;font-size:13px">รวม Ticket + Order + ข้อมูลลูกค้าไว้ในหน้าจอเดียว รองรับการทำงาน 2 จอพร้อมกัน (จอคุยกับลูกค้า + จอคีย์ออเดอร์) ลด Lead Time และลดข้อผิดพลาด</p>
+</div>
+
+<h3>กระบวนการรับออเดอร์ทาง LINE (To-Be)</h3>
+<div class="flow-diagram">
+  <div class="flow-row">
+    <div class="flow-step">ลูกค้าส่ง Order ทาง LINE</div>
+    <div class="flow-arrow">&#8594;</div>
+    <div class="flow-step">CC เปิด Agent Portal ดูข้อมูลลูกค้าทันที</div>
+    <div class="flow-arrow">&#8594;</div>
+    <div class="flow-step">สร้างตะกร้า (Basket) บนระบบเว็บ</div>
+  </div>
+  <div class="flow-row" style="margin-top:8px">
+    <div class="flow-arrow" style="margin-left:24px">&#8595;</div>
+  </div>
+  <div class="flow-row">
+    <div class="flow-step">Capture Screen ส่งให้ลูกค้า Confirm ทาง LINE</div>
+    <div class="flow-arrow">&#8594;</div>
+    <div class="flow-step success">CC ยืนยัน &rarr; สร้าง SO</div>
+    <div class="flow-arrow">&#8594;</div>
+    <div class="flow-step success">ส่ง QR / ข้อมูลโอนเงินให้ลูกค้า</div>
+  </div>
+</div>
+
+<h3>กระบวนการสร้างคำสั่งซื้อทุกช่องทาง (To-Be)</h3>
+<div class="flow-diagram">
+  <div class="flow-row">
+    <div class="flow-step">รับสาย / แชท / เดินเข้ามา</div>
+    <div class="flow-arrow">&#8594;</div>
+    <div class="flow-step">ค้นหาลูกค้าในระบบ (เบอร์ / ชื่อ)</div>
+    <div class="flow-arrow">&#8594;</div>
+    <div class="flow-step">ระบบดึง Customer Profile ขึ้นทันที</div>
+  </div>
+  <div class="flow-row" style="margin-top:8px">
+    <div class="flow-arrow" style="margin-left:24px">&#8595;</div>
+  </div>
+  <div class="flow-row">
+    <div class="flow-step">เพิ่มสินค้าลงตะกร้า (ใช้ Top 10 / ค้นหา)</div>
+    <div class="flow-arrow">&#8594;</div>
+    <div class="flow-step">เลือกคูปอง / ระบบคำนวณโปรโมชันอัตโนมัติ</div>
+    <div class="flow-arrow">&#8594;</div>
+    <div class="flow-step">บันทึก Sub-channel</div>
+  </div>
+  <div class="flow-row" style="margin-top:8px">
+    <div class="flow-arrow" style="margin-left:24px">&#8595;</div>
+  </div>
+  <div class="flow-row">
+    <div class="flow-step alt">วงเงินพอ?</div>
+    <div class="flow-arrow">&#8594; ใช่</div>
+    <div class="flow-step success">ยืนยัน SO &rarr; ส่งข้อมูลชำระเงิน</div>
+  </div>
+  <div class="flow-row">
+    <span style="font-size:12px;color:#E11D48;margin-left:60px">ไม่ใช่ &rarr; ขออนุมัติ Over-limit</span>
+  </div>
+</div>
+
+
+<!-- ===== SECTION 7 — USE CASES ===== -->
+<h1 id="s7">7. ข้อกำหนดเชิงหน้าที่ — กรณีการใช้งาน</h1>
+
+<!-- UC-SA-001 -->
+<div class="use-case">
+  <div class="uc-header">
+    <span class="uc-num">UC-SA-001</span>
+    <span class="uc-title">เปิดหน้าจอ Agent Portal และดึงข้อมูลลูกค้าขึ้นทันที</span>
+    <span class="tag-confirmed">ยืนยัน</span>
+  </div>
+  <div class="uc-body">
+    <div class="uc-section">
+      <div class="uc-section-label">จุดประสงค์</div>
+      <p style="font-size:13px;margin:0">พนักงาน CC / CS / PC เปิดหน้าจอ Agent Portal แล้วระบบดึงข้อมูลลูกค้าขึ้นแสดงทันทีเมื่อรับสายหรือค้นหาด้วยเบอร์โทรศัพท์ เพื่อให้พนักงานเห็นบริบทลูกค้าครบก่อนสนทนา</p>
+    </div>
+    <div class="uc-section">
+      <div class="uc-section-label">เงื่อนไขก่อนเริ่มต้น</div>
+      <ul style="font-size:13px;margin:0">
+        <li>พนักงานล็อกอินเข้าระบบ Backoffice ด้วยบัญชีที่มีสิทธิ์ CC / CS / PC</li>
+        <li>หน้าจอ <span class="screen-ref">Customer Connect (มัลติเอเจนต์)</span> เปิดอยู่</li>
+      </ul>
+    </div>
+    <div class="uc-section">
+      <div class="uc-section-label">เหตุการณ์เริ่มต้น</div>
+      <p style="font-size:13px;margin:0">พนักงานรับสายโทรศัพท์หรือเริ่มแชทกับลูกค้า — ระบบได้รับเบอร์โทรศัพท์ หรือพนักงานกรอกเบอร์ / ชื่อลูกค้าเพื่อค้นหา</p>
+    </div>
+    <div class="uc-section">
+      <div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>ระบบรับเบอร์โทรศัพท์ของลูกค้า (จาก CTI หรือพนักงานกรอกเอง)</li>
+        <li>ระบบค้นหาลูกค้าจากฐานข้อมูลโดยใช้เบอร์โทรศัพท์เป็นหลัก</li>
+        <li>ระบบดึงข้อมูล Customer Profile แสดงบน <span class="screen-ref">Customer Connect (มัลติเอเจนต์)</span> ทันที ประกอบด้วย: ระดับ Tier (Prospect / Member / Silver / Gold / Platinum / Diamond / Coronet), ยอดซื้อเฉลี่ยย้อนหลัง 1 / 3 / 6 / 12 เดือน, วงเงินเครดิตคงเหลือ (สำหรับลูกค้าธุรกิจ)</li>
+        <li>ระบบแสดง <strong>Top 10 สินค้าที่ลูกค้าซื้อประจำ</strong> พร้อมจำนวนค่ากลาง (Median) ย้อนหลัง 6 เดือน <span class="br-ref">CC-05</span> <span class="br-ref">D-007</span></li>
+        <li>ระบบแสดงประวัติคำสั่งซื้อล่าสุดของลูกค้า</li>
+        <li>พนักงานพร้อมเริ่มสนทนาและสร้างคำสั่งซื้อ</li>
+      </ol>
+    </div>
+    <div class="uc-section">
+      <div class="uc-section-label">ขั้นตอนทางเลือก</div>
+      <div class="uc-alt"><strong>A1 — ไม่พบลูกค้าในระบบ:</strong> ระบบแสดงข้อความ "ไม่พบข้อมูลลูกค้า" พนักงานสามารถค้นหาด้วยชื่อ / อีเมล หรือสร้างลูกค้าใหม่ผ่าน <span class="screen-ref">หน้าจอสร้างลูกค้าใหม่</span></div>
+      <div class="uc-alt"><strong>A2 — ลูกค้ามีหลายบัญชี (เบอร์ซ้ำ):</strong> ระบบแสดงรายการลูกค้าที่ตรงกัน พนักงานเลือกบัญชีที่ถูกต้อง</div>
+    </div>
+    <div class="uc-section">
+      <div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-SA-001-01:</strong> เมื่อพนักงานกรอกเบอร์โทรศัพท์ที่มีในระบบ ข้อมูล Customer Profile ต้องแสดงภายใน 2 วินาที</div>
+      <div class="uc-ac"><strong>AC-SA-001-02:</strong> หน้าจอต้องแสดง Top 10 สินค้าพร้อมจำนวน Median ย้อนหลัง 6 เดือน</div>
+      <div class="uc-ac"><strong>AC-SA-001-03:</strong> ลูกค้าธุรกิจ (B2B) ต้องเห็นวงเงินเครดิตคงเหลือบนหน้าจอ</div>
+      <div class="uc-ac"><strong>AC-SA-001-04:</strong> กรณีไม่พบลูกค้า ระบบแสดง Error Message ที่อ่านเข้าใจได้ ไม่แสดง Error Code ดิบ</div>
+    </div>
+    <div class="uc-section">
+      <div class="uc-section-label">หน้าจอที่เกี่ยวข้อง</div>
+      <p style="font-size:13px;margin:0"><span class="screen-ref">Customer Connect (มัลติเอเจนต์)</span> — CustomerConnectMultiAgent.tsx | <span class="screen-ref">หน้าจอรายการลูกค้า</span> — Customers.tsx | <span class="screen-ref">หน้าจอข้อมูลลูกค้า</span> — CustomerDetail.tsx</p>
+    </div>
+  </div>
+</div>
+
+<!-- UC-SA-002 -->
+<div class="use-case">
+  <div class="uc-header">
+    <span class="uc-num">UC-SA-002</span>
+    <span class="uc-title">ค้นหาลูกค้าและตรวจสอบประวัติก่อนสร้างคำสั่งซื้อ</span>
+    <span class="tag-confirmed">ยืนยัน</span>
+  </div>
+  <div class="uc-body">
+    <div class="uc-section">
+      <div class="uc-section-label">จุดประสงค์</div>
+      <p style="font-size:13px;margin:0">พนักงานค้นหาลูกค้าได้จากหลายเงื่อนไข และตรวจสอบข้อมูลที่จำเป็นก่อนเริ่มสร้างคำสั่งซื้อ เช่น วงเงินเครดิต, Tier, ยอดค้างชำระ</p>
+    </div>
+    <div class="uc-section">
+      <div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>พนักงานเข้าหน้า <span class="screen-ref">หน้าจอรายการลูกค้า</span> หรือแถบค้นหาใน Agent Portal</li>
+        <li>ป้อนเงื่อนไขค้นหา: เบอร์โทรศัพท์ / ชื่อลูกค้า / รหัสลูกค้า / อีเมล</li>
+        <li>ระบบแสดงรายการลูกค้าที่ตรงเงื่อนไข พนักงานคลิกเลือก</li>
+        <li>ระบบเปิด <span class="screen-ref">หน้าจอข้อมูลลูกค้า</span> แสดง: ชื่อ / ที่อยู่จัดส่ง / ประเภทลูกค้า (ทั่วไป / ธุรกิจ), Tier, Price Tier, วงเงินเครดิตและยอดที่ใช้ไป (B2B), ประวัติ SO ย้อนหลัง</li>
+        <li>พนักงานยืนยันข้อมูลถูกต้อง แล้วกดปุ่มสร้างคำสั่งซื้อใหม่</li>
+      </ol>
+    </div>
+    <div class="uc-section">
+      <div class="uc-section-label">กฎที่เกี่ยวข้อง</div>
+      <p style="font-size:13px;margin:0"><span class="br-ref">AUTH-03</span> การเปลี่ยนเบอร์โทรต้องแจ้ง CC พร้อมหลักฐาน — พนักงานไม่สามารถแก้เบอร์โทรในระบบได้โดยตรง</p>
+    </div>
+    <div class="uc-section">
+      <div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-SA-002-01:</strong> ค้นหาได้จากเบอร์โทร / ชื่อ / รหัสลูกค้า / อีเมล ผลลัพธ์แสดงภายใน 2 วินาที</div>
+      <div class="uc-ac"><strong>AC-SA-002-02:</strong> หน้าจอข้อมูลลูกค้าแสดงวงเงินเครดิตและยอดที่ใช้ไปสำหรับลูกค้าธุรกิจ</div>
+    </div>
+  </div>
+</div>
+
+<!-- UC-SA-003 -->
+<div class="use-case">
+  <div class="uc-header">
+    <span class="uc-num">UC-SA-003</span>
+    <span class="uc-title">สร้างคำสั่งซื้อปกติแทนลูกค้า</span>
+    <span class="tag-confirmed">ยืนยัน</span>
+  </div>
+  <div class="uc-body">
+    <div class="uc-section">
+      <div class="uc-section-label">จุดประสงค์</div>
+      <p style="font-size:13px;margin:0">พนักงานสร้างคำสั่งซื้อปกติแทนลูกค้าผ่านหน้าจอ Backoffice ครอบคลุมการเพิ่มสินค้า เลือกวิธีจัดส่ง เลือกคูปอง และยืนยัน SO โดยระบบบันทึก Channel = backoffice และตัดวงเงินเครดิตทันทีสำหรับลูกค้า B2B</p>
+    </div>
+    <div class="uc-section">
+      <div class="uc-section-label">เงื่อนไขก่อนเริ่มต้น</div>
+      <ul style="font-size:13px;margin:0">
+        <li>พนักงานเลือกลูกค้าเป้าหมายเรียบร้อยแล้ว (ผ่าน UC-SA-001 หรือ UC-SA-002)</li>
+        <li>สินค้าที่จะสั่งมีสต็อก Available ในคลังออนไลน์</li>
+      </ul>
+    </div>
+    <div class="uc-section">
+      <div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>พนักงานกดปุ่ม "สร้างคำสั่งซื้อใหม่" บน Agent Portal — ระบบเปิด <span class="screen-ref">หน้าจอสร้างคำสั่งซื้อ</span> พร้อมข้อมูลลูกค้าที่เลือกไว้</li>
+        <li>พนักงานค้นหาและเพิ่มสินค้าลงตะกร้า — สามารถเลือกจาก Top 10 สินค้าที่ลูกค้าซื้อประจำได้ทันที หรือค้นหาด้วยชื่อ / รหัส SKU</li>
+        <li>ระบบแสดงสต็อก On-hand และ Available แบบ Real-time <span class="br-ref">S-01</span></li>
+        <li>ระบบคำนวณ Promotion / ส่วนลดอัตโนมัติตาม Price Tier ของลูกค้า <span class="br-ref">PR-01</span></li>
+        <li>พนักงานเลือกคูปองส่วนลดแทนลูกค้าได้ (หากลูกค้ามีคูปอง) <span class="br-ref">PR-05</span></li>
+        <li>พนักงานเลือกวิธีจัดส่ง (สายขนส่ง / รับเองที่ร้าน)</li>
+        <li>พนักงานบันทึก Sub-channel การสั่งซื้อ <span class="br-ref">SO-05</span> <span class="br-ref">CH-04</span> (ดูรายละเอียดใน UC-SA-011)</li>
+        <li>ระบบแสดงสรุปยอด: subtotal, ส่วนลด, ภาษีมูลค่าเพิ่ม, ยอดชำระสุทธิ</li>
+        <li>พนักงานยืนยันคำสั่งซื้อ — ระบบ Reserve สต็อกทันที <span class="br-ref">S-02</span> และตัดวงเงินเครดิตทันทีสำหรับลูกค้า B2B <span class="br-ref">C-01</span></li>
+        <li>ระบบสร้าง SO พร้อม Channel = <code>backoffice</code> และบันทึก <code>createdBy</code> เป็นรหัสพนักงาน</li>
+        <li>ระบบส่งข้อมูลยืนยัน SO ไปยัง ConX ERP <span class="br-ref">INT-08</span></li>
+      </ol>
+    </div>
+    <div class="uc-section">
+      <div class="uc-section-label">ขั้นตอนทางเลือก</div>
+      <div class="uc-alt"><strong>A1 — สต็อกไม่เพียงพอ:</strong> ระบบแสดง Alert <span class="br-ref">S-05</span> พนักงานเลือก: (1) ลดจำนวนให้ไม่เกิน Available หรือ (2) ไปเปิด Pre-order (UC-SA-004)</div>
+      <div class="uc-alt"><strong>A2 — ลูกค้า B2B วงเงินเกิน:</strong> ระบบแจ้งเตือนวงเงินไม่พอ พนักงานขออนุมัติ Over-limit (UC-SA-010) ก่อนยืนยัน SO</div>
+      <div class="uc-alt"><strong>A3 — ลูกค้า B2B สั่งผ่าน Backoffice:</strong> วิธีชำระเงินถูกบังคับให้ใช้วงเงินเครดิตเท่านั้น ไม่สามารถเปลี่ยนเป็น Cash / โอนเงิน / QR ได้ <span class="br-ref">P-04</span></div>
+    </div>
+    <div class="uc-section">
+      <div class="uc-section-label">ขั้นตอนกรณีผิดพลาด</div>
+      <div class="uc-exc"><strong>E1 — ของแถมหมดสต็อก:</strong> ระบบบล็อกการยืนยัน SO และแจ้งเตือนทันที พนักงานต้องลบสินค้าที่มีของแถมออก หรือลดจำนวนที่ไม่ถึงเกณฑ์ของแถม <span class="br-ref">S-07</span></div>
+      <div class="uc-exc"><strong>E2 — ConX ERP ไม่ตอบสนอง:</strong> ระบบเก็บ SO ไว้ในสถานะ Pending และแจ้ง System Admin <span class="br-ref">INT-10</span></div>
+    </div>
+    <div class="uc-section">
+      <div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-SA-003-01:</strong> SO ที่สร้างต้องมี field <code>channel = "backoffice"</code> และ <code>createdBy</code> = รหัสพนักงาน</div>
+      <div class="uc-ac"><strong>AC-SA-003-02:</strong> ลูกค้า B2B ที่สั่งผ่าน Backoffice — ฟิลด์วิธีชำระเงินต้องถูก lock เป็น "วงเงินเครดิต" เท่านั้น</div>
+      <div class="uc-ac"><strong>AC-SA-003-03:</strong> หลังกด Confirm SO — สต็อก Available ต้องลดลงทันที</div>
+      <div class="uc-ac"><strong>AC-SA-003-04:</strong> Top 10 สินค้าที่ลูกค้าซื้อประจำต้องแสดงอยู่ในหน้าสร้างคำสั่งซื้อพร้อมจำนวน Median</div>
+      <div class="uc-ac"><strong>AC-SA-003-05:</strong> พนักงานสามารถเลือกใช้คูปองแทนลูกค้าได้จากรายการคูปองที่ลูกค้ามี</div>
+    </div>
+    <div class="uc-section">
+      <div class="uc-section-label">หน้าจอที่เกี่ยวข้อง</div>
+      <p style="font-size:13px;margin:0"><span class="screen-ref">หน้าจอสร้างคำสั่งซื้อ</span> — CreateOrder.tsx | <span class="screen-ref">หน้าจอรายการคำสั่งซื้อ</span> — Orders.tsx | <span class="screen-ref">หน้าจอรายละเอียดคำสั่งซื้อ</span> — OrderDetailRevised.tsx</p>
+    </div>
+  </div>
+</div>
+
+<!-- UC-SA-004 -->
+<div class="use-case">
+  <div class="uc-header">
+    <span class="uc-num">UC-SA-004</span>
+    <span class="uc-title">สร้างคำสั่งซื้อล่วงหน้า (Pre-order) กรณีสต็อกไม่เพียงพอ</span>
+    <span class="tag-confirmed">ยืนยัน</span>
+  </div>
+  <div class="uc-body">
+    <div class="uc-section">
+      <div class="uc-section-label">จุดประสงค์</div>
+      <p style="font-size:13px;margin:0">เมื่อสต็อก Available ไม่เพียงพอ พนักงานสามารถเปิด Pre-order ให้ลูกค้าได้ โดยผูกกับคลังพิเศษซึ่งยอมให้สต็อกติดลบ</p>
+    </div>
+    <div class="uc-section">
+      <div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>ระบบแจ้งเตือนสต็อกไม่เพียงพอขณะเพิ่มสินค้า พนักงานเลือก "เปิด Pre-order"</li>
+        <li>ระบบเปลี่ยนประเภทสินค้ารายการนั้นเป็น Pre-order และผูกกับคลังพิเศษ <span class="br-ref">S-06</span> <span class="br-ref">D-024</span></li>
+        <li>ระบบแจ้งพนักงานว่า Pre-order อยู่ในตะกร้าแยก (ไม่ปนกับสินค้าปกติ) <span class="br-ref">D-023</span></li>
+        <li>กรณีลูกค้า B2B — ระบบตัดวงเงินเครดิตสำหรับ Pre-order ด้วย <span class="br-ref">P-04</span></li>
+        <li>พนักงานยืนยัน Pre-order — ระบบสร้าง SO ประเภท Pre-order ส่งไป ConX ERP</li>
+      </ol>
+    </div>
+    <div class="uc-section">
+      <div class="uc-section-label">กฎที่เกี่ยวข้อง</div>
+      <p style="font-size:13px;margin:0"><span class="br-ref">SO-06</span> Pre-order อาจทยอยสร้าง SO ใหม่ตามสินค้าที่เข้ามา (1 Pre-order = หลาย SO ได้) | <span class="br-ref">C-07</span> ยกเลิก Pre-order — คืนวงเงินเครดิตทันที | <span class="br-ref">P-01</span> เงื่อนไขมัดจำ Pre-order <strong>[รอยืนยัน — Pending verification]</strong></p>
+    </div>
+    <div class="uc-section">
+      <div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-SA-004-01:</strong> สินค้า Pre-order อยู่ในตะกร้าแยก ไม่ปนกับสินค้าปกติ</div>
+      <div class="uc-ac"><strong>AC-SA-004-02:</strong> SO Pre-order ผูกกับคลังพิเศษ (warehouse kind = pre-order)</div>
+      <div class="uc-ac"><strong>AC-SA-004-03:</strong> ยกเลิก Pre-order — วงเงินเครดิตที่จองไว้ต้องคืนทันที</div>
+    </div>
+  </div>
+</div>
+
+<!-- UC-SA-005 -->
+<div class="use-case">
+  <div class="uc-header">
+    <span class="uc-num">UC-SA-005</span>
+    <span class="uc-title">สร้างใบเสนอราคาแทนลูกค้า</span>
+    <span class="tag-confirmed">ยืนยัน</span>
+  </div>
+  <div class="uc-body">
+    <div class="uc-section">
+      <div class="uc-section-label">จุดประสงค์</div>
+      <p style="font-size:13px;margin:0">พนักงานสร้างใบเสนอราคาให้ลูกค้า ซึ่งใช้ราคาปกติ (ไม่มีโปรโมชัน) อายุ 7 วันทำการ และแยกตะกร้าจากคำสั่งซื้อปกติ</p>
+    </div>
+    <div class="uc-section">
+      <div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>พนักงานกดปุ่ม "สร้างใบเสนอราคา" บน Agent Portal — ระบบเปิด <span class="screen-ref">หน้าจอสร้างใบเสนอราคา</span></li>
+        <li>พนักงานเพิ่มสินค้ารายการที่ต้องการ — ระบบใช้ราคาตาม Price Tier ของลูกค้า ณ วันนั้น</li>
+        <li>ระบบไม่คำนวณโปรโมชัน / ส่วนลด Campaign ใดๆ <span class="br-ref">Q-04</span> <span class="br-ref">PR-04</span></li>
+        <li>ระบบแสดงข้อความเตือนบนใบเสนอราคา: "ราคานี้ไม่รวมส่วนลดโปรโมชัน"</li>
+        <li>พนักงานบันทึกและส่งใบเสนอราคาให้ลูกค้า (พิมพ์ PDF หรือส่งทาง LINE / อีเมล)</li>
+        <li>ระบบกำหนดวันหมดอายุ = วันที่สร้าง + 7 วันทำการ (จันทร์–เสาร์ ไม่นับวันหยุดนักขัตฤกษ์) <span class="br-ref">Q-01</span></li>
+        <li>ระบบบันทึกใบเสนอราคาใน <span class="screen-ref">หน้าจอรายการใบเสนอราคา</span></li>
+      </ol>
+    </div>
+    <div class="uc-section">
+      <div class="uc-section-label">ขั้นตอนทางเลือก</div>
+      <div class="uc-alt"><strong>A1 — สต็อกไม่เพียงพอ:</strong> ระบบแจ้งเตือน แต่ยังสร้างใบเสนอราคาได้ (ไม่ Reserve สต็อก)</div>
+    </div>
+    <div class="uc-section">
+      <div class="uc-section-label">ขั้นตอนกรณีผิดพลาด</div>
+      <div class="uc-exc"><strong>E1 — ใบเสนอราคาหมดอายุแล้วลูกค้าขอ Confirm:</strong> ระบบปฏิเสธ — แจ้งพนักงานให้สร้างใบเสนอราคาใหม่ <span class="br-ref">Q-02</span></div>
+    </div>
+    <div class="uc-section">
+      <div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-SA-005-01:</strong> ใบเสนอราคาต้องแสดงข้อความ "ไม่มี Promotion/ส่วนลด Campaign ใดๆ" อย่างชัดเจน</div>
+      <div class="uc-ac"><strong>AC-SA-005-02:</strong> วันหมดอายุต้องนับ 7 วันทำการ ไม่นับวันอาทิตย์และวันหยุดนักขัตฤกษ์</div>
+      <div class="uc-ac"><strong>AC-SA-005-03:</strong> ตะกร้าใบเสนอราคาต้องแยกจากตะกร้าปกติอย่างเด็ดขาด</div>
+      <div class="uc-ac"><strong>AC-SA-005-04:</strong> ระบบต้องปฏิเสธการ Convert ใบเสนอราคาที่หมดอายุเป็น SO</div>
+    </div>
+    <div class="uc-section">
+      <div class="uc-section-label">หน้าจอที่เกี่ยวข้อง</div>
+      <p style="font-size:13px;margin:0"><span class="screen-ref">หน้าจอสร้างใบเสนอราคา</span> — CreateQuote.tsx | <span class="screen-ref">หน้าจอรายการใบเสนอราคา</span> — QuoteList.tsx | <span class="screen-ref">หน้าจอรายละเอียดใบเสนอราคา</span> — QuoteDetail.tsx</p>
+    </div>
+  </div>
+</div>
+
+<!-- UC-SA-006 -->
+<div class="use-case">
+  <div class="uc-header">
+    <span class="uc-num">UC-SA-006</span>
+    <span class="uc-title">แปลงใบเสนอราคาเป็นคำสั่งซื้อ</span>
+    <span class="tag-confirmed">ยืนยัน</span>
+  </div>
+  <div class="uc-body">
+    <div class="uc-section">
+      <div class="uc-section-label">จุดประสงค์</div>
+      <p style="font-size:13px;margin:0">เมื่อลูกค้ายืนยันใบเสนอราคา พนักงาน Convert ใบเสนอราคาที่ยังไม่หมดอายุเป็น SO โดยระบบตรวจสต็อก แยก Pre-order อัตโนมัติสำหรับรายการที่ขาด</p>
+    </div>
+    <div class="uc-section">
+      <div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>พนักงานเปิด <span class="screen-ref">หน้าจอรายละเอียดใบเสนอราคา</span> ที่ลูกค้าต้องการยืนยัน</li>
+        <li>ระบบตรวจสอบว่าใบเสนอราคายังไม่หมดอายุ <span class="br-ref">Q-02</span></li>
+        <li>ระบบตรวจสต็อก Available สำหรับแต่ละรายการสินค้า</li>
+        <li>รายการที่มีสต็อกพอ → สร้างเป็น SO ปกติ (คงราคา Net Price จากใบเสนอราคา) <span class="br-ref">Q-03</span></li>
+        <li>รายการที่สต็อกไม่พอ → สร้างเป็น Pre-order (คงราคา Net Price จากใบเสนอราคา) <span class="br-ref">Q-03</span></li>
+        <li>ระบบ Reserve สต็อก / ตัดวงเงินเครดิต (B2B) ตามปกติ</li>
+        <li>ระบบอัปเดตสถานะใบเสนอราคาเป็น "แปลงแล้ว" (Converted)</li>
+      </ol>
+    </div>
+    <div class="uc-section">
+      <div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-SA-006-01:</strong> ราคาใน SO ที่แปลงจาก Quotation ต้องคงราคา Net Price จากใบเสนอราคา</div>
+      <div class="uc-ac"><strong>AC-SA-006-02:</strong> รายการสต็อกไม่พอต้องถูกสร้างเป็น Pre-order อัตโนมัติ</div>
+      <div class="uc-ac"><strong>AC-SA-006-03:</strong> ใบเสนอราคาที่หมดอายุ — ปุ่ม Convert ต้องถูก Disable และแสดงข้อความ "ใบเสนอราคาหมดอายุแล้ว"</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- UC-SA-007 -->
+<div class="use-case">
+  <div class="uc-header">
+    <span class="uc-num">UC-SA-007</span>
+    <span class="uc-title">ส่งข้อมูลชำระเงิน (QR Code / แจ้งโอนเงิน) ผ่านระบบ</span>
+    <span class="tag-confirmed">ยืนยัน</span>
+  </div>
+  <div class="uc-body">
+    <div class="uc-section">
+      <div class="uc-section-label">จุดประสงค์</div>
+      <p style="font-size:13px;margin:0">หลังสร้าง SO แล้ว พนักงานส่งข้อมูลการชำระเงิน (QR Code หรือเลขบัญชีโอนเงิน) ให้ลูกค้าผ่านระบบ เพื่อลดขั้นตอนและลดข้อผิดพลาดจากการสื่อสารด้วยปากเปล่า</p>
+    </div>
+    <div class="uc-section">
+      <div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>SO อยู่ในสถานะ "รอชำระเงิน" — พนักงานเปิด <span class="screen-ref">หน้าจอรายละเอียดคำสั่งซื้อ</span></li>
+        <li>พนักงานกดปุ่ม "ส่งข้อมูลชำระเงิน"</li>
+        <li>ระบบสร้าง QR Code สำหรับยอดชำระสุทธิของ SO นั้น และ/หรือแสดงเลขบัญชีธนาคารของบริษัท</li>
+        <li>พนักงานเลือกช่องทางส่ง: LINE / อีเมล / แสดงบนจอให้ลูกค้าสแกน</li>
+        <li>ระบบบันทึก Log ว่าส่งข้อมูลชำระเงินแล้ว</li>
+        <li>ลูกค้าชำระเงินและอัปโหลดสลิปผ่านช่องทางที่ตกลงไว้</li>
+      </ol>
+    </div>
+    <div class="uc-section">
+      <div class="uc-section-label">กฎที่เกี่ยวข้อง</div>
+      <p style="font-size:13px;margin:0"><span class="br-ref">P-08</span> ทุก Order ต้องผ่าน Cashier ก่อนออก Invoice | <span class="br-ref">SO-01</span> SO รอชำระเกิน 24 ชม. → Auto-cancel</p>
+    </div>
+    <div class="uc-section">
+      <div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-SA-007-01:</strong> QR Code ที่สร้างต้องตรงกับยอดชำระสุทธิของ SO นั้นพอดี</div>
+      <div class="uc-ac"><strong>AC-SA-007-02:</strong> ระบบบันทึก timestamp การส่งข้อมูลชำระเงินใน Log</div>
+    </div>
+  </div>
+</div>
+
+<!-- UC-SA-008 -->
+<div class="use-case">
+  <div class="uc-header">
+    <span class="uc-num">UC-SA-008</span>
+    <span class="uc-title">ติดตามคำสั่งซื้อรอชำระเงินใกล้หมดเวลา (SO Monitoring)</span>
+    <span class="tag-confirmed">ยืนยัน</span>
+  </div>
+  <div class="uc-body">
+    <div class="uc-section">
+      <div class="uc-section-label">จุดประสงค์</div>
+      <p style="font-size:13px;margin:0">ระบบช่วยพนักงานติดตาม SO ที่รอชำระเงินใกล้ครบ 24 ชั่วโมง เพื่อให้โทรติดตามลูกค้าได้ทันก่อน Auto-cancel</p>
+    </div>
+    <div class="uc-section">
+      <div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>ระบบแสดง Dashboard / รายการ SO ที่สถานะ "รอชำระเงิน" ใน <span class="screen-ref">หน้าจอรายการคำสั่งซื้อ</span></li>
+        <li>ระบบเรียงลำดับตาม "เวลาที่เหลือก่อน Auto-cancel" (น้อยสุดขึ้นก่อน)</li>
+        <li>พนักงานโทรหรือแชทติดตามลูกค้า — บันทึก Note ในระบบ</li>
+        <li>หาก SO เกิน 24 ชม. และยังไม่ชำระ — ระบบ Auto-cancel และส่ง Notification ให้พนักงาน <span class="br-ref">SO-01</span></li>
+      </ol>
+    </div>
+    <div class="uc-section">
+      <div class="uc-section-label">ประเด็นเปิด</div>
+      <div class="callout callout-amber" style="margin:6px 0;padding:8px 14px">
+        <strong>Q-019 [จาก MoM 05-03-2026]:</strong> Field ที่จำเป็นสำหรับ CC Inquiry ติดตาม SO ใกล้หมดเวลา 24 ชม. มีอะไรบ้าง? — <strong>[รอยืนยัน — Pending verification]</strong>
+      </div>
+    </div>
+    <div class="uc-section">
+      <div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-SA-008-01:</strong> รายการ SO รอชำระต้องแสดง "เวลาที่เหลือ" เป็น hh:mm</div>
+      <div class="uc-ac"><strong>AC-SA-008-02:</strong> SO ที่ Auto-cancel ต้องคืนสต็อก Available และวงเงินเครดิต (B2B) ทันที</div>
+    </div>
+  </div>
+</div>
+
+<!-- UC-SA-009 -->
+<div class="use-case">
+  <div class="uc-header">
+    <span class="uc-num">UC-SA-009</span>
+    <span class="uc-title">ยกเลิกและสร้างคำสั่งซื้อทดแทน (Cancel + Duplicate)</span>
+    <span class="tag-confirmed">ยืนยัน</span>
+  </div>
+  <div class="uc-body">
+    <div class="uc-section">
+      <div class="uc-section-label">จุดประสงค์</div>
+      <p style="font-size:13px;margin:0">SO ที่เข้าขั้นตอน Pick แล้วห้ามแก้ไขโดยตรง — พนักงานต้องยกเลิก SO เดิมและสร้างใหม่ (Duplicate) โดยระบบเก็บ Log อ้างอิง SO ต้นทาง</p>
+    </div>
+    <div class="uc-section">
+      <div class="uc-section-label">เงื่อนไขก่อนเริ่มต้น</div>
+      <ul style="font-size:13px;margin:0">
+        <li>SO อยู่ในสถานะ Confirmed ขึ้นไป (ผ่านการยืนยันแล้ว)</li>
+        <li>ลูกค้าหรือ CS แจ้งขอแก้ไขรายการสินค้า / จำนวน</li>
+      </ul>
+    </div>
+    <div class="uc-section">
+      <div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>พนักงานเปิด <span class="screen-ref">หน้าจอรายละเอียดคำสั่งซื้อ</span> ของ SO ที่ต้องการแก้ไข</li>
+        <li>ระบบตรวจสอบสถานะ — หาก SO เข้า Pick แล้ว ปุ่ม "แก้ไข" จะถูก Disable <span class="br-ref">SO-02</span></li>
+        <li>พนักงานกดปุ่ม "ยกเลิกและสร้างใหม่" (Cancel + Duplicate)</li>
+        <li>ระบบยกเลิก SO เดิม: คืนสต็อก, คืนวงเงินเครดิต (B2B), บันทึกเหตุผลการยกเลิก</li>
+        <li>ระบบสร้าง SO ใหม่ในสถานะ Draft โดยคัดลอกรายการสินค้าจาก SO เดิม</li>
+        <li>ระบบบันทึก Log อ้างอิงว่า SO ใหม่มาจาก SO เดิมหมายเลขใด <span class="br-ref">SO-03</span> <span class="br-ref">D-009</span></li>
+        <li>พนักงานแก้ไขรายการสินค้า / จำนวนใน SO ใหม่แล้วยืนยัน</li>
+      </ol>
+    </div>
+    <div class="uc-section">
+      <div class="uc-section-label">ขั้นตอนกรณีผิดพลาด</div>
+      <div class="uc-exc"><strong>E1 — SO อยู่ระหว่าง Pick (Handheld กำลังทำงาน):</strong> ระบบไม่อนุญาตให้ Cancel — แจ้งพนักงานให้ประสานกับ Warehouse ก่อน</div>
+    </div>
+    <div class="uc-section">
+      <div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-SA-009-01:</strong> SO ใหม่ต้องมี field อ้างอิง SO ต้นทาง (originSOId) ในระบบ</div>
+      <div class="uc-ac"><strong>AC-SA-009-02:</strong> หลัง Cancel — สต็อก Available และวงเงินเครดิตต้องคืนภายใน 30 วินาที</div>
+      <div class="uc-ac"><strong>AC-SA-009-03:</strong> SO ที่เข้า Pick แล้ว ปุ่ม "แก้ไข" ต้องถูก Disable</div>
+    </div>
+  </div>
+</div>
+
+<!-- UC-SA-010 -->
+<div class="use-case">
+  <div class="uc-header">
+    <span class="uc-num">UC-SA-010</span>
+    <span class="uc-title">ขออนุมัติวงเงินเครดิตชั่วคราวกรณีเกินวงเงิน (Over-limit Approval)</span>
+    <span class="tag-design">รอออกแบบ</span>
+  </div>
+  <div class="uc-body">
+    <div class="uc-section">
+      <div class="uc-section-label">จุดประสงค์</div>
+      <p style="font-size:13px;margin:0">เมื่อลูกค้า B2B ต้องการสั่งซื้อแต่วงเงินเครดิตไม่เพียงพอ พนักงานสามารถขออนุมัติวงเงินชั่วคราวต่อ SO นั้น โดยมี Approval Matrix ตามระดับผู้อนุมัติ</p>
+    </div>
+    <div class="uc-section">
+      <div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>ระบบแจ้งเตือน "วงเงินเครดิตไม่เพียงพอ" ขณะยืนยัน SO</li>
+        <li>พนักงานกดปุ่ม "ขออนุมัติวงเงินชั่วคราว" พร้อมระบุเหตุผล</li>
+        <li>ระบบส่ง Notification ไปยังผู้มีสิทธิ์อนุมัติตาม Approval Matrix <span class="br-ref">CC-02</span></li>
+        <li>ผู้อนุมัติ Approve / Reject บน <span class="screen-ref">หน้าจออนุมัติ</span></li>
+        <li>ระบบแจ้งผลกลับไปยังพนักงาน — หาก Approve: สร้าง SO และตัดวงเงินเกิน; หาก Reject: SO ยังอยู่ใน Draft</li>
+      </ol>
+    </div>
+    <div class="uc-section">
+      <div class="uc-section-label">ประเด็นเปิด</div>
+      <div class="callout callout-amber" style="margin:6px 0;padding:8px 14px">
+        <strong>P-02 [Pending]:</strong> Approval Matrix — วงเงินที่แต่ละระดับอนุมัติได้ (CC / Supervisor / Manager) ยังไม่ได้รับการยืนยันจาก YSC — <strong>[รอยืนยัน — Pending verification]</strong>
+      </div>
+    </div>
+    <div class="uc-section">
+      <div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-SA-010-01:</strong> การขออนุมัติต้องมีการบันทึก: ชื่อพนักงานที่ขอ, จำนวนเงินที่เกิน, เหตุผล, timestamp</div>
+      <div class="uc-ac"><strong>AC-SA-010-02:</strong> SO รอ Over-limit Approval ต้องแสดงสถานะ "รออนุมัติวงเงิน" ในรายการ SO</div>
+    </div>
+    <div class="uc-section">
+      <div class="uc-section-label">หน้าจอที่เกี่ยวข้อง</div>
+      <p style="font-size:13px;margin:0"><span class="screen-ref">หน้าจออนุมัติ</span> — ApprovalsPage.tsx | <span class="screen-ref">หน้าจอจัดการวงเงินเครดิต</span> — CreditManagement.tsx</p>
+    </div>
+  </div>
+</div>
+
+<!-- UC-SA-011 -->
+<div class="use-case">
+  <div class="uc-header">
+    <span class="uc-num">UC-SA-011</span>
+    <span class="uc-title">บันทึกช่องทางและ Sub-channel การสั่งซื้อ <span class="planned-badge">feature วางแผนไว้</span></span>
+    <span class="tag-design">รอออกแบบ</span>
+  </div>
+  <div class="uc-body">
+    <div class="callout callout-amber" style="margin-bottom:12px">
+      <strong>หมายเหตุ:</strong> ฟีเจอร์นี้ยังไม่ได้พัฒนา แต่กำหนดให้มีในการออกแบบเพื่อรองรับการวิเคราะห์ยอดขายแยกช่องทาง ตามข้อกำหนด <span class="br-ref">SO-05</span> <span class="br-ref">CH-04</span>
+    </div>
+    <div class="uc-section">
+      <div class="uc-section-label">จุดประสงค์</div>
+      <p style="font-size:13px;margin:0">เพิ่ม field <strong>"ช่องทางการสั่งซื้อ" (order_source)</strong> ในหน้าจอสร้างคำสั่งซื้อ เพื่อให้พนักงานบันทึกว่าลูกค้าติดต่อมาทางใด ใช้สำหรับ Filter รายงานแยก Sub-channel</p>
+    </div>
+    <div class="uc-section">
+      <div class="uc-section-label">ตัวเลือก Sub-channel ที่รองรับ</div>
+      <table style="margin-bottom:0">
+        <thead><tr><th>ค่า (Value)</th><th>ชื่อที่แสดง</th><th>หมายเหตุ</th></tr></thead>
+        <tbody>
+          <tr><td><code>phone</code></td><td>โทรศัพท์</td><td>CC / CS / PC รับสายโทรเข้า</td></tr>
+          <tr><td><code>line-oa</code></td><td>LINE OA</td><td>CC รับ Order ผ่าน LINE</td></tr>
+          <tr><td><code>email-fax</code></td><td>อีเมล / แฟกซ์</td><td>CC รับ Order ผ่านอีเมลหรือ Fax</td></tr>
+          <tr><td><code>walk-in</code></td><td>เดินเข้ามา</td><td>PC รับจากลูกค้าที่เดินมาที่ร้าน</td></tr>
+          <tr><td><code>shopee</code></td><td>Shopee</td><td>CC นำ Order จาก Shopee เข้าระบบ <span class="br-ref">CH-05</span></td></tr>
+          <tr><td><code>social</code></td><td>Social Media</td><td>CC นำ Order จาก Facebook / IG เข้าระบบ <span class="br-ref">CH-05</span></td></tr>
+          <tr><td><code>other</code></td><td>อื่นๆ</td><td>พนักงานระบุเอง</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="uc-section">
+      <div class="uc-section-label">ตำแหน่งใน SO Data Model</div>
+      <p style="font-size:13px;margin:0">field <code>order_source</code> เพิ่มเข้า Order object ควบคู่กับ <code>channel = "backoffice"</code> ที่มีอยู่แล้ว — <code>channel</code> ระบุว่าสร้างจาก Backoffice, <code>order_source</code> ระบุว่าลูกค้าติดต่อมาทางใด</p>
+    </div>
+    <div class="uc-section">
+      <div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-SA-011-01:</strong> หน้าจอสร้างคำสั่งซื้อต้องมี Dropdown "ช่องทางการสั่งซื้อ" เป็น Required field</div>
+      <div class="uc-ac"><strong>AC-SA-011-02:</strong> SO ที่บันทึกแล้วต้องเห็น order_source ในหน้าจอรายละเอียดคำสั่งซื้อ</div>
+      <div class="uc-ac"><strong>AC-SA-011-03:</strong> รายงานยอดขายต้อง Filter ได้ด้วย order_source</div>
+    </div>
+  </div>
+</div>
+
+<!-- UC-SA-012 -->
+<div class="use-case">
+  <div class="uc-header">
+    <span class="uc-num">UC-SA-012</span>
+    <span class="uc-title">แจ้งเตือน Up-sell และ Cross-sell ระหว่างสร้างคำสั่งซื้อ</span>
+    <span class="tag-confirmed">ยืนยัน</span>
+  </div>
+  <div class="uc-body">
+    <div class="uc-section">
+      <div class="uc-section-label">จุดประสงค์</div>
+      <p style="font-size:13px;margin:0">ระบบช่วยพนักงานเพิ่มยอดขายด้วยการแจ้งเตือน Up-sell / Cross-sell โดยอัตโนมัติ เช่น "ลูกค้ามักซื้อ X ร่วมกับ Y" หรือ "ซื้ออีก N ชิ้น ได้ของแถม"</p>
+    </div>
+    <div class="uc-section">
+      <div class="uc-section-label">ขั้นตอนหลัก</div>
+      <ol class="uc-flow">
+        <li>ขณะพนักงานสร้างคำสั่งซื้อ ระบบตรวจสอบรายการสินค้าในตะกร้าเทียบกับ Promotion Engine</li>
+        <li>ระบบแสดง Promotion Alert เช่น "ซื้ออีก 9 ชิ้น ได้ของแถม" หรือ "ลูกค้านี้มักซื้อสินค้า X ร่วมด้วย" <span class="br-ref">CC-05</span></li>
+        <li>ระบบแสดง Top 10 สินค้าที่ลูกค้าซื้อประจำพร้อมจำนวน Median ที่ด้านข้าง เพื่อให้พนักงานเสนอลูกค้า <span class="br-ref">D-007</span></li>
+        <li>พนักงานเสนอลูกค้า — หากลูกค้าสนใจ กดเพิ่มสินค้าลงตะกร้าได้ทันที</li>
+      </ol>
+    </div>
+    <div class="uc-section">
+      <div class="uc-section-label">เกณฑ์การยอมรับผลงาน</div>
+      <div class="uc-ac"><strong>AC-SA-012-01:</strong> Promotion Alert แสดงแบบ Real-time เมื่อยอดในตะกร้าเปลี่ยน</div>
+      <div class="uc-ac"><strong>AC-SA-012-02:</strong> Top 10 สินค้าที่ลูกค้าซื้อประจำแสดงอยู่ในหน้าสร้างคำสั่งซื้อตลอดเวลา</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION 8 — SCREEN INVENTORY ===== -->
+<h1 id="s8">8. การออกแบบประสบการณ์ผู้ใช้ (Screen Inventory)</h1>
+<table>
+  <thead>
+    <tr><th>หน้าจอ</th><th>ไฟล์ (tsx)</th><th>ใช้ใน UC</th><th>หมายเหตุ</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><span class="screen-ref">Customer Connect (มัลติเอเจนต์)</span></td><td>CustomerConnectMultiAgent.tsx</td><td>UC-SA-001, UC-SA-012</td><td>Agent Portal หน้าหลัก — ข้อมูลลูกค้า + Top 10</td></tr>
+    <tr><td><span class="screen-ref">หน้าจอรายการลูกค้า</span></td><td>Customers.tsx</td><td>UC-SA-002</td><td>ค้นหาลูกค้า</td></tr>
+    <tr><td><span class="screen-ref">หน้าจอข้อมูลลูกค้า</span></td><td>CustomerDetail.tsx</td><td>UC-SA-001, UC-SA-002</td><td>แสดง Tier, วงเงิน, ประวัติ SO</td></tr>
+    <tr><td><span class="screen-ref">หน้าจอสร้างคำสั่งซื้อ</span></td><td>CreateOrder.tsx</td><td>UC-SA-003, UC-SA-004, UC-SA-011, UC-SA-012</td><td>รวม field order_source (วางแผนไว้)</td></tr>
+    <tr><td><span class="screen-ref">หน้าจอรายการคำสั่งซื้อ</span></td><td>Orders.tsx</td><td>UC-SA-008</td><td>SO Monitoring — Filter รอชำระ</td></tr>
+    <tr><td><span class="screen-ref">หน้าจอรายละเอียดคำสั่งซื้อ</span></td><td>OrderDetailRevised.tsx</td><td>UC-SA-007, UC-SA-009</td><td>Cancel + Duplicate, ส่งข้อมูลชำระเงิน</td></tr>
+    <tr><td><span class="screen-ref">หน้าจอสร้างใบเสนอราคา</span></td><td>CreateQuote.tsx</td><td>UC-SA-005</td><td>Quotation basket แยก</td></tr>
+    <tr><td><span class="screen-ref">หน้าจอรายการใบเสนอราคา</span></td><td>QuoteList.tsx</td><td>UC-SA-005, UC-SA-006</td><td>แสดงสถานะ Expired / Active</td></tr>
+    <tr><td><span class="screen-ref">หน้าจอรายละเอียดใบเสนอราคา</span></td><td>QuoteDetail.tsx</td><td>UC-SA-006</td><td>ปุ่ม Convert → SO</td></tr>
+    <tr><td><span class="screen-ref">หน้าจออนุมัติ</span></td><td>ApprovalsPage.tsx</td><td>UC-SA-010</td><td>Over-limit Approval Queue</td></tr>
+    <tr><td><span class="screen-ref">หน้าจอจัดการวงเงินเครดิต</span></td><td>CreditManagement.tsx</td><td>UC-SA-010</td><td>ดู Credit Limit / BG</td></tr>
+    <tr><td><span class="screen-ref">หน้าจอคิวตรวจสลิปชำระเงิน</span></td><td>AdminSlipsQueue.tsx</td><td>UC-SA-007</td><td>Cashier ตรวจสลิปหลัง CC ส่ง QR</td></tr>
+  </tbody>
+</table>
+
+<!-- ===== SECTION 9 — BUSINESS RULES ===== -->
+<h1 id="s9">9. กฎเกณฑ์เชิงธุรกิจ</h1>
+<p>กฎเกณฑ์ด้านล่างนี้คือกฎที่เกี่ยวข้องโดยตรงกับช่องทาง Sale Agent รายละเอียดฉบับเต็มอยู่ที่ <a href="ysc_business_rules.html">ysc_business_rules.html</a></p>
+<table>
+  <thead>
+    <tr><th>รหัสกฎ</th><th>กฎเกณฑ์</th><th>UC ที่เกี่ยวข้อง</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><span class="br-ref">CH-02</span></td><td>Agent (CC, CS, Sales) สร้างคำสั่งซื้อแทนลูกค้า — ชำระได้ด้วย Card, โอนเงิน, Credit Line</td><td>UC-SA-003</td></tr>
+    <tr><td><span class="br-ref">CH-04</span></td><td>Sub-channel (CC, CS, Sales) ใช้สำหรับ Filter รายงานแยกช่องทาง</td><td>UC-SA-011</td></tr>
+    <tr><td><span class="br-ref">CH-05</span></td><td>Shopee / Social ยังไม่เป็น Sub-channel อย่างเป็นทางการ — CC นำ Order เข้าระบบแทนด้วยตนเอง</td><td>UC-SA-011</td></tr>
+    <tr><td><span class="br-ref">CC-05</span></td><td>CC ดู Top 10 สินค้าที่ลูกค้าซื้อประจำ (Median qty, ย้อนหลัง 6 เดือน)</td><td>UC-SA-001, UC-SA-012</td></tr>
+    <tr><td><span class="br-ref">D-007</span></td><td>ใช้ Median คำนวณจำนวนสินค้าที่ซื้อประจำ</td><td>UC-SA-001, UC-SA-012</td></tr>
+    <tr><td><span class="br-ref">P-04</span></td><td>ลูกค้า B2B ที่สั่งผ่าน CC Backoffice — บังคับตัดวงเงินเครดิตเท่านั้น รวม Pre-order</td><td>UC-SA-003, UC-SA-004</td></tr>
+    <tr><td><span class="br-ref">SO-01</span></td><td>SO รอชำระเกิน 24 ชม. → Auto-cancel</td><td>UC-SA-008</td></tr>
+    <tr><td><span class="br-ref">SO-02</span></td><td>SO ที่เข้า Pick แล้ว ห้ามแก้ไข — ต้อง Cancel + Duplicate</td><td>UC-SA-009</td></tr>
+    <tr><td><span class="br-ref">SO-03</span></td><td>Cancel + Duplicate ต้องเก็บ Log อ้างอิง SO ต้นทาง (Traceability)</td><td>UC-SA-009</td></tr>
+    <tr><td><span class="br-ref">SO-05</span></td><td>SO ทุกใบต้องระบุ Channel เพื่อทำ Report แยกช่องทาง</td><td>UC-SA-003, UC-SA-011</td></tr>
+    <tr><td><span class="br-ref">Q-01</span></td><td>Quotation มีอายุ 7 วันทำการ (จันทร์-เสาร์ ไม่นับวันหยุดนักขัตฤกษ์)</td><td>UC-SA-005</td></tr>
+    <tr><td><span class="br-ref">Q-02</span></td><td>Quotation หมดอายุแล้ว Convert เป็น SO ไม่ได้</td><td>UC-SA-005, UC-SA-006</td></tr>
+    <tr><td><span class="br-ref">Q-03</span></td><td>Convert QT→SO: สต็อกพอ = SO ปกติ, สต็อกขาด = Pre-order (คงราคา Net Price)</td><td>UC-SA-006</td></tr>
+    <tr><td><span class="br-ref">Q-04</span></td><td>Quotation ต้องแสดง "ไม่มี Promotion/ส่วนลด Campaign ใดๆ"</td><td>UC-SA-005</td></tr>
+    <tr><td><span class="br-ref">CC-02</span></td><td>CC ขออนุมัติวงเงินชั่วคราวต่อ SO ได้ — Approval Matrix <strong>[รอยืนยัน]</strong></td><td>UC-SA-010</td></tr>
+    <tr><td><span class="br-ref">D-009</span></td><td>แก้ SO ที่ Pick แล้ว: Cancel + Duplicate เก็บ Log Traceability</td><td>UC-SA-009</td></tr>
+    <tr><td><span class="br-ref">D-006</span></td><td>นับยอดขายเข้า Customer Profile เมื่อออก Invoice แล้วเท่านั้น</td><td>UC-SA-001</td></tr>
+  </tbody>
+</table>
+
+<!-- ===== SECTION 10 — INTEGRATION ===== -->
+<h1 id="s10">10. การเชื่อมต่อระบบภายนอก (Integration)</h1>
+<table>
+  <thead>
+    <tr><th>ระบบ</th><th>ทิศทาง</th><th>รายละเอียด</th><th>กฎอ้างอิง</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>ConX ERP</td><td>Platform → ConX</td><td>ส่งข้อมูล SO ทุกใบที่สร้างใน Backoffice ไปยัง ConX ผ่านการเชื่อมต่อระบบ</td><td>INT-08</td></tr>
+    <tr><td>ConX ERP</td><td>ConX → Platform</td><td>รับสถานะการ Cleared / Bounced ของเช็ค เพื่ออัปเดตวงเงินเครดิต</td><td>INT-09, C-04</td></tr>
+    <tr><td>ConX ERP</td><td>ConX → Platform</td><td>รับ Webhook เมื่อสินค้า Pre-order เข้าคลัง เพื่อสร้าง SO ย่อย</td><td>SO-06, INT-01</td></tr>
+    <tr><td>Notification</td><td>Platform → พนักงาน</td><td>แจ้งเตือน SO ใกล้ Auto-cancel, Over-limit Approval result</td><td>SO-01, CC-02</td></tr>
+  </tbody>
+</table>
+
+<!-- ===== SECTION 11 — DATA ===== -->
+<h1 id="s11">11. การออกแบบข้อมูลและข้อมูลหลัก (Data &amp; Master)</h1>
+<h3>11.1 field ใหม่ที่ต้องเพิ่มในโมเดล Order</h3>
+<table>
+  <thead><tr><th>Field</th><th>Type</th><th>ค่าที่รองรับ</th><th>หมายเหตุ</th></tr></thead>
+  <tbody>
+    <tr><td><code>order_source</code></td><td>string (enum)</td><td>phone, line-oa, email-fax, walk-in, shopee, social, other</td><td><span class="planned-badge">วางแผนไว้</span> — ยังไม่ได้พัฒนา — ระบุ Sub-channel สำหรับ Reporting</td></tr>
+    <tr><td><code>originSOId</code></td><td>string (nullable)</td><td>รหัส SO ต้นทาง</td><td>ใช้ใน Cancel + Duplicate — SO ใหม่อ้างอิง SO เดิม</td></tr>
+    <tr><td><code>createdBy</code></td><td>string</td><td>รหัสพนักงาน</td><td>มีอยู่แล้ว — ต้องบันทึกทุกครั้งที่ Backoffice สร้าง SO</td></tr>
+  </tbody>
+</table>
+
+<h3>11.2 ข้อมูลที่แสดงใน Customer Profile บน Agent Portal</h3>
+<table>
+  <thead><tr><th>ข้อมูล</th><th>แหล่งที่มา</th><th>กฎอ้างอิง</th></tr></thead>
+  <tbody>
+    <tr><td>ระดับ Tier (Prospect / Member / Silver / Gold / Platinum / Diamond / Coronet)</td><td>Customer Master</td><td>D-006</td></tr>
+    <tr><td>Top 10 สินค้าที่ซื้อประจำ + Median qty (ย้อนหลัง 6 เดือน)</td><td>Invoice History</td><td>CC-05, D-007</td></tr>
+    <tr><td>ยอดซื้อเฉลี่ย ย้อนหลัง 1 / 3 / 6 / 12 เดือน</td><td>Invoice History</td><td>D-006</td></tr>
+    <tr><td>วงเงินเครดิตที่ได้รับอนุมัติ + ยอดที่ใช้ไป (B2B)</td><td>Credit Ledger</td><td>C-01, C-02</td></tr>
+    <tr><td>ประวัติ SO ล่าสุด</td><td>Order History</td><td>—</td></tr>
+  </tbody>
+</table>
+
+<!-- ===== SECTION 12 — SECURITY ===== -->
+<h1 id="s12">12. ความปลอดภัยและสิทธิ์การเข้าถึง (Security &amp; RBAC)</h1>
+<table>
+  <thead>
+    <tr><th>บทบาท</th><th>สร้าง SO</th><th>Quotation</th><th>Cancel+Dup</th><th>Over-limit Approve</th><th>ดูวงเงิน B2B</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>CC</td><td>อนุญาต</td><td>อนุญาต</td><td>อนุญาต (ก่อน Pick)</td><td>ขอได้ (ไม่อนุมัติเอง)</td><td>อนุญาต (อ่าน)</td></tr>
+    <tr><td>CS</td><td>อนุญาต</td><td>อนุญาต</td><td>อนุญาต (ก่อน Pick)</td><td>ขอได้ (ไม่อนุมัติเอง)</td><td>อนุญาต (อ่าน)</td></tr>
+    <tr><td>PC</td><td>อนุญาต</td><td>อนุญาต</td><td>ไม่อนุญาต</td><td>ขอได้ (ไม่อนุมัติเอง)</td><td>อนุญาต (อ่าน)</td></tr>
+    <tr><td>CC Supervisor</td><td>อนุญาต</td><td>อนุญาต</td><td>อนุญาต</td><td>อนุมัติได้ (ตาม Approval Matrix)</td><td>อนุญาต (อ่าน)</td></tr>
+    <tr><td>Admin</td><td>อนุญาต</td><td>อนุญาต</td><td>อนุญาต</td><td>อนุมัติได้ทุกระดับ</td><td>อนุญาต (แก้ไขได้)</td></tr>
+  </tbody>
+</table>
+
+<!-- ===== SECTION 13 — NFR ===== -->
+<h1 id="s13">13. ข้อกำหนดเชิงคุณภาพ (NFR)</h1>
+<table>
+  <thead><tr><th>ด้าน</th><th>ข้อกำหนด</th></tr></thead>
+  <tbody>
+    <tr><td>ความเร็ว</td><td>ดึงข้อมูล Customer Profile แสดงบนหน้าจอภายใน 2 วินาที</td></tr>
+    <tr><td>ความเร็ว</td><td>สร้าง SO และ Reserve สต็อกสำเร็จภายใน 5 วินาที</td></tr>
+    <tr><td>ความพร้อมใช้</td><td>Backoffice OMS พร้อมใช้งาน 99.5% ในช่วงเวลาทำการ (08:00–20:00)</td></tr>
+    <tr><td>Multi-screen</td><td>รองรับการทำงาน 2 จอพร้อมกันโดยไม่สูญเสียสถานะ Session</td></tr>
+    <tr><td>ความปลอดภัย</td><td>ทุก Action ที่ Backoffice ต้องบันทึก Audit Log พร้อม User ID + Timestamp</td></tr>
+  </tbody>
+</table>
+
+<!-- ===== SECTION 14 — REPORTS ===== -->
+<h1 id="s14">14. รายงานและแดชบอร์ด</h1>
+<table>
+  <thead><tr><th>รายงาน</th><th>ผู้ใช้</th><th>Filter หลัก</th></tr></thead>
+  <tbody>
+    <tr><td>ยอดขายรายวัน/เดือน แยก Sub-channel (phone / LINE / email / walk-in / Shopee / Social)</td><td>CC Supervisor, Admin</td><td>ช่วงเวลา, Sub-channel, พนักงาน</td></tr>
+    <tr><td>รายการ SO รอชำระเงิน (SO Monitoring)</td><td>CC / CS</td><td>อายุ SO, ลูกค้า, พนักงานที่รับผิดชอบ</td></tr>
+    <tr><td>Quotation ที่ใกล้หมดอายุ / หมดอายุแล้ว</td><td>CC / CS / PC</td><td>วันหมดอายุ</td></tr>
+    <tr><td>SO ที่ Cancel + Duplicate (Traceability Log)</td><td>Admin, CS Supervisor</td><td>ช่วงเวลา, พนักงาน, ลูกค้า</td></tr>
+    <tr><td>รายการ Over-limit Approval (ประวัติการอนุมัติ/ปฏิเสธ)</td><td>CC Supervisor, Admin</td><td>ช่วงเวลา, ผลการอนุมัติ</td></tr>
+  </tbody>
+</table>
+
+<!-- ===== SECTION 15 — MIGRATION ===== -->
+<h1 id="s15">15. ข้อกำหนดการโอนย้ายข้อมูล (Migration)</h1>
+<p>ไม่มีข้อกำหนดการโอนย้ายข้อมูลที่เฉพาะเจาะจงสำหรับโมดูลนี้ — ข้อมูล Customer Master ใช้จาก ConX ERP ผ่าน Integration ตามปกติ (INT-05, INT-06)</p>
+
+<!-- ===== SECTION 16 — ASSUMPTIONS ===== -->
+<h1 id="s16">16. สมมติฐานและข้อจำกัด</h1>
+<ul>
+  <li>พนักงาน CC / CS / PC ทุกคนมีบัญชีผู้ใช้งานใน Backoffice และกำหนด Role ไว้แล้ว</li>
+  <li>ระบบ Customer Connect (Multi-Agent) รองรับการทำงานพร้อมกันหลายพนักงาน</li>
+  <li>CTI (Computer Telephony Integration) ที่ดึงเบอร์โทรศัพท์เข้าหน้าจออัตโนมัติ — อยู่นอกขอบเขตของ Adeptio; หากไม่มี พนักงานกรอกเองด้วยตนเอง</li>
+  <li>LINE OA ใช้เป็นช่องทางสื่อสาร — ไม่ใช่ช่องทางสร้าง Order โดยตรง (CC สร้าง Order ใน Backoffice แทน)</li>
+  <li>Approval Matrix สำหรับ Over-limit <strong>[รอยืนยันจาก YSC — P-02]</strong></li>
+</ul>
+
+<!-- ===== SECTION 17 — ACCEPTANCE CRITERIA ===== -->
+<h1 id="s17">17. เกณฑ์การยอมรับผลงาน (Module-level)</h1>
+<div class="uc-ac"><strong>AC-SA-MOD-01:</strong> พนักงาน CC / CS / PC สามารถสร้าง SO ได้ครบทุก Flow (Normal / Pre-order / Quotation) ผ่าน Backoffice โดยไม่ต้องใช้กระดาษ</div>
+<div class="uc-ac"><strong>AC-SA-MOD-02:</strong> SO ทุกใบที่สร้างจาก Backoffice มี <code>channel = "backoffice"</code> และ <code>createdBy</code> = รหัสพนักงาน</div>
+<div class="uc-ac"><strong>AC-SA-MOD-03:</strong> ลูกค้า B2B ที่สั่งผ่าน Backoffice — ระบบตัดวงเงินเครดิตทันทีและไม่มีตัวเลือกวิธีชำระอื่น</div>
+<div class="uc-ac"><strong>AC-SA-MOD-04:</strong> Agent Portal แสดง Top 10 สินค้าพร้อม Promotion Alert บนหน้าสร้างคำสั่งซื้อ</div>
+<div class="uc-ac"><strong>AC-SA-MOD-05:</strong> Cancel + Duplicate ทำงานถูกต้อง — SO ใหม่อ้างอิง SO ต้นทาง, สต็อกและวงเงินคืนทันที</div>
+<div class="uc-ac"><strong>AC-SA-MOD-06 [SIT]:</strong> SO Backoffice ส่งข้อมูลไปยัง ConX ERP สำเร็จ ภายใน 10 วินาทีหลัง Confirm</div>
+
+<!-- ===== SECTION 18 — OPEN ISSUES ===== -->
+<h1 id="s18">18. ประเด็นเปิดและความเสี่ยง (Open Issues &amp; Risks)</h1>
+<table>
+  <thead>
+    <tr><th>ID</th><th>ประเด็น</th><th>ที่มา</th><th>ผลกระทบ</th><th>สถานะ</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>P-02</td>
+      <td>Approval Matrix — วงเงินที่แต่ละ Role อนุมัติ Over-limit ได้เท่าไร</td>
+      <td>Business Rules §17, CC-02</td>
+      <td>UC-SA-010 ออกแบบ UI ไม่ได้จนกว่าจะได้ค่า</td>
+      <td><span class="tag-pending">รอ YSC ยืนยัน</span></td>
+    </tr>
+    <tr>
+      <td>P-09 / CC-03</td>
+      <td>ขั้นตอน Confirm Order หลัง CC สร้าง Cart — ส่ง Capture Screen ให้ลูกค้า Confirm ก่อนหรือ CC Confirm เองได้?</td>
+      <td>MoM 14-01-2026, Business Rules §17</td>
+      <td>ส่งผลต่อ Main Flow ของ UC-SA-003</td>
+      <td><span class="tag-pending">รอยืนยัน</span></td>
+    </tr>
+    <tr>
+      <td>Q-019</td>
+      <td>Field ที่จำเป็นสำหรับ CC Inquiry ติดตาม SO ใกล้หมดเวลา 24 ชม. มีอะไรบ้าง?</td>
+      <td>MoM 05-03-2026</td>
+      <td>ออกแบบหน้า SO Monitoring (UC-SA-008) ไม่สมบูรณ์</td>
+      <td><span class="tag-pending">รอยืนยัน</span></td>
+    </tr>
+    <tr>
+      <td>Q-022</td>
+      <td>UX รองรับการพักแชท (Hold) + สลับกลับทำ SO ได้สมูทหรือไม่?</td>
+      <td>MoM 18-03-2026</td>
+      <td>Multi-task UX ของ Agent Portal — ต้องทดสอบ</td>
+      <td><span class="tag-pending">รอออกแบบ</span></td>
+    </tr>
+    <tr>
+      <td>Q-007</td>
+      <td>Field ข้อมูลในหมวด "สินค้าที่ซื้อบ่อย" ควรมีอะไรบ้าง? (นอกจากชื่อสินค้าและ Median qty)</td>
+      <td>MoM 16-01-2026</td>
+      <td>ออกแบบ Top 10 Widget ใน Agent Portal</td>
+      <td><span class="tag-pending">รอยืนยัน</span></td>
+    </tr>
+    <tr>
+      <td>SA-R001</td>
+      <td>ความเสี่ยง: พนักงานลืมบันทึก order_source → ข้อมูล Report ไม่สมบูรณ์</td>
+      <td>UC-SA-011</td>
+      <td>ข้อมูลแยก Sub-channel ไม่น่าเชื่อถือ</td>
+      <td>แนะนำ: บังคับ Required Field + Validation ก่อน Save</td>
+    </tr>
+    <tr>
+      <td>SA-R002</td>
+      <td>ความเสี่ยง: CTI ไม่พร้อม — พนักงานต้องกรอกเบอร์โทรเองทุกครั้ง เพิ่ม Lead Time</td>
+      <td>UC-SA-001</td>
+      <td>ลดประสิทธิภาพ Agent Portal</td>
+      <td>รับทราบ — ออกแบบ UI ให้กรอกเบอร์โทรได้เร็ว</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="callout callout-green" style="margin-top:32px">
+  <strong>เอกสารที่เกี่ยวข้อง</strong>
+  <ul style="margin-top:8px;margin-bottom:0;font-size:13px">
+    <li><a href="ysc_business_rules.html">ysc_business_rules.html</a> — กฎเกณฑ์ทางธุรกิจทั้งหมด</li>
+    <li><a href="ysc_oms_brd.html">ysc_oms_brd.html</a> — ระบบจัดการคำสั่งซื้อ (OMS) — Cashier, Invoice, Lifecycle</li>
+    <li><a href="ysc_crm_brd.html">ysc_crm_brd.html</a> — ระบบ CRM — Customer Profile, Tier, Credit</li>
+    <li><a href="ysc_storefront_brd.html">ysc_storefront_brd.html</a> — ช่องทางเว็บไซต์ (Storefront)</li>
+    <li><a href="ysc_pos_brd.html">ysc_pos_brd.html</a> — ช่องทาง POS หน้าร้าน</li>
+  </ul>
+</div>
+
+</div><!-- end #doc -->
+</body>
+</html>
